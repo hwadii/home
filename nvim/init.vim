@@ -1,6 +1,8 @@
 execute pathogen#infect()
 
-colorscheme monokai
+set termguicolors
+" colorscheme monokai
+colorscheme monokai_pro
 
 filetype plugin indent on
 set nonumber
