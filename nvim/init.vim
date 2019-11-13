@@ -1,3 +1,7 @@
+execute pathogen#infect()
+
+colorscheme monokai
+
 filetype plugin indent on
 set nonumber
 set rnu
@@ -12,5 +16,9 @@ nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
-
 nnoremap <esc> :noh<return><esc>
+
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+
+nnoremap <leader><leader> <c-^>
