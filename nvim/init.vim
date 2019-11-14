@@ -1,10 +1,19 @@
-execute pathogen#infect()
+" execute pathogen#infect()
+call plug#begin('~/.config/nvim/bundle/')
+
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'mattn/emmet-vim'
+
+call plug#end()
 
 set termguicolors
-" colorscheme monokai
 colorscheme monokai_pro
 
-filetype plugin indent on
 set nonumber
 set rnu
 set autoindent
@@ -12,7 +21,6 @@ set ruler
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-syntax on
 
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
