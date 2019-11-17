@@ -11,7 +11,7 @@ bindkey '^[^[[C' forward-word
 PROJECT_PATHS=(~/code ~/work)
 ZSH_THEME="robbyrussell"   
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git zsh-autosuggestions dnf extract transfer pj)
+plugins=(git dnf tmux transfer pj)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/scripts.sh

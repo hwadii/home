@@ -21,9 +21,10 @@ alias ezsh="v ~/.zshrc"
 alias esc="v ~/.oh-my-zsh/custom/scripts.sh"
 alias rzsh=". ~/.zshrc"
 alias val="v ~/.oh-my-zsh/custom/aliases.zsh"
-alias vv="v $NVIM_CONFIG/init.vim"
+alias ev="v $NVIM_CONFIG/init.vim"
 
 # qol
+alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
 alias duh="du -sh"
 alias v=nvim
@@ -57,3 +58,4 @@ alias nrc="npm run commit"
 spell() {
   echo $1 | aspell -a;
 }
+alias youtube-dl="youtube-dl -f 'mp4[height>=?720]'"
