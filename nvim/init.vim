@@ -1,0 +1,104 @@
+" execute pathogen#infect()
+call plug#begin('~/.config/nvim/bundle/')
+
+" Theme
+Plug 'morhetz/gruvbox'
+" QoL
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-unimpaired'
+Plug 'sheerun/vim-polyglot'
+" Modern web dev
+Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'mattn/emmet-vim'
+" Fuzzy finder
+Plug 'airblade/vim-rooter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+set termguicolors
+colorscheme gruvbox
+
+" coc stuff
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+
+set nonumber
+set rnu
+set autoindent
+set ruler
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set autoread
+set inccommand=nosplit
+set breakindent
+set linebreak
+set wildmenu
+set wildmode=full
+
+nnoremap <silent><A-j> :m .+1<CR>==
+nnoremap <silent><A-k> :m .-2<CR>==
+inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+nnoremap <esc> :noh<return><esc>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+nnoremap <silent><leader>p :Prettier<return>
+nnoremap <leader>sc :ALEToggle<CR>
+
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+noremap <silent> $ g$
+onoremap <silent> j gj
+onoremap <silent> k gk
+
+nnoremap <C-p> :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>h :History<CR>
+
+" let g:ale_completion_enabled = 1
+let g:ale_linters_explicit = 1
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+" let g:ale_fix_on_save = 1
+" set omnifunc=ale#completion#OmniFunc
+let g:prettier#config#single_quote = 'false'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#arrow_parens = 'avoid'
+let g:prettier#config#trailing_comma = 'none'
+let g:prettier#config#bracket_spacing = 'true'
+
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_banner = 0
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+nnoremap <leader><leader> <c-^>
