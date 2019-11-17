@@ -1,8 +1,8 @@
 " execute pathogen#infect()
 call plug#begin('~/.config/nvim/bundle/')
-
 " Theme
 Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
 " QoL
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
@@ -20,7 +20,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
-
 set termguicolors
 colorscheme gruvbox
 
@@ -36,17 +35,17 @@ set signcolumn=yes
 set nonumber
 set rnu
 set autoindent
-set ruler
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-set autoread
 set inccommand=nosplit
 set breakindent
 set linebreak
-set wildmenu
-set wildmode=full
+set noswapfile
+set cursorline  " highlight current line
+set noshowmode
 
+nmap <leader>w :w<CR>
 nnoremap <silent><A-j> :m .+1<CR>==
 nnoremap <silent><A-k> :m .-2<CR>==
 inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
