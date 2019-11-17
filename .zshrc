@@ -14,5 +14,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git zsh-autosuggestions dnf extract transfer pj)
 
 source $ZSH/oh-my-zsh.sh
+source $ZSH/custom/scripts.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

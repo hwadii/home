@@ -17,6 +17,9 @@ alias lm="ll -s=modified"
 alias lc="ll --created -s=created"
 
 # shortcuts to edit various files
+alias ezsh="v ~/.zshrc"
+alias esc="v ~/.oh-my-zsh/custom/scripts.sh"
+alias rzsh=". ~/.zshrc"
 alias val="v ~/.oh-my-zsh/custom/aliases.zsh"
 alias vv="v $NVIM_CONFIG/init.vim"
 
