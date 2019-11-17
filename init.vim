@@ -21,7 +21,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-colorscheme gruvbox
+colorscheme monokai
 
 " coc stuff
 set hidden
@@ -32,6 +32,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
+set ffs=unix,dos,mac
 set nonumber
 set rnu
 set autoindent
@@ -39,11 +40,13 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 set inccommand=nosplit
+set backspace=start,eol,indent
 set breakindent
 set linebreak
 set noswapfile
 set cursorline  " highlight current line
 set noshowmode
+set mouse=nv
 
 nmap <leader>w :w<CR>
 nnoremap <silent><A-j> :m .+1<CR>==
