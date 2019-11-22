@@ -17,17 +17,17 @@ alias lm="ll -s=modified"
 alias lc="ll --created -s=created"
 
 # shortcuts to edit various files
-alias ezsh="v ~/.zshrc"
-alias esc="v ~/.oh-my-zsh/custom/scripts.sh"
+alias ezsh="e ~/.zshrc"
+alias esc="e ~/.oh-my-zsh/custom/scripts.sh"
 alias rzsh=". ~/.zshrc"
-alias val="v ~/.oh-my-zsh/custom/aliases.zsh"
-alias ev="v $NVIM_CONFIG/init.vim"
+alias val="e ~/.oh-my-zsh/custom/aliases.zsh"
+alias ev="e $NVIM_CONFIG/init.vim"
 
 # qol
 alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
 alias duh="du -sh"
-alias v=nvim
+alias e=nvim
 alias p=python3
 alias xco="cd ~/code"
 alias xan="cd ~/anime"
@@ -53,6 +53,13 @@ alias nrs="npm run start"
 alias nrb="npm run build"
 alias nrt="npm run test"
 alias nrc="npm run commit"
+
+# toolbox
+alias tb=toolbox
+alias tbc="tb create"
+alias tbe="tb enter"
+alias tbls="tb list"
+alias tbrm="tb rm"
 
 # echo évenement | aspell -a
 spell() {
