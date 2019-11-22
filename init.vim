@@ -21,7 +21,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-colorscheme monokai
+colorscheme base16-gruvbox-dark-hard
 
 " coc stuff
 set hidden
@@ -33,7 +33,7 @@ set shortmess+=c
 set signcolumn=yes
 
 set ffs=unix,dos,mac
-set nonumber
+set number
 set rnu
 set autoindent
 set expandtab
@@ -46,8 +46,8 @@ set linebreak
 set noswapfile
 set cursorline  " highlight current line
 set noshowmode
+set mouse=nv
 
-nmap <leader>w :w<CR>
 nnoremap <silent><A-j> :m .+1<CR>==
 nnoremap <silent><A-k> :m .-2<CR>==
 inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
@@ -57,19 +57,17 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map H ^
+map L $
 nnoremap <silent><leader>p :Prettier<return>
 nnoremap <leader>sc :ALEToggle<CR>
-
-noremap <silent> k gk
-noremap <silent> j gj
-noremap <silent> 0 g0
-noremap <silent> $ g$
-onoremap <silent> j gj
-onoremap <silent> k gk
 
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
+nnoremap <Leader>r :Rg<CR>
+noremap <leader>v :read !xsel --clipboard --output<cr>
+noremap <leader>c :w !xsel -ib<cr><cr>
 
 " let g:ale_completion_enabled = 1
 let g:ale_linters_explicit = 1
