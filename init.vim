@@ -22,6 +22,8 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 set termguicolors
 colorscheme night-owl
+set t_Co=256
+set bg=dark
 
 " coc stuff
 set hidden
