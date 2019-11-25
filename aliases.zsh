@@ -24,6 +24,7 @@ alias val="e ~/.oh-my-zsh/custom/aliases.zsh"
 alias ev="e $NVIM_CONFIG/init.vim"
 
 # qol
+alias wholistens="netstat -tulpn | rg LISTEN"
 alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
 alias duh="du -sh"
