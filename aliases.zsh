@@ -9,7 +9,7 @@ alias kameto="mpv https://www.twitch.tv/kamet0"
 alias open="xdg-open"
 
 # list
-alias l="exa --git --group-directories-first"
+alias ls="exa --git --group-directories-first"
 alias ll="l -l"
 alias la="ll -a"
 alias lk="ll -s=size"
@@ -24,6 +24,8 @@ alias val="e ~/.oh-my-zsh/custom/aliases.zsh"
 alias ev="e $NVIM_CONFIG/init.vim"
 
 # qol
+alias dmenu="dmenu -p '➜ ' -b -sb '#535d6c' -sf '#ffffff' -nb '#222222' -fn 'fira code'"
+alias dmenu_run="dmenu_run -p '➜ ' -b -sb '#535d6c' -sf '#ffffff' -nb '#222222' -fn 'fira code'"
 alias wholistens="netstat -tulpn | rg LISTEN"
 alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
@@ -62,8 +64,5 @@ alias tbe="tb enter"
 alias tbls="tb list"
 alias tbrm="tb rm"
 
-# echo évenement | aspell -a
-spell() {
-  echo $1 | aspell -a;
-}
-alias youtube-dl="youtube-dl -f 'mp4[height>=?720]'"
+alias mp3="youtube-dl -x --embed-thumbnail --audio-format mp3"
+alias pyformat="autopep8 --in-place"

@@ -7,11 +7,9 @@ export SUDO_PROMPT=$'\e[34m[sudo]\e[33m password for %p:\e[0m '
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
 
 PROJECT_PATHS=(~/code ~/work)
-ZSH_THEME="robbyrussell"   
+ZSH_THEME="robbyrussell"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git dnf tmux transfer pj)
 
