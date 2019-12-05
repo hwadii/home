@@ -5,7 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Victor Mono:size=12:style=Medium:antialias=true:autohint=true";
+/* static char *font = "Victor Mono:size=12:style=Medium:antialias=true:autohint=true"; */
+static char *font = "Fira Code:size=12:style=Retina:antialias=true:autohint=true";
 static char *font2[] = { "Inconsolata for Powerline:pixelsize=16:antialias=true:autohint=true" };
 static int borderpx = 0;
 
@@ -25,8 +26,8 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 1.1;
-static float chscale = 1.1;
+static float cwscale = 1.0;
+static float chscale = 1.0;
 
 /*
  * word delimiter string
@@ -226,8 +227,8 @@ MouseKey mkeys[] = {
 	/* button               mask            function        argument */
 	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
 	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
-	{ Button4,              MODKEY,         kscrollup,      {.i =  1} },
-	{ Button5,              MODKEY,         kscrolldown,    {.i =  1} },
+	{ Button4,              MODKEY,         kscrollup,      {.i =  2} },
+	{ Button5,              MODKEY,         kscrolldown,    {.i =  2} },
 	{ Button4,              TERMMOD,        zoom,           {.f =  +1} },
 	{ Button5,              TERMMOD,        zoom,           {.f =  -1} },
 };
@@ -261,7 +262,7 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
-	/* { MODKEY,               XK_k,           kscrollup,      {.i =  1} }, */
+        /* { MODKEY,               XK_k,           kscrollup,      {.i =  1} }, */
 	/* { MODKEY,               XK_j,           kscrolldown,    {.i =  1} }, */
 	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
 	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },

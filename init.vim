@@ -19,9 +19,13 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" If used inside Tmux, this shows the vim airline statusline in Tmux's
+" statusline
+Plug 'edkolev/tmuxline.vim'
+
 call plug#end()
 set termguicolors
-colorscheme night-owl
+colorscheme monokai
 set t_Co=256
 set bg=dark
 
@@ -61,6 +65,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 map H ^
 map L $
+imap jj <Esc>
 nnoremap <silent><leader>p :Prettier<return>
 nnoremap <leader>sc :ALEToggle<CR>
 
@@ -86,10 +91,9 @@ let g:prettier#config#trailing_comma = 'none'
 let g:prettier#config#bracket_spacing = 'true'
 
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_winsize = 25
 let g:netrw_banner = 0
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
