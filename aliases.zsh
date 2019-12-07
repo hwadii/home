@@ -10,7 +10,8 @@ alias open="xdg-open"
 
 # list
 alias ls="exa --git --group-directories-first"
-alias ll="l -l"
+alias l=ls
+alias ll="ls -l"
 alias la="ll -a"
 alias lk="ll -s=size"
 alias lm="ll -s=modified"
@@ -66,3 +67,4 @@ alias tbrm="tb rm"
 
 alias mp3="youtube-dl -x --embed-thumbnail --audio-format mp3"
 alias pyformat="autopep8 --in-place"
+alias gin="git init"
