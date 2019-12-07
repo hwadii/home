@@ -11,7 +11,7 @@ export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
 PROJECT_PATHS=(~/code ~/work)
 ZSH_THEME="robbyrussell"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git dnf tmux transfer pj)
+plugins=(git dnf tmux pj)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/scripts.sh

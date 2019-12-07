@@ -39,6 +39,7 @@ set shortmess+=c
 set signcolumn=yes
 
 set ffs=unix,dos,mac
+set autoread
 set number
 set rnu
 set autoindent
@@ -52,7 +53,10 @@ set linebreak
 set noswapfile
 set cursorline  " highlight current line
 set noshowmode
-set mouse=nv
+set mouse=a
+
+set splitbelow  " Splitting a window will put the new window below the current
+set splitright  " Splitting a window will put the new window right of the current
 
 nnoremap <silent><A-j> :m .+1<CR>==
 nnoremap <silent><A-k> :m .-2<CR>==
