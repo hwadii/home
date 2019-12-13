@@ -1,14 +1,14 @@
 " execute pathogen#infect()
 call plug#begin('~/.config/nvim/bundle/')
 " Theme
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 " QoL
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'machakann/vim-highlightedyank'
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 Plug 'sheerun/vim-polyglot'
 " Modern web dev
 Plug 'w0rp/ale'
