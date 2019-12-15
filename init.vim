@@ -2,6 +2,8 @@
 call plug#begin('~/.config/nvim/bundle/')
 " Theme
 " Plug 'morhetz/gruvbox'
+" Plug 'nightsense/rusticated'
+Plug 'crusoexia/vim-monokai'
 Plug 'itchyny/lightline.vim'
 " QoL
 Plug 'jiangmiao/auto-pairs'
@@ -27,7 +29,6 @@ call plug#end()
 set termguicolors
 colorscheme monokai
 set t_Co=256
-set bg=dark
 
 " coc stuff
 set hidden
