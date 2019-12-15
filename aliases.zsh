@@ -16,6 +16,8 @@ alias la="ll -a"
 alias lk="ll -s=size"
 alias lm="ll -s=modified"
 alias lc="ll --created -s=created"
+alias lT="ll -lT"
+alias lR="ll -lR"
 
 # shortcuts to edit various files
 alias ezsh="e ~/.zshrc"
