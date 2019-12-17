@@ -110,5 +110,3 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-nnoremap <leader><leader> <c-^>
