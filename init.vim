@@ -78,8 +78,6 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
 nnoremap <Leader>r :Rg<CR>
-noremap <leader>v :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>
 
 " let g:ale_completion_enabled = 1
 let g:ale_linters_explicit = 1
