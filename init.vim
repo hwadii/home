@@ -118,5 +118,3 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-nnoremap <leader><leader> <c-^>
