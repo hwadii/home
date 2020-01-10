@@ -9,7 +9,8 @@ export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
 
 PROJECT_PATHS=(~/code ~/work)
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="theunraveler"
+ZSH_THEME="cloud"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git dnf tmux pj)
 
