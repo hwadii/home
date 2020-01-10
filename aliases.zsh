@@ -16,8 +16,8 @@ alias la="ll -a"
 alias lk="ll -s=size"
 alias lm="ll -s=modified"
 alias lc="ll --created -s=created"
-alias lT="ll -lT"
-alias lR="ll -lR"
+alias lT="ll --tree --git-ignore"
+alias lR="ll -R --git-ignore"
 
 # shortcuts to edit various files
 alias ezsh="e ~/.zshrc"
@@ -38,7 +38,7 @@ alias p=python3
 alias xco="cd ~/code"
 alias xan="cd ~/anime"
 alias xdl="cd ~/Téléchargements"
-alias xds="cd ~/Bureau"
+alias xcr="cd ~/cruft"
 alias xpl="cd ~/code/playing-around"
 alias xwk="cd ~/work"
 
