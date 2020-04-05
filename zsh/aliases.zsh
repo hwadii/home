@@ -1,8 +1,8 @@
-NVIM_CONFIG="/home/hwadii/.config/nvim"
 # verbose
 alias rm="rm -v"
 alias cp="cp -v"
 alias mv="mv -v"
+alias -s txt=cat
 
 alias sard="mpv https://twitch.tv/sardoche"
 alias kameto="mpv https://www.twitch.tv/kamet0"
@@ -11,20 +11,22 @@ alias open="xdg-open"
 # list
 alias ls="exa --git --group-directories-first"
 alias l=ls
-alias ll="ls -l"
-alias la="ll -a"
-alias lk="ll -s=size"
-alias lm="ll -s=modified"
-alias lc="ll --created -s=created"
-alias lT="ll --tree --git-ignore"
-alias lR="ll -R --git-ignore"
+alias ll="exa --git --group-directories-first -l"
+alias la="exa --git --group-directories-first -l -a"
+alias lk="exa --git --group-directories-first -l -s=size"
+alias lm="exa --git --group-directories-first -l -s=modified"
+alias lc="exa --git --group-directories-first --created -s=created"
+alias lT="exa --git --group-directories-first --tree --git-ignore"
+alias lR="exa --git --group-directories-first -R --git-ignore"
 
 # shortcuts to edit various files
-alias ezsh="e ~/.zshrc"
-alias esc="e ~/.oh-my-zsh/custom/scripts.sh"
+alias vi=nvim
+alias vim=nvim
+alias ezsh="nvim ~/.zshrc"
+alias esc="nvim ~/.oh-my-zsh/custom/scripts.sh"
 alias rzsh=". ~/.zshrc"
-alias val="e ~/.oh-my-zsh/custom/aliases.zsh"
-alias ev="e $NVIM_CONFIG/init.vim"
+alias val="nvim ~/.oh-my-zsh/custom/aliases.zsh"
+alias ev="nvim ~/.config/nvim/init.vim"
 
 # qol
 alias dmenu="dmenu -p '➜ ' -b -sb '#535d6c' -sf '#ffffff' -nb '#222222' -fn 'fira code'"
@@ -33,7 +35,6 @@ alias wholistens="netstat -tulpn | rg LISTEN"
 alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
 alias duh="du -sh"
-alias e=nvim
 alias p=python3
 alias xco="cd ~/code"
 alias xan="cd ~/anime"
@@ -69,4 +70,14 @@ alias tbrm="tb rm"
 
 alias mp3="youtube-dl -x --embed-thumbnail --audio-format mp3"
 alias pyformat="autopep8 --in-place"
+
+alias dc=docker-compose
+
+function blob() {
+  echo "$@" | sed "s|blob://|s3://|g" | xargs s3cmd -c ~/.s3cfg-blob | sed "s|s3://|blob://|g" | sed "s|s3cmd |blob |g";
+}
+alias ytdl=youtube-dl
+
+# more git aliases
 alias gin="git init"
+alias gcd="git checkout dev"
