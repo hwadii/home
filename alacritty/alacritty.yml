@@ -40,7 +40,8 @@ colors:
     text: '#272822'
     background: '#f8f8f2'
   normal:
-   black:   '#1C1C1C'
+   # black:   '#1C1C1C'
+   black:   '#262626'
    red:     '#AF5F5F'
    green:   '#5F875F'
    yellow:  '#87875F'
