@@ -1,3 +1,9 @@
 {
-  "python.jediEnabled": false
+  "prettier.singleQuote": true,
+  "prettier.jsxBracketSameLine": false,
+  "prettier.arrowParens": "always",
+  "prettier.trailingComma": "es5",
+  "prettier.bracketSpacing": true,
+  "prettier.tabWidth": 4,
+  "prettier.printWidth": 120
 }

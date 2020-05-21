@@ -1,16 +1,17 @@
 call plug#begin('~/.config/nvim/bundle/')
 " Theme
-Plug 'patstockwell/vim-monokai-tasty'
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
 Plug 'crusoexia/vim-monokai'
-Plug 'chriskempson/base16-vim'
+Plug 'romainl/Apprentice'
 " QoL
+Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'AndrewRadev/splitjoin.vim'
 " Modern web dev
 Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -23,12 +24,12 @@ Plug 'junegunn/fzf.vim'
 
 " wiki things
 " Plug 'vimwiki/vimwiki'
-Plug 'fcpg/vim-waikiki'
+" Plug 'fcpg/vim-waikiki'
 
 call plug#end()
 set termguicolors
 let g:monokai_term_italic = 1
-colorscheme monokai
+colorscheme apprentice
       " \ 'colorscheme': 'monokai_tasty',
 let g:lightline = {
       \ 'active': {
@@ -57,20 +58,16 @@ set ffs=unix,dos,mac
 set autoread
 set number
 set rnu
-set autoindent
 set expandtab
-set shiftwidth=2
-set softtabstop=2
 set inccommand=nosplit
 set backspace=start,eol,indent
 set breakindent
 set linebreak
 set noswapfile
-set cursorline  " highlight current line
 set noshowmode
 set mouse=a
 set shellcmdflag=-ic
-set list
+set nolist
 set listchars+=space:·
 set ignorecase
 set smartcase " make search case insensitive by default
@@ -78,25 +75,29 @@ set smartcase " make search case insensitive by default
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
 
+let maplocalleader = "<space>"
+
 vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 nnoremap <silent><A-j> :m .+1<CR>==
 nnoremap <silent><A-k> :m .-2<CR>==
 inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
 inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+inoremap <silent><C-d> <Del>
 nnoremap <esc> :noh<return><esc>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 nnoremap <silent><leader>p :Prettier<return>
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <silent><leader>ll :set list!<CR>
+nmap <leader>o <Plug>(coc-rename)
 
 nnoremap <C-p> :Files<CR>
-nnoremap <Leader>o :Files!<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
 nnoremap <Leader>r :Rg<CR>
+nnoremap <Leader>l :Lines!<CR>
 
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
@@ -128,7 +129,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>ts <Plug>(coc-codeaction)
 nnoremap <leader><leader> <c-^>
@@ -145,41 +146,12 @@ endfunction
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
-au Filetype typescript set shiftwidth=4
 au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-au Filetype scss,css set shiftwidth=2
 
-" whitespace errors
-" if has('autocmd')
-  " autocmd BufWinEnter <buffer> match Error /\s\+$/
-  " autocmd InsertEnter <buffer> match Error /\s\+\%#\@<!$/
-  " autocmd InsertLeave <buffer> match Error /\s\+$/
-  " autocmd BufWinLeave <buffer> call clearmatches()
-" endif
-
-" italics
-if (g:colors_name != 'monokai')
-  hi Todo gui=bold,italic cterm=bold,italic
-  hi Comment gui=italic cterm=italic
-  hi jsClassKeyword gui=italic cterm=italic
-  hi jsGlobalObjects gui=italic cterm=italic
-  hi jsThis gui=italic cterm=italic
-  hi jsSuper gui=italic cterm=italic
-  hi jsFuncArgRest gui=italic cterm=italic
-  hi jsFuncArgs gui=italic cterm=italic
-  hi jsStorageClass gui=italic cterm=italic
-  hi jsDocTags gui=italic cterm=italic
-  hi jsFunction gui=italic cterm=italic
-  " hi typescriptIdentifier gui=italic cterm=italic
-  hi typescriptFuncType gui=italic cterm=italic
-  hi typescriptArrowFuncArg gui=italic cterm=italic
-  hi typescriptCall gui=italic cterm=italic
-  hi typescriptClassKeyword gui=italic cterm=italic
-  hi typescriptInterfaceKeyword gui=italic cterm=italic
-  hi typescriptTypeReference gui=italic cterm=italic
-  hi typescriptTypeParameter gui=italic cterm=italic
-  hi cssURL gui=underline,italic cterm=underline,italic
-endif
+hi Todo gui=bold,italic cterm=bold,italic
+hi Comment gui=italic cterm=italic
