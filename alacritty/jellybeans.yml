@@ -1,32 +1,4 @@
-window:
-  dimensions:
-    columns: 90
-    lines: 40
-
-font:
-  normal:
-    family: Source Code Pro
-
-    style: Regular
-
-  bold:
-
-    style: Bold
-
-  italic:
-
-    style: Italic
-
-  bold_italic:
-
-    style: Bold Italic
-
-  size: 12.0
-
-  offset:
-   x: 0
-   y: 3
-
+# Colors (Jellybeans)
 colors:
   # Default colors
   primary:
@@ -64,7 +36,3 @@ colors:
   selection:
     text: '#5963a2'
     background: '#f6f6f6'
-
-
-cursor:
-  style: Block

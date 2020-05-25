@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/bundle/')
 Plug 'itchyny/lightline.vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'romainl/Apprentice'
+Plug 'nanotech/jellybeans.vim'
 " QoL
 Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
@@ -27,8 +28,9 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-colorscheme apprentice
+colorscheme jellybeans
 let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
