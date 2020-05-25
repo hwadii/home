@@ -35,7 +35,7 @@ colors:
 
   # Cursor volors
   cursor:
-    text: '#feffff'
+    text: '#000000'
     cursor: '#ffb472'
 
   # Normal colors
