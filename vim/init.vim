@@ -8,7 +8,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
-Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -28,9 +27,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-let g:monokai_term_italic = 1
 colorscheme apprentice
-      " \ 'colorscheme': 'monokai_tasty',
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -155,3 +152,7 @@ au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 hi Todo gui=bold,italic cterm=bold,italic
 hi Comment gui=italic cterm=italic
+
+if exists('##TextYankPost')
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch')
+endif
