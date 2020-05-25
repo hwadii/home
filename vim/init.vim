@@ -37,6 +37,7 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead',
       \ },
       \ }
+
 set t_Co=256
 set background=dark
 filetype plugin indent on
