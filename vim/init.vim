@@ -4,6 +4,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'romainl/Apprentice'
 Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/base16-vim'
 " QoL
 Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
@@ -28,9 +29,9 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-colorscheme jellybeans
+colorscheme base16-default-dark
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'Tomorrow_Night',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -53,12 +54,14 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2 
 set ffs=unix,dos,mac
 set autoread
 set number
 set rnu
-set expandtab
 set inccommand=nosplit
 set backspace=start,eol,indent
 set breakindent
