@@ -12,7 +12,7 @@ export NVM_DIR="$HOME/.config/nvm"
 export TERM="xterm-256color"
 
 ZSH_THEME="persent"
-plugins=(git dnf tmux extract zsh-syntax-highlighting)
+plugins=(git dnf tmux extract sprunge zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
