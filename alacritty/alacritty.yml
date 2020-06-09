@@ -3,9 +3,11 @@ window:
     columns: 90
     lines: 40
 
+  gtk_theme_variant: 'dark'
+
 font:
   normal:
-    family: Source Code Variable
+    family: Source Code Pro
 
     style: Regular
 
