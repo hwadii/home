@@ -3,6 +3,8 @@ window:
     columns: 90
     lines: 40
 
+  gtk_theme_variant: 'dark'
+
 font:
   normal:
     family: Inconsolata LGC
