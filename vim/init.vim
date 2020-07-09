@@ -30,7 +30,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-colorscheme base16-default-dark
+colorscheme base16-circus
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night',
       \ 'active': {
