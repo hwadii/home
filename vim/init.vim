@@ -12,10 +12,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/splitjoin.vim'
 " Modern web dev
-Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
@@ -78,8 +78,10 @@ set smartcase " make search case insensitive by default
 
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
+set conceallevel=2
 
 let maplocalleader = "<space>"
+let g:vim_markdown_folding_disabled = 1
 
 vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
