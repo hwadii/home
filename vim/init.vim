@@ -78,7 +78,6 @@ set smartcase " make search case insensitive by default
 
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
-set conceallevel=2
 
 let maplocalleader = "<space>"
 let g:vim_markdown_folding_disabled = 1
