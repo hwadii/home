@@ -18,5 +18,6 @@ plugins=(git dnf tmux extract sprunge zsh-syntax-highlighting wd)
 
 source $ZSH/oh-my-zsh.sh
 
+[ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
