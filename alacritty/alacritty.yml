@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Inconsolata LGC
+    family: PragmataPro
 
     style: Regular
 
@@ -21,13 +21,13 @@ font:
 
   bold_italic:
 
-    style: BoldItalic
+    style: Bold Italic
 
   size: 13.0
 
   offset:
    x: 0
-   y: 0
+   y: 6
 
 # Base16 Circus 256 - alacritty color config
 # Stephan Boyer (https://github.com/stepchowfun) and Esther Wang (https://github.com/ewang12)
