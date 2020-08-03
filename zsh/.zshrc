@@ -14,7 +14,7 @@ export TERM="xterm-256color"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
-plugins=(git dnf tmux extract sprunge zsh-syntax-highlighting wd)
+plugins=(git dnf tmux extract colorize zsh-syntax-highlighting wd)
 
 source $ZSH/oh-my-zsh.sh
 
