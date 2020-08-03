@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH=$HOME/.oh-my-zsh 
 export BIN=$HOME/bin
-export PATH="$PATH:$HOME/.local/bin:$HOME/.config/nvm/versions/node/v14.6.0/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/bin/git-extras"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.config/nvm/versions/node/v14.7.0/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/bin/git-extras"
 export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
 export EDITOR=nvim
 export NVM_DIR="$HOME/.config/nvm"

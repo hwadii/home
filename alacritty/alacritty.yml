@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: PragmataPro
+    family: Rec Mono Linear
 
     style: Regular
 
@@ -23,7 +23,7 @@ font:
 
     style: Bold Italic
 
-  size: 13.0
+  size: 12.0
 
   offset:
    x: 0
