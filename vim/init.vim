@@ -81,6 +81,9 @@ set splitright  " Splitting a window will put the new window right of the curren
 
 let maplocalleader = "<space>"
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
 
 vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
@@ -97,6 +100,7 @@ map <C-l> <C-w>l
 nnoremap <silent><leader>p :Prettier<return>
 nnoremap <silent><leader>ll :set list!<CR>
 nmap <leader>o <Plug>(coc-rename)
+map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
@@ -140,6 +144,12 @@ nmap <silent> <leader>ts <Plug>(coc-codeaction)
 nnoremap <leader><leader> <c-^>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>ga :Gwrite<cr>
+nmap <leader>gl :Glog<cr>
+nmap <leader>gd :Gdiff<cr>
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -159,6 +169,9 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
 au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType text setlocal textwidth=64
+autocmd FileType tex setlocal textwidth=64
+autocmd FileType markdown setlocal textwidth=64
 
 hi Todo gui=bold,italic cterm=bold,italic
 hi Comment gui=italic cterm=italic
