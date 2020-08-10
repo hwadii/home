@@ -1,9 +1,6 @@
 call plug#begin('~/.config/nvim/bundle/')
 " Theme
 Plug 'itchyny/lightline.vim'
-Plug 'crusoexia/vim-monokai'
-Plug 'romainl/Apprentice'
-Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/base16-vim'
 " QoL
 Plug 'justinmk/vim-dirvish'
@@ -23,6 +20,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'lervag/vimtex'
 
 " wiki things
 " Plug 'vimwiki/vimwiki'
@@ -79,7 +77,7 @@ set smartcase " make search case insensitive by default
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
 
-let maplocalleader = "<space>"
+let localleader = "<space>"
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
@@ -98,7 +96,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 nnoremap <silent><leader>p :Prettier<return>
-nnoremap <silent><leader>ll :set list!<CR>
+nnoremap <silent><leader>li :set list!<CR>
 nmap <leader>o <Plug>(coc-rename)
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -169,9 +167,9 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
 au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType text setlocal textwidth=64
-autocmd FileType tex setlocal textwidth=64
-autocmd FileType markdown setlocal textwidth=64
+autocmd FileType text setlocal textwidth=80
+autocmd FileType tex setlocal textwidth=80
+autocmd FileType markdown setlocal textwidth=80
 
 hi Todo gui=bold,italic cterm=bold,italic
 hi Comment gui=italic cterm=italic
