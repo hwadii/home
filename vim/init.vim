@@ -174,6 +174,16 @@ autocmd FileType markdown setlocal textwidth=80
 hi Todo gui=bold,italic cterm=bold,italic
 hi Comment gui=italic cterm=italic
 
+let s:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#run(fzf#wrap(
+  \   {
+  \     'source': 'fd --type f .\* '.(empty(<q-args>) ? '' : shellescape(<q-args>)),
+  \     'down': '40%',
+  \     'options': s:fzf_options
+  \   }, <bang>0))
+
 if exists('##TextYankPost')
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch')
 endif
