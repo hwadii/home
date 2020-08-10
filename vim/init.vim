@@ -177,3 +177,4 @@ hi Comment gui=italic cterm=italic
 if exists('##TextYankPost')
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch')
 endif
+let g:tex_flavor = 'latex'
