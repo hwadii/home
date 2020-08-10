@@ -4,9 +4,17 @@ alias cp="cp -v"
 alias mv="mv -v"
 alias -s txt=cat
 
-alias sard="mpv https://twitch.tv/sardoche"
-alias kameto="mpv https://www.twitch.tv/kamet0"
-alias open="xdg-open"
+tw() {
+  mpv https://twitch.tv/"$@" --quiet >/dev/null &
+}
+
+vcsv() {
+  perl -pe 's/((?<=,)|(?<=^)),/ ,/g;' | column -t -s, | less  -F -S -X -K
+}
+alias sard="mpv https://twitch.tv/sardoche --quiet >/dev/null &"
+alias kameto="mpv https://www.twitch.tv/kamet0 --quiet >/dev/null &"
+alias coro="mpv https://twitch.tv/corobizar --quiet >/dev/null &"
+alias open="open_command"
 
 # list
 alias ls="exa --git --group-directories-first"
@@ -29,8 +37,6 @@ alias val="nvim ~/.oh-my-zsh/custom/aliases.zsh"
 alias ev="nvim ~/.config/nvim/init.vim"
 
 # qol
-alias dmenu="dmenu -p '➜ ' -b -sb '#535d6c' -sf '#ffffff' -nb '#222222' -fn 'fira code'"
-alias dmenu_run="dmenu_run -p '➜ ' -b -sb '#535d6c' -sf '#ffffff' -nb '#222222' -fn 'fira code'"
 alias wholistens="netstat -tulpn | rg LISTEN"
 alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
@@ -42,6 +48,12 @@ alias xdl="cd ~/Téléchargements"
 alias xcr="cd ~/cruft"
 alias xpl="cd ~/code/playing-around"
 alias xwk="cd ~/work"
+# Trim new lines and copy to clipboard
+alias c="tr -d '\n' | clipcopy"
+# Intuitive map function
+# # For example, to list all directories that contain a certain file:
+# # find . -name .gitattributes | map dirname
+alias map="xargs -n1"
 
 # tar
 alias tarx="tar xvf"
@@ -57,6 +69,7 @@ alias nid="npm i -D"
 alias nig="npm i -g"
 alias nr="npm run"
 alias nrs="npm run start"
+alias nrss="npm run start:staging"
 alias nrb="npm run build"
 alias nrt="npm run test"
 alias nrc="npm run commit"
@@ -81,3 +94,4 @@ alias ytdl=youtube-dl
 # more git aliases
 alias gin="git init"
 alias gcd="git checkout dev"
+alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
