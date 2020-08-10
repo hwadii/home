@@ -1,3 +1,3 @@
 cht() {
-  curl "cht.sh/$@"
+  curl -s "cht.sh/$@"
 }
