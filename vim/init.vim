@@ -77,7 +77,7 @@ set smartcase " make search case insensitive by default
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
 
-let localleader = "<space>"
+let maplocalleader = "\<space>"
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
@@ -109,7 +109,6 @@ nnoremap <Leader>l :Lines!<CR>
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 let g:netrw_banner = 0
-" let g:vimwiki_list = [{'path': '~/things/vimwiki/'}]
 let g:waikiki_roots = ['~/code/notes/']
 let g:waikiki_default_maps = 1
 let g:waikiki_done = "x"
@@ -141,6 +140,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>ts <Plug>(coc-codeaction)
 nnoremap <leader><leader> <c-^>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <leader>fp gqap
 
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gc :Gcommit<cr>
@@ -167,12 +167,21 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
 au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType text setlocal textwidth=80
-autocmd FileType tex setlocal textwidth=80
-autocmd FileType markdown setlocal textwidth=80
+autocmd FileType text call SetProseOptions()
+autocmd FileType tex call SetProseOptions()
+autocmd FileType markdown call SetProseOptions()
+
+function SetProseOptions()
+  setlocal spell
+  setlocal spelllang=en,fr
+  setlocal textwidth=80
+  set conceallevel=2
+endfunction
 
 hi Todo gui=bold,italic cterm=bold,italic
 hi Comment gui=italic cterm=italic
+hi htmlItalic gui=italic cterm=italic
+hi htmlBold gui=bold cterm=bold
 
 let s:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
 
@@ -187,4 +196,7 @@ command! -bang -nargs=? -complete=dir Files
 if exists('##TextYankPost')
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch')
 endif
+
+nnoremap <silent> <localleader>y  :<C-u>CocList -A --normal yank<cr>
+
 let g:tex_flavor = 'latex'

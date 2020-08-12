@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH=$HOME/.oh-my-zsh 
-export BIN=$HOME/bin
-export PATH="$PATH:$HOME/.local/bin:$HOME/.config/nvm/versions/node/v14.7.0/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/bin/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux"
+export BIN=$HOME/.local/bin
+export PATH="$PATH:$BIN:$HOME/.config/nvm/versions/node/v14.7.0/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux"
 export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
 export EDITOR=nvim
 export NVM_DIR="$HOME/.config/nvm"
@@ -11,7 +11,7 @@ export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 export TERM="xterm-256color"
-
+export BROWSER="firefox"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
 plugins=(git dnf tmux extract zsh-syntax-highlighting wd)
