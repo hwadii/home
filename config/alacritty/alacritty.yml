@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Fira Code Retina
+    family: Dank Mono
 
     style: Regular
 
@@ -22,11 +22,11 @@ font:
 
     style:
 
-  size: 13.0
+  size: 10
 
   offset:
    x: 0
-   y: 6
+   y: 4
 
 # Base16 Circus 256 - alacritty color config
 # Stephan Boyer (https://github.com/stepchowfun) and Esther Wang (https://github.com/ewang12)
