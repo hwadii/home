@@ -95,4 +95,3 @@ alias ytdl=youtube-dl
 alias gin="git init"
 alias gcd="git checkout dev"
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
-alias spotify="LD_PRELOAD=~/.local/lib/spotifywm.so /usr/share/spotify/spotify"

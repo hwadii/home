@@ -9,10 +9,11 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 pgrep -x sxhkd > /dev/null || sxhkd &
 setxkbmap -option caps:swapescape -layout gb &
 xsetroot -cursor_name left_ptr &
-nitrogen --set-scaled ~/Images/Dark.jpg &
+nitrogen --set-scaled ~/Images/Graphite.jpg &
 nm-applet &
 polybar --reload main &
 redshift -P -O 5500 &
+pgrep bspswallow || bspswallow &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
