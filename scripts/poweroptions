@@ -1,0 +1,10 @@
+#!/bin/bash
+
+options="suspend\nreboot\nshut down"
+choice="$(echo -e $options | dmenu)"
+
+case "$choice" in
+  suspend) systemctl suspend;;
+  reboot) systemctl reboot;;
+  "shut down") systemctl poweroff;;
+esac

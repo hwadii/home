@@ -1,0 +1,18 @@
+#!/bin/bash
+
+base_dir="/sys/class/backlight/intel_backlight"
+old_brightness_value=$(< "$base_dir/brightness")
+max_brightness_value=$(< "$base_dir/max_brightness")
+echo $old_brightness_value
+echo $max_brightness_value
+
+# old_brightness_file = File.open "#{base_dir}/brightness", "w+"
+# max_brightness_file = File.open "#{base_dir}/max_brightness"
+
+new_brightness=$((old_brightness_value + $@))
+echo $new_brightness
+
+# old_brightness_file.write(new_brightness)
+
+# old_brightness_file.close
+# max_brightness_file.close
