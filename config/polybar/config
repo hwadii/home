@@ -114,7 +114,7 @@ label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 60
 
 date = %a. %d
 date-alt = %a. %d %b
@@ -168,6 +168,8 @@ format-volume-underline = ${colors.underline}
 
 label-muted = 🔇 muted
 label-muted-foreground = #666
+scroll-up = pactl set-sink-volume 0 +2%
+scroll-down = pactl set-sink-volume 0 -2%
 
 [module/spotify]
 type = custom/script
@@ -183,8 +185,9 @@ interval = 1
 [module/layout]
 type = custom/script
 exec = bspc query -T -d | jq -r .layout | head -c1
+click-left = bspc desktop -l next
 format-underline = #e60053
-interval = 1
+interval = 3
 
 [settings]
 screenchange-reload = true
