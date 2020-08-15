@@ -14,6 +14,30 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# sound
+XF86AudioRaiseVolume
+	pactl set-sink-volume 0 +2%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume 0 -2%
+
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+# spotify
+super + u; {_,super +}f
+	playerctl next
+
+super + u; {_,super +}b
+	playerctl previous
+
+super + u; {_,super +}p
+	playerctl -p spotify play-pause
+
+# suspend
+super + alt + s
+	systemctl suspend
+
 #
 # bspwm hotkeys
 #
@@ -123,26 +147,6 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# suspend
-super + alt + s
-	systemctl suspend
-
 # toggle bar
 super + alt + b
 	polybar-msg cmd toggle
-
-# sound
-XF86AudioRaiseVolume
-	pactl set-sink-volume 0 +2%
-
-XF86AudioLowerVolume
-	pactl set-sink-volume 0 -2%
-
-XF86AudioMute
-	pactl set-sink-mute 0 toggle
-
-super + u; {_,super} + {f,b}
-	playerctl {next,previous}
-
-super + u; {_,super} + p
-	playerctl -p spotify play-pause

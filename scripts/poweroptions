@@ -1,10 +1,11 @@
 #!/bin/bash
 
-options="suspend\nreboot\nshut down"
-choice="$(echo -e $options | dmenu)"
+options="suspend\nlock\nreboot\nshut down"
+choice="$(echo -e $options | dmenu -fn 'Dank Mono')"
 
 case "$choice" in
   suspend) systemctl suspend;;
-  reboot) systemctl reboot;;
-  "shut down") systemctl poweroff;;
+  lock) bspc quit;;
+  reboot) reboot;;
+  "shut down") poweroff;;
 esac

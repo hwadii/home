@@ -90,7 +90,7 @@ nnoremap <silent><A-k> :m .-2<CR>==
 inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
 inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
 inoremap <silent><C-d> <Del>
-nnoremap <esc> :noh<return><esc>
+nnoremap <silent><esc> :noh<return><esc>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -173,7 +173,7 @@ autocmd FileType markdown call SetProseOptions()
 
 function SetProseOptions()
   setlocal spell
-  setlocal spelllang=en,fr
+  setlocal spelllang=fr,en
   setlocal textwidth=80
   set conceallevel=2
 endfunction

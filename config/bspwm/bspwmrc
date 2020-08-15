@@ -7,15 +7,15 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-setxkbmap -option caps:swapescape -layout gb &
+setxkbmap -option caps:escape -option compose:rctrl -layout gb &
 xsetroot -cursor_name left_ptr &
 nitrogen --set-scaled ~/Images/Graphite.jpg &
 nm-applet &
 polybar --reload main &
 redshift -P -O 5500 &
-pgrep bspswallow || bspswallow &
+# pgrep bspswallow || bspswallow &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 bspc config border_width         2
 bspc config window_gap           4
@@ -25,10 +25,12 @@ bspc config normal_border_color  \#1d2021
 bspc config split_ratio          0.52
 bspc config borderless_monocle   false
 bspc config gapless_monocle      false
+bspc config focus_follows_pointer true
 
 bspc rule -a 'Firefox Developer Edition' desktop='^2'
 bspc rule -a Spotify desktop='^6' state=pseudo_tiled
 bspc rule -a mpv desktop='^5'
 bspc rule -a Slack desktop='^7' state=pseudo_tiled
 bspc rule -a mupdf-x11 state=pseudo_tiled
+bspc rule -a Matplotlib state=floating
 

@@ -25,14 +25,14 @@ line-size = 2
 padding = 1
 module-margin = 1
 
-font-0 = Dank Mono:style=Book:pixelsize=13;1
+font-0 = PragmataPro:pixelsize=13;1
 font-1 = IPAMincho:style=regular:pixelsize=12;0
 font-2 = unifont:fontformat=truetype:size=6:antialias=false;0
 font-3 = NotoEmoji:style=Book:scale=16;0
 font-4 = Siji:pixelsize=8;0
 font-5 = fixed:pixelsize=8;0
 
-modules-left = bspwm xwindow
+modules-left = bspwm layout xwindow
 modules-center =
 modules-right = spotify pulseaudio battery date
 
@@ -116,11 +116,11 @@ label-disconnected-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 5
 
-date = "%a %d"
-date-alt = %a %b %d
+date = %a. %d
+date-alt = %a. %d %b
 
 time = %H:%M
-time-alt = %I:%M%p
+time-alt = ${self.time}
 
 format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
@@ -140,7 +140,7 @@ format-charging-underline = #55aa55
 format-discharging = ↓ <label-discharging>
 format-discharging-underline = ${colors.underline}
 
-format-full-prefix = " "
+format-full-prefix = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
@@ -169,31 +169,21 @@ format-volume-underline = ${colors.underline}
 label-muted = 🔇 muted
 label-muted-foreground = #666
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator =
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
 [module/spotify]
 type = custom/script
-exec = playerctl -p spotify metadata --format '{{artist}} -- {{title}}'
+exec = ~/.local/bin/get_song
 exec-if = "pgrep spotify"
 format-padding = 1
 format-underline = ${colors.underline}
 click-left = playerctl -p spotify play-pause
+click-right = bspc desktop -f '^6'
 tail = true
+interval = 1
+
+[module/layout]
+type = custom/script
+exec = bspc query -T -d | jq -r .layout | head -c1
+format-underline = #e60053
 interval = 1
 
 [settings]
