@@ -8,9 +8,6 @@ tw() {
   mpv https://twitch.tv/"$@" --quiet >/dev/null &
 }
 
-vcsv() {
-  perl -pe 's/((?<=,)|(?<=^)),/ ,/g;' | column -t -s, | less  -F -S -X -K
-}
 alias sard="mpv https://twitch.tv/sardoche --quiet >/dev/null &"
 alias kameto="mpv https://www.twitch.tv/kamet0 --quiet >/dev/null &"
 alias coro="mpv https://twitch.tv/corobizar --quiet >/dev/null &"
@@ -95,3 +92,4 @@ alias ytdl=youtube-dl
 alias gin="git init"
 alias gcd="git checkout dev"
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
+alias ulauncher="ulauncher --no-window-shadow"

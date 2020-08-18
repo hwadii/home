@@ -14,10 +14,11 @@ export TERM="xterm-256color"
 export BROWSER="firefox"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
-plugins=(git dnf tmux extract zsh-syntax-highlighting wd)
+plugins=(git dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 
 [ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
+[ -f ~/.oh-my-zsh/custom/gh-completion.zsh ] && source ~/.oh-my-zsh/custom/gh-completion.zsh

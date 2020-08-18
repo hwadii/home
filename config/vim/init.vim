@@ -175,7 +175,7 @@ function SetProseOptions()
   setlocal spell
   setlocal spelllang=fr,en
   setlocal textwidth=80
-  set conceallevel=2
+  " set conceallevel=2
 endfunction
 
 hi Todo gui=bold,italic cterm=bold,italic
