@@ -71,17 +71,7 @@ alias nrb="npm run build"
 alias nrt="npm run test"
 alias nrc="npm run commit"
 
-# toolbox
-alias tb=toolbox
-alias tbc="tb create"
-alias tbe="tb enter"
-alias tbls="tb list"
-alias tbrm="tb rm"
-
 alias mp3="youtube-dl -x --embed-thumbnail --audio-format mp3"
-alias pyformat="autopep8 --in-place"
-
-alias dc=docker-compose
 
 function blob() {
   echo "$@" | sed "s|blob://|s3://|g" | xargs s3cmd -c ~/.s3cfg-blob | sed "s|s3://|blob://|g" | sed "s|s3cmd |blob |g";
@@ -91,5 +81,8 @@ alias ytdl=youtube-dl
 # more git aliases
 alias gin="git init"
 alias gcd="git checkout dev"
+
+alias dc=docker-compose
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
 alias ulauncher="ulauncher --no-window-shadow"
+alias gs="cowsay \"It's gss, idiot!\""

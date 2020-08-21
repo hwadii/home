@@ -12,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'junegunn/goyo.vim'
 " Modern web dev
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
@@ -20,17 +21,12 @@ Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'lervag/vimtex'
-
-" wiki things
-" Plug 'vimwiki/vimwiki'
-" Plug 'fcpg/vim-waikiki'
 
 call plug#end()
 set termguicolors
-colorscheme base16-circus
+colorscheme base16-tomorrow-night-eighties
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night',
+      \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -96,7 +92,8 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 nnoremap <silent><leader>p :Prettier<return>
-nnoremap <silent><leader>li :set list!<CR>
+nnoremap <silent><localleader>l :set list!<CR>
+nnoremap <silent><localleader>s :set spell!<CR>
 nmap <leader>o <Plug>(coc-rename)
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -157,12 +154,17 @@ function! s:show_documentation()
 endfunction
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImport')
+
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nnoremap <silent><nowait> <localleader>o  :<C-u>CocList outline<cr>
 
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
@@ -197,6 +199,9 @@ if exists('##TextYankPost')
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch')
 endif
 
-nnoremap <silent> <localleader>y  :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <localleader>g  :Goyo<CR>
+nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
+let g:gitgutter_sign_modified = '='
+let g:gitgutter_sign_modified_removed = '=_'
 
 let g:tex_flavor = 'latex'

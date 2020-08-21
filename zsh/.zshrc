@@ -12,6 +12,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 export TERM="xterm-256color"
 export BROWSER="firefox"
+export LESS=-Ri
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
 plugins=(git dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z)
