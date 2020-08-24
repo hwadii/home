@@ -84,5 +84,4 @@ alias gcd="git checkout dev"
 
 alias dc=docker-compose
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
-alias ulauncher="ulauncher --no-window-shadow"
 alias gs="cowsay \"It's gss, idiot!\""
