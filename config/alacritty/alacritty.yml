@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Source Code Pro Medium
+    family: Fira Code Retina
 
     style:
 
@@ -28,48 +28,49 @@ font:
    x: 0
    y: 4
 
-# Base16 Tomorrow Night 256 - alacritty color config
-# Chris Kempson (http://chriskempson.com)
+# Base16 IR Black 256 - alacritty color config
+# Timothée Poisot (http://timotheepoisot.fr)
 colors:
   # Default colors
   primary:
-    background: '0x2d2d2d'
-    foreground: '0xcccccc'
+    background: '0x000000'
+    foreground: '0xb5b3aa'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2d2d2d'
-    cursor: '0xcccccc'
+    text: '0x000000'
+    cursor: '0xb5b3aa'
 
   # Normal colors
   normal:
-    black:   '0x2d2d2d'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xcccccc'
+    black:   '0x2a2a2a'
+    red:     '0xff6c60'
+    green:   '0xa8ff60'
+    yellow:  '0xffffb6'
+    blue:    '0x96cbfe'
+    magenta: '0xff73fd'
+    cyan:    '0xc6c5fe'
+    white:   '0xb5b3aa'
 
   # Bright colors
   bright:
-    black:   '0x999999'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xffffff'
+    black:   '0x6c6c66'
+    red:     '0xff6c60'
+    green:   '0xa8ff60'
+    yellow:  '0xffffb6'
+    blue:    '0x96cbfe'
+    magenta: '0xff73fd'
+    cyan:    '0xc6c5fe'
+    white:   '0xfdfbee'
 
   indexed_colors:
-    - { index: 16, color: '0xf99157' }
-    - { index: 17, color: '0xa3685a' }
-    - { index: 18, color: '0x393939' }
-    - { index: 19, color: '0x515151' }
-    - { index: 20, color: '0xb4b7b4' }
-    - { index: 21, color: '0xe0e0e0' }
+    - { index: 16, color: '0xe9c062' }
+    - { index: 17, color: '0xb18a3d' }
+    - { index: 18, color: '0x242422' }
+    - { index: 19, color: '0x484844' }
+    - { index: 20, color: '0x918f88' }
+    - { index: 21, color: '0xd9d7cc' }
+    - { index: 22, color: '0x000000' }
 
 cursor:
   style: Block

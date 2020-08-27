@@ -24,7 +24,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 set termguicolors
-colorscheme base16-tomorrow-night-eighties
+colorscheme base16-irblack
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'active': {

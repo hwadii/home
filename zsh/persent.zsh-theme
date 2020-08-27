@@ -12,5 +12,5 @@ git_custom_status() {
   fi
 }
 
-PROMPT='%{$fg[gray]%}%B%1~%b%{$reset_color%}$(parse_git_dirty) %{$fg_bold[magenta]%}$COOL_UNICODE%{$reset_color%} '
+PROMPT='%{$fg[gray]%}%B$(shrink_path -f)%b%{$reset_color%}$(parse_git_dirty) %{$fg_bold[magenta]%}$COOL_UNICODE%{$reset_color%} '
 RPROMPT='$(git_custom_status)'
