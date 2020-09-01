@@ -39,23 +39,12 @@ alias gdf="git diff FETCH_HEAD"
 alias sf=screenfetch
 alias duh="du -sh"
 alias p=python3
-alias xco="cd ~/code"
-alias xan="cd ~/anime"
-alias xdl="cd ~/Téléchargements"
-alias xcr="cd ~/cruft"
-alias xpl="cd ~/code/playing-around"
-alias xwk="cd ~/work"
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | clipcopy"
 # Intuitive map function
 # # For example, to list all directories that contain a certain file:
 # # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
-
-# tar
-alias tarx="tar xvf"
-alias targz="tar xvfz"
-alias tarc="tar cvfz"
 
 # npm
 alias ni="npm install"

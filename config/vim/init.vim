@@ -196,7 +196,7 @@ command! -bang -nargs=? -complete=dir Files
   \   }, <bang>0))
 
 if exists('##TextYankPost')
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank('IncSearch')
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=1000}
 endif
 
 nnoremap <silent> <localleader>g  :Goyo<CR>

@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Fira Code Retina
+    family: Source Code Pro Medium
 
     style:
 
@@ -74,6 +74,11 @@ colors:
 
 cursor:
   style: Block
+
+mouse:
+  url:
+    launcher: firefox
+    args: []
 
 key_bindings:
     - { key: F11, action: ToggleFullscreen }
