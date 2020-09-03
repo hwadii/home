@@ -1,5 +1,6 @@
 export TERM="xterm-256color"
-# export MONITOR="DP-1"
+export MONITOR="eDP-1"
+export EXTERN_HOME="DP-1"
 export BROWSER="firefox"
 export LESS=-Ri
 export XDG_CONFIG_HOME="$HOME/.config"
