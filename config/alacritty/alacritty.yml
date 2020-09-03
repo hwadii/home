@@ -22,7 +22,7 @@ font:
 
     style:
 
-  size: 8
+  size: 13
 
   offset:
    x: 0
@@ -77,7 +77,7 @@ cursor:
 
 mouse:
   url:
-    launcher: firefox
+    launcher: firefox-dev
     args: []
 
 key_bindings:
