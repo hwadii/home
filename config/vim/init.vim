@@ -12,7 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 " Modern web dev
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
@@ -72,11 +72,9 @@ set shellcmdflag=-ic
 set list                              " show whitespace
 set listchars=nbsp:⦸                  " CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
 set listchars+=tab:▷-                 " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
-                                      " + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
 set listchars+=extends:»              " RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
 set listchars+=precedes:«             " LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
 set listchars+=trail:•                " BULLET (U+2022, UTF-8: E2 80 A2)
-set modelines=5                       " scan this many lines looking for modeline
 set nojoinspaces                      " don't autoinsert two spaces after '.', '?', '!' for join command
 set ignorecase
 set smartcase " make search case insensitive by default
@@ -89,6 +87,17 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
+let g:coc_global_extensions = [
+            \ 'coc-json',
+            \ 'coc-python',
+            \ 'coc-tsserver',
+            \ 'coc-prettier',
+            \ 'coc-html',
+            \ 'coc-css',
+            \ 'coc-angular',
+            \ 'coc-solargraph',
+            \ 'coc-rls',
+            \ ]
 
 vnoremap <silent><A-j> :m '>+1<CR>gv=gv
 vnoremap <silent><A-k> :m '<-2<CR>gv=gv
@@ -189,6 +198,7 @@ au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType text call SetProseOptions()
 autocmd FileType tex call SetProseOptions()
 autocmd FileType markdown call SetProseOptions()
+autocmd FileType help set nolist
 
 function SetProseOptions()
   setlocal spell
@@ -220,7 +230,5 @@ endif
 
 nnoremap <silent> <localleader>g  :Goyo<CR>
 nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
-let g:gitgutter_sign_modified = '='
-let g:gitgutter_sign_modified_removed = '=_'
-
-let g:tex_flavor = 'latex'
+let g:gitgutter_sign_modified = '!!'
+let g:gitgutter_sign_modified_removed = '!_'
