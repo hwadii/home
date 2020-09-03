@@ -12,7 +12,7 @@ underline = #fba922
 monitor-fallback = eDP-1
 width = 100%
 height = 30px
-fixed-center = true
+fixed-center = false
 enable-ipc = true
 wm-restack = bspwm
 override-redirect = false
@@ -33,8 +33,8 @@ font-4 = Siji:pixelsize=8;0
 font-5 = fixed:pixelsize=8;0
 
 modules-left = bspwm layout xwindow
-modules-center = date
-modules-right = spotify pulseaudio battery
+modules-center =
+modules-right = spotify pulseaudio date
 
 tray-position = right
 tray-padding = 2

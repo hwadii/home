@@ -21,5 +21,8 @@
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.errorSign": "✘",
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.virtualTextPrefix": "■ "
+  "diagnostic.virtualTextPrefix": "■ ",
+  "coc.preferences.hoverTarget": "preview",
+  "coc.preferences.previewMaxHeight": 30,
+  "coc.preferences.jumpCommand": "tab drop"
 }

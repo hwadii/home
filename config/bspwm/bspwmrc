@@ -9,7 +9,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 pgrep -x sxhkd > /dev/null || sxhkd &
 setxkbmap -option caps:escape -option compose:rctrl -layout gb &
 xsetroot -cursor_name left_ptr &
-nitrogen --set-scaled ~/Images/Graphite.jpg &
+nitrogen --set-scaled ~/Images/leaf.png &
 nm-applet &
 /home/wadii/bin/polybar --reload main &
 redshift -P -O 5500 -m randr:screen=0,1 &
