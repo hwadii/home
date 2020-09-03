@@ -56,8 +56,6 @@ set showbreak=↳\
 set autoindent
 set expandtab
 set shiftwidth=2
-set tabstop=2
-set smartindent
 set softtabstop=2
 set ffs=unix,dos,mac
 set autoread
