@@ -21,19 +21,22 @@ Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
 call plug#end()
+
 set termguicolors
 colorscheme base16-irblack
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
       \ },
+      \ 'component': {
+      \   'lineinfo': 'ℓ %-3l c %-2c',
+      \ }
       \ }
 
 set t_Co=256
@@ -49,10 +52,13 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+set showbreak=↳\ 
 set autoindent
 set expandtab
 set shiftwidth=2
-set softtabstop=2 
+set tabstop=2
+set smartindent
+set softtabstop=2
 set ffs=unix,dos,mac
 set autoread
 set number
@@ -65,8 +71,15 @@ set noswapfile
 set noshowmode
 set mouse=a
 set shellcmdflag=-ic
-set nolist
-set listchars+=space:·
+set list                              " show whitespace
+set listchars=nbsp:⦸                  " CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
+set listchars+=tab:▷-                 " WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
+                                      " + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
+set listchars+=extends:»              " RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+set listchars+=precedes:«             " LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+set listchars+=trail:•                " BULLET (U+2022, UTF-8: E2 80 A2)
+set modelines=5                       " scan this many lines looking for modeline
+set nojoinspaces                      " don't autoinsert two spaces after '.', '?', '!' for join command
 set ignorecase
 set smartcase " make search case insensitive by default
 
@@ -163,8 +176,14 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> gi <Plug>(coc-diagnostic-info)
 
 nnoremap <silent><nowait> <localleader>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <localleader>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <localleader>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <localleader>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <localleader>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <localleader>p  :<C-u>CocListResume<CR>
 
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
@@ -175,7 +194,7 @@ autocmd FileType markdown call SetProseOptions()
 
 function SetProseOptions()
   setlocal spell
-  setlocal spelllang=fr,en
+  setlocal spelllang=en
   setlocal textwidth=80
   " set conceallevel=2
 endfunction
@@ -184,6 +203,8 @@ hi Todo gui=bold,italic cterm=bold,italic
 hi Comment gui=italic cterm=italic
 hi htmlItalic gui=italic cterm=italic
 hi htmlBold gui=bold cterm=bold
+hi CocErrorVirtualText ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
+hi CocInfoVirtualText ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
 
 let s:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
 
