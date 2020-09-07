@@ -24,18 +24,20 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set termguicolors
-colorscheme base16-irblack
+colorscheme base16-tomorrow-night
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
+      \   'right': [ [ 'lineinfo', 'column' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
       \ },
       \ 'component': {
-      \   'lineinfo': 'ℓ %-3l c %-2c',
+      \   'lineinfo': "%{printf('ℓ %03d/%03d', line('.'),  line('$'))}",
+      \   'column': 'c %c'
       \ }
       \ }
 
