@@ -29,18 +29,20 @@ let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
-      \   'right': [ [ 'lineinfo', 'column' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \             [ 'gitbranch', 'readonly'], ['filename', 'modified']],
+      \   'right': [ ['line', 'column', 'percent'], [], ['filetype'] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
       \ },
       \ 'component': {
-      \   'lineinfo': "%{printf('ℓ %03d/%03d', line('.'),  line('$'))}",
-      \   'column': 'c %c'
+      \   'line': "%{printf('ℓ %02d/%02d', line('.'),  line('$'))}",
+      \   'column': "%{printf('c %02d/%02d', col('.'),  col('$'))}",
+      \   'filetype': '%{&ft!=#""?"[".&ft."]":"no ft"}'
       \ }
       \ }
 
+let g:lightline.subseparator = { 'left': '|', 'right': '' }
 set t_Co=256
 set background=dark
 filetype plugin indent on
@@ -80,6 +82,7 @@ set listchars+=trail:•                " BULLET (U+2022, UTF-8: E2 80 A2)
 set nojoinspaces                      " don't autoinsert two spaces after '.', '?', '!' for join command
 set ignorecase
 set smartcase " make search case insensitive by default
+set redrawtime=10000
 
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
@@ -108,6 +111,7 @@ nnoremap <silent><A-k> :m .-2<CR>==
 inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
 inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
 inoremap <silent><C-d> <Del>
+inoremap <C-c> <esc>
 nnoremap <silent><esc> :noh<return><esc>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -166,6 +170,7 @@ nmap <leader>gc :Gcommit<cr>
 nmap <leader>ga :Gwrite<cr>
 nmap <leader>gl :Glog<cr>
 nmap <leader>gd :Gdiff<cr>
+nmap <leader>gb :Gblame<cr>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -215,13 +220,15 @@ hi htmlItalic gui=italic cterm=italic
 hi htmlBold gui=bold cterm=bold
 hi CocErrorVirtualText ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
 hi CocInfoVirtualText ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
+hi MatchParen guibg=#383838
+" hi Visual guibg=#81a2be guifg=black
 
 let s:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
 
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#run(fzf#wrap(
   \   {
-  \     'source': 'fd --type f .\* '.(empty(<q-args>) ? '' : shellescape(<q-args>)),
+  \     'source': 'fd --hidden --type f .\* '.(empty(<q-args>) ? '' : shellescape(<q-args>)),
   \     'down': '40%',
   \     'options': s:fzf_options
   \   }, <bang>0))

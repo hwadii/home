@@ -9,17 +9,18 @@
   "prettier.printWidth": 120,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
-  "coc.preferences.formatOnInsertLeave": true,
+  "tsserver.implicitProjectConfig.experimentalDecorators": true,
   "typescript.preferences.importModuleSpecifier": "relative",
   "python.jediEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
+  "diagnostic.refreshOnInsertMode": true,
   "diagnostic.virtualText": true,
   "diagnostic.messageTarget": "echo",
   "diagnostic.enableMessage": "always",
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.errorSign": "✘",
   "diagnostic.checkCurrentLine": true,
-  "diagnostic.virtualTextPrefix": "■ "
+  "diagnostic.virtualTextPrefix": "· "
 }

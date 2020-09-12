@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Source Code Pro Medium
+    family: Source Code Pro Light
 
     style:
 
@@ -22,11 +22,11 @@ font:
 
     style:
 
-  size: 11
+  size: 14
 
   offset:
    x: 0
-   y: 4
+   y: 5
 
 # Base16 Tomorrow Night 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
@@ -76,7 +76,7 @@ cursor:
 
 mouse:
   url:
-    launcher: firefox-dev
+    launcher: /home/wadii/bin/firefox
     args: []
 
 key_bindings:

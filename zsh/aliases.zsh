@@ -78,3 +78,4 @@ alias gdf="git diff FETCH_HEAD"
 alias dc=docker-compose
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
 alias gs="cowsay \"It's gss, idiot!\""
+alias python3.6=python3
