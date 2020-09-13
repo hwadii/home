@@ -41,3 +41,9 @@ vf() {
      print -l $files[1]
   fi
 }
+
+fh() {
+    print -z $( ([ -n "$ZSH_NAME"  ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//' )
+}
+
+bindkey -s "^R" 'fh^M'
