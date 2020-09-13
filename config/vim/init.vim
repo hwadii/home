@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/bundle/')
 " Theme
 Plug 'itchyny/lightline.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'junegunn/seoul256.vim'
 " QoL
 Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
@@ -24,7 +25,8 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set termguicolors
-colorscheme base16-tomorrow-night
+let g:seoul256_background = 233
+colorscheme seoul256
 let g:lightline = {
       \ 'colorscheme': 'Tomorrow_Night_Eighties',
       \ 'active': {
@@ -52,7 +54,7 @@ syntax on
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+" set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
@@ -190,7 +192,6 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> gi <Plug>(coc-diagnostic-info)
 
 nnoremap <silent><nowait> <localleader>o  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <localleader>a  :<C-u>CocList diagnostics<cr>
@@ -198,6 +199,7 @@ nnoremap <silent><nowait> <localleader>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <localleader>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <localleader>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <localleader>p  :<C-u>CocListResume<CR>
+nmap <silent> <localleader>i <Plug>(coc-diagnostic-info)
 
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
