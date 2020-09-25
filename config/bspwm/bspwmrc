@@ -12,8 +12,9 @@ setxkbmap -option caps:escape -option compose:rctrl -layout gb &
 xsetroot -cursor_name left_ptr &
 nitrogen --set-scaled ~/Images/Ryan\ Schroeder.jpg
 nm-applet &
-MONITOR=$MONITOR polybar --reload main &
-redshift -P -O 6000:3000 &
+/home/wadii/bin/polybar --reload main &
+/usr/libexec/geoclue-2.0/demos/agent &
+/usr/bin/redshift -P -O 6000:3000 -m randr:screen=0,1 &
 xset r rate 500 30
 pgrep -x ulauncher || ulauncher --no-window-shadow --hide-window &
 

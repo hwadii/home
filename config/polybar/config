@@ -192,7 +192,7 @@ scroll-down = pactl set-sink-volume 0 -2%
 
 [module/spotify]
 type = custom/script
-exec = get_song
+exec = ~/.local/bin/get_song
 exec-if = "pgrep spotify"
 format-padding = 1
 format-underline = ${colors.underline}
