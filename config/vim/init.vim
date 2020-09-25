@@ -12,6 +12,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-unimpaired'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'junegunn/goyo.vim'
 " Modern web dev
@@ -28,7 +29,7 @@ set termguicolors
 let g:seoul256_background = 233
 colorscheme seoul256
 let g:lightline = {
-      \ 'colorscheme': 'Tomorrow_Night_Eighties',
+      \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly'], ['filename', 'modified']],
@@ -59,6 +60,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set showbreak=↳\ 
+set breakindentopt=shift:2
 set autoindent
 set expandtab
 set shiftwidth=2
@@ -143,9 +145,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
@@ -222,11 +222,14 @@ hi htmlItalic gui=italic cterm=italic
 hi htmlBold gui=bold cterm=bold
 hi CocErrorVirtualText ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
 hi CocInfoVirtualText ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
-hi MatchParen guibg=#383838
+" hi MatchParen guibg=#383838
+hi VertSplit cterm=NONE gui=NONE
 " hi Visual guibg=#81a2be guifg=black
 
+let g:fzf_layout = { 'down': '~40%' }
 let s:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
 
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#run(fzf#wrap(
   \   {

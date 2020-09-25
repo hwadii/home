@@ -27,6 +27,12 @@ fo() (
   fi
 )
 
+# fgit [FUZZY PATTERN] - Open the modified file with the default editor
+fgit() (
+  IFS=$'\n' files=($(git status --short | cut -f2 -d' ' | fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+)
+
 # vf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
@@ -45,5 +51,3 @@ vf() {
 fh() {
     print -z $( ([ -n "$ZSH_NAME"  ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//' )
 }
-
-bindkey -s "^R" 'fh^M'

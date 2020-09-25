@@ -16,7 +16,7 @@ export PATH="$BIN:$HOME/.local/bin:$HOME/.config/nvm/versions/node/v14.8.0/bin:$
 export ZSH=$HOME/.oh-my-zsh
 export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
 export EDITOR=nvim
-export FZF_DEFAULT_COMMAND='rg --files --follow --hidden -g "!node_modules" -g "!.git"'
+export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden'
 export FZF_DEFAULT_OPTS="
     --height 40% --reverse
     --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'

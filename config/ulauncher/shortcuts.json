@@ -48,5 +48,15 @@
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1597753601.4360988
+    },
+    "d780f9dd-a374-4d22-9d10-69c1663a430d": {
+        "id": "d780f9dd-a374-4d22-9d10-69c1663a430d",
+        "name": "Github Repo",
+        "keyword": "repo",
+        "cmd": "https://github.com/%s",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1600334822.7876475
     }
 }
