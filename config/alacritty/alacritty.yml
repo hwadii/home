@@ -7,9 +7,9 @@ window:
 
 font:
   normal:
-    family: JetBrains Mono
+    family: Inconsolata
 
-    style:
+    style: Regular
 
   bold:
     style:

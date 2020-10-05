@@ -30,8 +30,6 @@ bspc config borderless_monocle   false
 bspc config gapless_monocle      false
 bspc config focus_follows_pointer false
 
-# bspc rule -a 'Firefox Developer Edition' desktop='^2'
-bspc rule -a Firefox desktop='^2'
 bspc rule -a Spotify desktop='^6' state=pseudo_tiled
 bspc rule -a mpv desktop='^5'
 bspc rule -a Slack desktop='^7' state=pseudo_tiled
