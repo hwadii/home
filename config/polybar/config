@@ -198,6 +198,8 @@ format-padding = 1
 format-underline = ${colors.underline}
 click-left = playerctl -p spotify play-pause
 click-right = bspc desktop -f '^6'
+scroll-up = playerctl next
+scroll-down = playerctl previous
 tail = true
 interval = 1
 
