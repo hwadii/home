@@ -14,7 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'junegunn/goyo.vim'
+Plug 'ledger/vim-ledger'
 " Modern web dev
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
@@ -108,12 +108,12 @@ let g:coc_global_extensions = [
             \ 'coc-rls',
             \ ]
 
-vnoremap <silent><A-j> :m '>+1<CR>gv=gv
-vnoremap <silent><A-k> :m '<-2<CR>gv=gv
-nnoremap <silent><A-j> :m .+1<CR>==
-nnoremap <silent><A-k> :m .-2<CR>==
-inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
-inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 inoremap <silent><C-d> <Del>
 inoremap <C-c> <esc>
 nnoremap <silent><esc> :noh<return><esc>
@@ -246,3 +246,4 @@ nnoremap <silent> <localleader>g  :Goyo<CR>
 nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_sign_modified = '!!'
 let g:gitgutter_sign_modified_removed = '!_'
+let g:ledger_align_at = 52
