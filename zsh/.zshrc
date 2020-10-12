@@ -24,6 +24,8 @@ export FZF_DEFAULT_OPTS="
 "
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
+
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
 plugins=(git dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z shrink-path)

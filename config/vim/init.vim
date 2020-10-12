@@ -87,6 +87,7 @@ set nojoinspaces                      " don't autoinsert two spaces after '.', '
 set ignorecase
 set smartcase " make search case insensitive by default
 set redrawtime=10000
+set completeopt=menuone,noinsert,noselect
 
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
@@ -108,12 +109,12 @@ let g:coc_global_extensions = [
             \ 'coc-rls',
             \ ]
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <silent> <A-j> :m .+1<CR>==
+nnoremap <silent> <A-k> :m .-2<CR>==
+inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
 inoremap <silent><C-d> <Del>
 inoremap <C-c> <esc>
 nnoremap <silent><esc> :noh<return><esc>

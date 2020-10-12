@@ -100,4 +100,7 @@
 
 (setq-default typescript-indent-level 2)
 (global-set-key (kbd "C-SPC") 'company-complete)
+(set-default-font "Inconsolata LGC")
+(setq seoul256-background 233)
+(load-theme 'seoul256 t)
 ;;; prelude-modules.el ends here
