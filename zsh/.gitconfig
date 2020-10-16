@@ -3,3 +3,5 @@
 	email = wadii.hajji@etu.univ-amu.fr
 [pull]
 	rebase = false
+[pager]
+	branch = false
