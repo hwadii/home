@@ -209,11 +209,11 @@ nmap <silent> <localleader>i <Plug>(coc-diagnostic-info)
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
 au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType text call SetProseOptions()
-autocmd FileType tex call SetProseOptions()
-autocmd FileType markdown call SetProseOptions()
-autocmd Filetype gina-commit call SetProseOptions()
-autocmd FileType help set nolist
+au FileType text call SetProseOptions()
+au FileType tex call SetProseOptions()
+au FileType markdown call SetProseOptions()
+au Filetype gina-commit call SetProseOptions()
+au FileType help set nolist
 
 function SetProseOptions()
   setlocal spell
