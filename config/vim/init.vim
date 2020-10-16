@@ -9,20 +9,24 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/gina.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-abolish'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ledger/vim-ledger'
 " Modern web dev
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'wincent/loupe'
 call plug#end()
 
 set termguicolors
@@ -36,7 +40,7 @@ let g:lightline = {
       \   'right': [ ['line', 'column', 'percent'], [], ['filetype'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
+      \   'gitbranch': 'gina#component#repo#branch',
       \ },
       \ 'component': {
       \   'line': "%{printf('ℓ %02d/%02d', line('.'),  line('$'))}",
@@ -133,6 +137,7 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
 nnoremap <Leader>r :Rg<CR>
 nnoremap <Leader>l :Lines!<CR>
+nnoremap <C-s> :<C-u>BLines<CR>
 
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
@@ -145,8 +150,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
@@ -168,12 +171,13 @@ nnoremap <leader><leader> <c-^>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <leader>fp gqap
 
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>ga :Gwrite<cr>
-nmap <leader>gl :Glog<cr>
-nmap <leader>gd :Gdiff<cr>
-nmap <leader>gb :Gblame<cr>
+nmap <leader>gs :Gina status -s<cr>
+nmap <leader>gc :Gina commit<cr>
+" nmap <leader>ga :Gwrite<cr>
+nmap <leader>gl :Gina log<cr>
+nmap <leader>gd :Gina diff<cr>
+nmap <leader>gb :Gina blame<cr>
+nmap <leader>ge <Plug>(gina-blame-echo)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -208,6 +212,7 @@ au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType text call SetProseOptions()
 autocmd FileType tex call SetProseOptions()
 autocmd FileType markdown call SetProseOptions()
+autocmd Filetype gina-commit call SetProseOptions()
 autocmd FileType help set nolist
 
 function SetProseOptions()
@@ -239,12 +244,30 @@ command! -bang -nargs=? -complete=dir Files
   \     'options': s:fzf_options
   \   }, <bang>0))
 
-if exists('##TextYankPost')
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=1000}
-endif
+autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=1000}
 
 nnoremap <silent> <localleader>g  :Goyo<CR>
 nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_sign_modified = '!!'
 let g:gitgutter_sign_modified_removed = '!_'
 let g:ledger_align_at = 52
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "typescript", "ruby", "bash", "markdown", "javascript", "css", "html", "jsdoc", "json", "yaml", "python" },
+  highlight = {
+    enable = true,
+    custom_captures = {
+      ["TextYankPost"] = "IncSearch",
+    }
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
