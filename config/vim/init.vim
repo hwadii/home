@@ -174,6 +174,7 @@ nnoremap <leader>fp gqap
 nmap <leader>gs :Gina status -s<cr>
 nmap <leader>gc :Gina commit<cr>
 " nmap <leader>ga :Gwrite<cr>
+nmap <leader>gp :Gina push<cr>
 nmap <leader>gl :Gina log<cr>
 nmap <leader>gd :Gina diff<cr>
 nmap <leader>gb :Gina blame<cr>
