@@ -32,6 +32,25 @@ function! hwadii#statusline#lhs() abort
   return l:line
 endfunction
 
+function! hwadii#statusline#branch() abort
+  let branch = gina#component#repo#branch()
+  if (branch != "")
+    return branch."⎇ "
+  else
+    return branch
+endfunction
+
+function! hwadii#statusline#fileprefix() abort
+  let l:basename=expand('%:h')
+  if l:basename ==# '' || l:basename ==# '.'
+    return ''
+  elseif has('modify_fname')
+    return substitute(fnamemodify(l:basename, ':~:.'), '/$', '', '') . '/'
+  else
+    return substitute(l:basename . '/', '\C^' . $HOME, '~', '')
+  endif
+endfunction
+
 function! hwadii#statusline#active() abort
   setlocal statusline=
   setlocal statusline+=%1*   "italic
@@ -42,16 +61,29 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%<   " Truncation point
-  setlocal statusline+=%f   " Relative path
+  setlocal statusline+=%{hwadii#statusline#fileprefix()} " Relative path
+  setlocal statusline+=%5*
+  setlocal statusline+=%t   " filename
+  setlocal statusline+=%*
   setlocal statusline+=\ 
-  setlocal statusline+=%=
-  setlocal statusline+=%r   " readonly
-  setlocal statusline+=%{statusline#branch()}
+  setlocal statusline+=%4*
   setlocal statusline+=%y   " filetype
   setlocal statusline+=\ 
-  setlocal statusline+=%{printf('ℓ\ %02d/%02d',line('.'),line('$'))} " line number
+  setlocal statusline+=%*
+  setlocal statusline+=%=
+  setlocal statusline+=%4*
+  setlocal statusline+=%r   " readonly
+  setlocal statusline+=%{hwadii#statusline#branch()}
+  setlocal statusline+=%*
+  setlocal statusline+=\ 
+  setlocal statusline+=%7*
+  setlocal statusline+=
+  setlocal statusline+=%*
+  setlocal statusline+=%6*
+  setlocal statusline+=%{printf('\ ℓ\ %02d/%02d',line('.'),line('$'))} " line number
   setlocal statusline+=\ \ 
-  setlocal statusline+=%{printf('c\ %02d/%02d',col('.'),col('$'))} " col number
+  setlocal statusline+=%{printf('c\ %02d/%02d\ ',col('.'),col('$'))} " col number
+  setlocal statusline+=%*
 endfunction
 
 function! hwadii#statusline#inactive() abort
