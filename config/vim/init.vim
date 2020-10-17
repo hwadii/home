@@ -1,7 +1,5 @@
 call plug#begin('~/.config/nvim/bundle/')
 " Theme
-Plug 'itchyny/lightline.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 " QoL
 Plug 'justinmk/vim-dirvish'
@@ -27,29 +25,15 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'wincent/loupe'
+
 call plug#end()
 
+set encoding=utf-8
+scriptencoding utf-8
 set termguicolors
 let g:seoul256_background = 233
 colorscheme seoul256
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly'], ['filename', 'modified']],
-      \   'right': [ ['line', 'column', 'percent'], [], ['filetype'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gina#component#repo#branch',
-      \ },
-      \ 'component': {
-      \   'line': "%{printf('ℓ %02d/%02d', line('.'),  line('$'))}",
-      \   'column': "%{printf('c %02d/%02d', col('.'),  col('$'))}",
-      \   'filetype': '%{&ft!=#""?"[".&ft."]":"no ft"}'
-      \ }
-      \ }
 
-let g:lightline.subseparator = { 'left': '|', 'right': '' }
 set t_Co=256
 set background=dark
 filetype plugin indent on
@@ -59,7 +43,6 @@ syntax on
 set hidden
 set nobackup
 set nowritebackup
-" set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
@@ -78,7 +61,6 @@ set backspace=start,eol,indent
 set breakindent
 set linebreak
 set noswapfile
-set noshowmode
 set mouse=a
 set shellcmdflag=-ic
 set list                              " show whitespace
@@ -127,8 +109,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 nnoremap <silent><leader>p :Prettier<return>
-nnoremap <silent><localleader>l :set list!<CR>
-nnoremap <silent><localleader>s :set spell!<CR>
 nmap <leader>o <Plug>(coc-rename)
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
@@ -138,13 +118,6 @@ nnoremap <Leader>h :History<CR>
 nnoremap <Leader>r :Rg<CR>
 nnoremap <Leader>l :Lines!<CR>
 nnoremap <C-s> :<C-u>BLines<CR>
-
-let g:netrw_liststyle = 3
-let g:netrw_altv = 1
-let g:netrw_banner = 0
-let g:waikiki_roots = ['~/code/notes/']
-let g:waikiki_default_maps = 1
-let g:waikiki_done = "x"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -229,9 +202,7 @@ hi htmlItalic gui=italic cterm=italic
 hi htmlBold gui=bold cterm=bold
 hi CocErrorVirtualText ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
 hi CocInfoVirtualText ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
-" hi MatchParen guibg=#383838
 hi VertSplit cterm=NONE gui=NONE
-" hi Visual guibg=#81a2be guifg=black
 
 let g:fzf_layout = { 'down': '~40%' }
 let s:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
@@ -252,6 +223,7 @@ nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
 let g:gitgutter_sign_modified = '!!'
 let g:gitgutter_sign_modified_removed = '!_'
 let g:ledger_align_at = 52
+
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "typescript", "ruby", "bash", "markdown", "javascript", "css", "html", "jsdoc", "json", "yaml", "python" },
