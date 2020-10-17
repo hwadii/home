@@ -114,7 +114,7 @@ map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>h :History<CR>
+nnoremap <Leader>h :History!<CR>
 nnoremap <Leader>r :Rg<CR>
 nnoremap <Leader>l :Lines!<CR>
 nnoremap <C-s> :<C-u>BLines<CR>
