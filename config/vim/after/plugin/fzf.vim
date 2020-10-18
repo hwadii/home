@@ -4,6 +4,6 @@ command! -bang -nargs=? -complete=dir Files
   \   {
   \     'source': 'fd -E".git" --hidden --type f .\* '.(empty(<q-args>) ? '' : shellescape(<q-args>)),
   \     'down': '40%',
-  \     'options': s:fzf_options
+  \     'options': g:fzf_options
   \   }, <bang>0))
 
