@@ -28,15 +28,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>ts <Plug>(coc-codeaction)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+nnoremap <silent> K :call <SID>hwadii#utils#show_documentation()<CR>
 
 nmap <leader>o <Plug>(coc-rename)
 
