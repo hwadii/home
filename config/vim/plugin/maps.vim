@@ -28,13 +28,26 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>ts <Plug>(coc-codeaction)
-nnoremap <silent> K :call <SID>hwadii#utils#show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 nmap <leader>o <Plug>(coc-rename)
 
+function s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+function s:check_back_space()
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
-      \ <SID>hwadii#utils#check_back_space() ? "\<Tab>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
 vmap <leader>f  <Plug>(coc-format-selected)
