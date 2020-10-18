@@ -35,7 +35,7 @@ endfunction
 function! hwadii#statusline#branch() abort
   let branch = gina#component#repo#branch()
   if (branch != "")
-    return branch."⎇ "
+    return branch . "⎇ "
   else
     return branch
 endfunction
@@ -73,7 +73,7 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%=
   setlocal statusline+=%4*
   setlocal statusline+=%r   " readonly
-  setlocal statusline+=%{hwadii#statusline#branch()}
+  setlocal statusline+=%0.10{hwadii#statusline#branch()}
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%7*

@@ -15,6 +15,7 @@ map <C-l> <C-w>l
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader><leader> <c-^>
 nnoremap <leader>fp gqap
+nnoremap <silent> <C-/> :set hlsearch!<cr>
 
 " coc.vim
 inoremap <silent><expr> <c-space> coc#refresh()
