@@ -40,7 +40,7 @@ set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-set showbreak=↪\ 
+set showbreak=↳\ 
 set breakindentopt=shift:2
 set autoindent
 set expandtab
