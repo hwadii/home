@@ -1,9 +1,11 @@
-function! hwadii#utils#check_back_space() abort
+scriptencoding utf-8
+
+function! hwadii#misc#check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-function! hwadii#utils#show_documentation() abort
+function! hwadii#misc#show_documentation() abort
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -11,7 +13,7 @@ function! hwadii#utils#show_documentation() abort
   endif
 endfunction
 
-function! hwadii#utils#set_prose_options() abort
+function! hwadii#misc#set_prose_options() abort
   setlocal spell
   setlocal spelllang=en
   setlocal textwidth=80
