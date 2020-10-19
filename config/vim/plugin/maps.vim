@@ -73,7 +73,8 @@ nmap <leader>gp :Gina push<cr>
 nmap <leader>gl :Gina log<cr>
 nmap <leader>gd :Gina diff<cr>
 nmap <leader>gb :Gina blame<cr>
-nmap <leader>ge <Plug>(gina-blame-echo)
+nmap <leader>geb <Plug>(gina-blame-echo)
+nmap <leader>ger :<C-U>echom gina#component#repo#branch()<CR>
 
 " gitgutter
 nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
@@ -86,9 +87,14 @@ nnoremap <Leader>h :History!<CR>
 nnoremap <Leader>r :Rg<CR>
 nnoremap <Leader>l :Lines!<CR>
 nnoremap <C-s> :<C-u>BLines<CR>
+nnoremap <Leader>c :Commits<CR>
 
 " Goyo
 nnoremap <silent> <localleader>gg  :Goyo<CR>
 
 " Ledger
 nnoremap <silent> glf :<C-U>%LedgerAlign<CR>
+
+" tabs
+nnoremap <silent> [t gT
+nnoremap <silent> ]t gt

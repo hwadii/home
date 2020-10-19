@@ -18,7 +18,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'branch': '0fe8e198a3a501b54dbc4f9587526c097599f95a' }
 Plug 'wincent/loupe'
 call plug#end()
 
@@ -68,7 +68,9 @@ set splitright  " Splitting a window will put the new window right of the curren
 let maplocalleader = "\<space>"
 
 let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
+" let g:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
+let g:fzf_options = ''
+let g:fzf_preview_window = ''
 
 let g:gitgutter_sign_modified = '!!'
 let g:gitgutter_sign_modified_removed = '!_'
