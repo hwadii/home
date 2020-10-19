@@ -15,7 +15,7 @@ nm-applet &
 /home/wadii/bin/polybar --reload main &
 /usr/libexec/geoclue-2.0/demos/agent &
 /usr/bin/redshift -P -O 6000:3000 -m randr:screen=0,1 &
-xset r rate 600 30
+xset r rate 400 30
 pgrep -x ulauncher || ulauncher --no-window-shadow --hide-window &
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
