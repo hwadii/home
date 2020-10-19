@@ -33,11 +33,14 @@ function! hwadii#statusline#lhs() abort
 endfunction
 
 function! hwadii#statusline#branch() abort
-  let branch = gina#component#repo#branch()
-  if (branch != "")
-    return branch . "⎇ "
+  let l:branch = gina#component#repo#branch()
+  if (l:branch != "")
+    if (len(l:branch) > 15)
+      let l:branch = strpart(l:branch, 0, 12) . '>'
+    endif
+    return l:branch . " ⎇ "
   else
-    return branch
+    return l:branch
 endfunction
 
 function! hwadii#statusline#fileprefix() abort
@@ -73,7 +76,7 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%=
   setlocal statusline+=%4*
   setlocal statusline+=%r   " readonly
-  setlocal statusline+=%0.10{hwadii#statusline#branch()}
+  setlocal statusline+=%{hwadii#statusline#branch()}
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%7*
