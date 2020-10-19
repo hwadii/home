@@ -88,5 +88,7 @@ nnoremap <Leader>l :Lines!<CR>
 nnoremap <C-s> :<C-u>BLines<CR>
 
 " Goyo
-nnoremap <silent> <localleader>g  :Goyo<CR>
+nnoremap <silent> <localleader>gg  :Goyo<CR>
 
+" Ledger
+nnoremap <silent> glf :<C-U>%LedgerAlign<CR>
