@@ -1,5 +1,6 @@
 hi StatusLine cterm=reverse ctermfg=95 ctermbg=187 gui=reverse guifg=#252525 guibg=#DFDEBD
 hi StatusLineNC cterm=italic,reverse ctermfg=235 ctermbg=187 gui=italic,reverse guifg=#333233 guibg=#9e9e9e
+hi Search cterm=underline gui=underline ctermfg=230 ctermbg=22 guifg=#284f28 guibg=#1f1f1f
 hi User1 gui=bold guifg=#252525 guibg=#E19972
 hi User2 gui=bold guifg=#E19972 guibg=#252525
 hi User3 gui=italic guifg=#252525 guibg=#9e9e9e
@@ -14,4 +15,5 @@ hi htmlItalic gui=italic cterm=italic
 hi htmlBold gui=bold cterm=bold
 hi CocErrorVirtualText ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
 hi CocInfoVirtualText ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
-hi VertSplit cterm=NONE gui=NONE
+hi link CocWarningVirtualText CocInfoVirtualText
+" hi VertSplit cterm=NONE gui=NONE

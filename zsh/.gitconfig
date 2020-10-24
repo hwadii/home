@@ -5,3 +5,7 @@
 	rebase = false
 [pager]
 	branch = false
+[alias]
+  rank = shortlog -sn --no-merges
+  sd = standup
+  absorb = !git-absorb
