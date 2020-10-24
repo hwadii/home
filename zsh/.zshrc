@@ -19,7 +19,7 @@ export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
 export FZF_DEFAULT_OPTS="
-    --height 40% --reverse
+    --height 40%
     --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'
 "
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"

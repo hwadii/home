@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/bundle/')
 Plug 'junegunn/seoul256.vim'
+Plug 'jnurmine/Zenburn'
 Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
@@ -18,15 +19,17 @@ Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim', { 'branch': '0fe8e198a3a501b54dbc4f9587526c097599f95a' }
+Plug 'junegunn/fzf.vim'
 Plug 'wincent/loupe'
 call plug#end()
 
 set encoding=utf-8
 scriptencoding utf-8
 set termguicolors
+colorscheme zenburn
 let g:seoul256_background = 233
-colorscheme seoul256
+let g:zenburn_high_Contrast = 1
+let g:zenburn_disable_Label_underline = 1
 
 set t_Co=256
 set background=dark

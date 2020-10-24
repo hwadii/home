@@ -65,6 +65,10 @@ nnoremap <silent><nowait> <localleader>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <localleader>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <localleader>p  :<C-u>CocListResume<CR>
 nmap <silent> <localleader>i <Plug>(coc-diagnostic-info)
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
 " Gina
 nmap <leader>gs :Gina status -s<cr>
@@ -85,6 +89,7 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History!<CR>
 nnoremap <Leader>r :Rg<CR>
+nnoremap <Leader>/ :execute 'Rg <c-r><c-w>'<CR>
 nnoremap <Leader>l :Lines!<CR>
 nnoremap <C-s> :<C-u>BLines<CR>
 nnoremap <Leader>c :Commits<CR>
