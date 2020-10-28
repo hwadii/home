@@ -10,7 +10,7 @@ pgrep -x ssh-agent > /dev/null || eval `ssh-agent`
 pgrep -x sxhkd > /dev/null || sxhkd &
 setxkbmap -option caps:escape -option compose:rctrl -layout gb &
 xsetroot -cursor_name left_ptr &
-nitrogen --set-scaled ~/Images/Ashim\ DSilva.jpg
+nitrogen --set-tiled /home/wadii/Téléchargements/sakkarin-kaewsukho-sKa66i7hIfw-unsplash.jpg
 nm-applet &
 /home/wadii/bin/polybar --reload main &
 /usr/libexec/geoclue-2.0/demos/agent &
@@ -35,4 +35,4 @@ bspc rule -a mpv desktop='^5'
 bspc rule -a Slack desktop='^7' state=pseudo_tiled
 bspc rule -a mupdf-x11 state=pseudo_tiled
 bspc rule -a Matplotlib state=floating
-
+bspc rule -a Emacs state=tiled

@@ -28,7 +28,7 @@ export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NP
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
-plugins=(git dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z shrink-path)
+plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z shrink-path)
 
 source $ZSH/oh-my-zsh.sh
 
