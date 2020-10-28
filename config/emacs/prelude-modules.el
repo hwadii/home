@@ -46,7 +46,7 @@
 ;; (require 'prelude-helm) ;; Interface for narrowing and search
 ;; (require 'prelude-helm-everywhere) ;; Enable Helm everywhere
 (require 'prelude-company)
-;; (require 'prelude-key-chord) ;; Binds useful features to key combinations
+; (require 'prelude-key-chord) ;; Binds useful features to key combinations
 (require 'prelude-evil)
 
 ;;; Org-mode (a legendary productivity tool that deserves its own category)
@@ -90,17 +90,34 @@
 
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
 (add-hook 'web-mode-hook
           (lambda ()
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
               (setup-tide-mode))))
 
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+(add-hook 'web-mode-hook
+      (lambda ()
+        (setq whitespace-line-column 120)))
+
+(add-hook 'typescript-mode-hook
+      (lambda ()
+        (setq whitespace-line-column 120)))
+
+(add-hook 'ruby-mode-hook
+      (lambda ()
+        (setq whitespace-line-column 140)))
+
+(setq whitespace-style '(face lines-tail))
+
 (setq company-tooltip-align-annotations t)
 
 (setq-default typescript-indent-level 2)
 (global-set-key (kbd "C-SPC") 'company-complete)
 (set-default-font "Inconsolata LGC")
 (setq seoul256-background 233)
-(load-theme 'seoul256 t)
+; (load-theme 'seoul256 t)
+; (load-theme 'zenburn t)
+(setq make-backup-files nil)
 ;;; prelude-modules.el ends here
