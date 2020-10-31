@@ -60,7 +60,7 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%{hwadii#statusline#lhs()}
   setlocal statusline+=%*   " Reset highlight group.
   setlocal statusline+=%2*
-  setlocal statusline+=
+  " setlocal statusline+=
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%<   " Truncation point
@@ -80,7 +80,7 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%7*
-  setlocal statusline+=
+  " setlocal statusline+=
   setlocal statusline+=%*
   setlocal statusline+=%6*
   setlocal statusline+=%{printf('\ ℓ\ %02d/%02d',line('.'),line('$'))} " line number

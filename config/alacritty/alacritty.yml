@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Inconsolata
+    family: Iosevka Term Slab Extended
 
     style: Regular
 
@@ -34,12 +34,12 @@ colors:
   # Default colors
   primary:
     background: '#1f1f1f'
-    foreground: '0xdcdccc'
+    foreground: '#c6c6c6'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '0x383838'
-    cursor: '0xdcdccc'
+    cursor: '#c6c6c6'
 
   # Normal colors
   normal:
@@ -50,7 +50,7 @@ colors:
     blue:    '0x7cb8bb'
     magenta: '0xdc8cc3'
     cyan:    '0x93e0e3'
-    white:   '0xdcdccc'
+    white:   '#c6c6c6'
 
   # Bright colors
   bright:

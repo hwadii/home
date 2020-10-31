@@ -3,10 +3,12 @@ background = #1a1a1a
 background-alt = #444
 foreground = #dfdfdf
 foreground-alt = #888
-primary = #ffb52a
+; primary = #ffb52a
+primary = #94ccd9
 secondary = #e60053
 alert = #bd2c40
-underline = #fba922
+underline = #40bfce
+occupied = #62c3d3
 
 [section/base]
 monitor-fallback = eDP-1
@@ -25,7 +27,7 @@ line-size = 2
 padding = 1
 module-margin = 1
 
-font-0 = mononoki Nerd Font:pixelsize=11;1
+font-0 = Fira Code:pixelsize=11;1
 font-1 = IPAGothic:style=regular:pixelsize=12;0
 font-2 = unifont:fontformat=truetype:size=6:antialias=false;0
 font-3 = NotoEmoji:style=Book:scale=16;0
@@ -69,7 +71,7 @@ label-focused = " %name% "
 label-focused-underline = ${colors.underline}
 
 label-occupied = " %name% "
-label-occupied-foreground = #ffaa00
+label-occupied-foreground = ${colors.occupied}
 
 label-urgent = " %name% "
 label-urgent-underline = #9b0a20

@@ -46,8 +46,8 @@
 ;; (require 'prelude-helm) ;; Interface for narrowing and search
 ;; (require 'prelude-helm-everywhere) ;; Enable Helm everywhere
 (require 'prelude-company)
-; (require 'prelude-key-chord) ;; Binds useful features to key combinations
-(require 'prelude-evil)
+(require 'prelude-key-chord) ;; Binds useful features to key combinations
+; (require 'prelude-evil)
 
 ;;; Org-mode (a legendary productivity tool that deserves its own category)
 (require 'prelude-org) ;; Org-mode helps you keep TODO lists, notes and more
@@ -115,7 +115,7 @@
 
 (setq-default typescript-indent-level 2)
 (global-set-key (kbd "C-SPC") 'company-complete)
-(set-default-font "Inconsolata LGC")
+(set-default-font "Fira Code")
 (setq seoul256-background 233)
 ; (load-theme 'seoul256 t)
 ; (load-theme 'zenburn t)

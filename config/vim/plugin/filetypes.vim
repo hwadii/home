@@ -7,7 +7,5 @@ endfunction
 au Filetype ruby set colorcolumn=140
 au Filetype typescript,javascript set colorcolumn=120
 au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-au FileType text call s:set_prose_options()
-au FileType tex call s:set_prose_options()
-au FileType markdown call s:set_prose_options()
+au FileType text,tex,markdown,org call s:set_prose_options()
 au FileType help set nolist

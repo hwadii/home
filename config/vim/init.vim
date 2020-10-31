@@ -1,6 +1,8 @@
 call plug#begin('~/.config/nvim/bundle/')
 Plug 'junegunn/seoul256.vim'
 Plug 'jnurmine/Zenburn'
+Plug 'axvr/photon.vim'
+Plug 'andreypopp/vim-colors-plain'
 Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
@@ -17,7 +19,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
+Plug 'axvr/org.vim'
 Plug 'airblade/vim-rooter'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'branch': 'fc7630a66d8b07ec90603f7919f8aadf891783ac' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'wincent/loupe'
@@ -26,7 +30,7 @@ call plug#end()
 set encoding=utf-8
 scriptencoding utf-8
 set termguicolors
-colorscheme zenburn
+colorscheme plain
 let g:seoul256_background = 233
 let g:zenburn_high_Contrast = 1
 let g:zenburn_disable_Label_underline = 1
@@ -70,7 +74,7 @@ set splitright  " Splitting a window will put the new window right of the curren
 
 let maplocalleader = "\<space>"
 
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'down': '~30%' }
 " let g:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
 let g:fzf_options = ''
 let g:fzf_preview_window = ''
