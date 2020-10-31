@@ -71,6 +71,7 @@ set redrawtime=10000
 set completeopt=menuone,noinsert,noselect
 set splitbelow  " Splitting a window will put the new window below the current
 set splitright  " Splitting a window will put the new window right of the current
+set cursorline
 
 let maplocalleader = "\<space>"
 
