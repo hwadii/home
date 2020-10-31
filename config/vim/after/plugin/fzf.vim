@@ -3,7 +3,6 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#run(fzf#wrap(
   \   {
   \     'source': 'fd -E".git" --hidden --type f .\* '.(empty(<q-args>) ? '' : shellescape(<q-args>)),
-  \     'down': '40%',
   \     'options': g:fzf_options
   \   }, <bang>0))
 
