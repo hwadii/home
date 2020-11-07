@@ -21,13 +21,10 @@ XF86AudioMute
 	pactl set-sink-mute 0 toggle
 
 # spotify
-super + u; {_,super +}f
-	playerctl next
+super + shift + {minus, equal}
+	playerctl {previous, next}
 
-super + u; {_,super +}b
-	playerctl previous
-
-super + u; {_,super +}p
+super + shift + p
 	playerctl -p spotify play-pause
 
 # suspend
@@ -146,3 +143,6 @@ super + {Left,Down,Up,Right}
 # toggle bar
 super + alt + b
 	polybar-msg cmd toggle
+
+super + shift + s
+	maim -s ~/$(date +"Screenshot-%F-%T.png")

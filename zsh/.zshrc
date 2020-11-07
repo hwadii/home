@@ -4,7 +4,7 @@ export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
 export BROWSER="firefox"
-export LESS=-Ri
+export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
 export BIN=$HOME/bin
 export NVM_DIR="$HOME/.config/nvm"
@@ -28,7 +28,7 @@ export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NP
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
-plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z shrink-path)
+plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 

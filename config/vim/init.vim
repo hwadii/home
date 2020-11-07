@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/bundle/')
+Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'jnurmine/Zenburn'
 Plug 'axvr/photon.vim'
@@ -31,9 +32,6 @@ set encoding=utf-8
 scriptencoding utf-8
 set termguicolors
 colorscheme plain
-let g:seoul256_background = 233
-let g:zenburn_high_Contrast = 1
-let g:zenburn_disable_Label_underline = 1
 
 set t_Co=256
 set background=dark

@@ -87,10 +87,16 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=\ \ 
   setlocal statusline+=%{printf('c\ %02d/%02d\ ',col('.'),col('$'))} " col number
   setlocal statusline+=%*
+  if &cursorline == 0
+    setlocal cursorline
+  endif
 endfunction
 
 function! hwadii#statusline#inactive() abort
   setlocal statusline=
   setlocal statusline+=%{hwadii#statusline#gutterpadding()}
   setlocal statusline+=%f
+  if &cursorline == 1
+    setlocal nocursorline
+  endif
 endfunction

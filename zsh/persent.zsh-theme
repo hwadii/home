@@ -13,5 +13,5 @@ git_custom_status() {
   fi
 }
 
-PROMPT='%{$fg[gray]%}%B$(shrink_path -f)%b%{$reset_color%}$(parse_git_dirty)$ZSH_BACKGROUND_JOB $ZSH_PROMPT_CHAR%{$reset_color%} '
+PROMPT='%{$fg[gray]%}%B$(smart-pwd)%b%{$reset_color%}$(parse_git_dirty)$ZSH_BACKGROUND_JOB $ZSH_PROMPT_CHAR%{$reset_color%} '
 RPROMPT='$(git_custom_status)'

@@ -24,4 +24,5 @@ hi fzf2 ctermfg=151 ctermbg=238 guifg=#BCDDBD
 hi fzf3 ctermfg=252 ctermbg=238 guifg=#D9D9D9
 hi Search cterm=underline gui=underline,reverse
 " hi Normal ctermfg=251 ctermbg=235 guifg=#c6c6c6 guibg=#1f1f1f
-hi! link Pmenu Normal
+" hi! link Pmenu Normal
+hi! link CursorLineNr Constant
