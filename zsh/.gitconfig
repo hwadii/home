@@ -6,6 +6,10 @@
 [pager]
 	branch = false
 [alias]
-  rank = shortlog -sn --no-merges
-  sd = standup
-  absorb = !git-absorb
+	rank = shortlog -sn --no-merges
+	sd = standup
+	absorb = !git-absorb
+	chop = !"git branch -vv --no-color | cut -c 3- | grep ': gone]' | awk '{ print $1 }' | xargs -n1 git branch -D"
+	sb = show-branch
+[showbranch]
+	default = --topo-order
