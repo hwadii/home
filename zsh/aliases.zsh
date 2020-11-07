@@ -21,8 +21,8 @@ alias la="exa --git --group-directories-first -l -a"
 alias lk="exa --git --group-directories-first -l -s=size"
 alias lm="exa --git --group-directories-first -l -s=modified"
 alias lc="exa --git --group-directories-first --created -s=created"
-alias lT="exa --git --group-directories-first --tree --git-ignore"
-alias lR="exa --git --group-directories-first -R --git-ignore"
+alias lt="exa --git --group-directories-first --tree --git-ignore"
+alias lr="exa --git --group-directories-first -R --git-ignore"
 
 # shortcuts to edit various files
 alias vim=nvim

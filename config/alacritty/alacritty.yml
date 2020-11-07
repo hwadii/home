@@ -7,7 +7,7 @@ window:
 
 font:
   normal:
-    family: Iosevka Term Slab Extended
+    family: Inconsolata
 
     style: Regular
 

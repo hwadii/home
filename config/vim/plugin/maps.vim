@@ -88,8 +88,8 @@ nnoremap <silent><leader>p :Prettier<return>
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History!<CR>
-nnoremap <Leader>r :Rg<CR>
-nnoremap <Leader>/ :execute 'Rg <c-r><c-w>'<CR>
+nnoremap <Leader>r :RG<CR>
+nnoremap <Leader>/ :execute 'RG <c-r><c-w>'<CR>
 nnoremap <Leader>l :Lines!<CR>
 nnoremap <C-s> :<C-u>BLines<CR>
 nnoremap <Leader>c :Commits<CR>
