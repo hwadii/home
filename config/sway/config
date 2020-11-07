@@ -18,7 +18,12 @@ set $term /home/wadii/bin/alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu ulauncher | xargs swaymsg exec --
+# set $menu wofi --show drun | xargs swaymsg exec --
+set $menu /home/wadii/.local/bin/wofi
+
+font pango:Inconsolata 12
+
+### Settings
 
 ### Output configuration
 #
@@ -73,7 +78,8 @@ input * {
     bindsym $mod+w kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu --show drun | xargs swaymsg exec --
+    bindsym $mod+shift+d exec $menu --show run | xargs swaymsg exec --
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -82,11 +88,20 @@ input * {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
-
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+        # Lock
+    bindsym $mod+Shift+x exec swaylock --daemonize
+
+    # Suspend
+    bindsym $mod+Shift+s exec systemctl suspend
+
+    # reload the configuration file
+    bindsym $mod+Shift+r reload
+
+    # Notifications
+    bindsym $mod+Delete exec /home/wadii/.local/bin/makoctl dismiss
 #
 # Moving around:
 #
@@ -97,6 +112,7 @@ input * {
     bindsym $mod+$right focus right
     bindsym $mod+bracketright workspace next
     bindsym $mod+bracketleft workspace prev
+    bindsym $mod+Tab workspace back_and_forth
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -165,6 +181,8 @@ input * {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+    bindsym $mod+Shift+a focus child
 #
 # Scratchpad:
 #
@@ -172,7 +190,7 @@ input * {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+alt+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
@@ -202,6 +220,14 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+bindsym $mod+shift+minus exec playerctl previous
+bindsym $mod+shift+equal exec playerctl next
+bindsym $mod+shift+p exec playerctl -p spotify play-pause
+
 #
 # Status Bar:
 #
@@ -211,13 +237,23 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while ~/.config/sway/bar; do sleep 1; done
+    status_command while ~/.config/sway/bar; do sleep 60; done
 
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #5c5c5c #5c5c5c #ffffff
     }
 }
 
 include /etc/sway/config.d/*
+
+exec /home/wadii/bin/mako
+exec nm-applet &
+exec /home/wadii/.local/bin/wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
+
+assign [class="^Slack$"] → workspace 7
+for_window [app_id="gnome-calculator"] floating enable
+for_window [title="Slack Call Minipanel"] floating enable
+for_window [title="Firefox - Sharing Indicator"] floating enable
+for_window [shell="xwayland"] title_format "[X] %title"
