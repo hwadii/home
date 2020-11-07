@@ -29,7 +29,7 @@ fo() (
 
 # fgit [FUZZY PATTERN] - Open the modified file with the default editor
 fgit() (
-  IFS=$'\n' files=($(git status --short | cut -f2 -d' ' | fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"))
+  IFS=$'\n' files=($(git status --short | awk '{ print $2 }' | fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
