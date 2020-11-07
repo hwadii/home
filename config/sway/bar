@@ -1,0 +1,7 @@
+#!/bin/bash
+
+date_fmt=$(date +'%a %d %b %H:%M %p')
+bat=$(upower -d | grep -E percentage | awk 'NR <= 2 { print $2 }' | paste -d' ' -s)
+song=$(~/.local/bin/get_song)
+
+printf "%s | %s | %s\n" "$song" "$bat" "$date_fmt"
