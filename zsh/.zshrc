@@ -5,6 +5,7 @@ export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
 export BROWSER="firefox"
+export MOZ_ENABLE_WAYLAND=1
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
 export BIN=$HOME/bin
