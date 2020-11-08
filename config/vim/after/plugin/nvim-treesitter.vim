@@ -1,6 +1,6 @@
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "typescript", "ruby", "bash", "markdown", "javascript", "css", "html", "jsdoc", "json", "yaml", "python" },
+  ensure_installed = { "typescript", "ruby", "bash", "javascript", "css", "html", "jsdoc", "json", "yaml", "python" },
   highlight = {
     enable = true,
     custom_captures = {

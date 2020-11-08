@@ -2,7 +2,7 @@
 	name = Wadii Hajji
 	email = wadii.hajji@etu.univ-amu.fr
 [pull]
-	rebase = false
+	rebase = true
 [pager]
 	branch = false
 [alias]
