@@ -21,7 +21,7 @@ set $term /home/wadii/bin/alacritty
 # set $menu wofi --show drun | xargs swaymsg exec --
 set $menu /home/wadii/.local/bin/wofi
 
-font pango:Inconsolata 12
+font pango:Inconsolata, IPA Gothic 11.5
 
 ### Settings
 
