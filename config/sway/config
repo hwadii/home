@@ -14,12 +14,12 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term /home/wadii/bin/alacritty
+set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu wofi --show drun | xargs swaymsg exec --
-set $menu /home/wadii/.local/bin/wofi
+set $menu wofi
 
 font pango:Inconsolata, IPA Gothic 11.5
 
@@ -102,7 +102,11 @@ input * {
     bindsym $mod+Shift+r reload
 
     # Notifications
-    bindsym $mod+Delete exec /home/wadii/.local/bin/makoctl dismiss
+    bindsym $mod+Delete exec makoctl dismiss
+
+    bindsym Print exec grimshot --notify copy area
+    bindsym Shift+Print exec grimshot --notify save area ~/$(date +"Screenshot-%F-%T.png")
+
 #
 # Moving around:
 #
@@ -204,16 +208,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -227,7 +231,7 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 bindsym $mod+shift+minus exec playerctl previous
 bindsym $mod+shift+equal exec playerctl next
-bindsym $mod+shift+p exec playerctl -p spotify play-pause
+bindsym $mod+p exec playerctl -p spotify play-pause
 
 #
 # Status Bar:
@@ -241,18 +245,17 @@ bar {
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #5c5c5c #5c5c5c #ffffff
+        inactive_workspace #323232 #323232 #ffffff
     }
 }
 
-include /etc/sway/config.d/*
-
-exec /home/wadii/bin/mako
+exec mako
 exec nm-applet &
-exec /home/wadii/.local/bin/wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
+exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 
 assign [class="^Slack$"] → workspace 7
 for_window [app_id="gnome-calculator"] floating enable
+for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"

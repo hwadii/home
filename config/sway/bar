@@ -2,7 +2,8 @@
 
 date_fmt=$(date +'%a %d %b %H:%M %p')
 bat=$(upower -d | grep -E percentage | awk 'NR <= 2 { print $2 }' | paste -d' ' -s)
-song=$(~/.local/bin/get_song)
+status=$(cat /sys/class/power_supply/BAT0/status)
+song=$(get_song)
 vol=$(pactl list sinks | rg '\d{1,3}%' --only-matching | head -n1)
 
-printf "%s | VOL %s | %s | %s\n" "$song" "$vol" "$bat" "$date_fmt"
+printf "%s | VOL %s | %s %s | %s\n" "$song" "$vol" "$status" "$bat" "$date_fmt"
