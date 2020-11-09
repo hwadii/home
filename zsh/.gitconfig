@@ -12,8 +12,9 @@
   absorb = !git-absorb
   chop = !"git branch -vv --no-color | cut -c 3- | grep ': gone]' | awk '{ print $1 }' | xargs -n1 git branch -D"
   sb = show-branch
-  squash = rebase --autosquash --interactive
+  as = rebase --autosquash --interactive
   fixup = commit --amend --no-edit -v
   ff = pull --ff-only
+  me = !"git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --author=\"$(git config user.name)\""
 [showbranch]
   default = --topo-order

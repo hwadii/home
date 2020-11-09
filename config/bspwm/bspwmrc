@@ -12,7 +12,7 @@ setxkbmap -option caps:escape -option compose:rctrl -layout gb &
 xsetroot -cursor_name left_ptr &
 nitrogen --set-tiled ~/Images/sakura.jpg
 nm-applet &
-/home/wadii/bin/polybar --reload main &
+polybar --reload main &
 /usr/libexec/geoclue-2.0/demos/agent &
 /usr/bin/redshift -P -O 6000:3000 -m randr:screen=0,1 &
 xset r rate 400 30
