@@ -19,7 +19,10 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu wofi --show drun | xargs swaymsg exec --
-set $menu wofi
+set $menu ulauncher | xargs swaymsg exec --
+
+set $nag exec swaynagmode
+swaynag_command \$nag -R
 
 font pango:Inconsolata, IPA Gothic 11.5
 
@@ -79,8 +82,7 @@ input * {
     bindsym $mod+w kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu --show drun | xargs swaymsg exec --
-    bindsym $mod+shift+d exec $menu --show run | xargs swaymsg exec --
+    bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -90,8 +92,7 @@ input * {
     floating_modifier $mod normal
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-
+    bindsym $mod+Shift+e exec $nag -t warning -m 'Exit Sway?' -b "Yes, exit" "swaymsg exit" -b "Reload" "swaymsg reload"
         # Lock
     bindsym $mod+Shift+x exec swaylock --daemonize
 
@@ -199,7 +200,29 @@ input * {
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym alt+tab scratchpad show
+
+mode "nag" {
+  bindsym {
+    Ctrl+d    mode "default"
+
+    Ctrl+c    $nag --exit
+    q         $nag --exit
+    Escape    $nag --exit
+
+    Return    $nag --confirm
+
+    Tab       $nag --select prev
+    Shift+Tab $nag --select next
+
+    Left      $nag --select next
+    Right     $nag --select prev
+
+    Up        $nag --select next
+    Down      $nag --select prev
+  }
+}
+
 #
 # Resizing containers:
 #
@@ -259,3 +282,4 @@ for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
+for_window [app_id="ulauncher"] border none
