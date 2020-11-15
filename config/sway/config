@@ -18,13 +18,12 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-# set $menu wofi --show drun | xargs swaymsg exec --
-set $menu ulauncher | xargs swaymsg exec --
+set $menu wofi --show drun | xargs swaymsg exec --
 
 set $nag exec swaynagmode
 swaynag_command \$nag -R
 
-font pango:Inconsolata, IPA Gothic 11.5
+font pango:Inconsolata, IPA Gothic 11
 
 ### Settings
 

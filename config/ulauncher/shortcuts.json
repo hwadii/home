@@ -58,5 +58,15 @@
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1600334822.7876475
+    },
+    "abfcfbf7-a269-45ec-9bdd-d2f98b777377": {
+        "id": "abfcfbf7-a269-45ec-9bdd-d2f98b777377",
+        "name": "Twitch",
+        "keyword": "tw",
+        "cmd": "mpv https://twitch.tv/%s",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1605209342.7372644
     }
 }
