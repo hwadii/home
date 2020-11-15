@@ -103,3 +103,5 @@ nnoremap <silent> glf :<C-U>%LedgerAlign<CR>
 " tabs
 nnoremap <silent> [t gT
 nnoremap <silent> ]t gt
+
+command Today :r!date -Idate
