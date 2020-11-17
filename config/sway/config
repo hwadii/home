@@ -44,8 +44,8 @@ output eDP-1 res 1920x1080 pos 0 1440
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
+         timeout 600 'swaylock -f -c 000000' \
+         timeout 800 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 #
@@ -251,8 +251,8 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-bindsym $mod+shift+minus exec playerctl previous
-bindsym $mod+shift+equal exec playerctl next
+bindsym $mod+minus exec playerctl previous
+bindsym $mod+equal exec playerctl next
 bindsym $mod+p exec playerctl -p spotify play-pause
 
 #
