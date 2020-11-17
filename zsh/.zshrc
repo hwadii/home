@@ -26,8 +26,9 @@ export FZF_DEFAULT_OPTS="
     --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'
 "
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
+export $(grep npm.cardiologs.com/:_authToken ~/.npmrc | awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
@@ -36,6 +37,20 @@ plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z)
 source $ZSH/oh-my-zsh.sh
 
 bindkey "^Xa" _expand_alias
+
+copybuffer() {
+  echo "$BUFFER" | wl-copy -n
+}
+zle -N copybuffer
+bindkey "^O" copybuffer
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 [ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

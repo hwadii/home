@@ -37,11 +37,7 @@ alias wholistens="netstat -tulpn | rg LISTEN"
 alias sf=screenfetch
 alias duh="du -sh"
 alias p=python3
-# Trim new lines and copy to clipboard
-alias c="tr -d '\n' | clipcopy"
-# Intuitive map function
-# # For example, to list all directories that contain a certain file:
-# # find . -name .gitattributes | map dirname
+alias c="clipcopy"
 alias map="xargs -n1"
 
 # npm
