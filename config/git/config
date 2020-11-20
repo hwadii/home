@@ -18,3 +18,6 @@
   me = !"git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --author=\"$(git config user.name)\""
 [showbranch]
   default = --topo-order
+[pretty]
+  fzf = %C(auto)%h %s %C(cyan)%cr
+  simple = %C(auto)%h %<(72,trunc)%s %C(blue)%aN%C(reset) %C(green)%cr%C(red)%d

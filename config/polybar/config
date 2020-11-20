@@ -7,7 +7,7 @@ foreground-alt = #888
 primary = #94ccd9
 secondary = #e60053
 alert = #bd2c40
-underline = #40bfce
+underline = 
 occupied = #62c3d3
 
 [section/base]
@@ -16,8 +16,8 @@ width = 100%
 height = 30px
 fixed-center = false
 enable-ipc = true
-wm-restack = bspwm
-override-redirect = false
+; wm-restack = bspwm
+; override-redirect = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -27,20 +27,21 @@ line-size = 2
 padding = 1
 module-margin = 1
 
-font-0 = Fira Code:pixelsize=11;1
+font-0 = monospace:pixelsize=11;1
 font-1 = IPAGothic:style=regular:pixelsize=12;0
 font-2 = unifont:fontformat=truetype:size=6:antialias=false;0
 font-3 = NotoEmoji:style=Book:scale=16;0
 font-4 = Siji:pixelsize=8;0
 font-5 = fixed:pixelsize=8;0
 
-modules-left = bspwm layout xwindow
-modules-center =
-modules-right = spotify pulseaudio date
+modules-left = bspwm xwindow
+modules-center = date
+modules-right = spotify pulseaudio battery battery2
 
 tray-position = right
 tray-padding = 2
 tray-maxsize = 24
+separator = |
 
 [bar/main]
 inherit = section/base
@@ -126,14 +127,14 @@ adapter = AC
 full-at = 98
 
 format-charging = ↑ <label-charging>
-format-charging-underline = #55aa55
+format-charging-underline = 
 
 format-discharging = ↓ <label-discharging>
 format-discharging-underline = ${colors.underline}
 
 format-full-prefix = ""
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix-foreground = 
+format-full-underline = 
 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
@@ -159,11 +160,11 @@ format-charging = ↑ <label-charging>
 format-charging-underline = #55aa55
 
 format-discharging = ↓ <label-discharging>
-format-discharging-underline = ${colors.underline}
+format-discharging-underline = 
 
 format-full-prefix = ""
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix-foreground = 
+format-full-underline =
 
 ramp-capacity-foreground = ${colors.foreground-alt}
 

@@ -19,11 +19,12 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu wofi --show drun | xargs swaymsg exec --
+set $menuall wofi --show dmenu | xargs swaymsg exec --
 
 set $nag exec swaynagmode
 swaynag_command \$nag -R
 
-font pango:Inconsolata, IPA Gothic 11
+font pango:DejaVu Sans Mono, IPA Gothic 8
 
 ### Settings
 
@@ -63,8 +64,8 @@ input type:touchpad {
     middle_emulation enabled
 }
 input * {
-    xkb_layout "gb"
-    xkb_options "caps:escape,compose:rctrl"
+    xkb_layout "us"
+    xkb_options "caps:escape,compose:ralt"
     repeat_delay 400
     repeat_rate 30
 }
@@ -82,6 +83,7 @@ input * {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym $mod+Shift+d exec $menuall
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -255,20 +257,29 @@ bindsym $mod+minus exec playerctl previous
 bindsym $mod+equal exec playerctl next
 bindsym $mod+p exec playerctl -p spotify play-pause
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+set $blue #285577
+set $gray #282828
+set $red #900000
+
+client.focused $blue $blue #ffffff $blue $blue
+client.unfocused $gray $gray #ffffff $gray $gray
+client.focused_inactive $gray $gray #ffffff $gray $gray
+focus_on_window_activation urgent
+
 bar {
-    position top
-
-    status_command while ~/.config/sway/bar; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #323232 #323232 #ffffff
-    }
+        status_command while ~/.config/sway/bar; do sleep 1; done
+        position top
+        pango_markup disabled
+        font pango:IPAGothic 11, DejaVu Sans Mono 10
+        strip_workspace_numbers yes
+        colors {
+            background #1F1F1F
+            inactive_workspace $gray $gray #888888
+            active_workspace $gray $gray #ffffff
+            urgent_workspace $red $red #ffffff
+            focused_workspace $blue $blue #ffffff
+            urgent_workspace $red $red #ffffff
+        }
 }
 
 exec mako
@@ -276,6 +287,7 @@ exec nm-applet &
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 
 assign [class="^Slack$"] → workspace 7
+for_window [app_id="Alacritty"] border pixel 4
 for_window [app_id="gnome-calculator"] floating enable
 for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable

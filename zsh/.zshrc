@@ -1,7 +1,7 @@
 export LANG="en_US.UTF-8"
-export TERM="xterm-256color"
 export SNAP="/snap"
 export SWAYSOCK=$(ls /run/user/*/sway-ipc.*.sock | head -n 1)
+export XDG_CURRENT_DESKTOP=sway
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
@@ -32,7 +32,7 @@ export $(grep npm.cardiologs.com/:_authToken ~/.npmrc | awk -F \"  '{print "CDL_
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
-plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting wd fancy-ctrl-z)
+plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -52,6 +52,7 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+eval "$(zoxide init zsh)"
 [ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
