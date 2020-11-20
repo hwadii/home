@@ -4,7 +4,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[yellow]%}$GIT_DIRTY_SYMBOL%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_BACKGROUND_JOB="%{$reset_color%}%B%F{yellow}%(1j.!.)%b%f%{$reset_color%}"
-ZSH_PROMPT_CHAR=%B%(?.%F{cyan}.%F{red})»%f%b
+ZSH_PROMPT_CHAR=%B%(?.%F{cyan}.%F{red})$%f%b
 
 git_custom_status() {
   local cb=$(git_current_branch)

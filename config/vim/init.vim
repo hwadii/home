@@ -72,6 +72,7 @@ set splitright  " Splitting a window will put the new window right of the curren
 set cursorline
 
 let maplocalleader = "\<space>"
+let mapleader = ","
 
 let g:fzf_layout = { 'down': '~30%' }
 " let g:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
