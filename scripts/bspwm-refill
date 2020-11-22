@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+bspc config top_padding 0
