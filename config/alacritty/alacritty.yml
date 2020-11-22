@@ -25,11 +25,11 @@ font:
 
     style:
 
-  size: 13
+  size: 12
 
   offset:
    x: 0
-   y: 3
+   y: 2
 
 # Base16 Zenburn 256 - alacritty color config
 # elnawe
@@ -80,7 +80,7 @@ cursor:
 
 mouse:
   url:
-    launcher: /home/wadii/.local/bin/firefox
+    launcher: firefox
     args: []
 
 key_bindings:

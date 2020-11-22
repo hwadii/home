@@ -8,7 +8,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 pgrep -x ssh-agent > /dev/null || eval `ssh-agent`
 pgrep -x sxhkd > /dev/null || sxhkd &
-setxkbmap -option caps:escape -option compose:ralt -layout us &
+setxkbmap -layout us -variant altgr-intl -option compose:caps -option compose:rctrl
 xsetroot -cursor_name left_ptr &
 nitrogen --set-tiled ~/Images/sakura.jpg
 nm-applet &

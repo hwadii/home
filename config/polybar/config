@@ -8,15 +8,16 @@ primary = #94ccd9
 secondary = #e60053
 alert = #bd2c40
 underline = 
-occupied = #62c3d3
+occupied = #285577
 
 [section/base]
 monitor-fallback = eDP-1
 width = 100%
-height = 30px
-fixed-center = false
+height = 2%
+fixed-center = true
 enable-ipc = true
-; wm-restack = bspwm
+bottom = true
+wm-restack = bspwm
 ; override-redirect = false
 
 background = ${colors.background}
@@ -27,7 +28,7 @@ line-size = 2
 padding = 1
 module-margin = 1
 
-font-0 = monospace:pixelsize=11;1
+font-0 = monospace:pixelsize=9;1
 font-1 = IPAGothic:style=regular:pixelsize=12;0
 font-2 = unifont:fontformat=truetype:size=6:antialias=false;0
 font-3 = NotoEmoji:style=Book:scale=16;0
@@ -35,8 +36,8 @@ font-4 = Siji:pixelsize=8;0
 font-5 = fixed:pixelsize=8;0
 
 modules-left = bspwm xwindow
-modules-center = date
-modules-right = spotify pulseaudio battery battery2
+modules-center =
+modules-right = spotify pulseaudio battery battery2 date
 
 tray-position = right
 tray-padding = 2
