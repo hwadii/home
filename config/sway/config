@@ -268,7 +268,7 @@ focus_on_window_activation urgent
 
 bar {
         status_command while ~/.config/sway/bar; do sleep 1; done
-        position top
+        position bottom
         pango_markup disabled
         font pango:IPAGothic 11, DejaVu Sans Mono 10
         strip_workspace_numbers yes
