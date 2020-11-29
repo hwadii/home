@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/bundle/')
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'jnurmine/Zenburn'
 Plug 'axvr/photon.vim'
 Plug 'andreypopp/vim-colors-plain'
