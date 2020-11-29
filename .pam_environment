@@ -1,2 +1,2 @@
 MOZ_ENABLE_WAYLAND=1
-PATH DEFAULT=${PATH}:/home/wadii/.local/bin
+PATH DEFAULT=${PATH}:/home/wadii/.local/bin:/home/wadii/.local/cargo/bin
