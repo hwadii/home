@@ -20,8 +20,14 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pactl set-sink-mute 0 toggle
 
+shift + alt + a
+	pactl set-sink-volume 0 -2%
+
+shift + alt + s
+	pactl set-sink-volume 0 +2%
+
 # spotify
-super + shift + {minus, equal}
+super + {minus, equal}
 	playerctl {previous, next}
 
 super + shift + p
