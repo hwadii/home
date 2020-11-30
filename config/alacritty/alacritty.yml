@@ -2,28 +2,11 @@ env:
   TERM: alacritty
 
 window:
-  dimensions:
-    columns: 90
-    lines: 40
-
   gtk_theme_variant: dark
 
 font:
   normal:
-    family: Inconsolata
-
-    style: Regular
-
-  bold:
-    style:
-
-  italic:
-
-    style:
-
-  bold_italic:
-
-    style:
+    family: Source Code Pro
 
   size: 12
 
@@ -31,11 +14,9 @@ font:
    x: 0
    y: 3
 
+# Colors
 import:
-  - /home/hwadii/.config/alacritty/plain.yml
-
-cursor:
-  style: Block
+  - /home/wadii/.config/alacritty/plain.yml
 
 mouse:
   url:
