@@ -85,14 +85,22 @@ nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
 
 " fzf
 nnoremap <silent><leader>p :Prettier<return>
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>h :History!<CR>
-nnoremap <Leader>r :Find<CR>
-nnoremap <Leader>/ :execute 'RG <c-r><c-w>'<CR>
-nnoremap <Leader>l :Lines!<CR>
-nnoremap <C-s> :<C-u>BLines<CR>
-nnoremap <Leader>c :Commits<CR>
+" nnoremap <C-p> :Files<CR>
+" nnoremap <Leader>b :Buffers<CR>
+" nnoremap <Leader>h :History!<CR>
+" nnoremap <Leader>r :Find<CR>
+" nnoremap <Leader>/ :execute 'RG <c-r><c-w>'<CR>
+" nnoremap <Leader>l :Lines!<CR>
+" nnoremap <C-s> :<C-u>BLines<CR>
+" nnoremap <Leader>c :Commits<CR>
+
+" telescope
+nnoremap <C-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>
+nnoremap <Leader>r <cmd>Telescope live_grep<cr>
+nnoremap <Leader>b <cmd>Telescope buffers<cr>
+nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
+nnoremap <Leader>c <cmd>Telescope git_commits<cr>
+nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 " Goyo
 nnoremap <silent> <localleader>gg  :Goyo<CR>

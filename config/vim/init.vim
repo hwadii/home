@@ -24,8 +24,11 @@ Plug 'plasticboy/vim-markdown'
 Plug 'axvr/org.vim'
 Plug 'airblade/vim-rooter'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'branch': 'fc7630a66d8b07ec90603f7919f8aadf891783ac' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'wincent/loupe'
 call plug#end()
 

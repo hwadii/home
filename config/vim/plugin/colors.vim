@@ -26,3 +26,4 @@ hi Search cterm=underline gui=underline,reverse
 " hi Normal ctermfg=251 ctermbg=235 guifg=#c6c6c6 guibg=#1f1f1f
 " hi! link Pmenu Normal
 hi! link CursorLineNr Constant
+hi! link TelescopeMatching Constant
