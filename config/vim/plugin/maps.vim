@@ -14,61 +14,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader><leader> <c-^>
-nnoremap <leader>fp gqap
 nnoremap <silent> <C-/> :set hlsearch!<cr>
-
-" coc.vim
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> <leader>i <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>ts <Plug>(coc-codeaction)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-nmap <leader>o <Plug>(coc-rename)
-
-function s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-function s:check_back_space()
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>ac  <Plug>(coc-codeaction)
-nmap <leader>qf  <Plug>(coc-fix-current)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-nnoremap <silent><nowait> <localleader>o  :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <localleader>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <localleader>s  :<C-u>CocList -I symbols<cr>
-nnoremap <silent><nowait> <localleader>j  :<C-u>CocNext<CR>
-nnoremap <silent><nowait> <localleader>k  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> <localleader>p  :<C-u>CocListResume<CR>
-nmap <silent> <localleader>i <Plug>(coc-diagnostic-info)
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
 " Gina
 nmap <leader>gs :Gina status -s<cr>
@@ -104,3 +50,27 @@ nnoremap <silent> [t gT
 nnoremap <silent> ]t gt
 
 command Today :r!date -Idate
+
+" nvim-lsp
+nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>i   <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gy          <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gws         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> <leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <leader>ca  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> ]g <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+nnoremap <silent> [g <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+
+nnoremap <localleader>o  <cmd>lua vim.lsp.buf.document_symbol()<cr>
+nnoremap <localleader>d  <cmd>lua vim.lsp.diagnostic.get_all()<cr>
+nnoremap <localleader>i  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
+nnoremap <localleader>s  <cmd>lua vim.lsp.buf.signature_help()<CR>
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <silent> <c-space> <Plug>(completion_trigger)
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)

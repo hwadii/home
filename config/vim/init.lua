@@ -1,17 +1,21 @@
 require('globals')
-local execute = vim.api.nvim_command
+require('lsp_config')
 local fn = vim.fn
 local opt = vim.opt
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-    execute 'packadd packer.nvim'
+  fn.system(string.format(
+      'git clone %s %s',
+      'https://github.com/wbthomason/packer.nvim',
+      install_path
+    ))
+  fn.system('packadd packer.nvim')
 end
 
 require('plugins')
-execute('colorscheme plain')
+vim.cmd [[colorscheme plain]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.background = 'dark'
@@ -28,7 +32,6 @@ opt.ignorecase = true
 opt.inccommand = 'split'
 opt.lazyredraw = true
 opt.linebreak = true
-execute('set lcs="nbsp:⦸,tab:→,eol:↵,trail:·,extends:↷,precedes:↶"')
 opt.mouse = 'a'
 opt.backup = false
 opt.joinspaces = false
@@ -71,6 +74,6 @@ end
 vim.g.gitgutter_sign_modified = '!!'
 vim.g.gitgutter_sign_modified_removed = '!_'
 vim.g.vim_better_default_enable_folding = 1
-vim.g.maplocalleader = "<space>"
-vim.g.mapleader = ","
 vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
+vim.g.mapleader = ','
+vim.g.maplocalleader = ' '
