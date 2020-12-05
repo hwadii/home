@@ -22,8 +22,9 @@ hi link CocWarningVirtualText CocInfoVirtualText
 hi fzf1 ctermfg=161 ctermbg=238 guifg=#E12672
 hi fzf2 ctermfg=151 ctermbg=238 guifg=#BCDDBD
 hi fzf3 ctermfg=252 ctermbg=238 guifg=#D9D9D9
-hi Search cterm=underline gui=underline,reverse
+hi Search cterm=underline gui=underline,reverse guibg=#f3e500 guifg=#222222
 " hi Normal ctermfg=251 ctermbg=235 guifg=#c6c6c6 guibg=#1f1f1f
 " hi! link Pmenu Normal
 hi! link CursorLineNr Constant
 hi! link TelescopeMatching Constant
+hi IncSearch ctermfg=0 ctermbg=3 gui=bold guifg=#222222 guibg=#f3e500
