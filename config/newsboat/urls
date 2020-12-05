@@ -16,3 +16,14 @@ https://blog.burntsushi.net/index.xml
 https://michael.stapelberg.ch/feed.xml
 https://drewdevault.com/blog/index.xml
 https://alexandrabac.blogspot.com/feeds/posts/default
+https://lobste.rs/t/linux,vim,systemd,vcs,unix,show.rss "Social" "~Lobsters" "vim" "Linux" "Programs" "Dev"
+https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
+https://blog.system76.com/rss "Hardware" "Corporate feed" "Linux"
+# toolbox is one of my favorite programs, and this is the primary dev's blog
+https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
+https://barthalion.blog/index.xml "GNOME" "Fedora" "Linux" "Blog" "Dev"
+https://blogs.gnome.org/alexl/feed/ "GNOME" "Fedora" "Linux" "Blog" "Dev"
+https://github.com/swaywm/sway/releases.atom "Sway" "Linux"
+https://github.com/swaywm/wlroots/releases.atom "Sway" "Linux"
+https://github.com/tonsky/FiraCode/releases.atom "Fonts"
+https://github.com/JetBrains/JetBrainsMono/releases.atom "Fonts"

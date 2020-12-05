@@ -57,19 +57,18 @@ endfunction
 function! hwadii#statusline#active() abort
   setlocal statusline=
   setlocal statusline+=%1*   "italic
-  setlocal statusline+=%{hwadii#statusline#lhs()}
+  " setlocal statusline+=%{hwadii#statusline#lhs()}
   setlocal statusline+=%*   " Reset highlight group.
-  setlocal statusline+=%2*
-  " setlocal statusline+=
-  setlocal statusline+=%*
+  setlocal statusline+=🌸
   setlocal statusline+=\ 
-  setlocal statusline+=%<   " Truncation point
+  setlocal statusline+=%<    " Truncation point
   setlocal statusline+=%{hwadii#statusline#fileprefix()} " Relative path
   setlocal statusline+=%5*
   setlocal statusline+=%t   " filename
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%4*
+  setlocal statusline+=%m  " modified
   setlocal statusline+=%y   " filetype
   setlocal statusline+=\ 
   setlocal statusline+=%*
