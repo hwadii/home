@@ -1,6 +1,6 @@
 export LANG="en_US.UTF-8"
 export SNAP="/snap"
-export SWAYSOCK=$(ls /run/user/*/sway-ipc.*.sock | head -n 1)
+export SWAYSOCK=$(ls /run/user/**/sway-ipc.*.sock | head -n 1)
 export XDG_CURRENT_DESKTOP=sway
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
@@ -28,11 +28,11 @@ export FZF_DEFAULT_OPTS="
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-# export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
+export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 ZSH_THEME="persent"
-plugins=(git gitfast dnf tmux extract zsh-syntax-highlighting fancy-ctrl-z)
+plugins=(git gitfast dnf tmux extract fast-syntax-highlighting fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 

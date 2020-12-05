@@ -1,3 +1,27 @@
+# vim: set ft=conf
+browser "$BROWSER %u &"
+prepopulate-query-feeds yes
+bookmark-autopilot yes
+history-limit 400
+text-width 88
+suppress-first-reload yes
+
+# Display and sort by first tag
+feed-sort-order firsttag
+feedlist-format "%4i %n %10T %9u %t"
+
+# Reloading
+refresh-on-startup no
+auto-reload yes
+reload-time 10
+reload-threads 400
+download-retries 4
+
+# Notifications
+notify-always no
+notify-program notify-send
+notify-format "Newsboat: %n unread articles in %f feeds"
+
 bind-key j down
 bind-key k up
 bind-key j next articlelist
@@ -34,5 +58,3 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
 highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
-
-text-width 80

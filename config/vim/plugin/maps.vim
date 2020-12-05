@@ -78,7 +78,7 @@ nmap <leader>gl :Gina log<cr>
 nmap <leader>gd :Gina diff<cr>
 nmap <leader>gb :Gina blame<cr>
 nmap <leader>geb <Plug>(gina-blame-echo)
-nmap <leader>ger :<C-U>echom gina#component#repo#branch()<CR>
+nmap <leader>gv :<C-U>echom gina#component#repo#branch()<CR>
 
 " gitgutter
 nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
