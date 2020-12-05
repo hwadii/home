@@ -83,16 +83,7 @@ nmap <leader>gv :<C-U>echom gina#component#repo#branch()<CR>
 " gitgutter
 nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
 
-" fzf
 nnoremap <silent><leader>p :Prettier<return>
-" nnoremap <C-p> :Files<CR>
-" nnoremap <Leader>b :Buffers<CR>
-" nnoremap <Leader>h :History!<CR>
-" nnoremap <Leader>r :Find<CR>
-" nnoremap <Leader>/ :execute 'RG <c-r><c-w>'<CR>
-" nnoremap <Leader>l :Lines!<CR>
-" nnoremap <C-s> :<C-u>BLines<CR>
-" nnoremap <Leader>c :Commits<CR>
 
 " telescope
 nnoremap <C-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>
