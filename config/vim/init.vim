@@ -1,9 +1,4 @@
 call plug#begin('~/.config/nvim/bundle/')
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'jnurmine/Zenburn'
-Plug 'axvr/photon.vim'
 Plug 'andreypopp/vim-colors-plain'
 Plug 'justinmk/vim-dirvish'
 Plug 'jiangmiao/auto-pairs'
@@ -23,67 +18,80 @@ Plug 'sheerun/vim-polyglot'
 Plug 'plasticboy/vim-markdown'
 Plug 'axvr/org.vim'
 Plug 'airblade/vim-rooter'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'branch': 'fc7630a66d8b07ec90603f7919f8aadf891783ac' }
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'wincent/loupe'
 call plug#end()
 
-set encoding=utf-8
-scriptencoding utf-8
-set termguicolors
-colorscheme plain
+lua << EOF
+  require ('globals')
+  local opt = vim.opt
+  local command = vim.api.nvim_command
+  command('colorscheme plain')
+  opt.encoding = 'utf-8'
+  opt.t_Co = '256'
+  opt.background = 'dark'
+  opt.termguicolors = true
+  opt.briopt = 'shift:2'
+  opt.completeopt = 'menuone,noinsert,noselect'
+  opt.cursorline = true
+  opt.expandtab = true
+  opt.fileformats = 'unix,dos,mac'
+  opt.formatoptions = 'jcrqnl'
+  opt.fillchars = { eob = "~" }
+  opt.hidden = true
+  opt.ignorecase = true
+  opt.inccommand = 'split'
+  opt.lazyredraw = true
+  opt.linebreak = true
+  command('set lcs="nbsp:⦸,tab:→,eol:↵,trail:·,extends:↷,precedes:↶"')
+  opt.mouse = 'a'
+  opt.backup = false
+  opt.joinspaces = false
+  opt.swapfile = false
+  opt.writebackup = false
+  opt.number = true
+  opt.pumheight = 20
+  opt.redrawtime = 10000
+  opt.report = 0
+  opt.rnu = true
+  opt.shiftwidth = 2
+  opt.shortmess = 'atOI'
+  opt.showbreak = '↳ '
+  opt.signcolumn = 'yes'
+  opt.smartcase = true -- make search case insensitive by default
+  opt.smartindent = true
+  opt.softtabstop = 2
+  opt.splitbelow = true  -- Splitting a window will put the new window below the current
+  opt.splitright = true  -- Splitting a window will put the new window right of the current
+  opt.t_ut = ''
+  opt.tabstop = 2
+  opt.undofile = true        -- Persistent undo
+  opt.undolevels = 1000      -- Maximum number of changes that can be undone
+  opt.undoreload = 10000     -- Maximum number lines to save for undo on a buffer reload
+  opt.updatetime = 300
+  opt.wildmenu = true
+  opt.wildmode = {'longest', 'full'}
+  opt.wildoptions = 'pum'
+  opt.winminheight = 0
+  opt.pumblend = 17
 
-set t_Co=256
-set background=dark
-filetype plugin indent on
-syntax on
+  if vim.g.vim_better_default_enable_folding == 1 then
+    opt.foldenable = true
+    -- opt.foldmarker = '{,}'
+    opt.foldlevel = 0
+    opt.foldmethod = 'marker'
+    opt.foldlevelstart = 99
+  end
 
-" coc stuff
-set hidden
-set nobackup
-set nowritebackup
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
-set showbreak=↳\ 
-set breakindentopt=shift:2
-set autoindent
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-set ffs=unix,dos,mac
-set autoread
-set number
-set rnu
-set inccommand=nosplit
-set backspace=start,eol,indent
-set breakindent
-set linebreak
-set noswapfile
-set mouse=a
-set shellcmdflag=-ic
-set nojoinspaces                      " don't autoinsert two spaces after '.', '?', '!' for join command
-set ignorecase
-set smartcase " make search case insensitive by default
-set redrawtime=10000
-set completeopt=menuone,noinsert,noselect
-set splitbelow  " Splitting a window will put the new window below the current
-set splitright  " Splitting a window will put the new window right of the current
-set cursorline
-
-let maplocalleader = "\<space>"
-let mapleader = ","
-
-let g:fzf_layout = { 'down': '~30%' }
-" let g:fzf_options = '--preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"'
-let g:fzf_options = ''
-let g:fzf_preview_window = ''
-
-let g:gitgutter_sign_modified = '!!'
-let g:gitgutter_sign_modified_removed = '!_'
-
-autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=1000}
+  vim.g.gitgutter_sign_modified = '!!'
+  vim.g.gitgutter_sign_modified_removed = '!_'
+  vim.g.vim_better_default_enable_folding = 1
+  vim.g.maplocalleader = "<space>"
+  vim.g.mapleader = ","
+  -- command('iabbrev aa λ')
+  -- command('autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup="IncSearch", timeout=1000}')
+EOF
+" command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+" command! Scratch lua require'tools'.makeScratch()
