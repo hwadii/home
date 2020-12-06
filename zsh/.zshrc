@@ -54,24 +54,29 @@ zreload() {
 
 autoload -U compaudit compinit
 
-source ~/.config/zsh/persent.zsh-theme
-source ~/.config/zsh/quick-open.zsh
-source ~/.config/zsh/aliases.zsh
-source ~/.zinit/bin/zinit.zsh
+source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
+source $XDG_CONFIG_HOME/zsh/quick-open.zsh
+source $XDG_CONFIG_HOME/zsh/aliases.zsh
+source $HOME/.zinit/bin/zinit.zsh
 
 zinit for \
-    light-mode  zsh-users/zsh-autosuggestions \
-                zdharma/fast-syntax-highlighting
+    light-mode  zdharma/fast-syntax-highlighting \
+                zdharma/history-search-multi-word
 
-zinit light zdharma/history-search-multi-word
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
 zinit ice from"gh-r" as"program"
 zinit light junegunn/fzf
+zinit ice from"gh-r" as"program" mv"cli -> ~/.local"
+zinit load cli/cli
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
-zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
 zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+zinit ice as"program"
+zinit snippet https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux
+zinit ice blockf
 zinit light zsh-users/zsh-completions
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -99,4 +104,5 @@ eval "$(zoxide init zsh)"
 [ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
 
+bindkey "^R" history-search-multi-word
 compinit
