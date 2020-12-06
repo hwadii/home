@@ -23,19 +23,6 @@ setopt auto_pushd
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' max-errors 3 numeric
-function fancy_ctrl_z() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    export BUFFER='fg'
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-bindkey ' ' magic-space # history expansion
-zle -N fancy_ctrl_z
-bindkey '^Z' fancy_ctrl_z
-autoload edit-command-line
 
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
@@ -63,28 +50,28 @@ zinit for \
     light-mode  zdharma/fast-syntax-highlighting \
                 zdharma/history-search-multi-word
 
+zinit as"null" wait"3" from"gh-r" lucid for \
+  light-mode \
+    mv"fd* -> fd" @sharkdp/fd \
+    junegunn/fzf \
+    mv"exa* -> exa" ogham/exa
+
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
-zinit ice from"gh-r" as"program"
-zinit light junegunn/fzf
-<<<<<<< Updated upstream
-zinit ice from"gh-r" as"program" mv"cli -> ~/.local"
-zinit light cli/cli
-zinit ice from"gh-r" as"program"
-zinit light sharkdp/fd
-=======
 zinit ice from"gh-r" as"program" bpick="*amd64.rpm"
-zinit load cli/cli
->>>>>>> Stashed changes
+zinit light cli/cli
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
 zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 zinit ice as"program"
 zinit snippet https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux
-zinit ice blockf
-zinit light zsh-users/zsh-completions
+zinit blockf for \
+  light-mode \
+    zsh-users/zsh-completions \
+    mv"completions.zsh -> _exa" ogham/exa
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
