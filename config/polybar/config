@@ -58,7 +58,7 @@ monitor = HDMI-2
 
 [bar/desk]
 inherit = section/base
-monitor = DP-0
+monitor = DP-1
 
 [global/wm]
 margin-top = 0

@@ -67,8 +67,15 @@ zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit ice from"gh-r" as"program"
 zinit light junegunn/fzf
+<<<<<<< Updated upstream
 zinit ice from"gh-r" as"program" mv"cli -> ~/.local"
+zinit light cli/cli
+zinit ice from"gh-r" as"program"
+zinit light sharkdp/fd
+=======
+zinit ice from"gh-r" as"program" bpick="*amd64.rpm"
 zinit load cli/cli
+>>>>>>> Stashed changes
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::lib/completion.zsh
@@ -83,12 +90,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 bindkey "^Xa" _expand_alias
 bindkey -e
-
-copybuffer() {
-  echo "$BUFFER" | wl-copy -n
-}
-zle -N copybuffer
-bindkey "^O" copybuffer
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
