@@ -58,7 +58,6 @@ opt.undolevels = 1000      -- Maximum number of changes that can be undone
 opt.undoreload = 10000     -- Maximum number lines to save for undo on a buffer reload
 opt.updatetime = 300
 opt.wildmenu = true
-opt.wildmode = {'longest', 'full'}
 opt.wildoptions = 'pum'
 opt.winminheight = 0
 opt.pumblend = 17

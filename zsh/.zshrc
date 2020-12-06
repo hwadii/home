@@ -1,42 +1,82 @@
-export LANG="en_US.UTF-8"
-export SNAP="/snap"
-export SWAYSOCK=$(ls /run/user/**/sway-ipc.*.sock | head -n 1)
-export XDG_CURRENT_DESKTOP=sway
-export MONITOR="eDP-1"
-export EXTERN_HOME="DP-1"
-export EXTERN_WORK="HDMI-2"
-export BROWSER="firefox"
-export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
-export XDG_CONFIG_HOME="$HOME/.config"
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
-export BIN=$HOME/bin
-export NVM_DIR="$HOME/.config/nvm"
-export RVM_DIR="$HOME/.rvm"
-export CARGO_HOME="$HOME/.local/cargo"
-export RUSTUP_HOME="$HOME/.local/rustup"
-export DEFAULT_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-export GEM_HOME="$RVM_DIR/gems/ruby-2.7.2"
-export PATH="$HOME/.local/bin:$BIN:$DEFAULT_PATH:$HOME/.config/nvm/versions/node/v15.3.0/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$RVM_DIR/gems/ruby-2.7.2/bin:$RVM_DIR/rubies/default/bin"
-export ZSH=$HOME/.oh-my-zsh
-export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
-export EDITOR=nvim
-export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
-export FZF_DEFAULT_OPTS="
-    --height 40%
-    --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'
-"
-export FZF_CTRL_T_OPTS="--select-1 --exit-0"
-export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+HISTSIZE=99999
+SAVEHIST=90000
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
+setopt extended_glob
+setopt equals
+setopt prompt_subst
+setopt auto_cd
+setopt interactivecomments
+setopt auto_continue
+setopt auto_param_slash
+setopt pushd_ignore_dups
+export DIRSTACKSIZE=20
+setopt auto_pushd
+
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' max-errors 3 numeric
+function fancy_ctrl_z() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    export BUFFER='fg'
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+bindkey ' ' magic-space # history expansion
+zle -N fancy_ctrl_z
+bindkey '^Z' fancy_ctrl_z
+autoload edit-command-line
+
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+zreload() {
+  local cache="$ZSH_CACHE_DIR"
+  autoload -U compinit zrecompile
+  compinit -i -d "$cache/zcomp-$HOST"
+
+  for f in ${ZDOTDIR:-~}/.zshrc "$cache/zcomp-$HOST"; do
+    zrecompile -p $f && command rm -f $f.zwc.old
+  done
+
+  [[ -n "$SHELL" ]] && exec ${SHELL#-} || exec zsh
+}
+
+autoload -U compaudit compinit
+
+source ~/.config/zsh/persent.zsh-theme
+source ~/.config/zsh/quick-open.zsh
+source ~/.config/zsh/aliases.zsh
+source ~/.zinit/bin/zinit.zsh
+
+zinit for \
+    light-mode  zsh-users/zsh-autosuggestions \
+                zdharma/fast-syntax-highlighting
+
+zinit light zdharma/history-search-multi-word
+zinit ice from"gh-r" as"program"
+zinit load junegunn/fzf
+zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
+zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
+zinit snippet OMZ::plugins/extract/extract.plugin.zsh
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-ZSH_THEME="persent"
-plugins=(git gitfast dnf tmux extract fast-syntax-highlighting fancy-ctrl-z)
-
-source $ZSH/oh-my-zsh.sh
 
 bindkey "^Xa" _expand_alias
+bindkey -e
 
 copybuffer() {
   echo "$BUFFER" | wl-copy -n
@@ -52,7 +92,10 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+function mem() { ps -axv | grep $$  }
+
 eval "$(zoxide init zsh)"
 [ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
+
+compinit
