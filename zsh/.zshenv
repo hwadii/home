@@ -1,3 +1,4 @@
+skip_global_compinit=1
 export LANG="en_US.UTF-8"
 export SNAP="/snap"
 export SWAYSOCK=$(ls /run/user/**/sway-ipc.*.sock | head -n 1)
