@@ -105,4 +105,9 @@ eval "$(zoxide init zsh)"
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
 
 bindkey "^R" history-search-multi-word
+if [[ -n "${terminfo[kcbt]}" ]]; then
+  bindkey -M emacs "${terminfo[kcbt]}" reverse-menu-complete
+  bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
+  bindkey -M vicmd "${terminfo[kcbt]}" reverse-menu-complete
+fi
 compinit
