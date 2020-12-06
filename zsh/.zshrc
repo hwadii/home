@@ -65,13 +65,14 @@ zinit for \
 
 zinit light zdharma/history-search-multi-word
 zinit ice from"gh-r" as"program"
-zinit load junegunn/fzf
+zinit light junegunn/fzf
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
 zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
 zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+zinit light zsh-users/zsh-completions
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
