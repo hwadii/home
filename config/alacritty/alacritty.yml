@@ -16,7 +16,7 @@ font:
 
 # Colors
 import:
-  - /home/wadii/.config/alacritty/plain.yml
+  - /home/hwadii/.config/alacritty/plain.yml
 
 mouse:
   url:

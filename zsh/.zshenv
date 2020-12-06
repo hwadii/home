@@ -1,7 +1,7 @@
 skip_global_compinit=1
 export LANG="en_US.UTF-8"
 export SNAP="/snap"
-export SWAYSOCK=$(ls /run/user/**/sway-ipc.*.sock | head -n 1)
+export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export XDG_CURRENT_DESKTOP=sway
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
@@ -29,4 +29,4 @@ export FZF_DEFAULT_OPTS="
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-# export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
+[[ -f ~/.npmrc ]] && export $(grep npm.cardiologs.com/:_authToken ~/.npmrc|awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
