@@ -18,10 +18,11 @@ require('plugins')
 vim.cmd [[colorscheme plain]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
+opt.autoindent = true
 opt.background = 'dark'
 opt.termguicolors = true
 opt.briopt = 'shift:2'
-opt.completeopt = 'menuone,noinsert,noselect'
+opt.completeopt = 'longest,menuone,noinsert,noselect'
 opt.cursorline = true
 opt.expandtab = true
 opt.fileformats = 'unix,dos,mac'
@@ -43,7 +44,7 @@ opt.redrawtime = 10000
 opt.report = 0
 opt.rnu = true
 opt.shiftwidth = 2
-opt.shortmess = 'atOI'
+opt.shortmess = 'ctOI'
 vim.api.nvim_set_option('showbreak', '↳ ')
 opt.signcolumn = 'yes'
 opt.smartcase = true -- make search case insensitive by default
@@ -59,8 +60,11 @@ opt.undoreload = 10000     -- Maximum number lines to save for undo on a buffer 
 opt.updatetime = 300
 opt.wildmenu = true
 opt.wildoptions = 'pum'
+opt.wildignore = '__pycache__'
+opt.wildignore = opt.wildignore + { '*.o' , '*~', '*.pyc', '*pycache*' }
 opt.winminheight = 0
 opt.pumblend = 17
+opt.scrolloff = 3
 
 if vim.g.vim_better_default_enable_folding == 1 then
   opt.foldenable = true
