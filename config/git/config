@@ -16,6 +16,7 @@
   fixup = commit --amend --no-edit -v
   ff = pull --ff-only
   me = !"git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --author=\"$(git config user.name)\""
+  wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
 [showbranch]
   default = --topo-order
 [pretty]

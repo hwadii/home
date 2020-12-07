@@ -54,24 +54,25 @@ zinit as"null" wait"3" from"gh-r" lucid for \
   light-mode \
     mv"fd* -> fd" @sharkdp/fd \
     junegunn/fzf \
-    mv"exa* -> exa" ogham/exa
+    mv"exa* -> exa" ogham/exa \
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit ice from"gh-r" as"program" bpick="*amd64.rpm"
 zinit light cli/cli
-zinit snippet OMZ::lib/git.zsh
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
-zinit snippet OMZ::lib/completion.zsh
-zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
-zinit snippet OMZ::plugins/extract/extract.plugin.zsh
-zinit ice as"program"
+zinit snippet OMZL::git.zsh
+zinit snippet OMZP::git
+zinit snippet OMZP::fancy-ctrl-z
+zinit snippet OMZL::completion.zsh
+zinit snippet OMZP::dnf
+zinit snippet OMZP::extract
+zinit ice as'program'
 zinit snippet https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux
-zinit blockf for \
+zinit as'completion' blockf for \
   light-mode \
     zsh-users/zsh-completions \
-    mv"completions.zsh -> _exa" ogham/exa
+    mv"completions.zsh -> _exa" ogham/exa \
+    https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
