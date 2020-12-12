@@ -8,7 +8,14 @@ if !has('nvim-0.5')
 endif
 
 lua << END
-local plugins = {}
+local plugins = {
+  ["packer.nvim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  }
+}
 
 local function handle_bufread(names)
   for _, name in ipairs(names) do

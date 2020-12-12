@@ -1,23 +1,25 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
+  use {'wbthomason/packer.nvim', opt = true}
 
   use 'AndrewRadev/splitjoin.vim'
   use 'airblade/vim-gitgutter'
   use 'airblade/vim-rooter'
   use 'andreypopp/vim-colors-plain'
   use 'axvr/org.vim'
-  use 'jiangmiao/auto-pairs'
+  use 'cohama/lexima.vim'
   use 'justinmk/vim-dirvish'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
   use 'neovim/nvim-lspconfig'
   use 'norcalli/snippets.nvim'
+  use 'norcalli/nvim-colorizer.lua'
   use 'nvim-lua/completion-nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  }
   use 'nvim-treesitter/nvim-treesitter'
   use 'plasticboy/vim-markdown'
   use 'sheerun/vim-polyglot'

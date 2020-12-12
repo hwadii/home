@@ -21,8 +21,11 @@ setopt pushd_ignore_dups
 export DIRSTACKSIZE=20
 setopt auto_pushd
 
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' max-errors 3 numeric
+stty -ixon -ixoff
+
+bindkey -e
+
+zstyle ':completion:*' menu select
 
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
@@ -41,9 +44,6 @@ zreload() {
 
 autoload -U compaudit compinit
 
-source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
-source $XDG_CONFIG_HOME/zsh/quick-open.zsh
-source $XDG_CONFIG_HOME/zsh/aliases.zsh
 source $HOME/.zinit/bin/zinit.zsh
 
 zinit for \
@@ -67,17 +67,19 @@ zinit snippet OMZL::completion.zsh
 zinit snippet OMZP::dnf
 zinit snippet OMZP::extract
 zinit ice as'program'
-zinit snippet https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux
 zinit as'completion' blockf for \
   light-mode \
     zsh-users/zsh-completions \
     mv"completions.zsh -> _exa" ogham/exa \
     https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty
+zinit as'program' for \
+  https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux \
+  https://github.com/hachibu/note.sh/blob/main/src/note.sh
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-bindkey "^Xa" _expand_alias
-bindkey -e
+source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
+source $XDG_CONFIG_HOME/zsh/quick-open.zsh
+source $XDG_CONFIG_HOME/zsh/aliases.zsh
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -99,4 +101,5 @@ if [[ -n "${terminfo[kcbt]}" ]]; then
   bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
   bindkey -M vicmd "${terminfo[kcbt]}" reverse-menu-complete
 fi
-compinit
+bindkey "^Xa" _expand_alias
+compinit -i
