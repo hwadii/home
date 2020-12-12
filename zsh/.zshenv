@@ -26,6 +26,7 @@ export FZF_DEFAULT_OPTS="
     --height 40%
     --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'
 "
+export NOTE_DIR="$HOME/code/notes"
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"

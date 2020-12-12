@@ -1,3 +1,4 @@
+-- require('snips')
 require('globals')
 require('lsp_config')
 local fn = vim.fn
@@ -15,12 +16,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require('plugins')
+opt.termguicolors = true
+require('colorizer').setup()
+
 vim.cmd [[colorscheme plain]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true
 opt.background = 'dark'
-opt.termguicolors = true
 opt.briopt = 'shift:2'
 opt.completeopt = 'longest,menuone,noinsert,noselect'
 opt.cursorline = true
@@ -44,7 +47,8 @@ opt.redrawtime = 10000
 opt.report = 0
 opt.rnu = true
 opt.shiftwidth = 2
-opt.shortmess = 'ctOI'
+-- opt.shortmess = 'ctOI'
+opt.shortmess = 'c'
 vim.api.nvim_set_option('showbreak', '↳ ')
 opt.signcolumn = 'yes'
 opt.smartcase = true -- make search case insensitive by default
