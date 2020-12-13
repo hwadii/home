@@ -1,9 +1,6 @@
 " Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
+if !has('nvim')
   finish
 endif
 
@@ -13,7 +10,7 @@ local plugins = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   }
 }
 

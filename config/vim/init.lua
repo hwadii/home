@@ -19,7 +19,7 @@ require('plugins')
 opt.termguicolors = true
 require('colorizer').setup()
 
-vim.cmd [[colorscheme plain]]
+vim.cmd [[colorscheme seoul256]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true
@@ -70,7 +70,7 @@ opt.winminheight = 0
 opt.pumblend = 17
 opt.scrolloff = 3
 
-if vim.g.vim_better_default_enable_folding == 1 then
+if vim.g.enable_folding == 1 then
   opt.foldenable = true
   opt.foldmarker = '{,}'
   opt.foldlevel = 0
@@ -78,9 +78,12 @@ if vim.g.vim_better_default_enable_folding == 1 then
   opt.foldlevelstart = 99
 end
 
+vim.g.seoul256_background = 233
+vim.g.seoul256_srgb = 1
 vim.g.gitgutter_sign_modified = '!!'
 vim.g.gitgutter_sign_modified_removed = '!_'
-vim.g.vim_better_default_enable_folding = 1
+vim.g.enable_folding = 1
+vim.g.LoupeCenterResults = 0
 vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
