@@ -7,6 +7,8 @@ return require('packer').startup(function()
   use 'airblade/vim-gitgutter'
   use 'airblade/vim-rooter'
   use 'andreypopp/vim-colors-plain'
+  use 'jonathanfilip/vim-lucius'
+  use 'junegunn/seoul256.vim'
   use 'axvr/org.vim'
   use 'cohama/lexima.vim'
   use 'justinmk/vim-dirvish'
