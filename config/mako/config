@@ -1,0 +1,6 @@
+default-timeout=8000
+layer=overlay
+group-by=app-name
+
+[urgency=high]
+ignore-timeout=1
