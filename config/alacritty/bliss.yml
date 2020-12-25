@@ -4,6 +4,9 @@ colors:
     background: '0x121213'
     foreground: '0xfdf9f7'
 
+  cursor: 
+    cursor: '0xfdf9f7'
+    text: '0x121213'
   # Normal colors
   normal:
     black:   '0x1c1b1d'
