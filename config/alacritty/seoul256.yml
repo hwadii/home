@@ -1,5 +1,9 @@
 # Colors (Seoul256)
 colors:
+  cursor:
+    cursor: '#d0d0d0'
+    text: '#171717'
+
   # Default colors
   primary:
     background: '#171717'

@@ -37,6 +37,7 @@ nnoremap <Leader>r <cmd>Telescope live_grep<cr>
 nnoremap <Leader>b <cmd>Telescope buffers<cr>
 nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <Leader>c <cmd>Telescope git_commits<cr>
+nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 " Goyo

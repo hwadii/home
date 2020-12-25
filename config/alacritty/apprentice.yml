@@ -4,8 +4,8 @@ colors:
     foreground: '#BCBCBC'
 
   cursor:
-   text: '#000000'
-   cursor: '#f8f8f2'
+   text: '#262626'
+   cursor: '#BCBCBC'
 
   selection:
     text: '#272822'

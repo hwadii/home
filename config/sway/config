@@ -35,8 +35,8 @@ output * bg ~/Images/sakura.jpg fill
 #
 # Example configuration:
 #
-output HDMI-A-2 res 2560x1440 pos 0 0
-output eDP-1 res 1920x1080 pos 0 1440
+output HDMI-A-2 res 1920x1080 pos 0 0
+output eDP-1 res 1920x1080 pos 0 1080
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -108,6 +108,7 @@ input * {
 
     bindsym Print exec grimshot --notify copy area
     bindsym Shift+Print exec grimshot --notify save area ~/$(date +"Screenshot-%F-%T.png")
+    bindsym $mod+Print exec grim -g "$(slurp)" - | swappy -f -
 
 #
 # Moving around:
