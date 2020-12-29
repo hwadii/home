@@ -81,6 +81,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
 source $XDG_CONFIG_HOME/zsh/quick-open.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -89,8 +90,6 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
-
-function mem() { ps -axv | grep $$  }
 
 eval "$(zoxide init zsh)"
 [ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
