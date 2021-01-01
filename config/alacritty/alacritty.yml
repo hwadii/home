@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Hasklig
+    family: JetBrains Mono NL
 
   size: 12
 
@@ -16,7 +16,7 @@ font:
 
 # Colors
 import:
-  - /home/wadii/.config/alacritty/apprentice.yml
+  - /home/wadii/.config/alacritty/base16-tomorrow-night-256.yml
 
 mouse:
   url:

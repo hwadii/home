@@ -24,3 +24,5 @@ hi LspDiagnosticsVirtualTextError ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=
 hi LspDiagnosticsVirtualTextInfo ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
 hi link LspDiagnosticsVirtualTextInfo LspDiagnosticsVirtualTextWarning
 " hi VertSplit gui=NONE
+hi String gui=italic term=italic
+hi MatchParen guibg=#333233
