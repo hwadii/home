@@ -114,10 +114,7 @@
 (setq company-tooltip-align-annotations t)
 
 (setq-default typescript-indent-level 2)
-(global-set-key (kbd "C-SPC") 'company-complete)
-(set-default-font "Fira Code")
+(global-set-key (kbd "C-.") 'company-complete)
 (setq seoul256-background 233)
-; (load-theme 'seoul256 t)
-; (load-theme 'zenburn t)
 (setq make-backup-files nil)
 ;;; prelude-modules.el ends here
