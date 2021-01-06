@@ -55,9 +55,16 @@ lspconfig.pyls.setup({
   },
   on_attach = custom_attach
 })
+local project_library_path = "."
+local path_to_angularls = "~/.config/nvm/versions/node/v14.15.1/lib/node_modules/@angular/language-server/index.js"
+local angularlscmd = {"node", path_to_angularls, "--stdio", "--tsProbeLocations", project_library_path, "--ngProbeLocations", project_library_path}
 lspconfig.angularls.setup({
     filetypes = { "typescript", "html" },
     capabilities = capabilities,
+    cmd = angularlscmd,
+    on_new_config = function(new_config,new_root_dir)
+      new_config.cmd = angularlscmd
+    end,
     on_attach = custom_attach,
   })
 lspconfig.html.setup({
