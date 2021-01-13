@@ -3,6 +3,7 @@ export LANG="en_US.UTF-8"
 export SNAP="/snap"
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export XDG_CURRENT_DESKTOP=sway
+export XDG_SCREENSHOTS_DIR="$HOME/Images"
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
@@ -26,6 +27,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
 export FZF_DEFAULT_OPTS="
     --height 40%
     --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'
+    --color fg+:italic,hl:-1:underline,hl+:-1:reverse:underline
 "
 export NOTE_DIR="$HOME/code/notes"
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"

@@ -39,6 +39,10 @@ alias duh="du -sh"
 alias p=python3
 alias c="clipcopy"
 alias map="xargs -n1"
+alias md="mkdir -p"
+function take {
+  mkdir $@ && cd $@
+}
 
 # npm
 alias ni="npm install"
@@ -60,10 +64,6 @@ function blob() {
   echo "$@" | sed "s|blob://|s3://|g" | xargs s3cmd -c ~/.s3cfg-blob | sed "s|s3://|blob://|g" | sed "s|s3cmd |blob |g";
 }
 
-function up() {
-  curl -F"file=@$@" http://0x0.st
-}
-
 alias ytdl=youtube-dl
 
 # more git aliases
@@ -83,3 +83,8 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
+
+function up {
+  local file=${1:-/dev/stdin}
+  curl --data-binary @${file} https://paste.rs
+}

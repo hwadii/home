@@ -24,7 +24,6 @@ return require('packer').startup(function()
   }
   use 'nvim-treesitter/nvim-treesitter'
   use 'plasticboy/vim-markdown'
-  use 'sheerun/vim-polyglot'
   use 'tpope/vim-abolish'
   use 'tpope/vim-commentary'
   use 'tpope/vim-sleuth'
