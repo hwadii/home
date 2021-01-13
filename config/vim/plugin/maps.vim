@@ -33,7 +33,7 @@ nnoremap <silent><leader>p :Prettier<return>
 
 " telescope
 nnoremap <C-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>
-nnoremap <Leader>r <cmd>Telescope live_grep<cr>
+nnoremap <Leader>s <cmd>Telescope live_grep<cr>
 nnoremap <Leader>b <cmd>Telescope buffers<cr>
 nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <Leader>c <cmd>Telescope git_commits<cr>
@@ -81,3 +81,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" term
+tnoremap <M-[> <C-\><C-n>

@@ -78,6 +78,12 @@ lspconfig.cssls.setup({
 lspconfig.jsonls.setup({
     on_attach = custom_attach
   })
+lspconfig.rls.setup({
+    on_attach = custom_attach
+  })
+lspconfig.vuels.setup({
+    on_attach = custom_attach
+  })
 
 lspconfig.efm.setup {
   default_config = {
@@ -93,7 +99,8 @@ lspconfig.efm.setup {
     "javascript.jsx",
     "typescript",
     "typescript.tsx",
-    "typescriptreact"
+    "typescriptreact",
+    "vue"
   }
 }
 
