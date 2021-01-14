@@ -70,6 +70,7 @@ alias ytdl=youtube-dl
 alias gin="git init"
 alias gcd="git checkout dev"
 alias gdf="git diff FETCH_HEAD"
+alias gcnv!="git commit --no-verify"
 
 alias dc=docker-compose
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"

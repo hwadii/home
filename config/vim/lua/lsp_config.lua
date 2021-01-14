@@ -5,16 +5,19 @@ vim.g.diagnostic_show_virtual_text = 1
 vim.g.completion_sorting = 'length'
 vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy" }
 vim.g.matching_smart_case = 1
-vim.g.completion_enable_auto_popup = 1
 vim.g.completion_auto_change_source = 1
 vim.g.completion_enable_snippet = 'snippets.nvim'
 vim.g.completion_enable_auto_paren = 1
 vim.g.completion_chain_complete_list = {
   default = {
+    {complete_items = {'lsp'}},
+    {complete_items = {'snippet'}},
     {complete_items = {'path'}, triggered_only = {'/'}},
     {complete_items = {'buffers'}},
   },
-  comment = {},
+  comment = {
+    {complete_items = {'words'}},
+  },
   string = {
     {complete_items = {'path'}, triggered_only = {'/'}},
     {complete_items = {'words'}},

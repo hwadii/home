@@ -81,6 +81,8 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+imap  <M-n> <Plug>(completion_next_source)
+imap  <M-p> <Plug>(completion_prev_source)
 
 " term
 tnoremap <M-[> <C-\><C-n>
