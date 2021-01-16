@@ -85,7 +85,7 @@ alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
 
-function up {
+function pasters {
   local file=${1:-/dev/stdin}
   curl --data-binary @${file} https://paste.rs
 }
