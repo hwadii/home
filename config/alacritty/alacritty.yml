@@ -6,17 +6,16 @@ window:
 
 font:
   normal:
-    family: Pragmata Pro Mono
+    family: Inconsolata
 
-  size: 11
+  size: 12
 
   offset:
    x: 0
-   y: 4
+   y: 3
 
-# Colors
 import:
-  - /home/wadii/.config/alacritty/base16-tomorrow-night-256.yml
+  - ~/.config/alacritty/seoul256.yml
 
 mouse:
   url:

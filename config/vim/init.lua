@@ -19,7 +19,7 @@ require('plugins')
 opt.termguicolors = true
 require 'colorizer'.setup ({}, { names = false })
 
-vim.cmd [[colorscheme base16-tomorrow-night]]
+vim.cmd [[colorscheme seoul256]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true
