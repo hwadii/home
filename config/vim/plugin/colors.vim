@@ -23,6 +23,6 @@ hi LspDiagnosticsUnderlineHint cterm=underline, gui=underline
 hi LspDiagnosticsVirtualTextError ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
 hi LspDiagnosticsVirtualTextInfo ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
 hi link LspDiagnosticsVirtualTextInfo LspDiagnosticsVirtualTextWarning
-" hi VertSplit gui=NONE
+hi VertSplit gui=NONE
 hi String gui=italic term=italic
-hi MatchParen guibg=#333233
+" hi MatchParen guibg=#333233

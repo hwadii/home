@@ -15,9 +15,7 @@ vim.g.completion_chain_complete_list = {
     {complete_items = {'path'}, triggered_only = {'/'}},
     {complete_items = {'buffers'}},
   },
-  comment = {
-    {complete_items = {'words'}},
-  },
+  comment = {},
   string = {
     {complete_items = {'path'}, triggered_only = {'/'}},
     {complete_items = {'words'}},

@@ -1,6 +1,14 @@
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "typescript", "ruby", "bash", "javascript", "css", "html", "jsdoc", "json", "yaml", "python" },
+  textobjects = {
+    keymaps = {
+      ["af"] = "@function.outer",
+      ["if"] = "@function.inner",
+      ["ac"] = "@class.outer",
+      ["ic"] = "@class.inner",
+    },
+  },
   highlight = {
     enable = true,
     custom_captures = {
@@ -17,7 +25,7 @@ require'nvim-treesitter.configs'.setup {
     },
   },
   indent = {
-    enable = true,
+    enable = false,
   }
 }
 EOF

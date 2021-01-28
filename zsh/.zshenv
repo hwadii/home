@@ -4,6 +4,7 @@ export SNAP="/snap"
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SCREENSHOTS_DIR="$HOME/Images"
+export XDG_CACHE_HOME="$HOME/.cache"
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
