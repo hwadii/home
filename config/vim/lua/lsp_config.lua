@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local completion = require('completion')
+-- local compe = require('compe')
 
 vim.g.diagnostic_show_virtual_text = 1
 vim.g.completion_sorting = 'length'
@@ -21,6 +22,23 @@ vim.g.completion_chain_complete_list = {
     {complete_items = {'words'}},
   }
 }
+
+-- compe.setup {
+--   enabled = true;
+--   debug = false;
+--   min_length = 1;
+--   preselect = 'enable';
+--   throttle_time = 80;
+--   source_timeout = 200;
+--   incomplete_delay = 400;
+--   allow_prefix_unmatch = false;
+
+--   source = {
+--     path = true;
+--     buffer = true;
+--     nvim_lsp = true;
+--   };
+-- }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -56,16 +74,8 @@ lspconfig.pyls.setup({
   },
   on_attach = custom_attach
 })
-local project_library_path = "."
-local path_to_angularls = "/home/wadii/.config/nvm/versions/node/v14.15.1/lib/node_modules/@angular/language-server/index.js"
-local angularlscmd = {"node", path_to_angularls, "--stdio", "--tsProbeLocations", project_library_path, "--ngProbeLocations", project_library_path}
 lspconfig.angularls.setup({
-    filetypes = { "typescript", "html" },
     capabilities = capabilities,
-    cmd = angularlscmd,
-    on_new_config = function(new_config,new_root_dir)
-      new_config.cmd = angularlscmd
-    end,
     on_attach = custom_attach,
   })
 lspconfig.html.setup({

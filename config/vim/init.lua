@@ -1,4 +1,3 @@
--- require('snips')
 require('globals')
 require('lsp_config')
 local fn = vim.fn
@@ -25,7 +24,7 @@ opt.t_Co = '256'
 opt.autoindent = true
 opt.background = 'dark'
 opt.briopt = 'shift:2'
-opt.completeopt = 'longest,menuone,noinsert,noselect'
+opt.completeopt = 'menu,menuone,noinsert,noselect'
 opt.cursorline = true
 opt.expandtab = true
 opt.fileformats = 'unix,dos,mac'
@@ -47,7 +46,6 @@ opt.redrawtime = 10000
 opt.report = 0
 opt.rnu = true
 opt.shiftwidth = 2
--- opt.shortmess = 'ctOI'
 opt.shortmess = 'c'
 vim.api.nvim_set_option('showbreak', '↳ ')
 opt.signcolumn = 'yes'
