@@ -59,6 +59,7 @@ zinit as"null" wait"3" from"gh-r" lucid for \
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit ice from"gh-r" as"program" bpick="*amd64.rpm"
+zinit light cli/cli
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::fancy-ctrl-z

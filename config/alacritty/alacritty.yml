@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Inconsolata
+    family: Julia Mono
 
   size: 12
 
