@@ -9,7 +9,7 @@ ZSH_PROMPT_CHAR=%B%(?.%F{yellow}.%F{red})%f%b
 git_custom_status() {
   local cb=$(git_current_branch)
   if [ -n "$cb" ]; then
-    echo "%F{green}$(__git_ps1)%f"
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(__git_ps1 %s)$ZSH_THEME_GIT_PROMPT_SUFFIX"
   fi
 }
 
