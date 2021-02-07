@@ -81,6 +81,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
 source $XDG_CONFIG_HOME/zsh/quick-open.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
+source $XDG_LOCAL_BIN/git-prompt.sh
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 _fzf_compgen_path() {

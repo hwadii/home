@@ -15,8 +15,8 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'norcalli/snippets.nvim'
   use 'norcalli/nvim-colorizer.lua'
-  use 'nvim-lua/completion-nvim'
-  -- use 'hrsh7th/nvim-compe'
+  -- use 'nvim-lua/completion-nvim'
+  use 'hrsh7th/nvim-compe'
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
