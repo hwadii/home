@@ -1,51 +1,51 @@
 local lspconfig = require('lspconfig')
-local completion = require('completion')
--- local compe = require('compe')
+-- local completion = require('completion')
+local compe = require('compe')
 
 vim.g.diagnostic_show_virtual_text = 1
-vim.g.completion_sorting = 'length'
-vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy" }
-vim.g.matching_smart_case = 1
-vim.g.completion_auto_change_source = 1
-vim.g.completion_enable_snippet = 'snippets.nvim'
-vim.g.completion_enable_auto_paren = 1
-vim.g.completion_chain_complete_list = {
-  default = {
-    {complete_items = {'lsp'}},
-    {complete_items = {'snippet'}},
-    {complete_items = {'path'}, triggered_only = {'/'}},
-    {complete_items = {'buffers'}},
-  },
-  comment = {},
-  string = {
-    {complete_items = {'path'}, triggered_only = {'/'}},
-    {complete_items = {'words'}},
-  }
-}
-
--- compe.setup {
---   enabled = true;
---   debug = false;
---   min_length = 1;
---   preselect = 'enable';
---   throttle_time = 80;
---   source_timeout = 200;
---   incomplete_delay = 400;
---   allow_prefix_unmatch = false;
-
---   source = {
---     path = true;
---     buffer = true;
---     nvim_lsp = true;
---   };
+-- vim.g.completion_sorting = 'length'
+-- vim.g.completion_matching_strategy_list = { "exact", "substring", "fuzzy" }
+-- vim.g.matching_smart_case = 1
+-- vim.g.completion_auto_change_source = 1
+-- vim.g.completion_enable_snippet = 'snippets.nvim'
+-- vim.g.completion_enable_auto_paren = 1
+-- vim.g.completion_chain_complete_list = {
+--   default = {
+--     {complete_items = {'lsp'}},
+--     {complete_items = {'snippet'}},
+--     {complete_items = {'path'}, triggered_only = {'/'}},
+--     {complete_items = {'buffers'}},
+--   },
+--   comment = {},
+--   string = {
+--     {complete_items = {'path'}, triggered_only = {'/'}},
+--     {complete_items = {'words'}},
+--   }
 -- }
+
+compe.setup {
+  enabled = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  allow_prefix_unmatch = false;
+
+  source = {
+    path = true;
+    buffer = true;
+    nvim_lsp = true;
+  };
+}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client)
-  vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
-  completion.on_attach(client)
+  -- vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+  -- completion.on_attach(client)
 end
 
 lspconfig.util.default_config = vim.tbl_extend(
