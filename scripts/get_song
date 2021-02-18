@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# playerctl -p spotify metadata --format '{{artist}} -- {{title}}'
-status=$(playerctl -p spotify status)
+# Uses the first available player e.g. firefox, spotify...
+# playerctl -p metadata --format '{{artist}} -- {{title}}'
+status=$(playerctl -p status)
 song="{{artist}} — {{title}}"
 
 format() {
-  playerctl -p spotify metadata --format "$1"
+  playerctl metadata --format "$1"
 }
 
 if [ "$status" = "" ]

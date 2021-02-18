@@ -16,7 +16,7 @@ width = 100%
 height = 2%
 fixed-center = true
 enable-ipc = true
-bottom = true
+bottom = false
 wm-restack = bspwm
 ; override-redirect = false
 

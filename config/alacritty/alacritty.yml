@@ -17,10 +17,5 @@ font:
 import:
   - ~/.config/alacritty/seoul256.yml
 
-mouse:
-  url:
-    launcher: firefox
-    args: []
-
 key_bindings:
     - { key: F11, action: ToggleFullscreen }

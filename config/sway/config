@@ -8,6 +8,7 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $alt Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -93,7 +94,8 @@ input * {
     floating_modifier $mod normal
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec $nag -t warning -m 'Exit Sway?' -b "Yes, exit" "swaymsg exit" -b "Reload" "swaymsg reload"
+    # bindsym $mod+Shift+e exec $nag -t warning -m 'Exit Sway?' -b "Yes, exit" "swaymsg exit" -b "Reload" "swaymsg reload"
+    bindsym $mod+Shift+e exec wlogout
         # Lock
     bindsym $mod+Shift+x exec swaylock --daemonize
 
@@ -250,6 +252,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
+    swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
+    swayr execute-swayr-command >> /tmp/swayr.log 2>&1
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -284,8 +290,9 @@ bar {
 }
 
 exec mako
-exec nm-applet &
+exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
+exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 
 assign [class="^Slack$"] → workspace 7
 for_window [app_id="Alacritty"] border pixel 4
