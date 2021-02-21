@@ -8,7 +8,7 @@ primary = #94ccd9
 secondary = #e60053
 alert = #bd2c40
 underline = 
-occupied = #285577
+occupied = #ff59bd
 
 [section/base]
 monitor-fallback = eDP-1
@@ -58,7 +58,7 @@ monitor = HDMI-2
 
 [bar/desk]
 inherit = section/base
-monitor = DP-1
+monitor = DP-0
 
 [global/wm]
 margin-top = 0
