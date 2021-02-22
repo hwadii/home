@@ -262,7 +262,7 @@ bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 bindsym $mod+minus exec playerctl previous
 bindsym $mod+equal exec playerctl next
-bindsym $mod+p exec playerctl -p spotify play-pause
+bindsym $mod+p exec playerctl play-pause
 
 set $blue #285577
 set $gray #282828
