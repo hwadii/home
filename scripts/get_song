@@ -2,7 +2,7 @@
 
 # Uses the first available player e.g. firefox, spotify...
 # playerctl -p metadata --format '{{artist}} -- {{title}}'
-status=$(playerctl -p status)
+status=$(playerctl status)
 song="{{artist}} — {{title}}"
 
 format() {
