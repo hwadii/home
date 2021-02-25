@@ -4,7 +4,6 @@ return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   use 'AndrewRadev/splitjoin.vim'
-  use 'airblade/vim-gitgutter'
   use 'airblade/vim-rooter'
   use 'junegunn/seoul256.vim'
   use 'axvr/org.vim'
@@ -15,8 +14,14 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'norcalli/snippets.nvim'
   use 'norcalli/nvim-colorizer.lua'
-  -- use 'nvim-lua/completion-nvim'
   use 'hrsh7th/nvim-compe'
+  use 'rhysd/git-messenger.vim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+  }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}

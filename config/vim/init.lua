@@ -16,8 +16,6 @@ end
 
 require('plugins')
 opt.termguicolors = true
-require 'colorizer'.setup ({}, { names = false })
-
 vim.cmd [[colorscheme seoul256]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
@@ -78,8 +76,6 @@ end
 
 vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
-vim.g.gitgutter_sign_modified = '!!'
-vim.g.gitgutter_sign_modified_removed = '!_'
 vim.g.enable_folding = 1
 vim.g.LoupeCenterResults = 0
 vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]

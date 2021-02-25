@@ -113,3 +113,7 @@ function pasters {
   local file=${1:-/dev/stdin}
   curl --data-binary @${file} https://paste.rs
 }
+
+function cardinal() {
+  /home/wadii/.cardinal-venv/bin/python3.8 -m cardinal $@
+}

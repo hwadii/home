@@ -26,18 +26,21 @@ nmap <leader>gb :Gina blame<cr>
 nmap <leader>geb <Plug>(gina-blame-echo)
 nmap <leader>gv :<C-U>echom gina#component#repo#branch()<CR>
 
-" gitgutter
-nnoremap <silent> <leader>hl :GitGutterLineHighlightsToggle<CR>
+" signify
+nnoremap <leader>hd :SignifyDiff<cr>
+nnoremap <leader>hp :SignifyHunkDiff<cr>
+nnoremap <leader>hu :SignifyHunkUndo<cr>
 
 nnoremap <silent><leader>p :Prettier<return>
 
 " telescope
-nnoremap <C-p> :lua require('telescope.builtin').find_files({previewer = false})<CR>
+nnoremap <C-p> <cmd>Telescope find_files<CR>
 nnoremap <Leader>s <cmd>Telescope live_grep<cr>
 nnoremap <Leader>b <cmd>Telescope buffers<cr>
 nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 " Goyo
@@ -72,9 +75,6 @@ nnoremap <localleader>s  <cmd>lua vim.lsp.buf.signature_help()<CR>
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" imap <silent> <c-space> <Plug>(completion_trigger)
-" imap <tab> <Plug>(completion_smart_tab)
-" imap <s-tab> <Plug>(completion_smart_s_tab)
 
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
@@ -85,8 +85,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-imap  <M-n> <Plug>(completion_next_source)
-imap  <M-p> <Plug>(completion_prev_source)
 
 " term
 tnoremap <M-[> <C-\><C-n>
