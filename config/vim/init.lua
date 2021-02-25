@@ -15,6 +15,16 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require('plugins')
+require 'colorizer'.setup ({}, { names = false })
+require('gitsigns').setup {
+  signs = {
+    add = {hl = 'GitGutterAdd'   , text = '│'},
+    change = {hl = 'GitGutterChange', text = '│'},
+    delete = {hl = 'GitGutterDelete', text = '_'},
+    topdelete = {hl = 'GitGutterDelete', text = '‾'},
+    changedelete = {hl = 'GitGutterChange', text = '~'},
+  }
+}
 opt.termguicolors = true
 vim.cmd [[colorscheme seoul256]]
 opt.encoding = 'utf-8'
