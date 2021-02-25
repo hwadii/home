@@ -57,7 +57,6 @@ endfunction
 function! hwadii#statusline#active() abort
   setlocal statusline=
   setlocal statusline+=%1*   "italic
-  " setlocal statusline+=%{hwadii#statusline#lhs()}
   setlocal statusline+=%*   " Reset highlight group.
   setlocal statusline+=🌺
   setlocal statusline+=\ 
@@ -75,11 +74,12 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%=
   setlocal statusline+=%4*
   setlocal statusline+=%r   " readonly
+  setlocal statusline+=%{get(b:,'gitsigns_status','')}
+  setlocal statusline+=\ 
   setlocal statusline+=%{hwadii#statusline#branch()}
   setlocal statusline+=%*
   setlocal statusline+=\ 
   setlocal statusline+=%7*
-  " setlocal statusline+=
   setlocal statusline+=%*
   setlocal statusline+=%6*
   setlocal statusline+=%{printf('\ ℓ\ %02d/%02d',line('.'),line('$'))} " line number
