@@ -14,6 +14,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   fn.system('packadd packer.nvim')
 end
 
+opt.termguicolors = true
 require('plugins')
 require 'colorizer'.setup ({}, { names = false })
 require('gitsigns').setup {
@@ -25,8 +26,7 @@ require('gitsigns').setup {
     changedelete = {hl = 'GitGutterChange', text = '~'},
   }
 }
-opt.termguicolors = true
-vim.cmd [[colorscheme seoul256]]
+vim.cmd [[colorscheme base16-phd]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true
