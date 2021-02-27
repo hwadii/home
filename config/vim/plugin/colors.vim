@@ -1,10 +1,10 @@
-hi StatusLine cterm=reverse ctermfg=95 ctermbg=187 gui=reverse guifg=#252525 guibg=#DFDEBD
+hi StatusLine cterm=reverse ctermfg=95 ctermbg=187 gui=reverse guibg=#DFDEBD guifg=#061229
 hi StatusLineNC cterm=italic,reverse ctermfg=235 ctermbg=187 gui=italic,reverse guifg=#333233 guibg=#9e9e9e
 hi User1 gui=bold guifg=#252525 guibg=#B6D6FD
-hi User2 gui=bold guifg=#af87d7 guibg=#252525
+hi User2 gui=bold guifg=#af87d7
 hi User3 gui=italic guifg=#252525 guibg=#9e9e9e
-hi User4 gui=italic guifg=#DFDEBD guibg=#252525
-hi User5 gui=bold guifg=#DFDEBD guibg=#252525
+hi User4 gui=italic guifg=#DFDEBD
+hi User5 gui=bold guifg=#DFDEBD
 hi User6 gui=bold guifg=#252525 guibg=#cccccc
 hi User7 gui=bold guifg=#cccccc guibg=#252525
 
@@ -23,6 +23,6 @@ hi LspDiagnosticsUnderlineHint cterm=underline, gui=underline
 hi LspDiagnosticsVirtualTextError ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
 hi LspDiagnosticsVirtualTextInfo ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
 hi link LspDiagnosticsVirtualTextInfo LspDiagnosticsVirtualTextWarning
-hi VertSplit gui=NONE
+" hi VertSplit gui=NONE
 hi String gui=italic term=italic
 " hi MatchParen guibg=#333233
