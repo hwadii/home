@@ -16,7 +16,8 @@ tools:
     format-stdin: true
 
   prettier: &prettier
-    format-command: 'prettier ${--config-precedence:configPrecedence} ${--tab-width:tabWidth} ${--single-quote:singleQuote} ${--trailing-comma:trailingComma}'
+    format-command: 'prettier ${--config-precedence:configPrecedence} ${--tab-width:tabWidth} ${--single-quote:singleQuote} ${--trailing-comma:trailingComma} --stdin-filepath ${INPUT}'
+    format-stdin: true
 
 languages:
   javascript:

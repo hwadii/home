@@ -25,4 +25,5 @@ hi LspDiagnosticsVirtualTextInfo ctermfg=130 guifg=DarkOrange3 cterm=bold,italic
 hi link LspDiagnosticsVirtualTextInfo LspDiagnosticsVirtualTextWarning
 " hi VertSplit gui=NONE
 hi String gui=italic term=italic
-" hi MatchParen guibg=#333233
+" hi ColorColumn guibg=#161b22
+" hi MatchParen guifg=red

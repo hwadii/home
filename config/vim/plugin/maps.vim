@@ -31,16 +31,16 @@ nnoremap <leader>hd :SignifyDiff<cr>
 nnoremap <leader>hp :SignifyHunkDiff<cr>
 nnoremap <leader>hu :SignifyHunkUndo<cr>
 
-nnoremap <silent><leader>p :Prettier<return>
-
 " telescope
 nnoremap <C-p> <cmd>Telescope find_files<CR>
+nnoremap <Leader>pp <cmd>Telescope<cr>
 nnoremap <Leader>s <cmd>Telescope live_grep<cr>
 nnoremap <Leader>b <cmd>Telescope buffers<cr>
 nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
+nnoremap <localleader>ca <cmd>Telescope lsp_code_actions<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 " Goyo
