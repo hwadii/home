@@ -41,7 +41,6 @@ lspconfig.pyls.setup({
 local libpath = "/home/wadii/.config/nvm/versions/node/v14.15.4/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "--ngProbeLocations", libpath}
 lspconfig.angularls.setup({
-  on_attach = custom_attach,
   cmd = cmd,
   on_new_config = function(new_config, new_root_dir)
     new_config.cmd = cmd
@@ -72,7 +71,12 @@ lspconfig.efm.setup {
     "typescript",
     "typescript.tsx",
     "typescriptreact",
-    "vue"
+    "vue",
+    "html"
+  },
+  init_options = {
+    documentFormatting = true,
+    codeAction = true,
   }
 }
 

@@ -103,4 +103,5 @@ if [[ -n "${terminfo[kcbt]}" ]]; then
   bindkey -M vicmd "${terminfo[kcbt]}" reverse-menu-complete
 fi
 bindkey "^Xa" _expand_alias
+autoload -U edit-command-line
 compinit -i

@@ -15,7 +15,7 @@ return require('packer').startup(function()
   use 'norcalli/snippets.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'hrsh7th/nvim-compe'
-  use 'rhysd/git-messenger.vim'
+  use 'lewis6991/github_dark.nvim'
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -24,7 +24,11 @@ return require('packer').startup(function()
   }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-fzy-native.nvim'}
+    }
   }
   use 'nvim-treesitter/nvim-treesitter'
   use 'plasticboy/vim-markdown'
