@@ -45,13 +45,7 @@ endfunction
 
 function! hwadii#statusline#fileprefix() abort
   let l:basename=expand('%:h')
-  if l:basename ==# '' || l:basename ==# '.'
-    return ''
-  elseif has('modify_fname')
-    return substitute(fnamemodify(l:basename, ':~:.'), '/$', '', '') . '/'
-  else
-    return substitute(l:basename . '/', '\C^' . $HOME, '~', '')
-  endif
+  return pathshorten(l:basename) . '/'
 endfunction
 
 function! hwadii#statusline#active() abort
