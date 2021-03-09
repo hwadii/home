@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
-local compe = require('compe')
 
-compe.setup {
+require('compe').setup {
   enabled = true;
   autocomplete = true;
   debug = false;
