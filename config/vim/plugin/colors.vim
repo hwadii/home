@@ -14,7 +14,7 @@ hi htmlItalic gui=italic cterm=italic
 hi htmlBold gui=bold cterm=bold
 " hi Search cterm=underline gui=underline,reverse guibg=#f3e500 guifg=#222222
 " hi! link CursorLineNr Constant
-hi! link TelescopeMatching Constant
+hi TelescopeMatching guifg=#f0a000 gui=bold
 " hi IncSearch ctermfg=0 ctermbg=3 gui=bold guifg=#222222 guibg=#f3e500
 hi LspDiagnosticsUnderlineError cterm=underline, gui=underline
 hi LspDiagnosticsUnderlineWarning cterm=underline, gui=underline

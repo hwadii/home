@@ -44,8 +44,11 @@ function! hwadii#statusline#branch() abort
 endfunction
 
 function! hwadii#statusline#fileprefix() abort
-  let l:basename=expand('%:h')
-  return pathshorten(l:basename) . '/'
+  let l:basename=expand("%:h")
+  if (l:basename != "")
+    return pathshorten(l:basename) . "/"
+  else
+    return ""
 endfunction
 
 function! hwadii#statusline#active() abort
