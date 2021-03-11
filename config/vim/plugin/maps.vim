@@ -62,16 +62,16 @@ nnoremap <silent> <leader>i   <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gy          <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gws         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> <leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> gR  <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <leader>ca  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> ga  <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ]g <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <silent> [g <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+inoremap <silent> <c-x> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
 nnoremap <localleader>o  <cmd>lua vim.lsp.buf.document_symbol()<cr>
 nnoremap <localleader>d  <cmd>lua vim.lsp.diagnostic.get_all()<cr>
 nnoremap <localleader>i  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
-nnoremap <localleader>s  <cmd>lua vim.lsp.buf.signature_help()<CR>
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

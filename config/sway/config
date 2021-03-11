@@ -32,7 +32,7 @@ font pango:DejaVu Sans Mono, IPA Gothic 8
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Images/fx_background_zoom-90s-dino1.png fill
+output * bg ~/Images/Schale-grey.png fill
 #
 # Example configuration:
 #
