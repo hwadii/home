@@ -276,7 +276,7 @@ client.focused_inactive $gray $gray #ffffff $gray $gray
 focus_on_window_activation urgent
 
 bar {
-        status_command while ~/.config/sway/bar; do sleep 1; done
+        status_command while etat; do sleep 1; done
         position top
         pango_markup disabled
         font pango:IPAGothic 11, DejaVu Sans Mono 10

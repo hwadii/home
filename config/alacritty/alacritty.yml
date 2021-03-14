@@ -6,13 +6,13 @@ window:
 
 font:
   normal:
-    family: Inconsolata
+    family: Source Code Pro
 
   size: 12
 
   offset:
    x: 0
-   y: 3
+   y: 4
 
 import:
   - ~/.config/alacritty/base16-phd-256.yml

@@ -35,6 +35,7 @@ nnoremap <leader>hu :SignifyHunkUndo<cr>
 nnoremap <C-p> <cmd>Telescope find_files<CR>
 nnoremap <Leader>pp <cmd>Telescope<cr>
 nnoremap <Leader>s <cmd>Telescope live_grep<cr>
+nnoremap <Leader><Leader>s <cmd>Telescope grep_string<cr>
 nnoremap <Leader>b <cmd>Telescope buffers<cr>
 nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <Leader>c <cmd>Telescope git_commits<cr>

@@ -59,7 +59,6 @@ local custom_attach = function(_client, bufnr)
       return bufnr, winnr
     end)
   end
-  print('Language server is ready')
 end
 
 lspconfig.pyls.setup({

@@ -15,7 +15,6 @@ return require('packer').startup(function()
   use 'norcalli/snippets.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'hrsh7th/nvim-compe'
-  use 'lewis6991/github_dark.nvim'
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
@@ -31,11 +30,9 @@ return require('packer').startup(function()
     }
   }
   use 'nvim-treesitter/nvim-treesitter'
-  use 'plasticboy/vim-markdown'
   use 'tpope/vim-abolish'
   use 'tpope/vim-commentary'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
-  use 'wincent/loupe'
 end)
