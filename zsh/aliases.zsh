@@ -114,6 +114,6 @@ function pasters {
   curl --data-binary @${file} https://paste.rs
 }
 
-function cardinal() {
-  /home/wadii/.cardinal-venv/bin/python3.8 -m cardinal $@
+function cardinal {
+    /home/wadii/.virtualenvs/cardinal/bin/python3.8 -m cardinal $@
 }

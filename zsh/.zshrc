@@ -53,7 +53,6 @@ zinit for \
 zinit as"null" wait"3" from"gh-r" lucid for \
   light-mode \
     mv"fd* -> fd" @sharkdp/fd \
-    junegunn/fzf \
     mv"exa* -> exa" ogham/exa \
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
@@ -74,7 +73,6 @@ zinit as'completion' blockf for \
     https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty \
     https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 zinit as'program' for \
-  https://github.com/junegunn/fzf/blob/master/bin/fzf-tmux \
   https://github.com/hachibu/note.sh/blob/main/src/note.sh
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"

@@ -40,17 +40,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim"
   },
-  ["github_dark.nvim"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
-  },
-  loupe = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/loupe"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -120,10 +112,6 @@ _G.packer_plugins = {
   ["vim-ledger"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-ledger"
-  },
-  ["vim-markdown"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
   },
   ["vim-rooter"] = {
     loaded = true,

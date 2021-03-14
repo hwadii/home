@@ -4,7 +4,7 @@ https://thesquareplanet.com/feed.xml
 https://www.charlieharrington.com/rss.xml
 https://bernsteinbear.com/feed.xml
 https://metaredux.com/feed.xml
-https://emacsredux.com/atom.xml
+https://emacsredux.com/atom.xml "Emacs"
 https://ghedam.at/feed
 https://christine.website/blog.rss
 https://raphlinus.github.io/feed.xml
@@ -22,17 +22,18 @@ https://blog.system76.com/rss "Hardware" "Corporate feed" "Linux"
 https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
 https://barthalion.blog/index.xml "GNOME" "Fedora" "Linux" "Blog" "Dev"
 https://blogs.gnome.org/alexl/feed/ "GNOME" "Fedora" "Linux" "Blog" "Dev"
-https://github.com/swaywm/sway/releases.atom "Sway" "Linux"
-https://github.com/swaywm/wlroots/releases.atom "Sway" "Linux"
-https://github.com/tonsky/FiraCode/releases.atom "Fonts"
-https://github.com/JetBrains/JetBrainsMono/releases.atom "Fonts"
-https://github.com/cormullion/juliamono/releases.atom "Fonts"
-https://github.com/googlefonts/Inconsolata/releases.atom "Fonts"
-https://github.com/be5invis/Iosevka/releases.atom "Fonts"
+https://github.com/swaywm/sway/releases.atom "Releases" "Sway" "Linux"
+https://github.com/swaywm/wlroots/releases.atom "Releases" "Sway" "Linux"
+https://github.com/tonsky/FiraCode/releases.atom "Releases" "Fonts"
+https://github.com/JetBrains/JetBrainsMono/releases.atom "Releases" "Fonts"
+https://github.com/cormullion/juliamono/releases.atom "Releases" "Fonts"
+https://github.com/googlefonts/Inconsolata/releases.atom "Releases" "Fonts"
+https://github.com/be5invis/Iosevka/releases.atom "Releases" "Fonts"
+https://github.com/junegunn/fzf/releases.atom "Releases" "Linux"
+https://github.com/alacritty/alacritty/releases.atom "Releases" "Linux" "Terminal"
 https://thesephist.com/index.xml "Favorites" "Blog"
 https://critter.blog/feed/ "Blog"
 https://unixsheikh.com/feed.rss "BSD"
-https://github.com/alacritty/alacritty/releases.atom "Linux" "Terminal"
 https://www.murilopereira.com/index.xml "Emacs"
 https://sachachua.com/blog/category/emacs-news/feed "News"
 https://seirdy.one/posts/index.xml "Blog"
@@ -45,3 +46,5 @@ https://blog.sulami.xyz/atom.xml "Blog"
 https://this-week-in-rust.org/rss.xml "News", "Rust"
 https://danluu.com/atom.xml "Favorites"
 https://lwn.net/headlines/rss "News"
+https://protesilaos.com/codelog.xml "Emacs"
+https://protesilaos.com/news.xml "News"
