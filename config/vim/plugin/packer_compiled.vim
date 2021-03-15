@@ -40,6 +40,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim"
   },
+  ["github_dark.nvim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"

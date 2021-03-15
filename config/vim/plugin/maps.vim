@@ -68,7 +68,7 @@ nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> ga  <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ]g <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <silent> [g <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-inoremap <silent> <c-x> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" inoremap <silent> <c-x> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
 nnoremap <localleader>o  <cmd>lua vim.lsp.buf.document_symbol()<cr>
 nnoremap <localleader>d  <cmd>lua vim.lsp.diagnostic.get_all()<cr>
