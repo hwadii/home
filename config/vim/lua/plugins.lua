@@ -15,6 +15,7 @@ return require('packer').startup(function()
   use 'norcalli/snippets.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use 'hrsh7th/nvim-compe'
+  use 'lewis6991/github_dark.nvim'
   use {
     'lewis6991/gitsigns.nvim',
     requires = {

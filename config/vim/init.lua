@@ -19,14 +19,14 @@ require('plugins')
 require 'colorizer'.setup ({}, { names = false })
 require('gitsigns').setup {
   signs = {
-    add = {hl = 'GitGutterAdd'   , text = '│'},
-    change = {hl = 'GitGutterChange', text = '│'},
-    delete = {hl = 'GitGutterDelete', text = '_'},
-    topdelete = {hl = 'GitGutterDelete', text = '‾'},
-    changedelete = {hl = 'GitGutterChange', text = '~'},
+    add = {hl = 'DiffAdd'   , text = '│'},
+    change = {hl = 'DiffChange', text = '│'},
+    delete = {hl = 'DiffDelete', text = '_'},
+    topdelete = {hl = 'DiffDelete', text = '‾'},
+    changedelete = {hl = 'DiffChange', text = '~'},
   }
 }
-vim.cmd [[colorscheme base16-phd]]
+vim.cmd [[colorscheme sitruuna]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true
@@ -91,3 +91,5 @@ vim.g.LoupeCenterResults = 0
 vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
+vim.g.grepprg = 'rg --vimgrep --no-heading '
+vim.g.grepformat = '%f:%l:%c:%m,%f:%l:%m'
