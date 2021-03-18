@@ -72,8 +72,6 @@ zinit as'completion' blockf for \
     mv"completions.zsh -> _exa" ogham/exa \
     https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty \
     https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
-zinit as'program' for \
-  https://github.com/hachibu/note.sh/blob/main/src/note.sh
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $XDG_CONFIG_HOME/zsh/persent.zsh-theme

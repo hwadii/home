@@ -52,7 +52,7 @@ opt.number = true
 opt.pumheight = 20
 opt.redrawtime = 10000
 opt.report = 0
-opt.rnu = false
+opt.rnu = true
 opt.shiftwidth = 2
 opt.shortmess = 'c'
 vim.api.nvim_set_option('showbreak', '↳ ')
