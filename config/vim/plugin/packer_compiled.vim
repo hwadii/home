@@ -36,10 +36,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
-  ["gina.vim"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim"
-  },
   ["github_dark.nvim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
@@ -47,6 +43,10 @@ _G.packer_plugins = {
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -84,10 +84,6 @@ _G.packer_plugins = {
   ["seoul256.vim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/seoul256.vim"
-  },
-  ["snippets.nvim"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/snippets.nvim"
   },
   ["splitjoin.vim"] = {
     loaded = true,

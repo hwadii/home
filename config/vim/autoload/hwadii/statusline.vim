@@ -56,7 +56,7 @@ function! hwadii#statusline#active() abort
   setlocal statusline=
   setlocal statusline+=%1*   "italic
   setlocal statusline+=%*   " Reset highlight group.
-  setlocal statusline+=🌺
+  setlocal statusline+=🌸
   setlocal statusline+=\ 
   setlocal statusline+=%<    " Truncation point
   setlocal statusline+=%{hwadii#statusline#fileprefix()} " Relative path
