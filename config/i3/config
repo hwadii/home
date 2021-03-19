@@ -159,6 +159,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+Shift+s exec systemctl suspend
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -209,7 +210,7 @@ bar {
             urgent_workspace $red $red #ffffff
         }
 }
-exec "setxkbmap -layout us -variant altgr-intl -option compose:ralt"
+exec_always "setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:escape"
 exec "redshift -P -O 5500:3000 -m randr:screen=0,1"
 exec "xset r rate 400 30"
 exec "nitrogen --set-tiled ~/Images/Schale-blue.png"
