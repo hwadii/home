@@ -263,6 +263,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym $mod+semicolon exec clipman pick -t wofi
 bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
     swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
@@ -305,6 +306,7 @@ exec mako
 exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
+exec wl-paste -t text --watch clipman store
 
 assign [class="^Slack$"] → workspace $ws7
 for_window [app_id="Alacritty"] border pixel 4

@@ -15,7 +15,7 @@ font:
    y: 3
 
 import:
-  - ~/.config/alacritty/sitruuna.yml
+  - ~/.config/alacritty/melange.yml
 
 key_bindings:
     - { key: F11, action: ToggleFullscreen }
