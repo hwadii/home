@@ -36,6 +36,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
+  ["gina.vim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim"
+  },
   ["github_dark.nvim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
