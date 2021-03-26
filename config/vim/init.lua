@@ -26,7 +26,9 @@ require('gitsigns').setup {
     changedelete = {hl = 'DiffChange', text = '~'},
   }
 }
-vim.cmd [[colorscheme base16-twilight]]
+require('neogit').setup({})
+
+vim.cmd 'colorscheme melange'
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true
@@ -37,7 +39,9 @@ opt.cursorline = true
 opt.expandtab = true
 opt.fileformats = 'unix,dos,mac'
 opt.formatoptions = 'jcrqnl'
-opt.fillchars = { eob = "~" }
+opt.fillchars = { eob = "~", vert = "|", stl = " ", stlnc = " " }
+opt.list = true
+opt.listchars = { tab = "┊ ", nbsp = "␣", trail = "·", extends = "↷", precedes = "↶" }
 opt.hidden = true
 opt.ignorecase = true
 opt.inccommand = 'split'

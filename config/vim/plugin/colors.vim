@@ -20,9 +20,9 @@ hi LspDiagnosticsUnderlineError cterm=underline, gui=underline
 hi LspDiagnosticsUnderlineWarning cterm=underline, gui=underline
 hi LspDiagnosticsUnderlineInformation cterm=underline, gui=underline
 hi LspDiagnosticsUnderlineHint cterm=underline, gui=underline
-hi LspDiagnosticsVirtualTextError ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
-hi LspDiagnosticsVirtualTextInfo ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
-hi link LspDiagnosticsVirtualTextInfo LspDiagnosticsVirtualTextWarning
+" hi LspDiagnosticsVirtualTextError ctermfg=3 guifg=#a8ff60 cterm=bold,italic gui=bold,italic
+" hi LspDiagnosticsVirtualTextInfo ctermfg=130 guifg=DarkOrange3 cterm=bold,italic gui=bold,italic
+" hi link LspDiagnosticsVirtualTextInfo LspDiagnosticsVirtualTextWarning
 " hi link diffAdded GitGutterAdd
 " hi link diffChanged GitGutterChange
 " hi link diffRemoved GitGutterDelete

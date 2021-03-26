@@ -28,4 +28,25 @@ require('telescope').setup{
   }
 }
 require('telescope').load_extension('fzy_native')
+
+local M = {}
+
+function M.grep_prompt()
+  require('telescope.builtin').grep_string {
+    shorten_path = true,
+    search = vim.fn.input("Grep String > "),
+  }
+end
+
+return setmetatable({}, {
+  __index = function(_, k)
+    reloader()
+
+    if M[k] then
+      return M[k]
+    else
+      return require('telescope.builtin')[k]
+    end
+  end
+  })
 EOF

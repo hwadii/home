@@ -1,6 +1,7 @@
 skip_global_compinit=1
 export LANG="en_US.UTF-8"
 export SNAP="/snap"
+export CHROME_BIN="chromium"
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SCREENSHOTS_DIR="$HOME/Images"
@@ -28,7 +29,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
 export FZF_DEFAULT_OPTS="
     --height 40%
     --bind 'tab:down' --bind 'btab:up' --bind 'ctrl-s:toggle'
-    --color fg+:italic,hl:-1:underline,hl+:-1:reverse:underline
+    --bind 'alt-a:select-all'
+    --color=16,hl:#ffcb6b,hl+:#89ddff,fg+:7,pointer:#89ddff
 "
 export NOTE_DIR="$HOME/code/notes"
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
