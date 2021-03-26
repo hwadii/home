@@ -26,7 +26,7 @@ require('gitsigns').setup {
     changedelete = {hl = 'DiffChange', text = '~'},
   }
 }
-vim.cmd 'colorscheme melange'
+vim.cmd [[colorscheme base16-twilight]]
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
 opt.autoindent = true

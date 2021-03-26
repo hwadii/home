@@ -98,7 +98,6 @@ alias gcnv!="git commit --no-verify"
 
 alias dc=docker-compose
 alias e2e="docker-compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
-alias gs="cowsay \"It's gss, idiot!\""
 alias python3.6=python3
 
 # tmux
@@ -116,4 +115,13 @@ function pasters {
 
 function cardinal {
     /home/wadii/.virtualenvs/cardinal/bin/python3.8 -m cardinal $@
+}
+
+function gs() {
+  if command -v fsays &> /dev/null ; then
+    program="fsays"
+  else
+    program="cowsay"
+  fi
+  $program "It's gss, idiot"
 }

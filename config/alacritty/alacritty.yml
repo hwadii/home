@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Fira Code
+    family: Overpass Mono
 
   size: 12
 
@@ -15,7 +15,7 @@ font:
    y: 3
 
 import:
-  - ~/.config/alacritty/melange.yml
+  - ~/.config/alacritty/base16-twilight-256.yml
 
 key_bindings:
     - { key: F11, action: ToggleFullscreen }
