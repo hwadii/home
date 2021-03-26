@@ -15,6 +15,8 @@ map <C-l> <C-w>l
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader><leader> <c-^>
 nnoremap <silent> <C-/> :set hlsearch!<cr>
+nmap <A-[> :vertical resize -5<cr>
+nmap <A-]> :vertical resize +5<cr>
 
 " Gina
 nmap <leader>gs :Gina status -s<cr>

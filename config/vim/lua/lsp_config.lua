@@ -62,6 +62,12 @@ local custom_attach = function(_client, bufnr)
   end
 end
 
+lspconfig.tsserver.setup({
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+  end
+})
+
 lspconfig.pyls.setup({
   on_attach = custom_attach,
   enable = true,
@@ -109,7 +115,7 @@ lspconfig.efm.setup {
   }
 }
 
-local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'tsserver' }
+local servers = { 'solargraph', 'rls', 'vuels', 'jsonls' }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
