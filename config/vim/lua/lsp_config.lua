@@ -96,24 +96,24 @@ lspconfig.cssls.setup({
     capabilities = capabilities,
   })
 
-lspconfig.efm.setup {
-  on_attach = custom_attach,
-  default_config = {
-    cmd = {
-      "efm-langserver",
-      "-c",
-      [["$HOME/.config/efm-langserver/config.yaml"]]
-    }
-  },
-  filetypes = {
-    "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescript.tsx",
-    "typescriptreact", "vue", "yaml", "json", "html", "scss", "css", "markdown",
-  },
-  init_options = {
-    documentFormatting = true,
-    codeAction = true,
-  }
-}
+-- lspconfig.efm.setup {
+--   on_attach = custom_attach,
+--   default_config = {
+--     cmd = {
+--       "efm-langserver",
+--       "-c",
+--       [["$HOME/.config/efm-langserver/config.yaml"]]
+--     }
+--   },
+--   filetypes = {
+--     "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescript.tsx",
+--     "typescriptreact", "vue", "yaml", "json", "html", "scss", "css", "markdown",
+--   },
+--   init_options = {
+--     documentFormatting = false,
+--     codeAction = false,
+--   }
+-- }
 
 local servers = { 'solargraph', 'rls', 'vuels', 'jsonls' }
 for _, server in ipairs(servers) do
@@ -122,9 +122,9 @@ for _, server in ipairs(servers) do
   }
 end
 
-local sign_error = '>';
-local sign_warning = '~';
-local sign_information = '- ';
+local sign_error = '×';
+local sign_warning = '!';
+local sign_information = 'i';
 local sign_hint = 'H';
 
 vim.fn.sign_define('LspDiagnosticsSignError', {

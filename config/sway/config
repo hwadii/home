@@ -290,7 +290,7 @@ bar {
         status_command while etat; do sleep 1; done
         position top
         pango_markup disabled
-        font pango:IPAGothic 11, DejaVu Sans Mono 10
+        font pango:IPAGothic 10, DejaVu Sans Mono 9
         strip_workspace_numbers yes
         colors {
             background #1F1F1F
@@ -309,7 +309,7 @@ exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec wl-paste -t text --watch clipman store
 
 assign [class="^Slack$"] → workspace $ws7
-for_window [app_id="Alacritty"] border pixel 4
+assign [app_id="mpv"] → workspace $ws5
 for_window [app_id="gnome-calculator"] floating enable
 for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable

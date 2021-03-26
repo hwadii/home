@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Overpass Mono
+    family: Operator Mono Lig Book
 
   size: 12
 
@@ -15,7 +15,7 @@ font:
    y: 3
 
 import:
-  - ~/.config/alacritty/base16-twilight-256.yml
+  - ~/.config/alacritty/melange.yml
 
 key_bindings:
     - { key: F11, action: ToggleFullscreen }
