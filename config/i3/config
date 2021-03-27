@@ -44,6 +44,9 @@ bindsym $mod+minus exec playerctl previous
 bindsym $mod+equal exec playerctl next
 bindsym $mod+p exec playerctl play-pause
 
+bindsym $mod+Print exec maim -s ~/$(date +"Screenshot-%F-%T.png")
+bindsym Print exec maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym $mod+shift+Print exec maim -i $(xdotool getactivewindow) -s ~/$(date +'Screenshot-%F-%T.png')
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -213,4 +216,4 @@ bar {
 exec_always "setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:escape"
 exec "redshift -P -O 5500:3000 -m randr:screen=0,1"
 exec "xset r rate 400 30"
-exec "nitrogen --set-tiled ~/Images/Schale-blue.png"
+exec "nitrogen --set-tiled ~/artwork/Schale-blue.png"
