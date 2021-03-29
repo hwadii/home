@@ -1,2 +1,5 @@
---theme="zenburn"
+--theme="ansi-dark"
 --italic-text=always
+--color=always
+--pager="less -x 2 -FR"
+--tabs 2
