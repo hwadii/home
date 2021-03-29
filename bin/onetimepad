@@ -1,0 +1,11 @@
+#!/bin/sh
+password() {
+	head -n16 /dev/urandom | md5sum | cut -d' ' -f1
+}
+
+i=0
+while [ $i -lt 20 ]
+do
+	printf "%2d: %s\n" "$((i+1))" "$(password)"
+	: $((i++))
+done
