@@ -1,7 +1,0 @@
-yesterday=$1
-today=$2
-message="Hello everyone! \
-\n- yesterday: $yesterday
-\n- today: $today
-"
-echo $message
