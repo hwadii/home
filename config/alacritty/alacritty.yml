@@ -6,16 +6,17 @@ window:
 
 font:
   normal:
-    family: Operator Mono Book
+    family: M+ 1mn
 
   size: 12
 
   offset:
    x: 0
-   y: 3
+   y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
 
 import:
   - ~/.config/alacritty/melange.yml
-
-key_bindings:
-    - { key: F11, action: ToggleFullscreen }

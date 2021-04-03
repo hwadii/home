@@ -56,9 +56,9 @@ opt.number = true
 opt.pumheight = 20
 opt.redrawtime = 10000
 opt.report = 0
-opt.rnu = true
+opt.rnu = false
 opt.shiftwidth = 2
-opt.shortmess = 'c'
+opt.shortmess = 'filnxtToOFc'
 vim.api.nvim_set_option('showbreak', '↳ ')
 opt.signcolumn = 'yes'
 opt.smartcase = true -- make search case insensitive by default
@@ -92,7 +92,6 @@ vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
 vim.g.enable_folding = 1
 vim.g.LoupeCenterResults = 0
-vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 vim.g.grepprg = 'rg --vimgrep --no-heading '

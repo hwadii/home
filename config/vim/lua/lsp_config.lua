@@ -63,6 +63,7 @@ local custom_attach = function(_client, bufnr)
 end
 
 lspconfig.tsserver.setup({
+  init_options = {},
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
   end
@@ -96,26 +97,7 @@ lspconfig.cssls.setup({
     capabilities = capabilities,
   })
 
--- lspconfig.efm.setup {
---   on_attach = custom_attach,
---   default_config = {
---     cmd = {
---       "efm-langserver",
---       "-c",
---       [["$HOME/.config/efm-langserver/config.yaml"]]
---     }
---   },
---   filetypes = {
---     "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescript.tsx",
---     "typescriptreact", "vue", "yaml", "json", "html", "scss", "css", "markdown",
---   },
---   init_options = {
---     documentFormatting = false,
---     codeAction = false,
---   }
--- }
-
-local servers = { 'solargraph', 'rls', 'vuels', 'jsonls' }
+local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls' }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,

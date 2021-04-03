@@ -1,6 +1,7 @@
 [user]
   name = Wadii Hajji
   email = wadii@cardiologs.com
+  signingkey = DE79453757EEE689
 [pull]
   rebase = true
 [pager]

@@ -1,16 +1,18 @@
 skip_global_compinit=1
+export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export LANG="en_US.UTF-8"
 export SNAP="/snap"
-export CHROME_BIN="chromium"
-export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
+export CHROME_BIN="chromium-browser"
+export GPG_TTY=$(tty)
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SCREENSHOTS_DIR="$HOME/Images"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_LOCAL_BIN="$HOME/.local/bin"
+export XDG_DATA_DIR="$HOME/.local/share"
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
-export BROWSER="firefox-dev"
+export BROWSER="chromium-browser"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
@@ -41,3 +43,4 @@ if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
 fi
+export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"

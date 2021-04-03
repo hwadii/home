@@ -28,11 +28,6 @@ nmap <leader>gb :Gina blame<cr>
 nmap <leader>geb <Plug>(gina-blame-echo)
 nmap <leader>gv :<C-U>echom gina#component#repo#branch()<CR>
 
-" signify
-nnoremap <leader>hd :SignifyDiff<cr>
-nnoremap <leader>hp :SignifyHunkDiff<cr>
-nnoremap <leader>hu :SignifyHunkUndo<cr>
-
 " telescope
 nnoremap <C-p> <cmd>Telescope find_files<CR>
 nnoremap <Leader>pp <cmd>Telescope<cr>

@@ -18,14 +18,14 @@ fs() {
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
-fo() (
-  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+fo() {
+  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0)")
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+     nohup xdg-open "$file" &>/dev/null
   fi
-)
+}
 
 # fgit [FUZZY PATTERN] - Open the modified file with the default editor
 fgit() (
@@ -79,21 +79,5 @@ eval "$d"
 }
 
 function open_command() {
-  local open_cmd
-
-  # define the open command
-  case "$OSTYPE" in
-    darwin*)  open_cmd='open' ;;
-    cygwin*)  open_cmd='cygstart' ;;
-    linux*)   [[ "$(uname -r)" != *icrosoft* ]] && open_cmd='nohup xdg-open' || {
-                open_cmd='cmd.exe /c start ""'
-                [[ -e "$1" ]] && { 1="$(wslpath -w "${1:a}")" || return 1 }
-              } ;;
-    msys*)    open_cmd='start ""' ;;
-    *)        echo "Platform $OSTYPE not supported"
-              return 1
-              ;;
-  esac
-
-  ${=open_cmd} "$@" &>/dev/null
+  nohup xdg-open "$@" &>/dev/null
 }
