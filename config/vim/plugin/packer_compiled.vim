@@ -48,6 +48,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  melange = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/melange"
+  },
   neogit = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/neogit"
