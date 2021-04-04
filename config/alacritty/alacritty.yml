@@ -6,13 +6,13 @@ window:
 
 font:
   normal:
-    family: M+ 1mn
+    family: M+ 2m
 
   size: 12
 
   offset:
    x: 0
-   y: 0
+   y: -2
 
   glyph_offset:
     x: 0

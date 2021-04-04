@@ -63,7 +63,11 @@ local custom_attach = function(_client, bufnr)
 end
 
 lspconfig.tsserver.setup({
-  init_options = {},
+  init_options = {
+    preferences = {
+      importModuleSpecifier = "relative",
+    }
+  },
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
   end
