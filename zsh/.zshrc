@@ -48,18 +48,14 @@ source $HOME/.zinit/bin/zinit.zsh
 
 zinit for \
     light-mode  zdharma/fast-syntax-highlighting \
-                zdharma/history-search-multi-word
-
-zinit as"null" wait"3" from"gh-r" lucid for \
-  light-mode \
-    mv"fd* -> fd" @sharkdp/fd \
-    mv"exa* -> exa" ogham/exa \
+                zdharma/history-search-multi-word \
+                zsh-users/zsh-history-substring-search \
+                zsh-users/zsh-autosuggestions
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
-zinit ice from"gh-r" as"program" bpick="*amd64.rpm"
 zinit light cli/cli
 zinit snippet OMZL::git.zsh
+zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::fancy-ctrl-z
 zinit snippet OMZL::completion.zsh
@@ -98,6 +94,11 @@ if [[ -n "${terminfo[kcbt]}" ]]; then
   bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
   bindkey -M vicmd "${terminfo[kcbt]}" reverse-menu-complete
 fi
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[P' history-substring-search-up
+bindkey '^[N' history-substring-search-down
 bindkey "^Xa" _expand_alias
 autoload -U edit-command-line
 compinit -i

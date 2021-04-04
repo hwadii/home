@@ -1,3 +1,4 @@
+# News and blogs
 https://thoughtbot.com/blog/feed.xml
 https://thume.ca/atom.xml
 https://thesquareplanet.com/feed.xml
@@ -14,12 +15,12 @@ https://co1ncidence.github.io/index.xml
 https://fasterthanli.me/index.xml
 https://blog.burntsushi.net/index.xml
 https://michael.stapelberg.ch/feed.xml
-https://drewdevault.com/blog/index.xml
+https://drewdevault.com/blog/index.xml "Favorites"
 https://alexandrabac.blogspot.com/feeds/posts/default
 https://lobste.rs/t/linux,vim,systemd,vcs,unix,show.rss "Social" "~Lobsters" "nix" "nixos" "vim" "Linux" "Programs" "Dev"
-https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
+https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorites"
 https://blog.system76.com/rss "Hardware" "Corporate feed" "Linux"
-https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorite"
+https://debarshiray.wordpress.com/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorites"
 https://barthalion.blog/index.xml "GNOME" "Fedora" "Linux" "Blog" "Dev"
 https://blogs.gnome.org/alexl/feed/ "GNOME" "Fedora" "Linux" "Blog" "Dev"
 https://github.com/swaywm/sway/releases.atom "Releases" "Sway" "Linux"
@@ -43,7 +44,7 @@ https://github.com/hwadii.private.atom?token=AF3TXNVOYQYET6EFMH3ERLF6E4IQU "Card
 https://github.com/organizations/CardioLogs/hwadii.private.atom?token=AF3TXNUWKFQJL4NT43GZQ4N6E4IZM "Cardiologs"
 https://yaah.dev/feed.xml "Blog", "Rust"
 https://jae.moe/blog/index.xml "Blog"
-https://peppe.rs/index.xml "Blog", "Favorite"
+https://peppe.rs/index.xml "Blog", "Favorites"
 https://blog.sulami.xyz/atom.xml "Blog"
 https://this-week-in-rust.org/rss.xml "News", "Rust"
 https://danluu.com/atom.xml "Favorites"
@@ -56,3 +57,13 @@ https://adnano.co/atom.xml
 https://zverok.github.io/feed.xml
 https://www.getrevue.co/profile/theprincessxena.rss
 https://phaazon.net/blog/feed
+https://huonw.github.io/blog/atom.xml
+http://dtrace.org/blogs/bmc/feed/ "Favorites"
+https://blog.nightly.mozilla.org/feed/ "Firefox" "Dev"
+https://hacks.mozilla.org/feed/ "Firefox" "Dev"
+https://www.possiblerust.com/feed.xml "Rust"
+
+# Podcasts
+https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "Audio" "Media" "Linux"
+
+# vi:ft=conf

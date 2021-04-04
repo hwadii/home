@@ -219,4 +219,4 @@ bar {
 exec_always "setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:escape"
 exec "redshift -P -O 5500:3000 -m randr:screen=0,1"
 exec "xset r rate 400 30"
-exec "nitrogen --set-tiled ~/Images/Schale-blue.png"
+exec "nitrogen --set-scaled ~/Images/Schale-blue.png"

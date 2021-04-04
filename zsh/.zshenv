@@ -12,7 +12,7 @@ export XDG_DATA_DIR="$HOME/.local/share"
 export MONITOR="eDP-1"
 export EXTERN_HOME="DP-1"
 export EXTERN_WORK="HDMI-2"
-export BROWSER="chromium-browser"
+export BROWSER="firefox-dev"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export XDG_CONFIG_HOME="$HOME/.config"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
@@ -23,7 +23,7 @@ export RUSTUP_HOME="$HOME/.local/rustup"
 export DEFAULT_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
 export GEM_HOME="$RVM_DIR/gems/default"
 export GEM_PATH="$RVM_DIR/gems/default"
-export PATH="$XDG_LOCAL_BIN:$DEFAULT_PATH:$HOME/.config/nvm/versions/node/v15.8.0/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$XDG_LOCAL_BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$GEM_HOME/bin:$RVM_DIR/rubies/default/bin"
+export PATH="$XDG_LOCAL_BIN:$DEFAULT_PATH:$HOME/.config/nvm/versions/node/v14.16.0/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$XDG_LOCAL_BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$GEM_HOME/bin:$RVM_DIR/rubies/default/bin"
 export ZSH=$HOME/.oh-my-zsh
 export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
 export EDITOR=nvim
@@ -40,7 +40,7 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclu
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 [[ -f ~/.npmrc ]] && export $(grep npm ~/.npmrc | awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
 if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
+    eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets)
     export SSH_AUTH_SOCK
 fi
 export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"
