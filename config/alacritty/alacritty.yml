@@ -6,17 +6,17 @@ window:
 
 font:
   normal:
-    family: M+ 2m
+    family: Inconsolata
 
   size: 12
 
   offset:
    x: 0
-   y: -2
+   y: 3
 
   glyph_offset:
     x: 0
     y: 0
 
 import:
-  - ~/.config/alacritty/melange.yml
+  - ~/.config/alacritty/github_dark.yml
