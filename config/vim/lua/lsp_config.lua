@@ -25,7 +25,8 @@ require('compe').setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_attach = function(_client, bufnr)
+local custom_attach = function(client, bufnr)
+  client.resolved_capabilities.document_formatting = false
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -38,7 +39,19 @@ local custom_attach = function(_client, bufnr)
     }
   )
 
-  -- Override to add 
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = 'single'
+    }
+  )
+
+  vim.lsp.handlers["textDocument/signature_help"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+      border = 'single'
+    }
+  )
+
+  -- Override to add
   vim.lsp.handlers['textDocument/hover'] = function(_, method, result)
     vim.lsp.util.focusable_float(method, function()
       if not (result and result.contents) then
@@ -68,9 +81,7 @@ lspconfig.tsserver.setup({
       importModuleSpecifier = "relative",
     }
   },
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
+  on_attach = custom_attach,
 })
 
 lspconfig.pyls.setup({

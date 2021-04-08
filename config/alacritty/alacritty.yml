@@ -6,17 +6,17 @@ window:
 
 font:
   normal:
-    family: Inconsolata
+    family: mono
 
   size: 12
 
   offset:
    x: 0
-   y: 3
+   y: 2
 
   glyph_offset:
     x: 0
-    y: 0
+    y: 1
 
 import:
   - ~/.config/alacritty/github_dark.yml

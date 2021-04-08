@@ -10,7 +10,7 @@ pgrep -x ssh-agent > /dev/null || eval `ssh-agent`
 pgrep -x sxhkd > /dev/null || sxhkd &
 setxkbmap -layout us -variant altgr-intl -option compose:ralt
 xsetroot -cursor_name left_ptr &
-nitrogen --set-tiled ~/Images/Ashim DSilva.jpg
+nitrogen --set-tiled ~/pics/Ashim DSilva.jpg
 nm-applet &
 polybar --reload desk &
 /usr/libexec/geoclue-2.0/demos/agent &
