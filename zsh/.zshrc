@@ -65,7 +65,6 @@ zinit ice as'program'
 zinit as'completion' blockf for \
   light-mode \
     zsh-users/zsh-completions \
-    mv"completions.zsh -> _exa" ogham/exa \
     https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty \
     https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 
@@ -85,7 +84,7 @@ _fzf_compgen_dir() {
 }
 
 eval "$(zoxide init zsh)"
-[ -f $HOME/Documents/creds.zsh ] && source $HOME/Documents/creds.zsh
+[ -f $HOME/dox/creds.zsh ] && source $HOME/dox/creds.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
 
 bindkey "^R" history-search-multi-word

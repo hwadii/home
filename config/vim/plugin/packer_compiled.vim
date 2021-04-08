@@ -121,6 +121,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-ledger"
   },
+  ["vim-markdown"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
+  },
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
