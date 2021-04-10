@@ -93,6 +93,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/seoul256.vim"
   },
+  ["snippets.nvim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/snippets.nvim"
+  },
   ["splitjoin.vim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
@@ -128,10 +132,6 @@ _G.packer_plugins = {
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
-  },
-  ["vim-sleuth"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-sleuth"
   },
   ["vim-surround"] = {
     loaded = true,

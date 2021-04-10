@@ -17,8 +17,9 @@ require('compe').setup {
     path = true;
     buffer = true;
     nvim_lsp = true;
-    treesitter = true;
-    emoji = true;
+    treesitter = false;
+    snippets = true;
+    emoji = false;
   };
 }
 
