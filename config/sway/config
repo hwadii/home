@@ -1,3 +1,5 @@
+# vim:set ft=conf
+
 set $mod Mod4
 set $alt Mod1
 set $left h
@@ -5,19 +7,19 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $menu wofi --show drun | xargs swaymsg exec --
-set $menuall wofi --show run | xargs swaymsg exec --
+set $menu wofi --show drun | xargs swaymsg exec
+set $menuall wofi --show run | xargs swaymsg exec
 set $background ~/pics/Schale-grey.png
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
 set $font_family DejaVu Sans Mono
 set $font_size 11
 
@@ -48,9 +50,10 @@ default_border pixel
 hide_edge_borders smart
 smart_borders on
 
-input * {
-    xkb_layout "us"
-    xkb_options "caps:escape,compose:ralt"
+input type:keyboard {
+    xkb_layout us
+    xkb_variant altgr-intl
+    xkb_options caps:escape
     repeat_delay 400
     repeat_rate 30
 }
@@ -231,7 +234,6 @@ for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
-for_window [app_id=mpv] sticky enable
 for_window [floating] border csd
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill

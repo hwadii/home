@@ -28,9 +28,10 @@ require('gitsigns').setup {
 }
 require('neogit').setup({})
 
-vim.cmd 'colorscheme melange'
+vim.cmd 'colorscheme github_dark'
 opt.encoding = 'utf-8'
 opt.t_Co = '256'
+opt.magic = true
 opt.autoindent = true
 opt.background = 'dark'
 opt.briopt = 'shift:2'
@@ -91,7 +92,7 @@ end
 vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
 vim.g.enable_folding = 1
-vim.g.LoupeCenterResults = 0
+vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 vim.g.grepprg = 'rg --vimgrep --no-heading '
