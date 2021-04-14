@@ -15,6 +15,9 @@ require'nvim-treesitter.configs'.setup {
       ["TextYankPost"] = "IncSearch",
     }
   },
+  refactor = {
+    highlight_definitions = { enable = true },
+  };
   incremental_selection = {
     enable = true,
     keymaps = {

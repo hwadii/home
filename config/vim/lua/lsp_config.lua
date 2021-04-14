@@ -28,7 +28,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
       signs = {
@@ -42,7 +42,7 @@ local custom_attach = function(client, bufnr)
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, {
-      border = 'single'
+      border = 'solid'
     }
   )
 
@@ -95,7 +95,7 @@ lspconfig.pyls.setup({
     }
   },
 })
-local libpath = "/home/wadii/.config/nvm/versions/node/v14.15.4/lib/node_modules/typescript/lib"
+local libpath = "/home/wadii/.config/nvm/versions/node/v14.16.1/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "--ngProbeLocations", libpath}
 lspconfig.angularls.setup({
   on_attach = custom_attach,
