@@ -7,8 +7,8 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $menu wofi --show drun | xargs swaymsg exec
-set $menuall wofi --show run | xargs swaymsg exec
+set $menu wofi -i --show drun | xargs swaymsg exec
+set $menuall wofi -i --show run | xargs swaymsg exec
 set $background ~/pics/Schale-grey.png
 set $ws1 1
 set $ws2 2
@@ -30,8 +30,6 @@ font pango:DejaVu Sans Mono, IPA Gothic 8
 
 
 output * bg $background fill
-output HDMI-A-2 res 1920x1080 pos 0 0
-output eDP-1 res 1920x1080 pos 0 1080
 
 exec swayidle -w \
          timeout 600 'swaylock -f -c 000000' \
@@ -49,6 +47,7 @@ default_orientation auto
 default_border pixel
 hide_edge_borders smart
 smart_borders on
+titlebar_padding 3 3
 
 input type:keyboard {
     xkb_layout us
@@ -222,6 +221,8 @@ bar {
 }
 
 exec mako
+exec kanshi
+exec poweralertd
 exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
@@ -229,6 +230,7 @@ exec wl-paste -t text --watch clipman store
 
 assign [class="^Slack$"] → workspace $ws7
 assign [app_id="mpv"] → workspace $ws5
+assign [title="^Spotify Premium$"] → workspace $ws6
 for_window [app_id="gnome-calculator"] floating enable
 for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
@@ -236,4 +238,4 @@ for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
 for_window [floating] border csd
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
-for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+for_window [title="Firefox — Sharing Indicator"] kill
