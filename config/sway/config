@@ -79,6 +79,7 @@ bindsym Print exec grimshot --notify copy area
 bindsym Shift+Print exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
 bindsym Shift+Ctrl+Print exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
 bindsym $mod+Print exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+Shift+g exec record-selection
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
