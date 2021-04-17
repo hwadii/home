@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Julia Mono Latin
+    family: Oxygen Mono
 
   size: 12
 
@@ -16,7 +16,7 @@ font:
 
   glyph_offset:
     x: 0
-    y: 1
+    y: -2
 
 import:
   - ~/.config/alacritty/github_dark.yml
