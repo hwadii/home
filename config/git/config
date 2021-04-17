@@ -1,9 +1,15 @@
+[core]
+  editor = $EDITOR
 [user]
   name = Wadii Hajji
   email = wadii@cardiologs.com
   signingkey = DE79453757EEE689
+[fetch]
+  prune = true
 [pull]
   rebase = true
+[rebase]
+  autoStash = true
 [pager]
   branch = false
 [alias]
@@ -23,3 +29,5 @@
 [pretty]
   fzf = %C(auto)%h %s %C(cyan)%cr
   simple = %C(auto)%h %<(72,trunc)%s %C(blue)%aN%C(reset) %C(green)%cr%C(red)%d
+[branch]
+  sort=-committerdate
