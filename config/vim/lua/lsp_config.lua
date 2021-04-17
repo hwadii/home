@@ -25,10 +25,17 @@ require('compe').setup {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 
 local custom_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
-  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
       signs = {
@@ -83,6 +90,7 @@ lspconfig.tsserver.setup({
     }
   },
   on_attach = custom_attach,
+  capabilities = capabilities,
 })
 
 lspconfig.pyls.setup({
@@ -94,6 +102,7 @@ lspconfig.pyls.setup({
       live_mode = false
     }
   },
+  capabilities = capabilities,
 })
 local libpath = "/home/wadii/.config/nvm/versions/node/v14.16.1/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "--ngProbeLocations", libpath}
@@ -103,6 +112,7 @@ lspconfig.angularls.setup({
   on_new_config = function(new_config, new_root_dir)
     new_config.cmd = cmd
   end,
+  capabilities = capabilities,
 })
 lspconfig.html.setup({
     on_attach = custom_attach,
@@ -117,6 +127,7 @@ local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls' }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
+    capabilities = capabilities,
   }
 end
 
