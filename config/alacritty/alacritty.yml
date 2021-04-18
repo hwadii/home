@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Oxygen Mono
+    family: DejaVuSansMono Nerd Font
 
   size: 12
 
@@ -16,7 +16,7 @@ font:
 
   glyph_offset:
     x: 0
-    y: -2
+    y: 1
 
 import:
   - ~/.config/alacritty/github_dark.yml
