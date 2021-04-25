@@ -32,6 +32,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+default_orientation auto
+default_border pixel
+hide_edge_borders smart
+
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
@@ -218,5 +222,14 @@ bar {
 }
 exec_always "setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:escape"
 exec "redshift -P -O 5500:3000 -m randr:screen=0,1"
-exec "xset r rate 400 30"
-exec "nitrogen --set-scaled ~/pics/Schale-blue.png"
+exec_always "xset r rate 400 30"
+exec_always "nitrogen --set-scaled ~/pics/Schale-grey.png"
+
+
+assign [class="^Slack$"] → workspace $ws7
+assign [title="^Spotify Premium$"] → workspace $ws6
+for_window [title="Slack Call Minipanel"] floating enable
+for_window [title="Firefox - Sharing Indicator"] floating enable
+for_window [floating] border csd
+for_window [title="Picture-in-Picture"] floating enable, sticky enable, border none
+for_window [title="Firefox — Sharing Indicator"] kill
