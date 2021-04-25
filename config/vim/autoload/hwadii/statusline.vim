@@ -38,7 +38,7 @@ function! hwadii#statusline#branch() abort
     if (len(l:branch) > 15)
       let l:branch = strpart(l:branch, 0, 12) . '>'
     endif
-    return l:branch . " "
+    return l:branch . " "
   else
     return l:branch
 endfunction
