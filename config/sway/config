@@ -229,6 +229,7 @@ exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec wl-paste -t text --watch clipman store
+exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
 
 assign [class="^Slack$"] → workspace $ws7
 assign [app_id="mpv"] → workspace $ws5
