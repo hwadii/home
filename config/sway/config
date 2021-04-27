@@ -52,9 +52,16 @@ titlebar_padding 3 3
 input type:keyboard {
     xkb_layout us
     xkb_variant altgr-intl
-    xkb_options caps:escape
     repeat_delay 400
     repeat_rate 30
+}
+
+input "Razer Razer DeathAdder Chroma" {
+  accel_profile flat
+}
+
+input "AT Translated Set 2 keyboard" {
+  xkb_options caps:escape
 }
 
 bindsym $mod+Return exec $term
@@ -73,7 +80,7 @@ bindsym $mod+Shift+s exec systemctl suspend
 
 bindsym $mod+Shift+r reload
 
-bindsym $mod+Delete exec makoctl dismiss
+bindsym $mod+BackSpace exec makoctl dismiss
 
 bindsym Print exec grimshot --notify copy area
 bindsym Shift+Print exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
@@ -237,7 +244,8 @@ assign [title="^Spotify Premium$"] → workspace $ws6
 for_window [app_id="gnome-calculator"] floating enable
 for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
-for_window [title="Firefox - Sharing Indicator"] floating enable
+for_window [title="Indicateur de partage"] floating enable
+for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
 for_window [floating] border csd
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
