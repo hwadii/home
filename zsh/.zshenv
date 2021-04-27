@@ -40,8 +40,5 @@ export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 [[ -f ~/.npmrc ]] && export $(grep npm ~/.npmrc | awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets)
-    export SSH_AUTH_SOCK
-fi
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"
