@@ -54,14 +54,11 @@ input type:keyboard {
     xkb_variant altgr-intl
     repeat_delay 400
     repeat_rate 30
+    xkb_options caps:escape
 }
 
 input "Razer Razer DeathAdder Chroma" {
   accel_profile flat
-}
-
-input "AT Translated Set 2 keyboard" {
-  xkb_options caps:escape
 }
 
 bindsym $mod+Return exec $term
