@@ -12,6 +12,41 @@ packadd packer.nvim
 try
 
 lua << END
+  local time
+  local profile_info
+  local should_profile = false
+  if should_profile then
+    local hrtime = vim.loop.hrtime
+    profile_info = {}
+    time = function(chunk, start)
+      if start then
+        profile_info[chunk] = hrtime()
+      else
+        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
+      end
+    end
+  else
+    time = function(chunk, start) end
+  end
+  
+local function save_profiles(threshold)
+  local sorted_times = {}
+  for chunk_name, time_taken in pairs(profile_info) do
+    sorted_times[#sorted_times + 1] = {chunk_name, time_taken}
+  end
+  table.sort(sorted_times, function(a, b) return a[2] > b[2] end)
+  local results = {}
+  for i, elem in ipairs(sorted_times) do
+    if not threshold or threshold and elem[2] > threshold then
+      results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
+    end
+  end
+
+  _G._packer = _G._packer or {}
+  _G._packer.profile_output = results
+end
+
+time("Luarocks path setup", true)
 local package_path_str = "/home/wadii/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/wadii/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/wadii/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/wadii/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
 local install_cpath_pattern = "/home/wadii/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
@@ -22,6 +57,8 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
   package.cpath = package.cpath .. ';' .. install_cpath_pattern
 end
 
+time("Luarocks path setup", false)
+time("try_loadstring definition", true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
@@ -31,6 +68,8 @@ local function try_loadstring(s, component, name)
   return result
 end
 
+time("try_loadstring definition", false)
+time("Defining packer_plugins", true)
 _G.packer_plugins = {
   ["auto-pairs"] = {
     loaded = true,
@@ -53,10 +92,12 @@ _G.packer_plugins = {
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/melange"
   },
   neogit = {
+    config = { "\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vneogit\frequire\0" },
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nvim-colorizer.lua"] = {
+    config = { "\27LJ\2\nI\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\nnames\1\nsetup\14colorizer\frequire\0" },
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
@@ -142,6 +183,17 @@ _G.packer_plugins = {
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-unimpaired"
   }
 }
+
+time("Defining packer_plugins", false)
+-- Config for: nvim-colorizer.lua
+time("Config for nvim-colorizer.lua", true)
+try_loadstring("\27LJ\2\nI\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\nnames\1\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
+time("Config for nvim-colorizer.lua", false)
+-- Config for: neogit
+time("Config for neogit", true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vneogit\frequire\0", "config", "neogit")
+time("Config for neogit", false)
+if should_profile then save_profiles() end
 
 END
 
