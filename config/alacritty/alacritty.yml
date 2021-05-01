@@ -20,3 +20,6 @@ font:
 
 import:
   - ~/.config/alacritty/github_dark.yml
+
+mouse:
+  hide_when_typing: true
