@@ -12,9 +12,12 @@ return require('packer').startup(function()
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
   use 'neovim/nvim-lspconfig'
-  use 'TimUntersberger/neogit'
+  use { 'TimUntersberger/neogit', config = function() require('neogit').setup() end }
   use 'savq/melange'
-  use 'norcalli/nvim-colorizer.lua'
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function() require('colorizer').setup({}, { names = false }) end,
+  }
   use 'hrsh7th/nvim-compe'
   use 'norcalli/snippets.nvim'
   use 'lewis6991/github_dark.nvim'
@@ -32,7 +35,7 @@ return require('packer').startup(function()
       {'nvim-telescope/telescope-fzy-native.nvim'}
     }
   }
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'plasticboy/vim-markdown'
   use 'tpope/vim-abolish'
   use 'tpope/vim-commentary'
