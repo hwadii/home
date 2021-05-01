@@ -2,21 +2,17 @@ require('globals')
 require('lsp_config')
 local fn = vim.fn
 local opt = vim.opt
+local execute = vim.api.nvim_command
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system(string.format(
-      'git clone %s %s',
-      'https://github.com/wbthomason/packer.nvim',
-      install_path
-    ))
-  fn.system('packadd packer.nvim')
+  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  execute 'packadd packer.nvim'
 end
 
 opt.termguicolors = true
 require('plugins')
-require 'colorizer'.setup ({}, { names = false })
 require('gitsigns').setup {
   signs = {
     add          = {hl = 'DiffAdd'   , text = ' ', numhl='GitSignsAddNr'},
@@ -26,7 +22,6 @@ require('gitsigns').setup {
     changedelete = {hl = 'DiffChange', text = ' ', numhl='GitSignsChangeNr'},
   }
 }
-require('neogit').setup({})
 
 vim.cmd 'colorscheme github_dark'
 opt.encoding = 'utf-8'
@@ -92,7 +87,8 @@ end
 vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
 vim.g.enable_folding = 1
-vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
+execute [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
+execute [[autocmd BufWritePost plugins.lua PackerCompile]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 vim.g.grepprg = 'rg --vimgrep --no-heading '
