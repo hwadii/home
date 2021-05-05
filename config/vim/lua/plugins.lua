@@ -1,13 +1,14 @@
 vim.cmd [[packadd packer.nvim]]
+local packer = require('packer')
+local util = require('packer.util')
 
-return require('packer').startup(function()
+return packer.startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   use 'AndrewRadev/splitjoin.vim'
   use 'airblade/vim-rooter'
   use 'junegunn/seoul256.vim'
   use 'axvr/org.vim'
-  use 'justinmk/vim-dirvish'
   use 'jiangmiao/auto-pairs'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
@@ -41,4 +42,10 @@ return require('packer').startup(function()
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
-end)
+end, {
+  display = {
+    open_fn = function()
+      return util.float({ border = 'single' })
+    end
+  }
+})

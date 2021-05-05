@@ -158,10 +158,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
-  ["vim-dirvish"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-dirvish"
-  },
   ["vim-ledger"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-ledger"
