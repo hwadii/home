@@ -243,6 +243,7 @@ for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="Indicateur de partage"] floating enable
 for_window [title="À propos de Firefox Developer Edition"] floating enable
+for_window [title="Zoom Cloud Meetings"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
 for_window [floating] border csd
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
