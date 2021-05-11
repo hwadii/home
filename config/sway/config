@@ -7,8 +7,9 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $menu wofi -i --show drun | xargs swaymsg exec
-set $menuall wofi -i --show run | xargs swaymsg exec
+set $menu wofi -i --show drun | xargs swaymsg exec --
+set $menuall wofi -i --show run | xargs swaymsg exec --
+set $bemenu bemenu-run -p '>' --hf '#285577' --tf '#285577' | xargs swaymsg exec --
 set $background ~/pics/Schale-grey.png
 set $ws1 1
 set $ws2 2
@@ -20,13 +21,13 @@ set $ws7 7
 set $ws8 8
 set $ws9 9
 set $ws10 10
-set $font_family DejaVu Sans Mono
+set $font_family mono
 set $font_size 11
 
 set $nag exec swaynagmode
 swaynag_command \$nag -R
 
-font pango:DejaVu Sans Mono, IPA Gothic 8
+font pango:$font_family, IPA Gothic 8
 
 
 output * bg $background fill
@@ -65,7 +66,7 @@ bindsym $mod+Return exec $term
 
 bindsym $mod+w kill
 
-bindsym $mod+d exec $menu
+bindsym $mod+d exec $bemenu
 bindsym $mod+Shift+d exec $menuall
 
 floating_modifier $mod normal
@@ -187,7 +188,7 @@ mode notifications {
     bindsym Shift+d exec makoctl dismiss -a; mode default
 }
 
-bindsym $mod+semicolon exec clipman pick -t wofi
+bindsym $mod+semicolon exec clipman pick -t bemenu
 bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
     swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
@@ -214,7 +215,7 @@ bar {
         status_command while etat; do sleep 1; done
         position top
         pango_markup disabled
-        font pango:IPAGothic 10, FontAwesome 9, DejaVu Sans Mono 9
+        font pango:IPAGothic 10, FontAwesome 9, $font_family 9
         strip_workspace_numbers yes
         colors {
             background #1F1F1F
