@@ -12,9 +12,9 @@ return packer.startup(function()
   use 'jiangmiao/auto-pairs'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
+  use 'justinmk/vim-dirvish'
   use 'neovim/nvim-lspconfig'
   use { 'TimUntersberger/neogit', config = function() require('neogit').setup() end }
-  use 'savq/melange'
   use {
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup({}, { names = false }) end,

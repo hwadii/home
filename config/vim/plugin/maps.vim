@@ -39,7 +39,6 @@ nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap - <cmd>Telescope file_browser<cr>
 
 " Ledger
 nnoremap <silent> glf :<C-U>%LedgerAlign<CR>
@@ -84,11 +83,3 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 
 " term
 tnoremap <M-[> <C-\><C-n>
-
-" vsnip
-" imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-" smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-" imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-" smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
