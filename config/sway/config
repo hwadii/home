@@ -9,7 +9,7 @@ set $right l
 set $term alacritty
 set $menu wofi -i --show drun | xargs swaymsg exec --
 set $menuall wofi -i --show run | xargs swaymsg exec --
-set $bemenuargs -p '>' --hf '#285577' --tf '#285577'
+set $bemenuargs -p '>' --hf '#89ddff' --tf '#89ddff'
 set $bemenu bemenu $bemenuargs | xargs swaymsg exec --
 set $bemenurun bemenu-run $bemenuargs | xargs swaymsg exec --
 set $background ~/pics/Schale-grey.png
