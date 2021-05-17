@@ -52,16 +52,24 @@ hide_edge_borders smart
 smart_borders on
 titlebar_padding 3 3
 
-input type:keyboard {
-    xkb_layout us
-    xkb_variant altgr-intl
-    repeat_delay 400
-    repeat_rate 30
-    xkb_options caps:escape
+input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_layout us
+  xkb_variant altgr-intl
+  repeat_delay 400
+  repeat_rate 30
+  xkb_options caps:escape
 }
 
-input "Razer Razer DeathAdder Chroma" {
+input "1278:32:PFU_Limited_HHKB-Classic_Keyboard" {
+  xkb_layout us
+  xkb_variant altgr-intl
+  repeat_delay 400
+  repeat_rate 30
+}
+
+input "1133:49295:Logitech_G403_HERO_Gaming_Mouse" {
   accel_profile flat
+  pointer_accel -0.1
 }
 
 bindsym $mod+Return exec $term
@@ -205,6 +213,8 @@ bindsym $mod+minus exec playerctl previous
 bindsym $mod+equal exec playerctl next
 bindsym $mod+p exec playerctl play-pause
 
+seat seat0 xcursor_theme "Adwaita"
+
 set $blue #285577
 set $gray #282828
 set $red #900000
@@ -237,6 +247,7 @@ exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
 exec wl-paste -t text --watch clipman store
 exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
+exec "systemctl --user import-environment"
 
 assign [class="^Slack$"] → workspace $ws7
 assign [app_id="mpv"] → workspace $ws5
