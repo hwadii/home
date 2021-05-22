@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+IFS=: read -ra selected < <(
+    rg --line-number --no-heading "${*:-}" |
+    fzf --ansi \
+    --delimiter : \
+    --preview 'bat -pp --color=always {1} --highlight-line {2}' \
+    --preview-window 'right,60%,border-bottom,+{2}+3/3,~3'
+    )
+[ -n "${selected[0]}" ] && ${EDITOR:-nvim} "${selected[0]}" "+${selected[1]}"

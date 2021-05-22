@@ -6,15 +6,6 @@ fe() (
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
-# fs [FUZZY PATTERN] - Open the selected file with the default editor in a
-# split
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-fs() {
-  IFS=$'\n' files=($(fzf --query="$1" -d 50% --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
-
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
