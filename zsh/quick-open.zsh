@@ -2,7 +2,7 @@
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fe() (
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview-window '~1' --preview "bat --style header,changes --color=always --decorations=always {} | head -500"))
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --preview-window '~1' --preview "bat --style header,changes --color=always --decorations=always {} | head -500"))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
@@ -11,7 +11,7 @@ fe() (
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fs() {
-  IFS=$'\n' files=($(fzf-tmux --query="$1" -d 50% --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --query="$1" -d 50% --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
@@ -19,17 +19,17 @@ fs() {
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
 fo() {
-  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0)")
-  key=$(head -1 <<< "$out")
+  set -e
+  IFS=$'\n' out=("$(fzf --query="$1" --exit-0)")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-     nohup xdg-open "$file" &>/dev/null
+    nohup xdg-open "$file" &>/dev/null
   fi
 }
 
 # fgit [FUZZY PATTERN] - Open the modified file with the default editor
 fgit() (
-  IFS=$'\n' files=($(git status --short | awk '{ print $2 }' | fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"))
+  IFS=$'\n' files=($(git status --short | awk '{ print $2 }' | fzf --query="$1" --multi --select-1 --exit-0 --preview "bat --style numbers,changes --color=always --decorations=always {} | head -500"))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
