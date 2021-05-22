@@ -29,7 +29,6 @@ require('compe').setup {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
     'documentation',
@@ -108,7 +107,7 @@ lspconfig.pyls.setup({
   },
   capabilities = capabilities,
 })
-local libpath = "/home/wadii/.config/nvm/versions/node/v14.16.1/lib/node_modules/typescript/lib"
+local libpath = "/home/wadii/.config/nvm/versions/node/v14.17.0/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "--ngProbeLocations", libpath}
 lspconfig.angularls.setup({
   on_attach = custom_attach,
@@ -127,7 +126,7 @@ lspconfig.cssls.setup({
     capabilities = capabilities,
   })
 
-local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls' }
+local servers = { 'solargraph', 'efm', 'rls', 'vuels', 'jsonls', 'bashls' }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
