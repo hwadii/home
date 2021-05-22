@@ -1,3 +1,10 @@
 #!/bin/bash
 
-echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin posuere felis. Integer at bibendum nibh, a sollicitudin augue. Praesent non ultricies urna, eu sollicitudin leo. Nullam at turpis id nisl suscipit euismod sed sit amet neque. Aliquam consequat, tellus eget condimentum aliquam, risus nisi vulputate sapien, et ullamcorper dui tortor semper lectus. Aliquam erat volutpat. Curabitur non sapien ipsum. Cras imperdiet varius fermentum."
+cat <<LOREM
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin
+posuere felis. Integer at bibendum nibh, a sollicitudin augue. Praesent non
+ultricies urna, eu sollicitudin leo. Nullam at turpis id nisl suscipit euismod
+sed sit amet neque. Aliquam consequat, tellus eget condimentum aliquam, risus
+nisi vulputate sapien, et ullamcorper dui tortor semper lectus. Aliquam erat
+volutpat. Curabitur non sapien ipsum. Cras imperdiet varius fermentum.
+LOREM
