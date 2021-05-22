@@ -7,13 +7,7 @@ hi User4 guifg=#DFDEBD
 hi User5 gui=bold guifg=#DFDEBD
 hi User6 gui=bold guifg=#252525 guibg=#cccccc
 hi User7 gui=bold guifg=#cccccc guibg=#252525
-
-hi Todo gui=bold,italic cterm=bold,italic
-hi Comment gui=italic cterm=italic
-hi htmlItalic gui=italic cterm=italic
-hi htmlBold gui=bold cterm=bold
-hi LspDiagnosticsUnderlineError cterm=underline, gui=underline
-hi LspDiagnosticsUnderlineWarning cterm=underline, gui=underline
-hi LspDiagnosticsUnderlineInformation cterm=underline, gui=underline
-hi LspDiagnosticsUnderlineHint cterm=underline, gui=underline
-hi String gui=italic term=italic
+hi LspDiagnosticsUnderlineError guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineWarning guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineInformation guifg=NONE ctermfg=NONE cterm=underline gui=underline
+hi LspDiagnosticsUnderlineHint guifg=NONE ctermfg=NONE cterm=underline gui=underline
