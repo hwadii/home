@@ -38,7 +38,7 @@ function! hwadii#statusline#branch() abort
     if (len(l:branch) > 15)
       let l:branch = strpart(l:branch, 0, 12) . '>'
     endif
-    return l:branch . " "
+    return l:branch
   else
     return l:branch
 endfunction
@@ -77,13 +77,10 @@ function! hwadii#statusline#active() abort
   setlocal statusline+=%{hwadii#statusline#branch()}
   setlocal statusline+=%*
   setlocal statusline+=\ 
-  setlocal statusline+=%7*
-  setlocal statusline+=%*
-  setlocal statusline+=%6*
+  setlocal statusline+=•
   setlocal statusline+=%{printf('\ ℓ\ %02d/%02d',line('.'),line('$'))} " line number
   setlocal statusline+=\ \ 
   setlocal statusline+=%{printf('c\ %02d/%02d\ ',col('.'),col('$'))} " col number
-  setlocal statusline+=%*
   if &cursorline == 0
     setlocal cursorline
   endif

@@ -6,7 +6,7 @@ set $bemenu bemenu -p '>' --hf '#89ddff' --tf '#89ddff'
 set $bemenurun bemenu-run -p '>' --hf '#89ddff' --tf '#89ddff'
 set $font_family mono
 
-font pango:$font_family 9
+font pango:$font_family 8
 
 default_orientation auto
 default_border pixel
