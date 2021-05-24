@@ -126,7 +126,7 @@ lspconfig.cssls.setup({
     capabilities = capabilities,
   })
 
-local servers = { 'solargraph', 'efm', 'rls', 'vuels', 'jsonls', 'bashls' }
+local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls' }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
