@@ -1,4 +1,3 @@
-require('globals')
 require('lsp_config')
 local fn = vim.fn
 local opt = vim.opt
@@ -25,7 +24,6 @@ require('gitsigns').setup {
 
 vim.cmd 'colorscheme github_dark'
 opt.encoding = 'utf-8'
-opt.t_Co = '256'
 opt.magic = true
 opt.autoindent = true
 opt.background = 'dark'
@@ -55,14 +53,13 @@ opt.report = 0
 opt.rnu = false
 opt.shiftwidth = 2
 opt.shortmess = 'filnxtToOFc'
-vim.api.nvim_set_option('showbreak', '↳ ')
+opt.showbreak = '↳ '
 opt.signcolumn = 'yes'
 opt.smartcase = true -- make search case insensitive by default
 opt.smartindent = true
 opt.softtabstop = 2
 opt.splitbelow = true  -- Splitting a window will put the new window below the current
 opt.splitright = true  -- Splitting a window will put the new window right of the current
-opt.t_ut = ''
 opt.tabstop = 2
 opt.undofile = true        -- Persistent undo
 opt.undolevels = 1000      -- Maximum number of changes that can be undone
@@ -70,8 +67,7 @@ opt.undoreload = 10000     -- Maximum number lines to save for undo on a buffer 
 opt.updatetime = 300
 opt.wildmenu = true
 opt.wildoptions = 'pum'
-opt.wildignore = '__pycache__'
-opt.wildignore = opt.wildignore + { '*.o' , '*~', '*.pyc', '*pycache*' }
+opt.wildignore = { '__pycache__', '*.o', '*~', '*.pyc', '*pycache*' }
 opt.winminheight = 0
 opt.pumblend = 17
 opt.scrolloff = 3
