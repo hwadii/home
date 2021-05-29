@@ -2,8 +2,14 @@ lua << EOF
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
+    sorting_strategy = "ascending",
+    layout_strategy = "center",
+    results_title = false,
+    preview_title = "Preview",
+    preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+    width = 80,
+    results_height = 15,
     scroll_strategy = 'cycle',
-    prompt_position = 'top',
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     mappings = {
       i = {
@@ -18,7 +24,7 @@ require('telescope').setup{
         ["<esc>"] = actions.close
       },
     },
-  }
+  },
 }
 require('telescope').load_extension('fzy_native')
 

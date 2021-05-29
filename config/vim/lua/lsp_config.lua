@@ -37,6 +37,46 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true})
+
 local custom_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -49,41 +89,6 @@ local custom_attach = function(client, bufnr)
       virtual_text = { spacing = 2, prefix = '·' },
     }
   )
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-      border = 'solid'
-    }
-  )
-
-  vim.lsp.handlers["textDocument/signature_help"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, {
-      border = 'single'
-    }
-  )
-
-  -- Override to add
-  vim.lsp.handlers['textDocument/hover'] = function(_, method, result)
-    vim.lsp.util.focusable_float(method, function()
-      if not (result and result.contents) then
-        -- return { 'No information available' }
-        return
-      end
-      local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-      markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
-      if vim.tbl_isempty(markdown_lines) then
-        -- return { 'No information available' }
-        return
-      end
-      local bufnr, winnr = vim.lsp.util.fancy_floating_markdown(markdown_lines, {
-        pad_left = 1; pad_right = 1;
-        max_width = 120
-      })
-      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>wincmd p<CR>', {noremap = true, silent = true})
-      vim.lsp.util.close_preview_autocmd({"CursorMoved", "BufHidden", "InsertCharPre"}, winnr)
-      return bufnr, winnr
-    end)
-  end
 end
 
 lspconfig.tsserver.setup({
