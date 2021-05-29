@@ -87,8 +87,6 @@ bindsym $mod+Shift+s exec systemctl suspend
 
 bindsym $mod+Shift+r reload
 
-bindsym $mod+BackSpace exec makoctl dismiss
-
 bindsym Print exec grimshot --notify copy area
 bindsym Shift+Print exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
 bindsym Shift+Ctrl+Print exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
@@ -195,6 +193,7 @@ mode notifications {
     bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
     bindsym d exec makoctl dismiss; mode default
     bindsym Shift+d exec makoctl dismiss -a; mode default
+    bindsym s exec makoctl restore; mode default
 }
 
 bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs"
