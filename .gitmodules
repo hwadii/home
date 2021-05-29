@@ -1,0 +1,3 @@
+[submodule "config/tmux/tmux-prefix-highlight"]
+	path = config/tmux/tmux-prefix-highlight
+	url = git@github.com:tmux-plugins/tmux-prefix-highlight.git
