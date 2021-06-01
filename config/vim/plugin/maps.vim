@@ -6,15 +6,9 @@ inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
 vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
 inoremap <silent><C-d> <Del>
-inoremap <C-c> <esc>
 nnoremap <silent><esc> :noh<return><esc>
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader><leader> <c-^>
-nnoremap <silent> <C-/> :set hlsearch!<cr>
+nnoremap <C-/> :set hlsearch!<cr>
 nmap <A-[> :vertical resize -5<cr>
 nmap <A-]> :vertical resize +5<cr>
 
@@ -39,9 +33,6 @@ nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
-
-" Ledger
-nnoremap <silent> glf :<C-U>%LedgerAlign<CR>
 
 " tabs
 nnoremap <silent> [t gT
