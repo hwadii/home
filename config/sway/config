@@ -193,7 +193,7 @@ mode notifications {
     bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
     bindsym d exec makoctl dismiss; mode default
     bindsym Shift+d exec makoctl dismiss -a; mode default
-    bindsym s exec makoctl restore; mode default
+    bindsym s exec makoctl restore
 }
 
 bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs"
@@ -222,7 +222,7 @@ client.focused_inactive $gray $gray #ffffff $gray $gray
 focus_on_window_activation urgent
 
 bar {
-        status_command etat
+        status_command i3status-rs
         position top
         font pango:IPAGothic 10, FontAwesome 9, $font_family 9
         separator_symbol ""
@@ -238,7 +238,7 @@ bar {
 }
 
 exec mako
-exec kanshi
+exec_always kanshi
 exec poweralertd
 exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
