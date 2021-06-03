@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# wraps bc
+# usage: bcalc 1+1
+# > 2
+echo "$*" | bc -l
