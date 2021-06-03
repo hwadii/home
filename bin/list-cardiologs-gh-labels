@@ -1,0 +1,5 @@
+#!/bin/sh
+
+repo=${1:-"front"}
+
+gh api repos/CardioLogs/$repo/labels --paginate | jq -r '.[].name' | fzf | awk '{ print $1 }'
