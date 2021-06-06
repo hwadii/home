@@ -1,3 +1,4 @@
 bundle
 plug.vim
 config/weechat/logs/
+weechat.log
