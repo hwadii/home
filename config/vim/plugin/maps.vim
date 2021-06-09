@@ -32,6 +32,7 @@ nnoremap <Leader>h <cmd>Telescope oldfiles<cr>
 nnoremap <Leader>c <cmd>Telescope git_commits<cr>
 nnoremap <Leader>o <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <Leader>r <cmd>Telescope lsp_references<cr>
+nnoremap <silent>ga <cmd>Telescope lsp_code_actions<cr>
 nnoremap <C-s> <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 " tabs
@@ -49,7 +50,6 @@ nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gws         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gR  <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> ga  <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ]g <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <silent> [g <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
 inoremap <silent> <c-]> <cmd>lua vim.lsp.buf.signature_help()<CR>

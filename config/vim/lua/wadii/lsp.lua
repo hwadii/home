@@ -139,27 +139,22 @@ for _, server in ipairs(servers) do
   }
 end
 
-local sign_error = '×';
-local sign_warning = '!';
-local sign_information = 'i';
-local sign_hint = 'H';
-
 vim.fn.sign_define('LspDiagnosticsSignError', {
-  text = sign_error,
+  text = '×',
   texthl = 'LspDiagnosticsSignError'
 })
 
 vim.fn.sign_define('LspDiagnosticsSignWarning', {
-  text = sign_warning,
+  text = '!',
   texthl = 'LspDiagnosticsSignWarning'
 })
 
 vim.fn.sign_define('LspDiagnosticsSignInformation', {
-  text = sign_information,
+  text = 'i',
   texthl = 'LspDiagnosticsSignInformation'
 })
 
 vim.fn.sign_define('LspDiagnosticsSignHint', {
-  text = sign_hint,
+  text = 'H',
   texthl = 'LspDiagnosticsSignHint'
 })
