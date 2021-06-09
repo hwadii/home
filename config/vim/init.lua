@@ -1,4 +1,7 @@
-require('lsp_config')
+require('wadii.lsp')
+require('wadii.snips')
+require('wadii.telescope')
+require('plugins')
 local fn = vim.fn
 local opt = vim.opt
 local execute = vim.api.nvim_command
@@ -11,7 +14,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 opt.termguicolors = true
-require('plugins')
 require('gitsigns').setup {
   signs = {
     add          = {hl = 'DiffAdd'   , text = ' ', numhl='GitSignsAddNr'},

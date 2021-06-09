@@ -62,8 +62,9 @@ time("try_loadstring definition", true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
@@ -168,6 +169,10 @@ _G.packer_plugins = {
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
+  },
+  ["vim-sleuth"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-sleuth"
   },
   ["vim-surround"] = {
     loaded = true,
