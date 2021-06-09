@@ -42,6 +42,7 @@ return packer.startup(function()
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
+  use 'tpope/vim-sleuth'
 end, {
   display = {
     open_fn = function()
