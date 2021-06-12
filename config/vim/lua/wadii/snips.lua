@@ -1,7 +1,7 @@
 local s = require('snippets')
 local U = require('snippets.utils')
 
-s.use_suggested_mappings()
+-- s.use_suggested_mappings()
 
 s.snippets = {
   _global = {
