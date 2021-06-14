@@ -23,7 +23,7 @@ nmap <leader>geb <Plug>(gina-blame-echo)
 nmap <leader>gv :<C-U>echom gina#component#repo#branch()<CR>
 
 " telescope
-nnoremap <C-p> <cmd>Telescope find_files<CR>
+nnoremap <C-p> <cmd>Telescope find_files find_command=fd,--hidden,-E.git,-tf<CR>
 nnoremap <Leader>pp <cmd>Telescope<cr>
 nnoremap <Leader>s <cmd>Telescope live_grep<cr>
 nnoremap <Leader><Leader>s <cmd>Telescope grep_string<cr>
