@@ -31,3 +31,5 @@
   simple = %C(auto)%h %<(72,trunc)%s %C(blue)%aN%C(reset) %C(green)%cr%C(red)%d
 [branch]
   sort=-committerdate
+[absorb]
+  maxStack = 20
