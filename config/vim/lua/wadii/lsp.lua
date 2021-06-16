@@ -15,14 +15,14 @@ require('compe').setup {
   documentation = true;
   source = {
     path = true;
-    buffer = false;
-    calc = true;
+    buffer = true;
+    calc = false;
     vsnip = false;
     nvim_lsp = true;
     nvim_lua = false;
-    spell = true;
+    spell = false;
     tags = false;
-    snippets_nvim = true;
+    snippets_nvim = false;
     treesitter = false;
   };
 }
