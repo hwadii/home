@@ -1,5 +1,5 @@
 require('wadii.lsp')
-require('wadii.snips')
+require('wadii.snippets')
 require('wadii.telescope')
 require('plugins')
 local fn = vim.fn
