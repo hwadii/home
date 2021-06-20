@@ -54,28 +54,22 @@ endfunction
 
 function! hwadii#statusline#active() abort
   setlocal statusline=
-  setlocal statusline+=%1*   "italic
-  setlocal statusline+=%*   " Reset highlight group.
   setlocal statusline+=🌸
   setlocal statusline+=\ 
   setlocal statusline+=%<    " Truncation point
   setlocal statusline+=%{hwadii#statusline#fileprefix()} " Relative path
-  setlocal statusline+=%5*
+  setlocal statusline+=%1*
   setlocal statusline+=%t   " filename
   setlocal statusline+=%*
   setlocal statusline+=\ 
-  setlocal statusline+=%4*
   setlocal statusline+=%m  " modified
   setlocal statusline+=%y   " filetype
   setlocal statusline+=\ 
-  setlocal statusline+=%*
   setlocal statusline+=%=
-  setlocal statusline+=%4*
   setlocal statusline+=%r   " readonly
   setlocal statusline+=%{get(b:,'gitsigns_status','')}
   setlocal statusline+=\ 
   setlocal statusline+=%{hwadii#statusline#branch()}
-  setlocal statusline+=%*
   setlocal statusline+=%{printf('\ ℓ\ %02d/%02d',line('.'),line('$'))} " line number
   setlocal statusline+=\ \ 
   setlocal statusline+=%{printf('c\ %02d/%02d\ ',col('.'),col('$'))} " col number
@@ -86,9 +80,11 @@ endfunction
 
 function! hwadii#statusline#inactive() abort
   setlocal statusline=
+  setlocal statusline+=%2*
   setlocal statusline+=%{hwadii#statusline#gutterpadding()}
   setlocal statusline+=%f
   if &cursorline == 1
     setlocal nocursorline
   endif
+  setlocal statusline+=%*
 endfunction
