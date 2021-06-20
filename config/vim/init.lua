@@ -1,6 +1,7 @@
 require('wadii.lsp')
 require('wadii.snippets')
 require('wadii.telescope')
+require('plugin.treesitter')
 require('plugins')
 local fn = vim.fn
 local opt = vim.opt

@@ -37,6 +37,7 @@ return packer.startup(function()
     }
   }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter-refactor'
   use 'plasticboy/vim-markdown'
   use 'tpope/vim-abolish'
   use 'tpope/vim-commentary'
