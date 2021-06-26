@@ -6,7 +6,7 @@ window:
 
 font:
   normal:
-    family: Julia Mono Latin
+    family: mononoki
 
   size: 12
 

@@ -12,7 +12,7 @@ set $menuall wofi -i --show run | xargs swaymsg exec --
 set $bemenuargs -p '>' --hf '#89ddff' --tf '#89ddff'
 set $bemenu bemenu $bemenuargs | xargs swaymsg exec --
 set $bemenurun bemenu-run $bemenuargs | xargs swaymsg exec --
-set $background ~/pics/Schale-grey.png
+set $background ~/pics/LP_BubblesBondi.png
 set $ws1 1
 set $ws2 2
 set $ws3 3
