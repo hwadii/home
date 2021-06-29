@@ -1,5 +1,4 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "typescript", "ruby", "bash", "javascript", "css", "html", "jsdoc", "json", "yaml", "python", "rust", "comment" },
   textobjects = {
     keymaps = {
       ["af"] = "@function.outer",
