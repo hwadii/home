@@ -5,7 +5,7 @@ alias mv='mv -v'
 alias -s txt=cat
 
 tw() {
-  mpv https://twitch.tv/'$@' --quiet >/dev/null &
+  mpv "https://twitch.tv/$@" --quiet > /dev/null & disown
 }
 
 alias sard='mpv https://twitch.tv/sardoche --quiet >/dev/null &'
