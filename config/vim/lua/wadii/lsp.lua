@@ -8,11 +8,19 @@ require('compe').setup {
   preselect = 'enable';
   throttle_time = 80;
   source_timeout = 200;
+  resolve_timeout = 800;
   incomplete_delay = 400;
   max_abbr_width = 100;
   max_kind_width = 100;
   max_menu_width = 100;
-  documentation = true;
+  documentation = {
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+    min_width = 60;
+    border = 'single',
+  };
   source = {
     path = true;
     buffer = true;
@@ -94,11 +102,14 @@ end
 lspconfig.tsserver.setup({
   init_options = {
     preferences = {
-      importModuleSpecifier = "relative",
-    }
+      importModuleSpecifierPreference = "relative"
+    },
   },
   on_attach = custom_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  }
 })
 
 lspconfig.pyls.setup({
@@ -111,6 +122,9 @@ lspconfig.pyls.setup({
     }
   },
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  }
 })
 local libpath = "/home/wadii/.config/nvm/versions/node/v14.17.0/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "", "--ngProbeLocations", libpath, ""}
@@ -121,14 +135,23 @@ lspconfig.angularls.setup({
     new_config.cmd = cmd
   end,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  }
 })
 lspconfig.html.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
   })
 lspconfig.cssls.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
   })
 
 local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls' }
@@ -136,6 +159,9 @@ for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
     capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
   }
 end
 

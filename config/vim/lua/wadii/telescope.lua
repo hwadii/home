@@ -3,15 +3,10 @@ local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
     sorting_strategy = "ascending",
-    winblen = 0,
-    layout_strategy = "center",
-    results_title = false,
+    winblend = 0,
     preview_title = "Preview",
-    preview_cutoff = 1,
-    width = 80,
-    results_height = 15,
     scroll_strategy = 'cycle',
-    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+    layout_strategy = 'vertical',
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
@@ -20,10 +15,22 @@ require('telescope').setup{
         ["<esc>"] = actions.close,
         ["<C-[>"] = actions.close,
         ["<C-c>"] = actions.close,
+        ["<c-d>"] = actions.delete_buffer,
       },
       n = {
         ["<esc>"] = actions.close
       },
+    },
+  },
+  pickers = {
+    find_files = {
+      theme = 'dropdown',
+    },
+    live_grep = {
+      theme = 'dropdown',
+    },
+    buffers = {
+      theme = 'dropdown',
     },
   },
   extensions = {
