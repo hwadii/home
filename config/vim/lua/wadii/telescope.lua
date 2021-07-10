@@ -7,6 +7,7 @@ require('telescope').setup{
     preview_title = "Preview",
     scroll_strategy = 'cycle',
     layout_strategy = 'vertical',
+    path_display = { 'shorten' },
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,

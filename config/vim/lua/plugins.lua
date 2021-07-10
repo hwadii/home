@@ -44,10 +44,4 @@ return packer.startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
-end, {
-  display = {
-    open_fn = function()
-      return util.float({ border = 'single' })
-    end
-  }
-})
+end)

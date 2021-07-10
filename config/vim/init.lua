@@ -87,7 +87,7 @@ vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
 vim.g.enable_folding = 1
 execute [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
-execute [[autocmd BufWritePost plugins.lua PackerCompile]]
+execute [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 vim.g.grepprg = 'rg --vimgrep --no-heading '
