@@ -103,9 +103,9 @@ statusline.active = function()
   vim.opt.statusline = vim.opt.statusline + ' '
   vim.opt.statusline = vim.opt.statusline + '%m'
   vim.opt.statusline = vim.opt.statusline + '%y'
+  vim.opt.statusline = vim.opt.statusline + '%r'
   vim.opt.statusline = vim.opt.statusline + ' '
   vim.opt.statusline = vim.opt.statusline + '%='
-  vim.opt.statusline = vim.opt.statusline + '%r'
   vim.opt.statusline = vim.opt.statusline + '%{luaeval("require\'wadii.statusline\'.gitstatus()")}'
   vim.opt.statusline = vim.opt.statusline + ' '
   vim.opt.statusline = vim.opt.statusline + ('%{luaeval("require(\'wadii.statusline\').branch()")}')
