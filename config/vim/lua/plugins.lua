@@ -10,7 +10,6 @@ return packer.startup(function()
   use 'junegunn/seoul256.vim'
   use 'axvr/org.vim'
   use 'jiangmiao/auto-pairs'
-  use 'yorickpeterse/vim-paper'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
   use 'justinmk/vim-dirvish'

@@ -143,10 +143,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
-  ["tender.vim"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/tender.vim"
-  },
   ["vim-abolish"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-abolish"
@@ -166,10 +162,6 @@ _G.packer_plugins = {
   ["vim-markdown"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
-  },
-  ["vim-paper"] = {
-    loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-paper"
   },
   ["vim-rooter"] = {
     loaded = true,
