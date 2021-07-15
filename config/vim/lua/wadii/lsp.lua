@@ -108,20 +108,6 @@ lspconfig.tsserver.setup({
   }
 })
 
-lspconfig.pyls.setup({
-  on_attach = custom_attach,
-  enable = true,
-  plugins = {
-    pyls_mypy = {
-      enabled = true,
-      live_mode = false
-    }
-  },
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  }
-})
 local libpath = "/home/wadii/.config/nvm/versions/node/v14.17.0/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "", "--ngProbeLocations", libpath, ""}
 lspconfig.angularls.setup({
@@ -150,7 +136,7 @@ lspconfig.cssls.setup({
     }
   })
 
-local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls' }
+local servers = { 'solargraph', 'rls', 'vuels', 'jsonls', 'bashls', 'pylsp' }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
