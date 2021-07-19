@@ -108,7 +108,7 @@ lspconfig.tsserver.setup({
   }
 })
 
-local libpath = "/home/wadii/.config/nvm/versions/node/v14.17.0/lib/node_modules/typescript/lib"
+local libpath = "/home/wadii/.config/nvm/versions/node/v14.17.3/lib/node_modules/typescript/lib"
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "", "--ngProbeLocations", libpath, ""}
 lspconfig.angularls.setup({
   on_attach = custom_attach,
