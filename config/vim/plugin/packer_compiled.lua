@@ -102,6 +102,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-treesitter-angular"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-angular"
+  },
   ["nvim-treesitter-refactor"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"

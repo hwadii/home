@@ -33,6 +33,9 @@ require('telescope').setup{
     buffers = {
       theme = 'dropdown',
     },
+    lsp_code_actions = {
+      theme = 'cursor',
+    },
   },
   extensions = {
     fzy_native = {
