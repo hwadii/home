@@ -57,11 +57,5 @@ nnoremap <localleader>o  <cmd>lua vim.lsp.buf.document_symbol()<cr>
 nnoremap <localleader>d  <cmd>lua vim.lsp.diagnostic.get_all()<cr>
 nnoremap <localleader>i  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
 " term
 tnoremap <M-[> <C-\><C-n>
