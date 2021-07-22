@@ -9,9 +9,8 @@ set $right l
 set $term alacritty
 set $menu wofi -i --show drun | xargs swaymsg exec --
 set $menuall wofi -i --show run | xargs swaymsg exec --
-set $bemenuargs -p '>' --hf '#89ddff' --tf '#89ddff'
-set $bemenu bemenu $bemenuargs | xargs swaymsg exec --
-set $bemenurun bemenu-run $bemenuargs | xargs swaymsg exec --
+set $bemenu bemenu | xargs swaymsg exec --
+set $bemenurun bemenu-run | xargs swaymsg exec --
 set $background ~/pics/LP_BubblesBondi.png
 set $ws1 1
 set $ws2 2
@@ -77,10 +76,11 @@ bindsym $mod+w kill
 
 bindsym $mod+d exec $bemenurun
 bindsym $mod+Shift+d exec $menuall
+bindsym $mod+Shift+e exec (cut -d ';' -f1 ~/.local/bin/emoji | bemenu -l 30 | sed "s/ .*//" | tr -d '\n' | wl-copy)
 
 floating_modifier $mod normal
 
-bindsym $mod+Shift+e exec wlogout
+bindsym $mod+Shift+l exec wlogout
 bindsym $mod+Shift+x exec swaylock --daemonize
 
 bindsym $mod+Shift+s exec systemctl suspend
@@ -196,7 +196,7 @@ mode notifications {
     bindsym s exec makoctl restore
 }
 
-bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="$bemenuargs"
+bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="-p '>'"
 bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
     swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \

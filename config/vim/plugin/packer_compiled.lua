@@ -110,6 +110,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
   },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+  },
   ["org.vim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/org.vim"

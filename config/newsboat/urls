@@ -74,5 +74,6 @@ https://cosine.blue/rss.xml
 
 # Podcasts
 https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "Audio" "Media" "Linux"
+https://perso.pw/lambda/feed.xml "Audio" "Foss"
 
 # vi:ft=conf
