@@ -1,3 +1,4 @@
+require('wadii.foldtext')
 require('wadii.lsp')
 require('wadii.snippets')
 require('wadii.telescope')
@@ -36,9 +37,21 @@ opt.cursorline = true
 opt.expandtab = true
 opt.fileformats = 'unix,dos,mac'
 opt.formatoptions = 'jcrqnl'
-opt.fillchars = { eob = "~", vert = "|", stl = " ", stlnc = " " }
+opt.fillchars = {
+  diff = '∙',
+  eob = '~',
+  fold = '·',
+  vert = '|',
+}
 opt.list = true
-opt.listchars = { tab = "┊ ", nbsp = "␣", trail = "·", extends = "↷", precedes = "↶" }
+opt.listchars = {
+  tab = "┊ ",
+  nbsp = '⦸',
+  extends = '»',
+  precedes = '«',
+  trail = "·",
+}
+opt.emoji = false
 opt.hidden = true
 opt.ignorecase = true
 opt.inccommand = 'split'
@@ -74,14 +87,9 @@ opt.wildignore = { '__pycache__', '*.o', '*~', '*.pyc', '*pycache*' }
 opt.winminheight = 0
 opt.pumblend = 17
 opt.scrolloff = 3
-
-if vim.g.enable_folding == 1 then
-  opt.foldenable = true
-  opt.foldmarker = '{,}'
-  opt.foldlevel = 0
-  opt.foldmethod = 'marker'
-  opt.foldlevelstart = 99
-end
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
+opt.foldlevelstart = 99 -- start unfolded
 
 vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
@@ -92,3 +100,10 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 vim.g.grepprg = 'rg --vimgrep --no-heading '
 vim.g.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+vim.g.vim_markdown_override_foldtext = 0
+vim.g.vim_markdown_no_default_key_mappings = 1
+vim.g.vim_markdown_emphasis_multiline = 0
+vim.g.vim_markdown_conceal = 0
+vim.g.vim_markdown_conceal_code_blocks  =  0
+vim.g.vim_markdown_frontmatter = 1
+vim.g.vim_markdown_new_list_item_indent = 0
