@@ -1,7 +1,4 @@
-require('wadii.foldtext')
-require('wadii.lsp')
-require('wadii.snippets')
-require('wadii.telescope')
+require('wadii')
 require('plugin.treesitter')
 require('plugins')
 local fn = vim.fn
@@ -90,6 +87,7 @@ opt.scrolloff = 3
 opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldlevelstart = 99 -- start unfolded
+opt.foldtext = 'v:lua.wadii.foldtext()'
 
 vim.g.seoul256_background = 233
 vim.g.seoul256_srgb = 1
