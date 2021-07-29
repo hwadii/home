@@ -33,3 +33,5 @@
   sort=-committerdate
 [absorb]
   maxStack = 20
+[merge]
+  conflictstyle = diff3
