@@ -29,6 +29,8 @@ zstyle ':completion:*' menu select
 
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
+autoload -U edit-command-line
+zle -N edit-command-line
 
 zreload() {
   local cache="$ZSH_CACHE_DIR"
@@ -99,5 +101,6 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[P' history-substring-search-up
 bindkey '^[N' history-substring-search-down
 bindkey "^Xa" _expand_alias
-autoload -U edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 compinit -i
