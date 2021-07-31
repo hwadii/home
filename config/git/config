@@ -35,3 +35,5 @@
   maxStack = 20
 [merge]
   conflictstyle = diff3
+[init]
+  defaultBranch = main
