@@ -88,16 +88,13 @@ opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldlevelstart = 99 -- start unfolded
 opt.foldtext = 'v:lua.wadii.foldtext()'
+opt.grepprg = 'rg --vimgrep --no-heading '
+opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
-vim.g.seoul256_background = 233
-vim.g.seoul256_srgb = 1
-vim.g.enable_folding = 1
 execute [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
 execute [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
-vim.g.grepprg = 'rg --vimgrep --no-heading '
-vim.g.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_no_default_key_mappings = 1
 vim.g.vim_markdown_emphasis_multiline = 0

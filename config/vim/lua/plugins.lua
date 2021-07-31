@@ -12,7 +12,6 @@ return packer.startup(function()
   use 'jiangmiao/auto-pairs'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
-  use 'justinmk/vim-dirvish'
   use 'neovim/nvim-lspconfig'
   use {
     'norcalli/nvim-colorizer.lua',
@@ -45,4 +44,5 @@ return packer.startup(function()
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
+  use 'tpope/vim-vinegar'
 end)
