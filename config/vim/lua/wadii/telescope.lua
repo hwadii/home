@@ -27,11 +27,16 @@ require('telescope').setup{
     find_files = {
       theme = 'dropdown',
     },
+    git_files = {
+      theme = 'dropdown',
+    },
     live_grep = {
       theme = 'dropdown',
     },
     buffers = {
       theme = 'dropdown',
+      previewer = false,
+      sort_lastused = true,
     },
     lsp_code_actions = {
       theme = 'cursor',
