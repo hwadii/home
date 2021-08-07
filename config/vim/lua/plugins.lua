@@ -7,8 +7,6 @@ return packer.startup(function()
 
   use 'AndrewRadev/splitjoin.vim'
   use 'airblade/vim-rooter'
-  use 'junegunn/seoul256.vim'
-  use 'axvr/org.vim'
   use 'jiangmiao/auto-pairs'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
@@ -25,6 +23,7 @@ return packer.startup(function()
     requires = {
       'nvim-lua/plenary.nvim'
     },
+    config = function() require('gitsigns').setup() end,
   }
   use {
     'nvim-telescope/telescope.nvim',

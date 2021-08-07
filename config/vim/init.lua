@@ -13,15 +13,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 opt.termguicolors = true
-require('gitsigns').setup {
-  signs = {
-    add          = {hl = 'DiffAdd'   , text = ' ', numhl='GitSignsAddNr'},
-    change       = {hl = 'DiffChange', text = ' ', numhl='GitSignsChangeNr'},
-    delete       = {hl = 'DiffDelete', text = ' ', numhl='GitSignsDeleteNr'},
-    topdelete    = {hl = 'DiffDelete', text = ' ', numhl='GitSignsDeleteNr'},
-    changedelete = {hl = 'DiffChange', text = ' ', numhl='GitSignsChangeNr'},
-  }
-}
 
 vim.cmd 'colorscheme github_dark'
 opt.encoding = 'utf-8'
