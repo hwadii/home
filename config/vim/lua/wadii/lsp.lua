@@ -176,7 +176,7 @@ lspconfig.rust_analyzer.setup({
   }
 })
 
-local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp' }
+local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver' }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
