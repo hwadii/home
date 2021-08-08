@@ -84,8 +84,6 @@ opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
 execute [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
 execute [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
-vim.g.mapleader = ','
-vim.g.maplocalleader = ' '
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_no_default_key_mappings = 1
 vim.g.vim_markdown_emphasis_multiline = 0
