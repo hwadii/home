@@ -39,23 +39,5 @@ nnoremap <silent> ]t gt
 
 command Today :r!date -Idate
 
-" nvim-lsp
-nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>i   <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> gy          <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gws         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gR  <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> ]g <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
-nnoremap <silent> [g <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-inoremap <silent> <c-]> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.signature_help()<CR>
-
-nnoremap <localleader>o  <cmd>lua vim.lsp.buf.document_symbol()<cr>
-nnoremap <localleader>d  <cmd>lua vim.lsp.diagnostic.get_all()<cr>
-nnoremap <localleader>i  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>
-
 " term
 tnoremap <M-[> <C-\><C-n>
