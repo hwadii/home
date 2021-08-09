@@ -91,3 +91,5 @@ vim.g.vim_markdown_conceal = 0
 vim.g.vim_markdown_conceal_code_blocks  =  0
 vim.g.vim_markdown_frontmatter = 1
 vim.g.vim_markdown_new_list_item_indent = 0
+vim.g.rooter_silent_chdir = 1
+vim.g.ledger_align_at = 52
