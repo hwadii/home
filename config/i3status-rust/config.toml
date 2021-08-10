@@ -1,23 +1,28 @@
-icons = "awesome5"
+icons = "none"
+icons_format = ""
 
 [theme]
 name = "native"
 [theme.overrides]
-separator = " "
+separator = ""
 
 [[block]]
 block = "music"
 dynamic_width = true
-max_width = 50
+max_width = 1000
+marquee = false
+separator = " ー "
+format = "{combo}  •  "
 
 [[block]]
 block = "battery"
-interval = 10
-format = "{percentage}"
+driver = "upower"
+format = "{percentage} {time} • "
 
 [[block]]
 block = "sound"
 on_click = "pavucontrol"
+format = "♬ {volume}  • "
 
 [[block]]
 block = "time"

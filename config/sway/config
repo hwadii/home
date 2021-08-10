@@ -201,11 +201,18 @@ bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
     swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
 bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
     swayr execute-swayr-command >> /tmp/swayr.log 2>&1
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
-bindsym $mod+Shift+equal exec pactl set-sink-volume @DEFAULT_SINK@ +2%
-bindsym $mod+Shift+minus exec pactl set-sink-volume @DEFAULT_SINK@ -2%
-bindsym XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym --locked $mod+Shift+equal exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym --locked $mod+Shift+minus exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86AudioStop exec playerctl stop
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
 bindsym $mod+minus exec playerctl previous
 bindsym $mod+equal exec playerctl next
@@ -222,7 +229,7 @@ client.focused_inactive $gray $gray #ffffff $gray $gray
 focus_on_window_activation urgent
 
 bar {
-        status_command etat
+        status_command i3status-rs
         position top
         font pango:IPAGothic 10, FontAwesome 9, $font_family 9
         separator_symbol ""

@@ -115,7 +115,7 @@ function pasters {
 }
 
 function cardinal {
-    /home/wadii/.virtualenvs/cardinal/bin/python3 -m cardinal $@
+  /home/wadii/.virtualenvs/cardinal/bin/python3 -m cardinal $@
 }
 
 function gs() {

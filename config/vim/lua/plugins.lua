@@ -1,8 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
-local packer = require('packer')
-local util = require('packer.util')
 
-return packer.startup(function()
+return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   use 'AndrewRadev/splitjoin.vim'
