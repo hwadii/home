@@ -14,7 +14,8 @@ https://icyphox.sh/blog/feed.xml
 https://fasterthanli.me/index.xml
 https://blog.burntsushi.net/index.xml
 https://michael.stapelberg.ch/feed.xml
-https://drewdevault.com/blog/index.xml "Favorites"
+https://drewdevault.com/blog/index.xml "Blog", "Favorites"
+https://emersion.fr/blog/atom.xml "Blog", "Favorites"
 https://alexandrabac.blogspot.com/feeds/posts/default
 https://lobste.rs/t/linux,vim,systemd,vcs,unix,show.rss "Social" "~Lobsters" "nix" "nixos" "vim" "Linux" "Programs" "Dev"
 https://blogs.gnome.org/uraeus/feed/ "Fedora" "Linux" "Blog" "Dev" "Favorites"
@@ -59,7 +60,7 @@ https://based.cooking/atom.xml
 https://adnano.co/atom.xml
 https://zverok.github.io/feed.xml
 https://www.getrevue.co/profile/theprincessxena.rss
-https://phaazon.net/blog/feed
+https://phaazon.net/blog/feed "Blog"
 https://huonw.github.io/blog/atom.xml
 http://dtrace.org/blogs/bmc/feed/ "Favorites"
 https://blog.nightly.mozilla.org/feed/ "Firefox" "Dev"
@@ -67,7 +68,7 @@ https://hacks.mozilla.org/feed/ "Firefox" "Dev"
 https://www.possiblerust.com/feed.xml "Rust"
 https://notes.eatonphil.com/rss.xml
 https://ianthehenry.com/feed.xml "Nix"
-https://blog.knightsofthelambdacalcul.us/index.xml
+https://bicompact.space/feeds/all.rss.xml
 https://armaanb.net/feed
 https://work.lisk.in/atom.xml
 https://cosine.blue/rss.xml
