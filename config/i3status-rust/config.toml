@@ -11,13 +11,12 @@ block = "music"
 dynamic_width = true
 max_width = 1000
 marquee = false
-separator = " ー "
-format = "{combo} • "
+format = "{artist} ー {title} • "
 
 [[block]]
 block = "battery"
 driver = "upower"
-format = "{percentage} {time} • "
+format = "{percentage} {time} •"
 full_format = "FULL • "
 
 [[block]]
