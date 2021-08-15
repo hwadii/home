@@ -80,7 +80,7 @@ bindsym $mod+Shift+e exec (cut -d ';' -f1 ~/.local/bin/emoji | bemenu -l 30 | se
 
 floating_modifier $mod normal
 
-bindsym $mod+Shift+l exec wlogout
+bindsym $mod+Shift+q exec wlogout
 bindsym $mod+Shift+x exec swaylock --daemonize
 
 bindsym $mod+Shift+s exec systemctl suspend
@@ -207,16 +207,16 @@ bindsym --locked $mod+Shift+equal exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym --locked $mod+Shift+minus exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym --locked XF86AudioNext exec playerctl next
-bindsym --locked XF86AudioPlay exec playerctl play-pause
-bindsym --locked XF86AudioPrev exec playerctl previous
-bindsym --locked XF86AudioStop exec playerctl stop
+bindsym --locked XF86AudioNext exec "playerctl --player=spotify,%any next"
+bindsym --locked XF86AudioPlay exec "playerctl --player=spotify,%any play-pause"
+bindsym --locked XF86AudioPrev exec "playerctl --player=spotify,%any previous"
+bindsym --locked XF86AudioStop exec "playerctl --player=spotify,%any stop"
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-bindsym $mod+minus exec playerctl previous
-bindsym $mod+equal exec playerctl next
-bindsym $mod+p exec playerctl play-pause
+bindsym $mod+minus exec "playerctl --player=spotify,%any previous"
+bindsym $mod+equal exec "playerctl --player=spotify,%any next"
+bindsym $mod+p exec "playerctl --player=spotify,%any play-pause"
 
 seat seat0 xcursor_theme "Adwaita"
 
