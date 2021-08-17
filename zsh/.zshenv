@@ -1,6 +1,7 @@
 skip_global_compinit=1
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export LANG="en_US.UTF-8"
+export TERMINAL="alacritty"
 export SNAP="/snap"
 export CHROME_BIN="chromium-browser"
 export GPG_TTY=$(tty)
