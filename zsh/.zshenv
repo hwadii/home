@@ -5,15 +5,10 @@ export TERMINAL="alacritty"
 export SNAP="/snap"
 export CHROME_BIN="chromium-browser"
 export GPG_TTY=$(tty)
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SCREENSHOTS_DIR="$HOME/Images"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_LOCAL_BIN="$HOME/.local/bin"
 export XDG_DATA_DIR="$HOME/.local/share"
 export XDG_MISC_DIR="$HOME/.local/misc"
-export MONITOR="eDP-1"
-export EXTERN_HOME="DP-1"
-export EXTERN_WORK="HDMI-2"
 export BROWSER="firefox-dev"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export PAGER="less"
@@ -38,7 +33,6 @@ export FZF_DEFAULT_OPTS="
     --bind 'alt-a:select-all'
     --color=16,hl:#ffcb6b,hl+:#89ddff,fg+:7,pointer:#89ddff
 "
-export NOTE_DIR="$HOME/code/notes"
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
