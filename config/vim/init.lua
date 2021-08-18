@@ -79,7 +79,7 @@ opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldlevelstart = 99 -- start unfolded
 opt.foldtext = 'v:lua.wadii.foldtext()'
-opt.grepprg = 'rg --vimgrep --no-heading '
+opt.grepprg = 'rg --vimgrep --no-heading'
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
 execute [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]

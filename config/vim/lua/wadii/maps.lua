@@ -19,7 +19,7 @@ set_keymap("n", "]t", "gt", opts)
 set_keymap("t", "<M-[>", "<C-\\><C-n>", opts)
 
 -- telescope
-set_keymap("n", "<C-p>", "<cmd>Telescope find_files find_command=fd,--hidden,-E.git,-tf<CR>", opts)
+set_keymap("n", "<C-p>", "<cmd>Telescope find_files<cr>", opts)
 set_keymap("n", "<Leader>pp", "<cmd>Telescope<cr>", opts)
 set_keymap("n", "<Leader>s", "<cmd>Telescope live_grep<cr>", opts)
 set_keymap("n", "<Leader><Leader>s", "<cmd>Telescope grep_string<cr>", opts)
