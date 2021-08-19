@@ -11,4 +11,4 @@ endfunction
 nnoremap <silent> <Plug>SortMotion :<C-U>set opfunc=<SID>sort_motion<CR>g@
 xnoremap <silent> <Plug>SortVisual :<C-U>call <SID>sort_motion(visualmode())<CR>
 nmap <silent> gss <Plug>SortMotion
-vmap <silent> gs <Plug>SortVisual
+xmap <silent> gs <Plug>SortVisual
