@@ -23,7 +23,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     custom_captures = {
       ["TextYankPost"] = "IncSearch",
-    }
+    },
+    additional_vim_regex_highlighting = false
   },
   refactor = {
     highlight_definitions = { enable = true },
