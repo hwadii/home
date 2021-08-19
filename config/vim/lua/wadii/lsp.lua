@@ -30,7 +30,7 @@ require('compe').setup {
     nvim_lua = false;
     spell = false;
     tags = false;
-    snippets_nvim = true;
+    snippets_nvim = false;
     treesitter = false;
   };
 }
