@@ -1,48 +1,16 @@
 local lspconfig = require('lspconfig')
 
 require('compe').setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = {
-    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-    max_width = 120,
-    max_height = math.floor(vim.o.lines * 0.3),
-    min_height = 1,
-    min_width = 60;
-    border = 'single',
-  };
   source = {
     path = true;
     buffer = true;
-    calc = false;
-    vsnip = false;
     nvim_lsp = true;
     nvim_lua = false;
     spell = false;
-    tags = false;
     snippets_nvim = false;
     treesitter = false;
+    tmux = false;
   };
-}
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
 }
 
 local t = function(str)
@@ -180,22 +148,11 @@ for _, server in pairs(servers) do
   }
 end
 
-vim.fn.sign_define('LspDiagnosticsSignError', {
-  text = '×',
-  texthl = 'LspDiagnosticsSignError'
-})
+local function set_lsp_sign(name, text)
+  vim.fn.sign_define(name, {text = text, texthl = name})
+end
 
-vim.fn.sign_define('LspDiagnosticsSignWarning', {
-  text = '!',
-  texthl = 'LspDiagnosticsSignWarning'
-})
-
-vim.fn.sign_define('LspDiagnosticsSignInformation', {
-  text = 'i',
-  texthl = 'LspDiagnosticsSignInformation'
-})
-
-vim.fn.sign_define('LspDiagnosticsSignHint', {
-  text = 'H',
-  texthl = 'LspDiagnosticsSignHint'
-})
+set_lsp_sign('LspDiagnosticsSignError', '×')
+set_lsp_sign('LspDiagnosticsSignWarning', '!')
+set_lsp_sign('LspDiagnosticsSignInformation', 'i')
+set_lsp_sign('LspDiagnosticsSignHint', 'H')
