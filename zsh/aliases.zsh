@@ -89,7 +89,7 @@ function open_command() {
   ${=open_cmd} "$@" &>/dev/null
 }
 
-alias ytdl=youtube-dl
+alias ytdl=yt-dlp
 
 # more git aliases
 alias gin='git init'
