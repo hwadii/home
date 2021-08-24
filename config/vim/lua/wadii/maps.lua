@@ -31,14 +31,6 @@ set_keymap("n", "<Leader>r", "<cmd>Telescope lsp_references<cr>", opts)
 set_keymap("n", "ga", "<cmd>Telescope lsp_code_actions<cr>", opts)
 set_keymap("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 
--- compe
-set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-set_keymap("i", "<C-Space>", "compe#complete()", {expr = true})
-set_keymap("i", "<cr>", "compe#confirm('<cr>')", {expr = true})
-
 -- gina
 set_keymap("n", "<Leader>gs", "<cmd>Gina status -s<cr>", opts)
 set_keymap("n", "<Leader>gc", "<cmd>Gina commit<cr>", opts)

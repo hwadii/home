@@ -5,6 +5,7 @@ local wadii = {
   statusline = require'wadii.statusline',
   telescope = require'wadii.telescope',
   maps = require'wadii.maps',
+  completion = require'wadii.completion',
 }
 
 _G.wadii = wadii
