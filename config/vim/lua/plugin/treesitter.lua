@@ -26,6 +26,9 @@ require'nvim-treesitter.configs'.setup {
     },
     additional_vim_regex_highlighting = false
   },
+  fold = {
+    enable = true,
+  },
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
@@ -59,4 +62,13 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = false,
   },
+}
+
+require'nvim-treesitter'.define_modules {
+  fold = {
+    attach = function(_, _)
+      vim.cmd'set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()'
+    end,
+    detach = function() end,
+  }
 }
