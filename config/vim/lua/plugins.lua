@@ -13,11 +13,14 @@ return require('packer').startup(function()
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup({}, { names = false }) end,
   }
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-path'
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+    }
+  }
   use 'norcalli/snippets.nvim'
   use 'lewis6991/github_dark.nvim'
   use {
