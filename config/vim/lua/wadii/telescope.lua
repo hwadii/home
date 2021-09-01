@@ -16,7 +16,6 @@ require('telescope').setup{
         ["<esc>"] = actions.close,
         ["<C-[>"] = actions.close,
         ["<C-c>"] = actions.close,
-        ["<c-d>"] = actions.delete_buffer,
       },
       n = {
         ["<esc>"] = actions.close
@@ -38,6 +37,11 @@ require('telescope').setup{
       theme = 'dropdown',
       previewer = false,
       sort_lastused = true,
+      mappings = {
+        i = {
+          ["<c-d>"] = actions.delete_buffer,
+        }
+      }
     },
     lsp_code_actions = {
       theme = 'cursor',
