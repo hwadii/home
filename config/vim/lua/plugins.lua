@@ -9,6 +9,7 @@ return require('packer').startup(function()
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
   use 'neovim/nvim-lspconfig'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup({}, { names = false }) end,
@@ -19,9 +20,10 @@ return require('packer').startup(function()
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip'
     }
   }
-  use 'norcalli/snippets.nvim'
+  use 'L3MON4D3/LuaSnip'
   use 'lewis6991/github_dark.nvim'
   use {
     'lewis6991/gitsigns.nvim',

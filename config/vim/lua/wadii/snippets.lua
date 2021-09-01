@@ -1,33 +1,27 @@
-local s = require('snippets')
-local U = require('snippets.utils')
+local ls = require('luasnip')
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local i = ls.insert_node
 
--- s.use_suggested_mappings()
-vim.api.nvim_set_keymap('i', '<a-j>', '<cmd>lua return require"snippets".expand_or_advance(1)<CR>', {expr = false, noremap = true})
-vim.api.nvim_set_keymap('i', '<a-k>', '<cmd>lua return require"snippets".advance_snippet(-1)<CR>', {expr = false, noremap = true})
+vim.api.nvim_set_keymap('s', '<a-j>', '<Plug>luasnip-next-choice', {})
+vim.api.nvim_set_keymap('i', '<a-j>', '<Plug>luasnip-next-choice', {})
 
-s.snippets = {
-  _global = {
-    todo = "TODO(wadii)",
-    uname = function() return vim.loop.os_uname().sysname end,
-  },
-  lua = {
-    req = [[local ${2:$1} = require('$1')]]
+ls.snippets = {
+  all = {
+    s('todo', {
+      t('TODO(wadii): '),
+      i(0),
+    }),
   },
   ruby = {
-    rld = 'Rails.logger.debug $1',
-    rli = 'Rails.logger.info $1'
-  },
-  typescript = {
-    ['if'] = U.match_indentation [[
-if ($1) {
-  $0
-}]],
-    ife = U.match_indentation [[
-if ($1) {
-  $2
-} else {
-  $3
-}
-$0]]
+    s('rld', {
+      t('Rails.logger.debug'),
+      i(0),
+    }),
+    s('rli', {
+      t('Rails.logger.info'),
+      i(0),
+    })
   }
 }
