@@ -176,6 +176,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
   },
+  ["vim-racket"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-racket"
+  },
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
@@ -183,6 +187,10 @@ _G.packer_plugins = {
   ["vim-sleuth"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-sleuth"
+  },
+  ["vim-slime"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-slime"
   },
   ["vim-surround"] = {
     loaded = true,

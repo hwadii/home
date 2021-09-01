@@ -8,6 +8,8 @@ return require('packer').startup(function()
   use 'jiangmiao/auto-pairs'
   use 'lambdalisue/gina.vim'
   use 'ledger/vim-ledger'
+  use 'wlangstroth/vim-racket'
+  use 'jpalardy/vim-slime'
   use 'neovim/nvim-lspconfig'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {

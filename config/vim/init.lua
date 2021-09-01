@@ -91,3 +91,7 @@ vim.g.vim_markdown_frontmatter = 1
 vim.g.vim_markdown_new_list_item_indent = 0
 vim.g.rooter_silent_chdir = 1
 vim.g.ledger_align_at = 52
+vim.g.slime_target = 'tmux'
+vim.g.slime_paste_file = '/tmp/.slime_paste'
+vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+vim.g.slime_dont_ask_default = 1
