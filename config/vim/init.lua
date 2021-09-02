@@ -3,13 +3,12 @@ require('plugin.treesitter')
 require('plugins')
 local fn = vim.fn
 local opt = vim.opt
-local execute = vim.api.nvim_command
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
+  vim.cmd 'packadd packer.nvim'
 end
 
 opt.termguicolors = true
@@ -80,8 +79,14 @@ opt.foldtext = 'v:lua.wadii.foldtext()'
 opt.grepprg = 'rg --vimgrep --no-heading'
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
-execute [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
-execute [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
+vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_no_default_key_mappings = 1
 vim.g.vim_markdown_emphasis_multiline = 0
