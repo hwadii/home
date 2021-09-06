@@ -21,7 +21,7 @@ set_keymap("t", "<M-[>", "<C-\\><C-n>", opts)
 -- telescope
 set_keymap("n", "<C-p>", "<cmd>Telescope find_files<cr>", opts)
 set_keymap("n", "<Leader>tt", "<cmd>Telescope<cr>", opts)
-set_keymap("n", "<Leader>ts", "<cmd>Telescope live_grep<cr>", opts)
+set_keymap("n", "<Leader>s", "<cmd>Telescope live_grep<cr>", opts)
 set_keymap("n", "<Leader>tg", "<cmd>Telescope grep_string<cr>", opts)
 set_keymap("n", "<localleader>b", "<cmd>Telescope buffers<cr>", opts)
 set_keymap("n", "<Leader>th", "<cmd>Telescope oldfiles<cr>", opts)

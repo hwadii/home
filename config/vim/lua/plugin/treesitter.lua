@@ -44,7 +44,7 @@ require'nvim-treesitter.configs'.setup {
       },
     },
     smart_rename = {
-      enable = false,
+      enable = true,
       keymaps = {
         -- mapping to rename reference under cursor
         smart_rename = "grr",

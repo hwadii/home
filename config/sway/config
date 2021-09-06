@@ -135,6 +135,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+b splith
 bindsym $mod+v splitv
+bindsym $mod+c split n
 
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
