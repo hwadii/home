@@ -43,7 +43,9 @@ end
 lspconfig.tsserver.setup({
   init_options = {
     preferences = {
-      importModuleSpecifierPreference = "relative"
+      importModuleSpecifierPreference = "relative",
+      includeCompletionsForImportStatements = true,
+      includeCompletionsWithSnippetText = true,
     },
   },
   on_attach = custom_attach,

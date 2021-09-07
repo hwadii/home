@@ -13,6 +13,10 @@ ls.snippets = {
       t('TODO(wadii): '),
       i(0),
     }),
+    s('xxx', {
+      t('XXX(wadii): '),
+      i(0),
+    })
   },
   ruby = {
     s('rld', {
