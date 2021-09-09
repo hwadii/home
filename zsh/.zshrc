@@ -48,14 +48,13 @@ autoload -U compaudit compinit
 
 source $HOME/.zinit/bin/zinit.zsh
 
+zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit for \
     light-mode  zdharma/fast-syntax-highlighting \
                 zdharma/history-search-multi-word \
                 zsh-users/zsh-history-substring-search \
                 zsh-users/zsh-autosuggestions
 
-zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit light cli/cli
 zinit snippet OMZL::git.zsh
 zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZP::git
@@ -63,6 +62,7 @@ zinit snippet OMZP::fancy-ctrl-z
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZP::dnf
 zinit snippet OMZP::extract
+zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 zinit ice as'program'
 zinit as'completion' blockf for \
   light-mode \
@@ -74,7 +74,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
 source $XDG_CONFIG_HOME/zsh/quick-open.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
-source $XDG_LOCAL_BIN/git-prompt.sh
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 _fzf_compgen_path() {
