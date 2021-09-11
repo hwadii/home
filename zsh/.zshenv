@@ -39,3 +39,4 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 [[ -f ~/.npmrc ]] && export $(grep npm ~/.npmrc | awk -F \"  '{print "CDL_NPM_TOKEN="$2}')
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"
+export NNN_BMS="d:$HOME/dl;b:$HOME/things/books;c:$HOME/code"

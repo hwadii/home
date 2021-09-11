@@ -37,3 +37,5 @@
   conflictstyle = diff3
 [init]
   defaultBranch = main
+[blame]
+  ignoreRevsFile = .git-blame-ignore-revs
