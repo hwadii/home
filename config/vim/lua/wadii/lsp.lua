@@ -4,17 +4,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local custom_attach = function(client, bufnr)
-  client.resolved_capabilities.document_formatting = false
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      signs = {
-        priority = 11,
-      },
-      underline = true,
-      update_in_insert = true,
-      virtual_text = { spacing = 2, prefix = '·' },
-    }
-  )
+  vim.diagnostic.config({
+    signs = {
+      priority = 11,
+    },
+    underline = true,
+    update_in_insert = true,
+    virtual_text = { spacing = 2, prefix = '·' },
+  })
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local opts = { noremap = true, silent = true }
@@ -115,7 +112,7 @@ local function set_lsp_sign(name, text)
   vim.fn.sign_define(name, {text = text, texthl = name})
 end
 
-set_lsp_sign('LspDiagnosticsSignError', '×')
-set_lsp_sign('LspDiagnosticsSignWarning', '!')
-set_lsp_sign('LspDiagnosticsSignInformation', 'i')
-set_lsp_sign('LspDiagnosticsSignHint', 'H')
+set_lsp_sign('DiagnosticSignError', '×')
+set_lsp_sign('DiagnosticSignWarn', '!')
+set_lsp_sign('DiagnosticSignInfo', 'i')
+set_lsp_sign('DiagnosticSignHint', 'H')
