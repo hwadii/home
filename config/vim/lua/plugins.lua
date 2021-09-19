@@ -50,7 +50,10 @@ return require('packer').startup(function()
   use 'tpope/vim-abolish'
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
-  use 'tpope/vim-unimpaired'
+  use {
+    'tpope/vim-unimpaired',
+    commit = 'c51ed445182334aabd392f295708ebe8677bd8e8'
+  }
   use 'tpope/vim-sleuth'
   use 'tpope/vim-vinegar'
 end)
