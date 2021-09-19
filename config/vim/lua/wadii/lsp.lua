@@ -5,9 +5,6 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
-    signs = {
-      priority = 11,
-    },
     underline = true,
     update_in_insert = true,
     virtual_text = { spacing = 2, prefix = '·' },
