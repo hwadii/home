@@ -71,154 +71,154 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/LuaSnip"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/LuaSnip"
   },
   ["auto-pairs"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/auto-pairs"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-path"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
   ["gina.vim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/gina.vim"
   },
   ["github_dark.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     config = { "\27LJ\2\nI\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\nnames\1\nsetup\14colorizer\frequire\0" },
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-treesitter-angular"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-angular"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-angular"
   },
   ["nvim-treesitter-refactor"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
   },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
   },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["splitjoin.vim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["unicode.vim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/unicode.vim"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/unicode.vim"
   },
   ["vim-abolish"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-abolish"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-abolish"
   },
   ["vim-commentary"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-commentary"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
   ["vim-ledger"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-ledger"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-ledger"
   },
   ["vim-markdown"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
   },
   ["vim-racket"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-racket"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-racket"
   },
   ["vim-rooter"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
   },
   ["vim-sleuth"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-sleuth"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-sleuth"
   },
   ["vim-slime"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-slime"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-slime"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
   ["vim-unimpaired"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-unimpaired"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-unimpaired"
   },
   ["vim-vinegar"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-vinegar"
+    path = "/home/hwadii/.local/share/nvim/site/pack/packer/start/vim-vinegar"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 try_loadstring("\27LJ\2\nI\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\nnames\1\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
 time([[Config for nvim-colorizer.lua]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
