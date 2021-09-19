@@ -26,7 +26,7 @@ return require('packer').startup(function()
     }
   }
   use 'L3MON4D3/LuaSnip'
-  use 'lewis6991/github_dark.nvim'
+  use 'hwadii/github_dark.nvim'
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
