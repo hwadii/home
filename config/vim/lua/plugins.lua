@@ -56,4 +56,5 @@ return require('packer').startup(function()
   }
   use 'tpope/vim-sleuth'
   use 'tpope/vim-vinegar'
+  use 'lewis6991/impatient.nvim'
 end)

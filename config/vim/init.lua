@@ -1,3 +1,4 @@
+require('impatient')
 require('wadii')
 require('plugin.treesitter')
 require('plugins')

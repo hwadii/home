@@ -106,6 +106,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/impatient.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-cmp"
