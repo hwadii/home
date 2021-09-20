@@ -24,14 +24,14 @@ require('telescope').setup{
   },
   pickers = {
     find_files = {
-      theme = 'dropdown',
+      theme = 'ivy',
       find_command = { "fd", "--hidden", "-E.git", "-tf" }
     },
     git_files = {
-      theme = 'dropdown',
+      theme = 'ivy',
     },
     live_grep = {
-      theme = 'dropdown',
+      theme = 'ivy',
     },
     buffers = {
       theme = 'dropdown',
@@ -55,24 +55,3 @@ require('telescope').setup{
     },
   },
 }
-
-local M = {}
-
-function M.grep_prompt()
-  require('telescope.builtin').grep_string {
-    shorten_path = true,
-    search = vim.fn.input("Grep String > "),
-  }
-end
-
-return setmetatable({}, {
-  __index = function(_, k)
-    reloader()
-
-    if M[k] then
-      return M[k]
-    else
-      return require('telescope.builtin')[k]
-    end
-  end
-})
