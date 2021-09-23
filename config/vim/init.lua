@@ -2,6 +2,7 @@ require('impatient')
 require('wadii')
 require('plugin.treesitter')
 require('plugins')
+require('gitsigns').setup()
 local fn = vim.fn
 local opt = vim.opt
 

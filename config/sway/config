@@ -11,7 +11,7 @@ set $menu wofi -i --show drun | xargs swaymsg exec --
 set $menuall wofi -i --show run | xargs swaymsg exec --
 set $bemenu bemenu | xargs swaymsg exec --
 set $bemenurun bemenu-run | xargs swaymsg exec --
-set $background ~/pics/sakura.jpg
+set $background ~/pics/mountains.jpg
 set $ws1 1
 set $ws2 2
 set $ws3 3
