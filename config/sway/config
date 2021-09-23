@@ -262,7 +262,7 @@ exec systemd-notify --ready
 
 assign [class="^Slack$"] → workspace $ws7
 assign [app_id="mpv"] → workspace $ws5
-assign [title="^Spotify Premium$"] → workspace $ws6
+assign [class="^Spotify$"] → workspace $ws6
 for_window [app_id="gnome-calculator"] floating enable
 for_window [app_id="nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
