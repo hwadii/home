@@ -40,7 +40,7 @@ end
 
 
 statusline.branch = function()
-  local current_branch = vim.g.gitsigns_head or ''
+  local current_branch = vim.fn['gina#component#repo#branch']() or ''
   if current_branch == '' then
     return current_branch
   elseif #current_branch > 15 then
