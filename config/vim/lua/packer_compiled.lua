@@ -105,9 +105,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["gruber_darker.nvim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gruber_darker.nvim"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/impatient.nvim"
+  },
+  ["lush.nvim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/lush.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,

@@ -15,7 +15,7 @@ end
 
 opt.termguicolors = true
 
-vim.cmd 'colorscheme github_dark'
+vim.cmd 'colorscheme gruber_darker'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true
