@@ -19,7 +19,7 @@ font:
     y: 0
 
 import:
-  - ~/.config/alacritty/github_dark.yml
+  - ~/.config/alacritty/gruber_darker.yml
 
 mouse:
   hide_when_typing: true
