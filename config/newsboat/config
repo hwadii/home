@@ -43,7 +43,7 @@ color listnormal white default
 color listfocus black white standout bold
 color listnormal_unread yellow default
 color listfocus_unread black yellow standout bold
-color info red black bold
+color info green black bold
 color article white default
 
 highlight all "---.*---" yellow

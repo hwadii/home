@@ -55,6 +55,6 @@ return require('packer').startup({function()
   use 'lewis6991/impatient.nvim'
   use 'tpope/vim-rsi'
   use 'rktjmp/lush.nvim'
-  use 'hwadii/gruber_darker.nvim'
+  use '~/code/gruber_darker.nvim'
 end, config = { compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua' }
 })
