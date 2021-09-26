@@ -97,22 +97,23 @@ statusline.gitstatus = function()
 end
 
 statusline.active = function()
-  vim.opt.statusline = '🌸 %<'
-  vim.opt.statusline = vim.opt.statusline + '%{luaeval("require\'wadii.statusline\'.fileprefix()")}'
-  vim.opt.statusline = vim.opt.statusline + '%1*'
-  vim.opt.statusline = vim.opt.statusline + '%t'
-  vim.opt.statusline = vim.opt.statusline + '%*'
-  vim.opt.statusline = vim.opt.statusline + ' '
-  vim.opt.statusline = vim.opt.statusline + '%m'
-  vim.opt.statusline = vim.opt.statusline + '%y'
-  vim.opt.statusline = vim.opt.statusline + '%r'
-  vim.opt.statusline = vim.opt.statusline + ' '
-  vim.opt.statusline = vim.opt.statusline + '%='
-  vim.opt.statusline = vim.opt.statusline + '%{luaeval("require\'wadii.statusline\'.gitstatus()")}'
-  vim.opt.statusline = vim.opt.statusline + ' '
-  vim.opt.statusline = vim.opt.statusline + ('%{luaeval("require(\'wadii.statusline\').branch()")}')
-  vim.opt.statusline = vim.opt.statusline + '%*'
-  vim.opt.statusline = vim.opt.statusline + '%{luaeval("require(\'wadii.statusline\').right_hand_side()")}'
+  vim.opt.statusline = ''
+  .. '🌸 %<'
+  .. '%{v:lua.wadii.statusline.fileprefix()}'
+  .. '%1*'
+  .. '%t'
+  .. '%*'
+  .. ' '
+  .. '%m'
+  .. '%y'
+  .. '%r'
+  .. ' '
+  .. '%='
+  .. '%{v:lua.wadii.statusline.gitstatus()}'
+  .. ' '
+  .. '%{v:lua.wadii.statusline.branch()}'
+  .. '%*'
+  .. '%{v:lua.wadii.statusline.right_hand_side()}'
   if vim.opt.cursorline:get() == false then
     vim.opt.cursorline = true
   end
@@ -120,13 +121,13 @@ end
 
 statusline.inactive = function()
   vim.opt.statusline = ''
-  vim.opt.statusline = vim.opt.statusline + '%{luaeval("require(\'wadii.statusline\').gutter_padding()")}'
-  vim.opt.statusline = vim.opt.statusline + '%2*'
-  vim.opt.statusline = vim.opt.statusline + '%f'
+  .. '%{v:lua.wadii.statusline.gutter_padding()}'
+  .. '%2*'
+  .. '%f'
+  .. '%*'
   if vim.opt.cursorline:get() == true then
     vim.opt.cursorline = false
   end
-  vim.opt.statusline = vim.opt.statusline + '%*'
 end
 
 return statusline
