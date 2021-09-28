@@ -230,9 +230,10 @@ seat seat0 xcursor_theme "Adwaita"
 set $blue #285577
 set $gray #282828
 set $red #900000
+set $white #ffffff
 
-client.focused $blue $blue #ffffff $blue $blue
-client.focused_inactive $gray $gray #ffffff $gray $gray
+client.focused $blue $blue $white $blue $blue
+client.focused_inactive $gray $gray $white $gray $gray
 focus_on_window_activation urgent
 
 bar {
@@ -244,10 +245,10 @@ bar {
         colors {
             background #1F1F1F
             inactive_workspace $gray $gray #888888
-            active_workspace $gray $gray #ffffff
-            urgent_workspace $red $red #ffffff
-            focused_workspace $blue $blue #ffffff
-            urgent_workspace $red $red #ffffff
+            active_workspace $gray $gray $white
+            urgent_workspace $red $red $white
+            focused_workspace $blue $blue $white
+            urgent_workspace $red $red $white
         }
 }
 

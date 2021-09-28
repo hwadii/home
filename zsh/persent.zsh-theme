@@ -1,3 +1,4 @@
+# vim: ft=zsh
 GIT_DIRTY_SYMBOL="*"
 ZSH_THEME_GIT_PROMPT_PREFIX="%U%F{green}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%f%u"

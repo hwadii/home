@@ -15,7 +15,9 @@ end
 
 opt.termguicolors = true
 
-vim.cmd 'colorscheme gruber_darker'
+vim.g.zenflesh_darkness = 'stark'
+vim.g.zenflesh_lighten_noncurrent_window = true
+vim.cmd 'colorscheme zenflesh-lush'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true

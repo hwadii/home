@@ -19,7 +19,7 @@ font:
     y: 0
 
 import:
-  - ~/.config/alacritty/gruber_darker.yml
+  - ~/.config/alacritty/zenflesh.yml
 
 mouse:
   hide_when_typing: true

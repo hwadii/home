@@ -222,6 +222,10 @@ _G.packer_plugins = {
   ["vim-vinegar"] = {
     loaded = true,
     path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-vinegar"
+  },
+  ["zenbones.nvim"] = {
+    loaded = true,
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/zenbones.nvim"
   }
 }
 
