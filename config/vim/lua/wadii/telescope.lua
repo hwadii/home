@@ -13,6 +13,7 @@ require('telescope').setup{
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.send_to_qflist,
+        ["<a-q>"] = actions.send_selected_to_qflist,
         ["<esc>"] = actions.close,
         ["<C-[>"] = actions.close,
         ["<C-c>"] = actions.close,

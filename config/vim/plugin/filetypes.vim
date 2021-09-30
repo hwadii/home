@@ -2,6 +2,7 @@ function! s:set_prose_options() abort
   setlocal spell
   setlocal spelllang=en
   setlocal textwidth=80
+  setlocal shiftwidth=2
 endfunction
 
 au Filetype ruby set colorcolumn=140

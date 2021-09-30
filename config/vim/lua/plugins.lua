@@ -51,7 +51,7 @@ return require('packer').startup({function()
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
-  use 'tpope/vim-vinegar'
+  use 'justinmk/vim-dirvish'
   use 'lewis6991/impatient.nvim'
   use 'tpope/vim-rsi'
   use 'rktjmp/lush.nvim'

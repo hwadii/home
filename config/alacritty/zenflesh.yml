@@ -8,7 +8,7 @@ colors:
   # Normal colors
   cursor:
     text: '#181818'
-    cursor: '#ffdd33'
+    cursor: '#B77E64'
   normal:
     black:   '#161311'
     red:     '#DE6E7C'
