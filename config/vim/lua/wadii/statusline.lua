@@ -32,10 +32,13 @@ statusline.fileprefix = function()
   if basename ~= '' then
     local homedir = vim.loop.os_homedir() .. '/'
     local without_home = string.gsub(basename, homedir, '')
-    return Path:new(without_home):shorten() .. '/'
-  else
-    return ''
+    local ret = Path:new(without_home):shorten() .. '/'
+    if ret == './' then
+      return ''
+    end
+    return ret
   end
+  return ''
 end
 
 
