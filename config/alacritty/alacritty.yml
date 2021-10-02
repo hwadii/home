@@ -19,7 +19,7 @@ font:
     y: 0
 
 import:
-  - ~/.config/alacritty/zenflesh.yml
+  - ~/.config/alacritty/zenflesh_stark.yml
 
 mouse:
   hide_when_typing: true
