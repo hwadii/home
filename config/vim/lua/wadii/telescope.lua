@@ -2,11 +2,6 @@ pcall(require('telescope').load_extension, 'fzy_native')
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
-    sorting_strategy = "ascending",
-    winblend = 0,
-    preview_title = "Preview",
-    scroll_strategy = 'cycle',
-    layout_strategy = 'vertical',
     path_display = { 'shorten' },
     mappings = {
       i = {
