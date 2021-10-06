@@ -28,17 +28,12 @@ statusline.gutter_padding = function()
 end
 
 statusline.fileprefix = function()
-  local basename = vim.fn.expand('%:h')
-  if basename ~= '' then
-    local homedir = vim.loop.os_homedir() .. '/'
-    local without_home = string.gsub(basename, homedir, '')
-    local ret = Path:new(without_home):shorten() .. '/'
-    if ret == './' then
-      return ''
-    end
-    return ret
+  local basename = vim.fn.fnamemodify(vim.fn.expand('%:h'), ':p:~:.')
+  if basename == '' or basename == '.' then
+    return ''
+  else
+    return Path:new(basename:gsub('/$', '') .. '/'):shorten()
   end
-  return ''
 end
 
 
