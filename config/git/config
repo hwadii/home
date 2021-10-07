@@ -24,6 +24,7 @@
   ff = pull --ff-only
   me = !"git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --author=\"$(git config user.name)\""
   wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+  choose-rebase = !"git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | awk '{ print $1 }' | xargs -o git rebase -i"
 [showbranch]
   default = --topo-order
 [pretty]
