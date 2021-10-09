@@ -40,6 +40,8 @@ return require('packer').startup({function()
       'nvim-telescope/telescope-fzy-native.nvim'
     }
   }
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-refactor'
   use 'nvim-treesitter/nvim-treesitter-angular'

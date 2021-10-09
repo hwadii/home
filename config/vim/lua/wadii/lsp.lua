@@ -1,4 +1,5 @@
 local lspconfig = require('lspconfig')
+local null_ls = require('null-ls').config()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -42,7 +43,18 @@ lspconfig.tsserver.setup({
       includeCompletionsWithSnippetText = true,
     },
   },
-  on_attach = custom_attach,
+  on_attach = function(client, bufnr)
+    custom_attach(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    local ts_utils = require('nvim-lsp-ts-utils')
+    ts_utils.setup({
+      eslint_bin = "eslint_d",
+      eslint_config_fallback = nil,
+      eslint_enable_diagnostics = true,
+    })
+    ts_utils.setup_client(client)
+  end,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -94,7 +106,7 @@ lspconfig.rust_analyzer.setup({
   }
 })
 
-local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver' }
+local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver', 'null-ls' }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
