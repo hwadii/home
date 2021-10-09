@@ -20,8 +20,12 @@ require('telescope').setup{
   },
   pickers = {
     find_files = {
-      theme = 'ivy',
-      find_command = { "fd", "--hidden", "-E.git", "-tf" }
+      theme = 'dropdown',
+      find_command = { "fd", "--hidden", "-E.git", "-tf" },
+      previewer = false,
+      layout_config = {
+        height = 20,
+      },
     },
     git_files = {
       theme = 'ivy',

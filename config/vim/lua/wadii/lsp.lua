@@ -37,7 +37,7 @@ end
 lspconfig.tsserver.setup({
   init_options = {
     preferences = {
-      importModuleSpecifierPreference = "relative",
+      importModuleSpecifierPreference = "shortest",
       includeCompletionsForImportStatements = true,
       includeCompletionsWithSnippetText = true,
     },
