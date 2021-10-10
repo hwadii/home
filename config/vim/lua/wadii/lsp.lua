@@ -51,7 +51,7 @@ lspconfig.tsserver.setup({
     ts_utils.setup({
       eslint_bin = "eslint_d",
       eslint_config_fallback = nil,
-      eslint_enable_diagnostics = true,
+      eslint_enable_diagnostics = false,
     })
     ts_utils.setup_client(client)
   end,
