@@ -34,12 +34,16 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
+    }),
+    ['<C-y>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
     })
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
+    { name = "nvim_lsp" },
+    { name = "buffer", keyword_length = 5, max_item_count = 5 },
+    { name = "path" },
+    { name = "luasnip" },
   },
 }

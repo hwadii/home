@@ -30,9 +30,6 @@ require('telescope').setup{
     git_files = {
       theme = 'ivy',
     },
-    live_grep = {
-      theme = 'ivy',
-    },
     buffers = {
       theme = 'dropdown',
       previewer = false,

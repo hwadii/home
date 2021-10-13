@@ -25,8 +25,6 @@ stty -ixon -ixoff
 
 bindkey -e
 
-zstyle ':completion:*' menu select
-
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 autoload -U edit-command-line
