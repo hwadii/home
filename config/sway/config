@@ -258,7 +258,7 @@ exec kanshi
 exec poweralertd
 exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
-exec wl-paste -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store -P
 exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"
 exec systemd-notify --ready
 
