@@ -40,10 +40,15 @@ cmp.setup {
       select = true,
     })
   },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "buffer", keyword_length = 5, max_item_count = 5 },
-    { name = "path" },
-    { name = "luasnip" },
+  sources = cmp.config.sources({
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+    }, {
+      { name = "buffer", keyword_length = 5, max_item_count = 5 },
+      { name = "path" },
+    }),
+
+  experimental = {
+    native_menu = false,
   },
 }

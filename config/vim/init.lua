@@ -17,13 +17,15 @@ opt.termguicolors = true
 
 vim.g.zenflesh_darkness = 'stark'
 vim.g.zenflesh_lighten_noncurrent_window = true
+vim.g.zenflesh_darken_line_nr = true
+vim.g.zenflesh_solid_float_border = true
 vim.cmd 'colorscheme zenflesh'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true
 opt.background = 'dark'
 opt.briopt = 'shift:2'
-opt.completeopt = 'menuone,noselect'
+opt.completeopt = 'menu,menuone,noselect'
 opt.cursorline = true
 opt.expandtab = true
 opt.fileformats = 'unix,dos,mac'
@@ -61,7 +63,7 @@ opt.rnu = false
 opt.shiftwidth = 2
 opt.shortmess = 'filnxtToOFc'
 opt.showbreak = '↳ '
-opt.signcolumn = 'yes'
+opt.signcolumn = 'auto'
 opt.smartcase = true -- make search case insensitive by default
 opt.smartindent = true
 opt.softtabstop = 2
