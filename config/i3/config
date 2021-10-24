@@ -33,8 +33,7 @@ bindsym $mod+Return exec alacritty
 
 bindsym $mod+w kill
 
-bindsym $mod+d exec $menu
-bindsym $mod+Shift+d exec $menuall
+bindsym $mod+d exec $bemenurun
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down

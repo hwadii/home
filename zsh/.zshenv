@@ -1,4 +1,5 @@
 skip_global_compinit=1
+export ZDOTDIR="$HOME/.config/zsh"
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export LANG="en_US.UTF-8"
 export TERMINAL="alacritty"
@@ -25,7 +26,6 @@ export GEM_HOME="$RVM_DIR/gems/default"
 export GEM_PATH="$RVM_DIR/gems/default"
 export PYENV_ROOT="$XDG_CONFIG_HOME/pyenv"
 export PATH="$XDG_LOCAL_BIN:$DEFAULT_PATH:$HOME/.config/nvm/versions/node/v14.18.1/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$XDG_LOCAL_BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$GOPATH/bin:$GEM_HOME/bin:$RVM_DIR/rubies/default/bin:$PYENV_ROOT/bin"
-export ZSH=$HOME/.oh-my-zsh
 export SUDO_PROMPT=$'\e[35m[sudo]\e[33m password for %p:\e[0m '
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
