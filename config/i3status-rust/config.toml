@@ -11,7 +11,7 @@ block = "music"
 dynamic_width = true
 max_width = 1000
 marquee = false
-format = "{artist} ー {title} • "
+format = "{artist} — {title} • "
 
 [[block]]
 block = "battery"
