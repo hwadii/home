@@ -17,7 +17,6 @@ opt.termguicolors = true
 
 vim.g.zenflesh_darkness = 'stark'
 vim.g.zenflesh_lighten_noncurrent_window = true
-vim.g.zenflesh_darken_line_nr = true
 vim.g.zenflesh_solid_float_border = true
 vim.cmd 'colorscheme zenflesh'
 opt.encoding = 'utf-8'

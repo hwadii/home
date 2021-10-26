@@ -1,5 +1,4 @@
 skip_global_compinit=1
-export ZDOTDIR="$HOME/.config/zsh"
 export SWAYSOCK=$(find /run/user -name 'sway-ipc.*.sock' 2>/dev/null | head -n1)
 export LANG="en_US.UTF-8"
 export TERMINAL="alacritty"
@@ -15,6 +14,7 @@ export BROWSER="firefox-dev"
 export LESS="--RAW-CONTROL-CHARS --mouse -Ri"
 export PAGER="less"
 export XDG_CONFIG_HOME="$HOME/.config"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 export NVM_DIR="$HOME/.config/nvm"
 export RVM_DIR="$HOME/.rvm"

@@ -204,10 +204,7 @@ mode kanshi {
 }
 
 bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="-p '>'"
-bindsym $alt+Tab exec env RUST_BACKTRACE=1 \
-    swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
-bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
-    swayr execute-swayr-command >> /tmp/swayr.log 2>&1
+bindsym $mod+Shift+c exec colorpick
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym --locked $mod+Shift+equal exec pactl set-sink-volume @DEFAULT_SINK@ +2%
