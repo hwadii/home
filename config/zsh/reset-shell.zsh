@@ -1,6 +1,6 @@
 # Re-source shell
 function reset-shell() {
-  source "$HOME/.zshrc"
+  source "$XDG_CONFIG_HOME/.zshrc"
 }
 zle -N reset-shell
 bindkey '^[r' reset-shell

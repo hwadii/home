@@ -1,25 +1,13 @@
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=99999
 SAVEHIST=90000
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_verify
-setopt inc_append_history
-setopt share_history
-setopt hist_find_no_dups
-setopt hist_reduce_blanks
-setopt extended_glob
-setopt equals
-setopt prompt_subst
-setopt auto_cd
-setopt interactivecomments
-setopt auto_continue
-setopt auto_param_slash
-setopt pushd_ignore_dups
-export DIRSTACKSIZE=20
-setopt auto_pushd
+DIRSTACKSIZE=20
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+setopt extended_history hist_expire_dups_first hist_ignore_dups \
+  hist_ignore_space hist_verify inc_append_history share_history \
+  hist_find_no_dups hist_reduce_blanks extended_glob equals prompt_subst auto_cd \
+  interactivecomments auto_continue auto_param_slash pushd_ignore_dups auto_pushd
 
 stty -ixon -ixoff
 
@@ -68,11 +56,13 @@ zinit as'completion' blockf for \
     https://github.com/alacritty/alacritty/blob/master/extra/completions/_alacritty \
     https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo
 
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-source $XDG_CONFIG_HOME/zsh/persent.zsh-theme
+source $XDG_CONFIG_HOME/zsh/t.zsh-theme
 source $XDG_CONFIG_HOME/zsh/quick-open.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+[ -f $HOME/dox/creds.zsh ] && source $HOME/dox/creds.zsh
+[ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
+eval "$(zoxide init zsh)"
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -81,10 +71,6 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
-
-eval "$(zoxide init zsh)"
-[ -f $HOME/dox/creds.zsh ] && source $HOME/dox/creds.zsh
-[ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh
 
 bindkey "^R" history-search-multi-word
 if [[ -n "${terminfo[kcbt]}" ]]; then
@@ -100,4 +86,3 @@ bindkey '^[N' history-substring-search-down
 bindkey "^Xa" _expand_alias
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
-compinit -i
