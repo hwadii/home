@@ -52,8 +52,11 @@ lspconfig.tsserver.setup({
       eslint_bin = "eslint_d",
       eslint_config_fallback = nil,
       eslint_enable_diagnostics = false,
+      enable_formatting = true,
+      formatter = "prettier",
     })
     ts_utils.setup_client(client)
+    vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
   end,
   capabilities = capabilities,
   flags = {
