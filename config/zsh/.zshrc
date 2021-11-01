@@ -59,6 +59,7 @@ zinit as'completion' blockf for \
 source $XDG_CONFIG_HOME/zsh/t.zsh-theme
 source $XDG_CONFIG_HOME/zsh/quick-open.zsh
 source $XDG_CONFIG_HOME/zsh/aliases.zsh
+source $XDG_CONFIG_HOME/zsh/functions.zsh
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 [ -f $HOME/dox/creds.zsh ] && source $HOME/dox/creds.zsh
 [ -f ~/code/git/git-extras/etc/git-extras-completion.zsh ] && source ~/code/git/git-extras/etc/git-extras-completion.zsh

@@ -4,10 +4,6 @@ alias cp='cp -v'
 alias mv='mv -v'
 alias -s txt=cat
 
-tw() {
-  mpv "https://twitch.tv/$@" --quiet > /dev/null & disown
-}
-
 alias sard='mpv https://twitch.tv/sardoche --quiet >/dev/null &'
 alias kameto='mpv https://www.twitch.tv/kamet0 --quiet >/dev/null &'
 alias coro='mpv https://twitch.tv/corobizar --quiet >/dev/null &'
@@ -41,9 +37,6 @@ alias p=python3
 alias c='clipcopy'
 alias map='xargs -n1'
 alias md='mkdir -p'
-function take {
-  mkdir $@ && cd $@
-}
 
 # npm
 alias ni='npm install'
@@ -60,34 +53,6 @@ alias nrt='npm run test'
 alias nrc='npm run commit'
 
 alias mp3='youtube-dl -x --embed-thumbnail --audio-format mp3'
-
-function blob() {
-  echo "$@" | sed "s|blob://|s3://|g" | xargs s3cmd -c ~/.s3cfg-blob | sed "s|s3://|blob://|g" | sed "s|s3cmd |blob |g";
-}
-
-function up() {
-  curl -F"file=@$@" http://0x0.st
-}
-
-function open_command() {
-  local open_cmd
-
-  # define the open command
-  case "$OSTYPE" in
-    darwin*)  open_cmd='open' ;;
-    cygwin*)  open_cmd='cygstart' ;;
-    linux*)   [[ "$(uname -r)" != *icrosoft* ]] && open_cmd='nohup xdg-open' || {
-                open_cmd='cmd.exe /c start ""'
-                [[ -e "$1" ]] && { 1="$(wslpath -w "${1:a}")" || return 1 }
-              } ;;
-    msys*)    open_cmd='start ""' ;;
-    *)        echo "Platform $OSTYPE not supported"
-              return 1
-              ;;
-  esac
-
-  ${=open_cmd} "$@" &>/dev/null
-}
 
 alias ytdl=yt-dlp
 
@@ -107,21 +72,3 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
-
-function pasters {
-  local file=${1:-/dev/stdin}
-  curl --data-binary @${file} https://paste.rs
-}
-
-function cardinal {
-  /home/wadii/.virtualenvs/cardinal/bin/python3 -m cardinal $@
-}
-
-function gs() {
-  if command -v fsays &> /dev/null ; then
-    program="fsays"
-  else
-    program="cowsay"
-  fi
-  $program "It's gss, idiot"
-}
