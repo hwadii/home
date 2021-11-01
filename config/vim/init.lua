@@ -15,10 +15,12 @@ end
 
 opt.termguicolors = true
 
-vim.g.zenflesh_darkness = 'stark'
-vim.g.zenflesh_lighten_noncurrent_window = true
-vim.g.zenflesh_solid_float_border = true
-vim.cmd 'colorscheme zenflesh'
+vim.g.zenbones = {
+  darkness = 'stark',
+  lighten_noncurrent_window = true,
+  solid_float_border = true,
+}
+vim.cmd 'colorscheme zenbones'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true
