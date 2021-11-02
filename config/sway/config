@@ -53,17 +53,16 @@ titlebar_padding 3 3
 
 input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_layout us
-  xkb_variant altgr-intl
   repeat_delay 400
   repeat_rate 30
-  xkb_options caps:escape
+  xkb_options caps:escape,compose:ralt
 }
 
 input "1278:32:PFU_Limited_HHKB-Classic" {
   xkb_layout us
-  xkb_variant altgr-intl
   repeat_delay 400
   repeat_rate 30
+  xkb_options compose:ralt
 }
 
 input "1133:49295:Logitech_G403_HERO_Gaming_Mouse" {
