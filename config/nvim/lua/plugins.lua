@@ -1,7 +1,14 @@
-vim.cmd [[packadd packer.nvim]]
+local fn = vim.fn
+local packer = require('packer')
+local util = require('packer.util')
 
-return require('packer').startup({function()
-  use {'wbthomason/packer.nvim', opt = true}
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
+return packer.startup({function()
+  use 'wbthomason/packer.nvim'
 
   use 'AndrewRadev/splitjoin.vim'
   use 'airblade/vim-rooter'
@@ -12,6 +19,10 @@ return require('packer').startup({function()
   use 'jpalardy/vim-slime'
   use 'neovim/nvim-lspconfig'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use {
+    'numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end,
+  }
   use {
     'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup({}, { names = false }) end,
@@ -32,6 +43,7 @@ return require('packer').startup({function()
     requires = {
       'nvim-lua/plenary.nvim'
     },
+    config = function() require('gitsigns').setup() end,
   }
   use {
     'nvim-telescope/telescope.nvim',
@@ -49,7 +61,6 @@ return require('packer').startup({function()
   use 'chrisbra/unicode.vim'
   use 'plasticboy/vim-markdown'
   use 'tpope/vim-abolish'
-  use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
@@ -59,5 +70,9 @@ return require('packer').startup({function()
   use 'rktjmp/lush.nvim'
   use '~/code/gruber_darker.nvim'
   use 'mcchrish/zenbones.nvim'
-end, config = { compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua' }
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end, config = { compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'), }
 })

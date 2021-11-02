@@ -1,19 +1,9 @@
+local opt = vim.opt
+opt.termguicolors = true
+
 require('impatient')
 require('wadii')
 require('plugin.treesitter')
-require('plugins')
-require('gitsigns').setup()
-local fn = vim.fn
-local opt = vim.opt
-
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd 'packadd packer.nvim'
-end
-
-opt.termguicolors = true
 
 vim.g.zenbones = {
   darkness = 'stark',
@@ -29,7 +19,6 @@ opt.briopt = 'shift:2'
 opt.completeopt = 'menu,menuone,noselect'
 opt.cursorline = true
 opt.expandtab = true
-opt.fileformats = 'unix,dos,mac'
 opt.formatoptions = 'jcrqnl'
 opt.fillchars = {
   diff = '∙',
