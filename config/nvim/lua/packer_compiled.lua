@@ -70,187 +70,228 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["Comment.nvim"] = {
-    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0" },
+    config = { "\27LJ\2\n«\1\0\1\6\0\n\0\0186\1\0\0'\3\1\0B\1\2\0029\2\2\0009\3\2\0019\3\3\3\5\2\3\0X\2\2Ä'\2\4\0X\3\1Ä'\2\5\0006\3\0\0'\5\6\0B\3\2\0029\3\a\0035\5\b\0=\2\t\5D\3\2\0\bkey\1\0\0\28calculate_commentstring&ts_context_commentstring.internal\16__multiline\14__default\tline\nctype\18Comment.utils\frequireN\1\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0003\3\3\0=\3\5\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\0\nsetup\fComment\frequire\0" },
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/Comment.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
   },
   LuaSnip = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/LuaSnip"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["auto-pairs"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/auto-pairs"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/auto-pairs",
+    url = "https://github.com/jiangmiao/auto-pairs"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-path"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["gina.vim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gina.vim",
+    url = "https://github.com/lambdalisue/gina.vim"
   },
   ["github_dark.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/github_dark.nvim",
+    url = "https://github.com/hwadii/github_dark.nvim"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["gruber_darker.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gruber_darker.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/gruber_darker.nvim",
+    url = "/home/wadii/code/gruber_darker.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/impatient.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
   },
   ["lush.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/lush.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/lush.nvim",
+    url = "https://github.com/rktjmp/lush.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     config = { "\27LJ\2\nI\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\nnames\1\nsetup\14colorizer\frequire\0" },
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lsp-ts-utils"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
+    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-angular"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-angular"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-angular",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-angular"
   },
   ["nvim-treesitter-refactor"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-refactor"
   },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-ts-context-commentstring"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["splitjoin.vim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/splitjoin.vim",
+    url = "https://github.com/AndrewRadev/splitjoin.vim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["unicode.vim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/unicode.vim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/unicode.vim",
+    url = "https://github.com/chrisbra/unicode.vim"
   },
   ["vim-abolish"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-abolish"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-abolish",
+    url = "https://github.com/tpope/vim-abolish"
   },
   ["vim-dirvish"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-dirvish"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-dirvish",
+    url = "https://github.com/justinmk/vim-dirvish"
   },
   ["vim-ledger"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-ledger"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-ledger",
+    url = "https://github.com/ledger/vim-ledger"
   },
   ["vim-markdown"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-markdown",
+    url = "https://github.com/plasticboy/vim-markdown"
   },
   ["vim-racket"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-racket"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-racket",
+    url = "https://github.com/wlangstroth/vim-racket"
   },
   ["vim-rooter"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rooter",
+    url = "https://github.com/airblade/vim-rooter"
   },
   ["vim-rsi"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rsi"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-rsi",
+    url = "https://github.com/tpope/vim-rsi"
   },
   ["vim-sleuth"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-sleuth"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-sleuth",
+    url = "https://github.com/tpope/vim-sleuth"
   },
   ["vim-slime"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-slime"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-slime",
+    url = "https://github.com/jpalardy/vim-slime"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-unimpaired"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-unimpaired"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
+    url = "https://github.com/tpope/vim-unimpaired"
   },
   ["zenbones.nvim"] = {
     loaded = true,
-    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/zenbones.nvim"
+    path = "/home/wadii/.local/share/nvim/site/pack/packer/start/zenbones.nvim",
+    url = "https://github.com/mcchrish/zenbones.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+try_loadstring("\27LJ\2\n«\1\0\1\6\0\n\0\0186\1\0\0'\3\1\0B\1\2\0029\2\2\0009\3\2\0019\3\3\3\5\2\3\0X\2\2Ä'\2\4\0X\3\1Ä'\2\5\0006\3\0\0'\5\6\0B\3\2\0029\3\a\0035\5\b\0=\2\t\5D\3\2\0\bkey\1\0\0\28calculate_commentstring&ts_context_commentstring.internal\16__multiline\14__default\tline\nctype\18Comment.utils\frequireN\1\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0003\3\3\0=\3\5\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 try_loadstring("\27LJ\2\nI\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\nnames\1\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
 time([[Config for nvim-colorizer.lua]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

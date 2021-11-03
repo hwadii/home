@@ -21,7 +21,17 @@ return packer.startup({function()
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
     'numToStr/Comment.nvim',
-    config = function() require('Comment').setup() end,
+    config = function()
+      require('Comment').setup({
+        pre_hook = function(ctx)
+          local U = require 'Comment.utils'
+          local type = ctx.ctype == U.ctype.line and '__default' or '__multiline'
+          return require('ts_context_commentstring.internal').calculate_commentstring {
+            key = type,
+          }
+        end,
+      })
+    end,
   }
   use {
     'norcalli/nvim-colorizer.lua',
