@@ -255,7 +255,7 @@ exec poweralertd
 exec nm-applet
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec wl-paste -t text --watch clipman store
-exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec systemd-notify --ready
 
 assign [class="^Slack$"] → workspace $ws7
