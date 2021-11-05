@@ -239,6 +239,7 @@ bar {
         pango_markup disabled
         separator_symbol ""
         strip_workspace_numbers yes
+        icon_theme Adwaita
         colors {
             background #1F1F1F
             inactive_workspace $gray $gray #888888
