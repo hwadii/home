@@ -42,3 +42,4 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"
 export NNN_BMS="d:$HOME/dl;b:$HOME/things/books;c:$HOME/code"
+if [ -e /home/wadii/.nix-profile/etc/profile.d/nix.sh ]; then . /home/wadii/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
