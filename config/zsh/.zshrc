@@ -87,3 +87,4 @@ bindkey '^[N' history-substring-search-down
 bindkey "^Xa" _expand_alias
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
+compinit -i
