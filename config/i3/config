@@ -158,7 +158,7 @@ bar {
 exec_always "setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:escape"
 exec "redshift -P -O 5500:3000 -m randr:screen=0,1"
 exec_always "xset r rate 400 30"
-exec_always "nitrogen --set-scaled ~/pics/LP_BubblesBondi.png"
+exec_always "nitrogen --set-scaled ~/artwork/mountains.jpg"
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
