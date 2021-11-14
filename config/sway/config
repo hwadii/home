@@ -7,10 +7,7 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $menu wofi -i --show drun | xargs swaymsg exec --
-set $menuall wofi -i --show run | xargs swaymsg exec --
-set $bemenu bemenu | xargs swaymsg exec --
-set $bemenurun bemenu-run | xargs swaymsg exec --
+set $bemenurun bemenu-run --no-exec | xargs swaymsg exec --
 set $background ~/artwork/mountains.jpg
 set $ws1 1
 set $ws2 2
@@ -74,7 +71,6 @@ bindsym $mod+Return exec $term
 bindsym $mod+w kill
 
 bindsym $mod+d exec $bemenurun
-bindsym $mod+Shift+d exec $menuall
 bindsym $mod+Shift+e exec (cut -d ';' -f1 ~/.local/bin/emoji | bemenu -l 30 | sed "s/ .*//" | tr -d '\n' | wl-copy)
 
 floating_modifier $mod normal
