@@ -9,6 +9,7 @@ vim.g.zenbones = {
   darkness = 'stark',
   lighten_noncurrent_window = true,
   solid_float_border = true,
+  colorize_diagnostic_underline_text = true,
 }
 vim.cmd 'colorscheme zenbones'
 opt.encoding = 'utf-8'
