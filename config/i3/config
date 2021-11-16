@@ -29,7 +29,7 @@ bindsym $mod+shift+Print exec maim -i $(xdotool getactivewindow) -s ~/$(date +'S
 
 floating_modifier $mod
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec foot
 
 bindsym $mod+w kill
 
