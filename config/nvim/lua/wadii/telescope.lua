@@ -34,6 +34,9 @@ require('telescope').setup{
       theme = 'dropdown',
       previewer = false,
       sort_lastused = true,
+      layout_config = {
+        height = 20,
+      },
       mappings = {
         i = {
           ["<c-d>"] = actions.delete_buffer,
