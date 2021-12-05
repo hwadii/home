@@ -23,9 +23,7 @@ require('telescope').setup{
       theme = 'dropdown',
       find_command = { "fd", "--hidden", "-E.git", "-tf" },
       previewer = false,
-      layout_config = {
-        height = 20,
-      },
+      layout_config = { height = 20 },
     },
     git_files = {
       theme = 'ivy',
@@ -34,9 +32,7 @@ require('telescope').setup{
       theme = 'dropdown',
       previewer = false,
       sort_lastused = true,
-      layout_config = {
-        height = 20,
-      },
+      layout_config = { height = 20 },
       mappings = {
         i = {
           ["<c-d>"] = actions.delete_buffer,
