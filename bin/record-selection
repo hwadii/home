@@ -3,4 +3,4 @@
 fuser -sk -SIGINT "$0"
 test "$1" = off && exit 0
 [ "${FLOCKER}" != "$0" ] && exec env FLOCKER="$0" flock -enx "$0" "$0" "$@" || :
-exec wf-recorder -g "$(slurp)" -f ~/videos/video-"$(date -Is)".mp4
+exec wf-recorder -g "$(slurp -b 181b28ba -c e8e7e4 -d -w 1)" -f ~/videos/video-"$(date -Is)".mp4
