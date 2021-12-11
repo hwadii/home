@@ -31,15 +31,15 @@ local custom_attach = function(client, bufnr)
   buf_set_keymap('n', '<localleader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
   buf_set_keymap('n', '<localleader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
-  buf_set_keymap('n', '<localleader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
-  buf_set_keymap('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
+  buf_set_keymap('n', '<localleader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+  buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
   buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
   buf_set_keymap('i', '<c-]>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 
   buf_set_keymap('n', '<localleader>o', '<cmd>lua vim.lsp.buf.document_symbol()<cr>', opts)
-  buf_set_keymap('n', '<localleader>d', '<cmd>lua vim.lsp.diagnostic.get_all()<cr>', opts)
-  buf_set_keymap('n', '<localleader>i', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', opts)
+  buf_set_keymap('n', '<localleader>d', '<cmd>lua vim.diagnostic.get()<cr>', opts)
+  buf_set_keymap('n', '<localleader>i', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
 end
 
 lspconfig.tsserver.setup({
