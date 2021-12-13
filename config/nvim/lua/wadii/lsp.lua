@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local null_ls = require('null-ls')
 
-null_ls.config({
+null_ls.setup({
   sources = {
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.eslint,
@@ -124,7 +124,7 @@ lspconfig.rust_analyzer.setup({
   }
 })
 
-local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver', 'null-ls', 'emmet_ls' }
+local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver', 'emmet_ls' }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
