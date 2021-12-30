@@ -11,7 +11,7 @@ null_ls.setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local custom_attach = function(client, bufnr)
+local custom_attach = function(_, bufnr)
   vim.diagnostic.config({
     underline = true,
     update_in_insert = true,
@@ -84,7 +84,7 @@ local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "", "--ngProb
 lspconfig.angularls.setup({
   on_attach = custom_attach,
   cmd = cmd,
-  on_new_config = function(new_config, new_root_dir)
+  on_new_config = function(new_config, _)
     new_config.cmd = cmd
   end,
   capabilities = capabilities,
@@ -124,7 +124,7 @@ lspconfig.rust_analyzer.setup({
   }
 })
 
-local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver', 'emmet_ls' }
+local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver', 'emmet_ls', 'sumneko_lua' }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
