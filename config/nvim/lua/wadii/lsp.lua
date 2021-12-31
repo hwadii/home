@@ -19,27 +19,27 @@ local custom_attach = function(_, bufnr)
   })
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local opts = { noremap = true, silent = true }
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-  buf_set_keymap('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-  buf_set_keymap('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-  buf_set_keymap('n', '<localleader>ws', '<cmd>lua vim.lsp.buf.workspace_symbol()<cr>', opts)
-  buf_set_keymap('n', '<localleader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<localleader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<localleader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  buf_set_keymap('n', '<localleader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
-  buf_set_keymap('n', '<localleader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-  buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-  buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-  buf_set_keymap('i', '<c-]>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+  local function opts(cb) return { noremap = true, silent = true, callback = cb } end
+  buf_set_keymap('n', 'gd', '', opts(vim.lsp.buf.definition))
+  buf_set_keymap('n', 'K', '', opts(vim.lsp.buf.hover))
+  buf_set_keymap('n', '<leader>i', '', opts(vim.lsp.buf.implementation))
+  buf_set_keymap('n', 'gy', '', opts(vim.lsp.buf.type_definition))
+  buf_set_keymap('n', 'gr', '', opts(vim.lsp.buf.references))
+  buf_set_keymap('n', '<localleader>ws', '', opts(vim.lsp.buf.workspace_symbol))
+  buf_set_keymap('n', '<localleader>wa', '', opts(vim.lsp.buf.add_workspace_folder))
+  buf_set_keymap('n', '<localleader>wr', '', opts(vim.lsp.buf.remove_workspace_folder))
+  buf_set_keymap('n', '<localleader>wl', '', opts(function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end))
+  buf_set_keymap('n', 'gR', '', opts(vim.lsp.buf.rename))
+  buf_set_keymap('n', '<localleader>f', '', opts(vim.lsp.buf.formatting))
+  buf_set_keymap('n', '<localleader>q', '', opts(vim.diagnostic.setloclist))
+  buf_set_keymap('n', ']g', '', opts(vim.diagnostic.goto_next))
+  buf_set_keymap('n', '[g', '', opts(vim.diagnostic.goto_prev))
+  buf_set_keymap('n', '<c-]>', '', opts(vim.lsp.buf.signature_help))
+  buf_set_keymap('i', '<c-]>', '', opts(vim.lsp.buf.signature_help))
 
-  buf_set_keymap('n', '<localleader>o', '<cmd>lua vim.lsp.buf.document_symbol()<cr>', opts)
-  buf_set_keymap('n', '<localleader>d', '<cmd>lua vim.diagnostic.get()<cr>', opts)
-  buf_set_keymap('n', '<localleader>i', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+  buf_set_keymap('n', '<localleader>o', '', opts(vim.lsp.buf.document_symbol))
+  buf_set_keymap('n', '<localleader>d', '', opts(vim.diagnostic.get))
+  buf_set_keymap('n', '<localleader>i', '', opts(vim.diagnostic.open_float))
 end
 
 lspconfig.tsserver.setup({
@@ -124,7 +124,16 @@ lspconfig.rust_analyzer.setup({
   }
 })
 
-local servers = { 'solargraph', 'vuels', 'jsonls', 'bashls', 'pylsp', 'racket_langserver', 'emmet_ls', 'sumneko_lua' }
+local servers = {
+  'solargraph',
+  'vuels',
+  'jsonls',
+  'bashls',
+  'pylsp',
+  'racket_langserver',
+  'emmet_ls',
+  'sumneko_lua',
+}
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
