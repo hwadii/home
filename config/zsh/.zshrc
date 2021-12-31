@@ -32,12 +32,12 @@ zreload() {
 
 autoload -U compaudit compinit
 
-source $HOME/.zinit/bin/zinit.zsh
+source $XDG_DATA_DIR/zinit/zinit.git/zinit.zsh
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit for \
-    light-mode  zdharma/fast-syntax-highlighting \
-                zdharma/history-search-multi-word \
+    light-mode  zdharma-continuum/fast-syntax-highlighting \
+                zdharma-continuum/history-search-multi-word \
                 zsh-users/zsh-history-substring-search \
                 zsh-users/zsh-autosuggestions
 
