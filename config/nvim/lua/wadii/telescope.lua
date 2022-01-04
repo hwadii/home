@@ -1,6 +1,7 @@
-pcall(require('telescope').load_extension, 'fzy_native')
+local telescope = require('telescope')
 local actions = require('telescope.actions')
-require('telescope').setup{
+telescope.load_extension('fzy_native')
+telescope.setup{
   defaults = {
     path_display = { 'shorten' },
     mappings = {
@@ -25,7 +26,6 @@ require('telescope').setup{
       previewer = false,
       layout_config = {
         height = 20,
-        width = 70,
       },
     },
     git_files = {
@@ -37,7 +37,6 @@ require('telescope').setup{
       sort_lastused = true,
       layout_config = {
         height = 20,
-        width = 70,
       },
       mappings = {
         i = {
