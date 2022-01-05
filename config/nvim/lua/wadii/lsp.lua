@@ -75,7 +75,7 @@ lspconfig.tsserver.setup({
   end,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 150,
+    allow_incremental_sync = true,
   }
 })
 
@@ -88,23 +88,14 @@ lspconfig.angularls.setup({
     new_config.cmd = cmd
   end,
   capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  }
 })
 lspconfig.html.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
   })
 lspconfig.cssls.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
   })
 lspconfig.rust_analyzer.setup({
   on_attach = custom_attach,
@@ -138,9 +129,6 @@ for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
   }
 end
 
