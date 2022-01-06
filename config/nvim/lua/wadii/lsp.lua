@@ -18,28 +18,27 @@ local custom_attach = function(_, bufnr)
     virtual_text = { spacing = 2, prefix = '·' },
   })
 
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function opts(cb) return { noremap = true, silent = true, callback = cb } end
-  buf_set_keymap('n', 'gd', '', opts(vim.lsp.buf.definition))
-  buf_set_keymap('n', 'K', '', opts(vim.lsp.buf.hover))
-  buf_set_keymap('n', '<leader>i', '', opts(vim.lsp.buf.implementation))
-  buf_set_keymap('n', 'gy', '', opts(vim.lsp.buf.type_definition))
-  buf_set_keymap('n', 'gr', '', opts(vim.lsp.buf.references))
-  buf_set_keymap('n', '<localleader>ws', '', opts(vim.lsp.buf.workspace_symbol))
-  buf_set_keymap('n', '<localleader>wa', '', opts(vim.lsp.buf.add_workspace_folder))
-  buf_set_keymap('n', '<localleader>wr', '', opts(vim.lsp.buf.remove_workspace_folder))
-  buf_set_keymap('n', '<localleader>wl', '', opts(function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end))
-  buf_set_keymap('n', 'gR', '', opts(vim.lsp.buf.rename))
-  buf_set_keymap('n', '<localleader>f', '', opts(vim.lsp.buf.formatting))
-  buf_set_keymap('n', '<localleader>q', '', opts(vim.diagnostic.setloclist))
-  buf_set_keymap('n', ']g', '', opts(vim.diagnostic.goto_next))
-  buf_set_keymap('n', '[g', '', opts(vim.diagnostic.goto_prev))
-  buf_set_keymap('n', '<c-]>', '', opts(vim.lsp.buf.signature_help))
-  buf_set_keymap('i', '<c-]>', '', opts(vim.lsp.buf.signature_help))
+  local opts = { buffer = bufnr }
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', '<localleader>ws', vim.lsp.buf.workspace_symbol, opts)
+  vim.keymap.set('n', '<localleader>wa', vim.lsp.buf.add_workspace_folder, opts)
+  vim.keymap.set('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+  vim.keymap.set('n', '<localleader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+  vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<localleader>f', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<localleader>q', vim.diagnostic.setloclist, opts)
+  vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', '<c-]>', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('i', '<c-]>', vim.lsp.buf.signature_help, opts)
 
-  buf_set_keymap('n', '<localleader>o', '', opts(vim.lsp.buf.document_symbol))
-  buf_set_keymap('n', '<localleader>d', '', opts(vim.diagnostic.get))
-  buf_set_keymap('n', '<localleader>i', '', opts(vim.diagnostic.open_float))
+  vim.keymap.set('n', '<localleader>o', vim.lsp.buf.document_symbol, opts)
+  vim.keymap.set('n', '<localleader>d', vim.diagnostic.get, opts)
+  vim.keymap.set('n', '<localleader>i', vim.diagnostic.open_float, opts)
 end
 
 lspconfig.tsserver.setup({
