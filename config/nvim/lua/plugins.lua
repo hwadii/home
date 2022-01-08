@@ -19,6 +19,7 @@ return packer.startup({function()
   use 'jpalardy/vim-slime'
   use 'neovim/nvim-lspconfig'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'junegunn/vim-easy-align'
   use {
     'numToStr/Comment.nvim',
     config = function()

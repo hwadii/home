@@ -36,10 +36,10 @@ source $XDG_DATA_DIR/zinit/zinit.git/zinit.zsh
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit for \
-    light-mode  zdharma-continuum/fast-syntax-highlighting \
-                zdharma-continuum/history-search-multi-word \
-                zsh-users/zsh-history-substring-search \
-                zsh-users/zsh-autosuggestions
+    light-mode zdharma-continuum/fast-syntax-highlighting  \
+               zdharma-continuum/history-search-multi-word \
+               zsh-users/zsh-history-substring-search      \
+               zsh-users/zsh-autosuggestions
 
 zinit snippet OMZL::git.zsh
 zinit snippet OMZL::clipboard.zsh
