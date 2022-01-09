@@ -253,17 +253,16 @@ exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec wl-paste -t text --watch clipman store
 
 assign [class="^Slack$"] → workspace $ws7
-assign [app_id="mpv"] → workspace $ws5
 assign [class="^Spotify$"] → workspace $ws6
 for_window [app_id="gnome-calculator"] floating enable
-for_window [app_id="nautilus"] floating enable
+for_window [app_id="org.gnome.Nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
-for_window [title="Indicateur de partage"] floating enable
 for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [title="Zoom Cloud Meetings"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
 for_window [title="Firefox — Sharing Indicator"] kill
+for_window [title="Indicateur de partage"] kill
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
 exec systemd-notify --ready
