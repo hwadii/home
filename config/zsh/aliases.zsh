@@ -8,6 +8,7 @@ alias sard='mpv https://twitch.tv/sardoche --quiet >/dev/null &'
 alias kameto='mpv https://www.twitch.tv/kamet0 --quiet >/dev/null &'
 alias coro='mpv https://twitch.tv/corobizar --quiet >/dev/null &'
 alias open='open_command'
+alias dragon-x11="GDK_BACKEND=x11 dragon"
 
 # list
 alias ls='exa --git --group-directories-first'
