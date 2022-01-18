@@ -15,7 +15,6 @@ format = "{artist} — {title} • "
 
 [[block]]
 block = "battery"
-driver = "upower"
 format = "{percentage} {time} •"
 full_format = "FULL • "
 
