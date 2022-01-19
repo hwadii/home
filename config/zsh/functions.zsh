@@ -26,6 +26,8 @@ function cardinal() (
   /home/wadii/.virtualenvs/cardinal/bin/python3 -m cardinal $@
 )
 
+backport() { /home/wadii/.virtualenvs/backport/bin/backport $@ }
+
 function gs() (
   local program
   if command -v fsays &> /dev/null ; then
