@@ -22,6 +22,7 @@ export GOPATH="$HOME/.local/go"
 export RUSTUP_HOME="$HOME/.local/rustup"
 export GEM_HOME="$RVM_DIR/gems/default"
 export GEM_PATH="$RVM_DIR/gems/default"
+export RUBY_YJIT_ENABLE=1
 export PYENV_ROOT="$XDG_CONFIG_HOME/pyenv"
 export PATH="$XDG_LOCAL_BIN:$PATH:$NVM_DIR/versions/node/v14.18.2/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$XDG_LOCAL_BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$GOPATH/bin:$GEM_HOME/bin:$RVM_DIR/rubies/default/bin:$PYENV_ROOT/bin"
 export EDITOR=nvim
