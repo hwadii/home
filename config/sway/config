@@ -261,8 +261,8 @@ for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [title="Zoom Cloud Meetings"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
-for_window [title="Firefox — Sharing Indicator"] kill
-for_window [title="Indicateur de partage"] kill
+for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, border none
+for_window [title="Indicateur de partage"] floating enable, sticky enable, border none
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
 exec systemd-notify --ready
