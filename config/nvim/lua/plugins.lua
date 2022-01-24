@@ -4,7 +4,7 @@ local util = require('packer.util')
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 return packer.startup({function()
@@ -94,10 +94,9 @@ return packer.startup({function()
   use 'lewis6991/impatient.nvim'
   use 'tpope/vim-rsi'
   use 'rktjmp/lush.nvim'
-  use '~/code/gruber_darker.nvim'
   use 'mcchrish/zenbones.nvim'
 
-  if packer_bootstrap then
+  if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
 end, config = { compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'), }
