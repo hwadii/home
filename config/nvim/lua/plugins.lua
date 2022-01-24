@@ -85,7 +85,7 @@ return packer.startup({function()
   use 'nvim-treesitter/nvim-treesitter-angular'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'chrisbra/unicode.vim'
-  use 'plasticboy/vim-markdown'
+  use 'preservim/vim-markdown'
   use 'tpope/vim-abolish'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
