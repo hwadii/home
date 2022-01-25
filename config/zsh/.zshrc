@@ -49,7 +49,6 @@ zinit snippet OMZL::completion.zsh
 zinit snippet OMZP::dnf
 zinit snippet OMZP::extract
 zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-zinit ice as'program'
 zinit as'completion' blockf for \
   light-mode \
     zsh-users/zsh-completions \
