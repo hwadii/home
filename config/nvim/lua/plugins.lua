@@ -20,6 +20,7 @@ return packer.startup({function()
   use 'neovim/nvim-lspconfig'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'junegunn/vim-easy-align'
+  use { 'SmiteshP/nvim-gps', config = function() require('nvim-gps').setup() end }
   use {
     'numToStr/Comment.nvim',
     config = function()

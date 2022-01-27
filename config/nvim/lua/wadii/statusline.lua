@@ -1,5 +1,6 @@
 local Path = require('plenary.path')
 local strings = require('plenary.strings')
+local gps = require('nvim-gps')
 
 local statusline = {}
 
@@ -46,6 +47,14 @@ statusline.branch = function()
   else
     return current_branch .. ' · '
   end
+end
+
+statusline.gps = function()
+  local location = gps.get_location()
+  if gps.is_available() and #location > 0 then
+    return location .. ' · '
+  end
+  return ''
 end
 
 
@@ -107,6 +116,7 @@ statusline.active = function()
   .. '%r'
   .. ' '
   .. '%='
+  .. '%{v:lua.wadii.statusline.gps()}'
   .. '%{v:lua.wadii.statusline.gitstatus()}'
   .. ' '
   .. '%{v:lua.wadii.statusline.branch()}'
