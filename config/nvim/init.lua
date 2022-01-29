@@ -69,7 +69,6 @@ opt.wildmenu = true
 opt.wildoptions = 'pum'
 opt.wildignore = { '__pycache__', '*.o', '*~', '*.pyc', '*pycache*' }
 opt.winminheight = 0
-opt.pumblend = 17
 opt.scrolloff = 3
 opt.foldlevelstart = 99 -- start unfolded
 opt.foldtext = 'v:lua.wadii.foldtext()'
