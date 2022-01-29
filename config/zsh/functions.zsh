@@ -22,9 +22,9 @@ function pasters() (
   curl --data-binary @${file} https://paste.rs
 )
 
-function cardinal() (
-  /home/wadii/.virtualenvs/cardinal/bin/python3 -m cardinal $@
-)
+function cardinal() {
+  /home/wadii/.virtualenvs/cardinal/bin/python3.8 -m cardinal $@
+}
 
 backport() { /home/wadii/.virtualenvs/backport/bin/backport $@ }
 
