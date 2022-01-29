@@ -104,7 +104,7 @@ statusline.gitstatus = function()
 end
 
 statusline.active = function()
-  vim.opt.statusline = ''
+  vim.opt_local.statusline = ''
   .. '🌸 %<'
   .. '%{v:lua.wadii.statusline.fileprefix()}'
   .. '%1*'
@@ -122,19 +122,19 @@ statusline.active = function()
   .. '%{v:lua.wadii.statusline.branch()}'
   .. '%*'
   .. '%{v:lua.wadii.statusline.right_hand_side()}'
-  if vim.opt.cursorline:get() == false then
-    vim.opt.cursorline = true
+  if vim.opt_local.cursorline:get() == false then
+    vim.opt_local.cursorline = true
   end
 end
 
 statusline.inactive = function()
-  vim.opt.statusline = ''
+  vim.opt_local.statusline = ''
   .. '%{v:lua.wadii.statusline.gutter_padding()}'
   .. '%2*'
   .. '%f'
   .. '%*'
-  if vim.opt.cursorline:get() == true then
-    vim.opt.cursorline = false
+  if vim.opt_local.cursorline:get() == true then
+    vim.opt_local.cursorline = false
   end
 end
 

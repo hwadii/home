@@ -1,5 +1,5 @@
 augroup SL
 	autocmd!
-	autocmd WinEnter,BufEnter * lua require('wadii.statusline').active()
-	autocmd WinLeave * lua require('wadii.statusline').inactive()
+	autocmd WinEnter,BufEnter * call v:lua.wadii.statusline.active()
+	autocmd WinLeave,BufLeave * call v:lua.wadii.statusline.inactive()
 augroup END
