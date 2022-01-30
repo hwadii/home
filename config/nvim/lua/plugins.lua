@@ -108,9 +108,9 @@ return packer.startup({function()
     'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim'
     }
   }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
