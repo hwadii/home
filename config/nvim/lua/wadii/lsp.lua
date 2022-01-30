@@ -16,7 +16,7 @@ local custom_attach = function(_, bufnr)
   vim.diagnostic.config({
     underline = true,
     update_in_insert = true,
-    virtual_text = { prefix = '·' },
+    virtual_text = { prefix = '•' },
   })
 
   local opts = { buffer = bufnr }
