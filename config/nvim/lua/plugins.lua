@@ -125,6 +125,7 @@ return packer.startup({function()
   use 'tpope/vim-sleuth'
   use 'justinmk/vim-dirvish'
   use 'lewis6991/impatient.nvim'
+  use 'nathom/filetype.nvim'
   use 'tpope/vim-rsi'
   use 'rktjmp/lush.nvim'
   use 'mcchrish/zenbones.nvim'
