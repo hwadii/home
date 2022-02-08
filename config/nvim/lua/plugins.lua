@@ -19,7 +19,7 @@ return packer.startup({function()
   use 'jpalardy/vim-slime'
   use 'neovim/nvim-lspconfig'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'junegunn/vim-easy-align'
+  use 'kg8m/vim-simple-align'
   use { 'SmiteshP/nvim-gps', config = function() require('nvim-gps').setup() end }
   use {
     'numToStr/Comment.nvim',
