@@ -3,7 +3,6 @@ local actions = require('telescope.actions')
 telescope.load_extension('fzf')
 telescope.setup{
   defaults = {
-    path_display = { 'shorten' },
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
