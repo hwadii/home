@@ -33,7 +33,7 @@ statusline.fileprefix = function()
   if basename == '' or basename == '.' then
     return ''
   else
-    return basename:gsub('/$', '') .. '/'
+    return Path:new(basename:gsub('/$', '') .. '/'):shorten()
   end
 end
 
