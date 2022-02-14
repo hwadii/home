@@ -21,11 +21,12 @@ telescope.setup{
   },
   pickers = {
     find_files = {
-      theme = 'dropdown',
+      theme = 'ivy',
       find_command = { "fd", "--hidden", "-E.git", "-tf" },
-      previewer = false,
+      preview = true,
+      path_display = { 'smart' },
       layout_config = {
-        height = 20,
+        height = 25,
       },
     },
     git_files = {
@@ -33,7 +34,7 @@ telescope.setup{
     },
     buffers = {
       theme = 'dropdown',
-      previewer = false,
+      preview = false,
       sort_lastused = true,
       layout_config = {
         height = 20,
