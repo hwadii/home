@@ -46,7 +46,7 @@ lspconfig.tsserver.setup({
   init_options = {
     hostInfo = "neovim",
     preferences = {
-      importModuleSpecifierPreference = "shortest",
+      importModuleSpecifierPreference = "relative",
       includeCompletionsForImportStatements = true,
       includeCompletionsWithSnippetText = true,
       includeInlayParameterNameHints = "none",
