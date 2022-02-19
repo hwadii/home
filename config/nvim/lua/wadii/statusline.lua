@@ -43,16 +43,16 @@ statusline.branch = function()
   if current_branch == '' then
     return current_branch
   elseif #current_branch > 15 then
-    return strings.truncate(current_branch, 15, '>') .. ' · '
+    return strings.truncate(current_branch, 15, '>') .. ' • '
   else
-    return current_branch .. ' · '
+    return current_branch .. ' • '
   end
 end
 
 statusline.gps = function()
   local location = gps.get_location()
   if gps.is_available() and #location > 0 then
-    return location .. ' · '
+    return location .. ' • '
   end
   return ''
 end
@@ -98,7 +98,7 @@ end
 statusline.gitstatus = function()
   local status = vim.b.gitsigns_status or ''
   if #status > 0 then
-    return status .. ' ·'
+    return status .. ' •'
   end
   return status
 end
