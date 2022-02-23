@@ -99,3 +99,4 @@ vim.g.slime_dont_ask_default = 1
 vim.g.rsi_no_meta = 1
 vim.g.rooter_manual_only = true
 vim.g.did_load_filetypes = 1
+vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
