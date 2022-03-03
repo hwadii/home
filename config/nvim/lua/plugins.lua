@@ -110,6 +110,15 @@ return packer.startup({function()
       'nvim-lua/plenary.nvim',
     }
   }
+  use {
+    'AckslD/nvim-neoclip.lua',
+    requires = {
+      { 'nvim-telescope/telescope.nvim' },
+    },
+    config = function()
+      require('neoclip').setup()
+    end,
+  }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
