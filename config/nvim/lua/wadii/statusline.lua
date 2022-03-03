@@ -50,11 +50,11 @@ statusline.branch = function()
 end
 
 statusline.gps = function()
-  local location = gps.get_location()
-  if gps.is_available() and #location > 0 then
-    return location .. ' • '
+  if not gps.is_available() then
+    return ''
   end
-  return ''
+  local location = gps.get_location()
+  if #location > 0 then return location .. ' • ' else return '' end
 end
 
 
