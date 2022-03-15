@@ -76,13 +76,18 @@ opt.foldtext = 'v:lua.wadii.foldtext()'
 opt.grepprg = 'rg --vimgrep --no-heading'
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
-vim.cmd [[autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank {higroup='IncSearch', timeout=1000}]]
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 1000 })
+  end,
+  group = vim.api.nvim_create_augroup('yank_post_group', { clear = true }),
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'plugins.lua',
+  command = 'source <afile> | PackerCompile',
+  group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
+})
 
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_no_default_key_mappings = 1

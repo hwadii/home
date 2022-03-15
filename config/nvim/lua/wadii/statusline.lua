@@ -138,4 +138,25 @@ statusline.inactive = function()
   end
 end
 
+local statusline_group = vim.api.nvim_create_augroup('statusline', { clear = true })
+
+vim.api.nvim_create_autocmd(
+  { 'WinEnter', 'BufEnter' },
+  {
+    callback = function()
+      statusline.active()
+    end,
+    group = statusline_group,
+  }
+)
+
+vim.api.nvim_create_autocmd(
+  { 'WinLeave', 'BufLeave' },
+  {
+    callback = function() statusline.inactive() end,
+    group = statusline_group,
+  }
+)
+
+
 return statusline
