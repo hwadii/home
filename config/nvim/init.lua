@@ -40,6 +40,7 @@ opt.emoji = false
 opt.hidden = true
 opt.ignorecase = true
 opt.inccommand = 'split'
+opt.laststatus = 3 -- Show global statusline as opposed to a statusline per window
 opt.lazyredraw = true
 opt.linebreak = true
 opt.mouse = 'a'

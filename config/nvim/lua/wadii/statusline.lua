@@ -150,13 +150,4 @@ vim.api.nvim_create_autocmd(
   }
 )
 
-vim.api.nvim_create_autocmd(
-  { 'WinLeave', 'BufLeave' },
-  {
-    callback = function() statusline.inactive() end,
-    group = statusline_group,
-  }
-)
-
-
 return statusline
