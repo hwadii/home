@@ -37,26 +37,17 @@ statusline.fileprefix = function()
   end
 end
 
-
 statusline.branch = function()
-  local current_branch = vim.fn['gina#component#repo#branch']() or ''
-  if current_branch == '' then
-    return current_branch
-  else
-    return current_branch .. ' • '
-  end
+  return vim.fn['gina#component#repo#branch']()
 end
 
 statusline.gps = function()
-  if not gps.is_available() then
-    return ''
+  if gps.is_available() then
+    return gps.get_location()
   end
-  local location = gps.get_location()
-  if #location > 0 then return location .. ' • ' else return '' end
 end
 
-
-statusline.right_hand_side = function()
+statusline.line_and_column = function()
   local rhs = ''
 
   if vim.fn.winwidth(0) > 80 then
@@ -94,11 +85,22 @@ statusline.right_hand_side = function()
 end
 
 statusline.gitstatus = function()
-  local status = vim.b.gitsigns_status or ''
-  if #status > 0 then
-    return status .. ' • '
-  end
-  return status
+  return vim.b.gitsigns_status
+end
+
+statusline.right_hand_side = function()
+  local all_components = {
+    statusline.gps(),
+    statusline.gitstatus(),
+    statusline.branch(),
+    statusline.line_and_column(),
+  }
+
+  local usable_components = vim.tbl_filter(function(component)
+    return component and #component > 0
+  end, all_components)
+
+  return table.concat(usable_components, ' • ')
 end
 
 statusline.active = function()
@@ -114,9 +116,6 @@ statusline.active = function()
   .. '%r'
   .. ' '
   .. '%='
-  .. '%{v:lua.wadii.statusline.gps()}'
-  .. '%{v:lua.wadii.statusline.gitstatus()}'
-  .. '%{v:lua.wadii.statusline.branch()}'
   .. '%{v:lua.wadii.statusline.right_hand_side()}'
   if vim.opt_local.cursorline:get() == false then
     vim.opt_local.cursorline = true
