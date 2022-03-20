@@ -42,8 +42,6 @@ statusline.branch = function()
   local current_branch = vim.fn['gina#component#repo#branch']() or ''
   if current_branch == '' then
     return current_branch
-  elseif #current_branch > 15 then
-    return strings.truncate(current_branch, 15, '>') .. ' • '
   else
     return current_branch .. ' • '
   end
@@ -98,7 +96,7 @@ end
 statusline.gitstatus = function()
   local status = vim.b.gitsigns_status or ''
   if #status > 0 then
-    return status .. ' •'
+    return status .. ' • '
   end
   return status
 end
@@ -118,9 +116,7 @@ statusline.active = function()
   .. '%='
   .. '%{v:lua.wadii.statusline.gps()}'
   .. '%{v:lua.wadii.statusline.gitstatus()}'
-  .. ' '
   .. '%{v:lua.wadii.statusline.branch()}'
-  .. '%*'
   .. '%{v:lua.wadii.statusline.right_hand_side()}'
   if vim.opt_local.cursorline:get() == false then
     vim.opt_local.cursorline = true
