@@ -38,7 +38,7 @@ statusline.fileprefix = function()
 end
 
 statusline.branch = function()
-  return vim.fn['gina#component#repo#branch']()
+  return vim.b.gitsigns_head
 end
 
 statusline.gps = function()
