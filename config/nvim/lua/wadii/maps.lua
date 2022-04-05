@@ -30,15 +30,18 @@ vim.keymap.set("n", "ga", "<cmd>Telescope lsp_code_actions<cr>")
 vim.keymap.set("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 
 -- gina
-vim.keymap.set("n", "<Leader>gs", "<cmd>Gina status -s<cr>")
-vim.keymap.set("n", "<Leader>gc", "<cmd>Gina commit<cr>")
-vim.keymap.set("n", "<Leader>gp", "<cmd>Gina push<cr>")
-vim.keymap.set("n", "<Leader>gl", "<cmd>Gina log<cr>")
-vim.keymap.set("n", "<Leader>gd", "<cmd>Gina diff<cr>")
-vim.keymap.set("n", "<Leader>gb", "<cmd>Gina blame<cr>")
-vim.keymap.set("n", "<Leader>ga", "<cmd>Gina branch<cr>")
-vim.keymap.set("n", "<Leader>geb", "<Plug>(gina-blame-echo)")
-vim.keymap.set("n", "<Leader>gv",  "gina#component#repo#branch()", { noremap = true, silent = true, expr = true })
+vim.keymap.set("n", "<Leader>gs", "<cmd>G | only<cr>")
+vim.keymap.set("n", "<Leader>gc", "<cmd>G commit<cr>")
+vim.keymap.set("n", "<Leader>gp", "<cmd>G push<cr>")
+vim.keymap.set("n", "<Leader>gl", "<cmd>G log<cr>")
+vim.keymap.set("n", "<Leader>gd", "<cmd>G diff<cr>")
+vim.keymap.set("n", "<Leader>gb", "<cmd>G blame<cr>")
+vim.keymap.set("n", "<Leader>ga", "<cmd>G branch<cr>")
 
 -- colorizer
 vim.keymap.set("n", "<Leader>c", "<cmd>ColorizerToggle<cr>", { noremap = true, silent = false })
+
+-- custom commands
+
+vim.api.nvim_add_user_command('Gpf', 'G push --force-with-lease', {})
+vim.api.nvim_add_user_command('Gpff', 'G push --force', {})
