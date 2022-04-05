@@ -35,5 +35,10 @@
   maxStack = 20
 [merge]
   conflictstyle = diff3
+  tool = nvim
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+[mergetool]
+  prompt = false
 [init]
   defaultBranch = main
