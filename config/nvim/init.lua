@@ -5,14 +5,14 @@ require('impatient')
 require('wadii')
 require('plugin.treesitter')
 
-vim.g.tokyobones = {
+vim.g.zenbones = {
   lighten_noncurrent_window = true,
   solid_float_border = true,
   solid_vert_split = true,
   solid_line_nr = true,
   darken_non_text = 30,
 }
-vim.cmd 'colorscheme tokyobones'
+vim.cmd 'colorscheme zenbones'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true
