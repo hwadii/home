@@ -26,6 +26,7 @@ export RUBY_YJIT_ENABLE=1
 export PYENV_ROOT="$XDG_CONFIG_HOME/pyenv"
 export PATH="$XDG_LOCAL_BIN:$PATH:$NVM_DIR/versions/node/v16.14.2/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$XDG_LOCAL_BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$GOPATH/bin:$GEM_HOME/bin:$RVM_DIR/rubies/default/bin:$PYENV_ROOT/bin:$PYENV_ROOT/versions/3.8.7/bin/"
 export EDITOR=nvim
+export VISUAL=nvim
 export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
 export FZF_DEFAULT_OPTS="
     --height 40%
