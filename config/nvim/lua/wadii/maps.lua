@@ -43,5 +43,5 @@ vim.keymap.set("n", "<Leader>c", "<cmd>ColorizerToggle<cr>", { noremap = true, s
 
 -- custom commands
 
-vim.api.nvim_add_user_command('Gpf', 'G push --force-with-lease', {})
-vim.api.nvim_add_user_command('Gpff', 'G push --force', {})
+vim.api.nvim_create_user_command('Gpf', 'G push --force-with-lease', {})
+vim.api.nvim_create_user_command('Gpff', 'G push --force', {})
