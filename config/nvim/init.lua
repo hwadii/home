@@ -11,7 +11,8 @@ vim.g.zenbones = {
   solid_vert_split = true,
   solid_line_nr = true,
   darken_non_text = 30,
-  colorize_diagnostic_underline_text = true
+  colorize_diagnostic_underline_text = true,
+  darkness = 'stark'
 }
 vim.g.colors_name = 'zenbones'
 opt.encoding = 'utf-8'
