@@ -7,6 +7,11 @@ name = "native"
 separator = ""
 
 [[block]]
+block = "focused_window"
+max_width = 50
+format = "{title} •"
+
+[[block]]
 block = "music"
 dynamic_width = true
 max_width = 1000
@@ -16,7 +21,7 @@ format = "{artist} — {title} • "
 [[block]]
 block = "battery"
 format = "{percentage} {time} •"
-full_format = "FULL • "
+full_format = "FULL •"
 
 [[block]]
 block = "sound"
