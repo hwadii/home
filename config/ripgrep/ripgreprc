@@ -1,3 +1,4 @@
+--max-columns-preview
 --colors=match:fg:4
 --colors=path:fg:3
 --smart-case
