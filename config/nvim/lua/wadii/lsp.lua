@@ -31,14 +31,15 @@ local custom_attach = function(_, bufnr)
   vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<localleader>f', vim.lsp.buf.formatting, opts)
   vim.keymap.set('n', '<localleader>q', vim.diagnostic.setloclist, opts)
-  vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', '<c-]>', vim.lsp.buf.signature_help, opts)
   vim.keymap.set('i', '<c-]>', vim.lsp.buf.signature_help, opts)
 
   vim.keymap.set('n', '<localleader>o', vim.lsp.buf.document_symbol, opts)
   vim.keymap.set('n', '<localleader>d', vim.diagnostic.get, opts)
   vim.keymap.set('n', '<localleader>i', vim.diagnostic.open_float, opts)
+  vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
 end
 
 lspconfig.tsserver.setup({
