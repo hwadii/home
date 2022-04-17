@@ -45,6 +45,7 @@ opt.inccommand = 'split'
 opt.laststatus = 3 -- Show global statusline as opposed to a statusline per window
 opt.lazyredraw = true
 opt.linebreak = true
+opt.breakindent = true
 opt.mouse = 'a'
 opt.backup = false
 opt.joinspaces = false
