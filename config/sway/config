@@ -71,7 +71,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+w kill
 
 bindsym $mod+d exec $bemenurun
-bindsym $mod+Shift+e exec (cut -d ';' -f1 ~/.local/bin/emoji | bemenu -l 30 | sed "s/ .*//" | tr -d '\n' | wl-copy)
+bindsym $mod+Shift+e exec emoji-picker
 bindsym $mod+Shift+p exec passmenu
 
 floating_modifier $mod normal
