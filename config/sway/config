@@ -96,19 +96,11 @@ bindsym $mod+$right focus right
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
 bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -160,11 +152,11 @@ mode "nag" {
     Tab       $nag --select prev
     Shift+Tab $nag --select next
 
-    Left      $nag --select next
-    Right     $nag --select prev
+    $left      $nag --select next
+    $right     $nag --select prev
 
-    Up        $nag --select next
-    Down      $nag --select prev
+    $up        $nag --select next
+    $down      $nag --select prev
   }
 }
 
@@ -173,11 +165,6 @@ mode "resize" {
     bindsym $down resize grow height 20px
     bindsym $up resize shrink height 20px
     bindsym $right resize grow width 20px
-
-    bindsym Left resize shrink width 20px
-    bindsym Down resize grow height 20px
-    bindsym Up resize shrink height 20px
-    bindsym Right resize grow width 20px
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
