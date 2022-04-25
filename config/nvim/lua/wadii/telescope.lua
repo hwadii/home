@@ -46,9 +46,6 @@ telescope.setup{
         }
       }
     },
-    lsp_code_actions = {
-      theme = 'cursor',
-    },
   },
   extensions = {
     fuzzy = true,                    -- false will only do exact matching
