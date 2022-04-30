@@ -1,14 +1,6 @@
 local lspconfig = require('lspconfig')
 local null_ls = require('null-ls')
 
-null_ls.setup({
-  sources = {
-    null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
-  }
-})
-
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local custom_attach = function(_, bufnr)
@@ -42,6 +34,14 @@ local custom_attach = function(_, bufnr)
   vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
 end
 
+null_ls.setup({
+  sources = {
+    -- null_ls.builtins.code_actions.gitsigns,
+    -- null_ls.builtins.code_actions.eslint_d,
+    -- null_ls.builtins.formatting.eslint_d,
+  }
+})
+
 lspconfig.tsserver.setup({
   init_options = {
     hostInfo = "neovim",
@@ -60,8 +60,8 @@ lspconfig.tsserver.setup({
   },
   on_attach = function(client, bufnr)
     custom_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    -- client.resolved_capabilities.document_formatting = false
+    -- client.resolved_capabilities.document_range_formatting = false
     local ts_utils = require('nvim-lsp-ts-utils')
     ts_utils.setup({
       eslint_bin = "eslint_d",
