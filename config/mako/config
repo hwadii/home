@@ -1,5 +1,6 @@
 layer=overlay
-background-color=#1F1F1F
+background-color=#222222
+border-color=#555555
 default-timeout=8000
 group-by=app-name
 

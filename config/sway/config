@@ -8,7 +8,7 @@ set $up k
 set $right l
 set $term foot
 set $bemenurun bemenu-run --no-exec | xargs swaymsg exec --
-set $background ~/artwork/compass.png
+set $background ~/artwork/flowers.jpeg
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -207,14 +207,22 @@ bindsym $mod+p exec "playerctl --player=spotify,%any play-pause"
 
 seat seat0 xcursor_theme "Adwaita"
 
-set $blue #285577
-set $gray #282828
-set $red #900000
-set $white #ffffff
-
-client.focused $blue $blue $white $blue $blue
-client.focused_inactive $gray $gray $white $gray $gray
+set $bof #555555
+set $boi #515151
+set $bou #333333
+set $bg #424242
+set $bgi #3D3D3D
+set $bgu #222222
+set $fg #ffffff
+set $fgi #B0BEC5
+set $fgu #888888
+set $btf #000000
 focus_on_window_activation urgent
+
+# class                 border  bg    text  indicator child_border
+client.focused          $bof    $bg   $fg   $bg       $bof
+client.focused_inactive $boi    $bgi  $fgi  $bg       $boi
+client.unfocused        $bou    $bgu  $fgu  $bg       $bgu
 
 bar {
         status_command i3status-rs
@@ -225,12 +233,12 @@ bar {
         strip_workspace_numbers yes
         icon_theme Adwaita
         colors {
-            background #1F1F1F
-            inactive_workspace $gray $gray #888888
-            active_workspace $gray $gray $white
-            urgent_workspace $red $red $white
-            focused_workspace $blue $blue $white
-            urgent_workspace $red $red $white
+            statusline $fg
+            background $btf
+            focused_background $btf
+            focused_workspace $bof $bg $fg
+            active_workspace $boi $bgi $fgi
+            inactive_workspace $boi $bgu $fgu
         }
 }
 
