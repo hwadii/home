@@ -26,7 +26,7 @@ telescope.setup{
       theme = 'ivy',
       find_command = { 'fd', '--hidden', '-E.git', '-tf' },
       preview = true,
-      path_display = { 'smart' },
+      path_display = { 'truncate' },
       layout_config = {
         height = 25,
       },
