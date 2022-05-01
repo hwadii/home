@@ -94,6 +94,10 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
 })
 
+vim.api.nvim_set_hl(0, 'User1', { fg = '#B4BDC3', bg = '#352F2D', bold = true })
+vim.api.nvim_set_hl(0, 'User2', { fg = '#CAD0D4', bg = '#272321', italic = true, reverse = true })
+vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
+
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_no_default_key_mappings = 1
 vim.g.vim_markdown_emphasis_multiline = 0
