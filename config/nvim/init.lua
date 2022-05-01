@@ -29,6 +29,7 @@ opt.fillchars = {
   eob = '~',
   fold = '·',
   vert = '|',
+  msgsep = '‾',
 }
 opt.list = true
 opt.listchars = {
