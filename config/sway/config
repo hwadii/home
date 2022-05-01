@@ -216,7 +216,7 @@ set $bgu #222222
 set $fg #ffffff
 set $fgi #B0BEC5
 set $fgu #888888
-set $btf #000000
+set $btf #282828
 focus_on_window_activation urgent
 
 # class                 border  bg    text  indicator child_border
