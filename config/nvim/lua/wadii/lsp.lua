@@ -11,6 +11,7 @@ local custom_attach = function(_, bufnr)
   })
 
   local opts = { buffer = bufnr }
+  vim.keymap.set("n", "ga", vim.lsp.buf.code_action)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, opts)
@@ -21,7 +22,7 @@ local custom_attach = function(_, bufnr)
   vim.keymap.set('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set('n', '<localleader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
   vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<localleader>f', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<localleader>f', vim.lsp.buf.format, opts)
   vim.keymap.set('n', '<localleader>q', vim.diagnostic.setloclist, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -31,15 +32,15 @@ local custom_attach = function(_, bufnr)
   vim.keymap.set('n', '<localleader>o', vim.lsp.buf.document_symbol, opts)
   vim.keymap.set('n', '<localleader>d', vim.diagnostic.get, opts)
   vim.keymap.set('n', '<localleader>i', vim.diagnostic.open_float, opts)
-  vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+  vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
 end
 
 null_ls.setup({
   sources = {
-    -- null_ls.builtins.code_actions.gitsigns,
-    -- null_ls.builtins.code_actions.eslint_d,
-    -- null_ls.builtins.formatting.eslint_d,
-  }
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.formatting.eslint_d,
+  },
 })
 
 lspconfig.tsserver.setup({

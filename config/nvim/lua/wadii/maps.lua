@@ -26,10 +26,9 @@ vim.keymap.set("n", "<Leader>to", "<cmd>Telescope lsp_document_symbols<cr>")
 vim.keymap.set("n", "<Leader>tr", "<cmd>Telescope lsp_references<cr>")
 vim.keymap.set("n", "<Leader>te", "<cmd>Telescope resume<cr>")
 vim.keymap.set("n", "<Leader>t;", "<cmd>Telescope neoclip<cr>")
-vim.keymap.set("n", "ga", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 
--- gina
+-- git
 vim.keymap.set("n", "<Leader>gs", "<cmd>G | only<cr>")
 vim.keymap.set("n", "<Leader>gc", "<cmd>G commit<cr>")
 vim.keymap.set("n", "<Leader>gp", "<cmd>G push<cr>")
