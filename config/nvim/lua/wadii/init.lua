@@ -1,4 +1,4 @@
-local wadii = {
+_G.wadii = {
   foldtext = require'wadii.foldtext',
   lsp = require'wadii.lsp',
   snippets = require'wadii.snippets',
@@ -10,6 +10,4 @@ local wadii = {
   plugins = require'plugins',
 }
 
-_G.wadii = wadii
-
-return wadii
+return _G.wadii
