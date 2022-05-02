@@ -29,18 +29,19 @@ vim.keymap.set("n", "<Leader>t;", "<cmd>Telescope neoclip<cr>")
 vim.keymap.set("n", "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 
 -- git
-vim.keymap.set("n", "<Leader>gs", "<cmd>G | only<cr>")
-vim.keymap.set("n", "<Leader>gc", "<cmd>G commit<cr>")
-vim.keymap.set("n", "<Leader>gp", "<cmd>G push<cr>")
-vim.keymap.set("n", "<Leader>gl", "<cmd>G log<cr>")
-vim.keymap.set("n", "<Leader>gd", "<cmd>G diff<cr>")
-vim.keymap.set("n", "<Leader>gb", "<cmd>G blame<cr>")
-vim.keymap.set("n", "<Leader>ga", "<cmd>G branch<cr>")
+vim.keymap.set("n", "<Leader>gs", "<cmd>Git<cr>")
+vim.keymap.set("n", "<Leader>gc", "<cmd>Git commit<cr>")
+vim.keymap.set("n", "<Leader>gp", "<cmd>Git push<cr>")
+vim.keymap.set("n", "<Leader>gl", "<cmd>Git log<cr>")
+vim.keymap.set("n", "<Leader>gd", "<cmd>Git diff<cr>")
+vim.keymap.set("n", "<Leader>gb", "<cmd>Git blame<cr>")
+vim.keymap.set("n", "<Leader>ga", "<cmd>Git branch<cr>")
 
 -- colorizer
 vim.keymap.set("n", "<Leader>c", "<cmd>ColorizerToggle<cr>", { noremap = true, silent = false })
 
 -- custom commands
 
-vim.api.nvim_create_user_command('Gpf', 'G push --force-with-lease', {})
-vim.api.nvim_create_user_command('Gpff', 'G push --force', {})
+vim.api.nvim_create_user_command('Gpf', 'Git push --force-with-lease', {})
+vim.api.nvim_create_user_command('Gpff', 'Git push --force', {})
+vim.api.nvim_create_user_command('Gupa', 'Git pull --rebase --autostash', {})
