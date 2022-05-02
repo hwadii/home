@@ -7,6 +7,7 @@ export GPG_TTY=$(tty)
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_LOCAL_BIN="$HOME/.local/bin"
 export XDG_DATA_DIR="$HOME/.local/share"
+export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_MISC_DIR="$HOME/.local/misc"
 export TMPDIR="/tmp"
 export BROWSER="firefox-dev"
