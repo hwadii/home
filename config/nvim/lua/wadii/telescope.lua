@@ -25,18 +25,14 @@ telescope.setup{
     find_files = {
       theme = 'ivy',
       find_command = { 'fd', '--hidden', '-E.git', '-tf' },
-      preview = true,
       path_display = { 'truncate' },
       layout_config = {
         height = 25,
       },
     },
-    git_files = {
-      theme = 'ivy',
-    },
     buffers = {
       theme = 'dropdown',
-      preview = false,
+      previewer = false,
       sort_lastused = true,
       layout_config = {
         height = 20,
