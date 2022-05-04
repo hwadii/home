@@ -45,3 +45,6 @@ vim.keymap.set("n", "<Leader>c", "<cmd>ColorizerToggle<cr>", { noremap = true, s
 vim.api.nvim_create_user_command('Gpf', 'Git push --force-with-lease', {})
 vim.api.nvim_create_user_command('Gpff', 'Git push --force', {})
 vim.api.nvim_create_user_command('Gupa', 'Git pull --rebase --autostash', {})
+vim.api.nvim_create_user_command('Gh', '!gh', {})
+vim.api.nvim_create_user_command('Gbr', 'Gh browse', {})
+vim.api.nvim_create_user_command('Gpr', 'Gh pr view --web', {})
