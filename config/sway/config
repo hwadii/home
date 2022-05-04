@@ -36,6 +36,12 @@ exec swayidle -w \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema color-scheme 'prefer-dark'
+}
+
 input type:touchpad {
     tap enabled
     natural_scroll enabled
