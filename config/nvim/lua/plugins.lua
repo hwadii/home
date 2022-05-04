@@ -44,7 +44,13 @@ return packer.startup({function()
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-    }
+      'petertriho/cmp-git',
+    },
+    config = function()
+      require('cmp_git').setup({
+        filetypes = { 'gitcommit', 'markdown' },
+      })
+    end,
   }
   use 'L3MON4D3/LuaSnip'
   use 'lewis6991/github_dark.nvim'
@@ -125,7 +131,6 @@ return packer.startup({function()
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
   use 'justinmk/vim-dirvish'
   use 'lewis6991/impatient.nvim'
   use 'tpope/vim-rsi'
