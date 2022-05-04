@@ -1,8 +1,6 @@
 local lspconfig = require('lspconfig')
 local null_ls = require('null-ls')
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 local custom_attach = function(_, bufnr)
   vim.diagnostic.config({
     underline = true,
@@ -74,7 +72,6 @@ lspconfig.tsserver.setup({
     ts_utils.setup_client(client)
     vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
   end,
-  capabilities = capabilities,
   flags = {
     allow_incremental_sync = true,
   }
@@ -88,15 +85,12 @@ lspconfig.angularls.setup({
   on_new_config = function(new_config, _)
     new_config.cmd = cmd
   end,
-  capabilities = capabilities,
 })
 lspconfig.html.setup({
     on_attach = custom_attach,
-    capabilities = capabilities,
   })
 lspconfig.cssls.setup({
     on_attach = custom_attach,
-    capabilities = capabilities,
   })
 lspconfig.rust_analyzer.setup({
   on_attach = custom_attach,
@@ -129,7 +123,6 @@ local servers = {
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
-    capabilities = capabilities,
   }
 end
 
