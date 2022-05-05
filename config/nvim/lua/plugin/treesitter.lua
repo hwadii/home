@@ -42,10 +42,10 @@ require'nvim-treesitter.configs'.setup {
     enable_autocmd = false,
   },
   refactor = {
-    highlight_definitions = { enable = true },
+    highlight_definitions = { enable = false },
     highlight_current_scope = { enable = false },
     navigation = {
-      enable = true,
+      enable = false,
       keymaps = {
         goto_definition = "gnd",
         list_definitions = "gnD",
@@ -55,7 +55,7 @@ require'nvim-treesitter.configs'.setup {
       },
     },
     smart_rename = {
-      enable = true,
+      enable = false,
       keymaps = {
         -- mapping to rename reference under cursor
         smart_rename = "grr",
