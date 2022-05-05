@@ -12,7 +12,12 @@ return packer.startup({function()
 
   use 'AndrewRadev/splitjoin.vim'
   use 'airblade/vim-rooter'
-  use 'jiangmiao/auto-pairs'
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end
+  }
   use 'ledger/vim-ledger'
   use 'wlangstroth/vim-racket'
   use 'jpalardy/vim-slime'
