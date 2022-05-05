@@ -2,7 +2,6 @@ local telescope = require('telescope')
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 telescope.load_extension('fzf')
-telescope.load_extension('neoclip')
 telescope.setup{
   defaults = {
     path_display = { 'shorten' },
