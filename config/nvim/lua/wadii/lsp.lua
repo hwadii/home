@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local null_ls = require('null-ls')
 
-local custom_attach = function(_, bufnr)
+local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
     underline = true,
     update_in_insert = true,
@@ -9,7 +9,7 @@ local custom_attach = function(_, bufnr)
   })
 
   local opts = { buffer = bufnr }
-  vim.keymap.set("n", "ga", vim.lsp.buf.code_action)
+  vim.keymap.set('n', 'gA', vim.lsp.buf.code_action)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', '<leader>i', vim.lsp.buf.implementation, opts)
@@ -31,6 +31,20 @@ local custom_attach = function(_, bufnr)
   vim.keymap.set('n', '<localleader>d', vim.diagnostic.get, opts)
   vim.keymap.set('n', '<localleader>i', vim.diagnostic.open_float, opts)
   vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, {})
+
+  if client.server_capabilities.documentHighlightProvider then
+    local group = vim.api.nvim_create_augroup('lsp_autcmds', { clear = true })
+    vim.api.nvim_create_autocmd('CursorHold', {
+      pattern = '<buffer>',
+      callback = vim.lsp.buf.document_highlight,
+      group = group,
+    })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      pattern = '<buffer>',
+      callback = vim.lsp.buf.clear_references,
+      group = group,
+    })
+  end
 end
 
 null_ls.setup({
