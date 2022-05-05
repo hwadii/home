@@ -4,6 +4,7 @@ local action_state = require('telescope.actions.state')
 telescope.load_extension('fzf')
 telescope.setup{
   defaults = {
+    layout_strategy = 'flex',
     path_display = { 'shorten' },
     mappings = {
       i = {
@@ -29,10 +30,20 @@ telescope.setup{
         height = 25,
       },
     },
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = 'smart_case',        -- or 'ignore_case' or 'respect_case'
+    },
+    lsp_references = { theme = 'dropdown' },
+    lsp_definitions = { theme = 'dropdown' },
+    lsp_implementations = { theme = 'dropdown' },
     buffers = {
+      ignore_current_buffer = true,
+      sort_mru = true,
       theme = 'dropdown',
       previewer = false,
-      sort_lastused = true,
       layout_config = {
         height = 20,
       },
@@ -48,11 +59,5 @@ telescope.setup{
         }
       }
     },
-  },
-  extensions = {
-    fuzzy = true,                    -- false will only do exact matching
-    override_generic_sorter = true,  -- override the generic sorter
-    override_file_sorter = true,     -- override the file sorter
-    case_mode = 'smart_case',        -- or 'ignore_case' or 'respect_case'
   },
 }
