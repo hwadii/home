@@ -16,6 +16,7 @@ map('n', '<A-]>', '<cmd>vertical resize +5<cr>')
 map('n', '[t', 'gT')
 map('n', ']t', 'gt')
 map('t', '<M-[>', '<C-\\><C-n>')
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- telescope
 map('n', '<C-p>', telescope.find_files)
