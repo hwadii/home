@@ -6,7 +6,7 @@ local themes = require('telescope.themes')
 local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
     underline = true,
-    update_in_insert = true,
+    update_in_insert = false,
     virtual_text = { prefix = '•' },
   })
 
@@ -144,6 +144,7 @@ local servers = {
   'racket_langserver',
   'emmet_ls',
   'sumneko_lua',
+  'gopls',
 }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
@@ -152,7 +153,7 @@ for _, server in pairs(servers) do
 end
 
 local function set_lsp_sign(name, text)
-  vim.fn.sign_define(name, {text = text, texthl = name})
+  vim.fn.sign_define(name, { text = text, texthl = name })
 end
 
 set_lsp_sign('DiagnosticSignError', '×')
