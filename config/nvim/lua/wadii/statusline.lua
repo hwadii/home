@@ -56,6 +56,8 @@ statusline.line_and_column = function()
     local line = vim.api.nvim_win_get_cursor(0)[1]
     local height = vim.api.nvim_buf_line_count(0)
 
+    rhs = rhs .. math.floor(line / height * 100) .. '%' .. ' • '
+
     -- Add padding to stop RHS from changing too much as we move the cursor.
     local padding = #tostring(height) - #tostring(line)
     if padding > 0 then
@@ -64,8 +66,6 @@ statusline.line_and_column = function()
 
     rhs = rhs .. 'ℓ ' -- (Literal, \u2113 "SCRIPT SMALL L").
     rhs = rhs .. line
-    rhs = rhs .. '/'
-    rhs = rhs .. height
     rhs = rhs .. ' c ' -- (Literal, \u1d68c "MATHEMATICAL MONOSPACE SMALL C").
     rhs = rhs .. column
     rhs = rhs .. '/'
