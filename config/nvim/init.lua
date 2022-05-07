@@ -7,10 +7,6 @@ require('plugin.treesitter')
 
 vim.g.zenbones = {
   lighten_noncurrent_window = true,
-  solid_float_border = true,
-  solid_vert_split = true,
-  solid_line_nr = true,
-  darken_non_text = 30,
   colorize_diagnostic_underline_text = true,
   darkness = 'stark'
 }
@@ -28,7 +24,6 @@ opt.fillchars = {
   diff = '∙',
   eob = '~',
   fold = '·',
-  vert = '|',
   msgsep = '‾',
 }
 opt.list = true

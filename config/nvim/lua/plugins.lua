@@ -7,7 +7,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-return packer.startup({function()
+return packer.startup({function(use)
   use 'wbthomason/packer.nvim'
 
   use 'AndrewRadev/splitjoin.vim'
