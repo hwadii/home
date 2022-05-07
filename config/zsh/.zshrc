@@ -33,6 +33,7 @@ zreload() {
 autoload -U compaudit compinit
 
 source $XDG_DATA_DIR/zinit/zinit.git/zinit.zsh
+source $XDG_DATA_DIR/asdf/asdf.sh
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit for \
