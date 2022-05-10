@@ -39,7 +39,7 @@ cmp.setup {
       { name = "luasnip" },
       { name = "git" }
     }, {
-      { name = "buffer", keyword_length = 5, max_item_count = 5 },
+      { name = "buffer", option = { keyword_length = 5, max_item_count = 5 } },
       { name = "path" },
     }),
 }
