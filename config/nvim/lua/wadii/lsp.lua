@@ -7,7 +7,8 @@ local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
-    virtual_text = { prefix = '•' },
+    float = { header = false },
+    virtual_text = { prefix = '»' },
   })
 
   local opts = { buffer = bufnr }
@@ -152,11 +153,13 @@ for _, server in pairs(servers) do
   }
 end
 
-local function set_lsp_sign(name, text)
-  vim.fn.sign_define(name, { text = text, texthl = name })
-end
+local signs = {
+  { name = "DiagnosticSignError", text = "×" },
+  { name = "DiagnosticSignWarn", text = "!" },
+  { name = "DiagnosticSignHint", text = "i" },
+  { name = "DiagnosticSignInfo", text = "H" },
+}
 
-set_lsp_sign('DiagnosticSignError', '×')
-set_lsp_sign('DiagnosticSignWarn', '!')
-set_lsp_sign('DiagnosticSignInfo', 'i')
-set_lsp_sign('DiagnosticSignHint', 'H')
+for _, value in ipairs(signs) do
+  vim.fn.sign_define(value.name, { text = value.text, texthl = value.name })
+end
