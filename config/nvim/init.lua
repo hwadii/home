@@ -8,7 +8,8 @@ require('plugin.treesitter')
 vim.g.zenbones = {
   lighten_noncurrent_window = true,
   colorize_diagnostic_underline_text = true,
-  darkness = 'stark'
+  darkness = 'stark',
+  lightness = 'dim'
 }
 vim.g.colors_name = 'zenbones'
 opt.encoding = 'utf-8'
@@ -89,7 +90,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
 })
 
-vim.api.nvim_set_hl(0, 'User1', { fg = '#B4BDC3', bg = '#352F2D', bold = true })
+vim.api.nvim_set_hl(0, 'User1', { fg = '#B4BDC3', bg = '#302825', bold = true })
 vim.api.nvim_set_hl(0, 'User2', { fg = '#CAD0D4', bg = '#272321', italic = true, reverse = true })
 vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
 
