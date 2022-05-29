@@ -27,6 +27,9 @@ return packer.startup({function(use)
   use {
     'SmiteshP/nvim-gps',
     requires = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-gps').setup()
+    end
   }
   use {
     'numToStr/Comment.nvim',
