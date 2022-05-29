@@ -135,6 +135,10 @@ lspconfig.rust_analyzer.setup({
     }
   }
 })
+lspconfig.omnisharp.setup({
+  on_attach = custom_attach,
+  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) }
+})
 
 local servers = {
   'solargraph',
