@@ -1,6 +1,8 @@
 skip_global_compinit=1
-export LANG="en_US.UTF-8"
-export TERMINAL="alacritty"
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERMINAL="foot"
 export SNAP="/snap"
 export CHROME_BIN="chromium"
 export GPG_TTY=$(tty)
