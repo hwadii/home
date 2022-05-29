@@ -54,7 +54,7 @@ opt.redrawtime = 10000
 opt.report = 0
 opt.rnu = false
 opt.shiftwidth = 2
-opt.shortmess = 'filnxtToOFc'
+opt.shortmess:append('actFTWI')
 opt.showbreak = '↳ '
 opt.signcolumn = 'auto'
 opt.smartcase = true -- make search case insensitive by default
