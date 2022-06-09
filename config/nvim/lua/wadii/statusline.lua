@@ -40,7 +40,11 @@ statusline.branch = function()
   return vim.b.gitsigns_head
 end
 
-statusline.gps = gps.get_location
+statusline.gps = function()
+  if gps.is_available() then
+    return gps.get_location()
+  end
+end
 
 statusline.line_and_column = function()
   local rhs = ''
