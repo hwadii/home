@@ -25,11 +25,8 @@ return packer.startup({function(use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'kg8m/vim-simple-align'
   use {
-    'SmiteshP/nvim-gps',
-    requires = 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('nvim-gps').setup()
-    end
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
   }
   use {
     'numToStr/Comment.nvim',

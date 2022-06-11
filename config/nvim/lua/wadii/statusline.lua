@@ -1,5 +1,5 @@
 local Path = require('plenary.path')
-local gps = require('nvim-gps')
+local navic = require('nvim-navic')
 
 local statusline = {}
 
@@ -40,11 +40,7 @@ statusline.branch = function()
   return vim.b.gitsigns_head
 end
 
-statusline.gps = function()
-  if gps.is_available() then
-    return gps.get_location()
-  end
-end
+statusline.navic = navic.get_location
 
 statusline.line_and_column = function()
   local rhs = ''
@@ -89,7 +85,7 @@ end
 
 statusline.right_hand_side = function()
   local all_components = {
-    statusline.gps(),
+    statusline.navic(),
     statusline.gitstatus(),
     statusline.branch(),
     statusline.line_and_column(),

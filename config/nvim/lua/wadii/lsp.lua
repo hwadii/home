@@ -2,6 +2,7 @@ local lspconfig = require('lspconfig')
 local null_ls = require('null-ls')
 local telescope = require('telescope.builtin')
 local themes = require('telescope.themes')
+local navic = require('nvim-navic')
 
 local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
@@ -57,6 +58,7 @@ local custom_attach = function(client, bufnr)
       group = group,
     })
   end
+  navic.attach(client, bufnr)
 end
 
 null_ls.setup({
