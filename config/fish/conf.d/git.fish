@@ -78,6 +78,7 @@ alias ggpur "ggu"
 alias ggpull "git pull origin (git_current_branch)"
 alias ggpush "git push origin (git_current_branch)"
 alias ggl ggpull
+alias ggp ggpush
 
 alias ggsup "git branch --set-upstream-to=origin/(git_current_branch)"
 alias gpsup "git push --set-upstream origin (git_current_branch)"
