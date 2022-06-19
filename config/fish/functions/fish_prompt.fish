@@ -1,8 +1,8 @@
 function fish_prompt --description "Write out the prompt"
     function vcs
-        fish_vcs_prompt 1>/dev/null
+        set -l prompt fish_vcs_prompt
         if test $status -eq 0
-            fish_vcs_prompt '(%s)'
+            $prompt | string trim
         end
     end
 
@@ -52,7 +52,7 @@ function fish_prompt --description "Write out the prompt"
     set -l color_vcs (set_color green)
     set -l vcs_status $color_vcs (vcs) $normal
 
-    set -l pwd_status $color_cwd (smart-pwd) $normal
+    set -l pwd_status $color_cwd (prompt_pwd) $normal
 
     echo -ns $pwd_status $jobs_status " " $vcs_status $prompt_status $color_status $suffix $normal " "
 end
