@@ -1,20 +1,32 @@
-function fish_prompt --description 'Write out the prompt'
+function fish_prompt --description "Write out the prompt"
+    function vcs
+        fish_vcs_prompt 1>/dev/null
+        if test $status -eq 0
+            fish_vcs_prompt '(%s)'
+        end
+    end
+
     set -l last_pipestatus $pipestatus
     set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
     set -l normal (set_color normal)
     set -q fish_color_status or set -g fish_color_status --background=red white
     set -l bold_flag --bold
-    set -l color_suffix (set_color yellow)
-    set -l color_vcs (set_color green)
 
     # Color the prompt differently when we're root
     set -l color_cwd (set_color $bold_flag grey)
-    set -l suffix '»'
+    set -l suffix "»"
     if functions -q fish_is_root_user; and fish_is_root_user
         if set -q fish_color_cwd_root
             set color_cwd $fish_color_cwd_root
         end
-        set suffix '#'
+        set suffix "#"
+    end
+
+    set -l background_jobs
+    if jobs
+        set background_jobs "!"
+    else
+        set background_jobs ""
     end
 
     # Write pipestatus
@@ -28,5 +40,19 @@ function fish_prompt --description 'Write out the prompt'
     set -l statusb_color (set_color $bold_flag $fish_color_status)
     set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
 
-    echo -n -s $color_cwd (smart-pwd) $normal $color_vcs (fish_vcs_prompt) $normal " "$prompt_status $color_suffix $suffix $normal " "
+    set -l color_status (set_color -o yellow)
+    set -l jobs_status $color_status $background_jobs $normal
+
+    set -g __fish_git_prompt_showdirtystate 1
+    set -g __fish_git_prompt_char_dirtystate "*"
+    set -g __fish_git_prompt_char_untrackedfiles "?"
+    set -g __fish_git_prompt_color_flags yellow --bold
+    set -g __fish_git_prompt_color_suffix green
+
+    set -l color_vcs (set_color green)
+    set -l vcs_status $color_vcs (vcs) $normal
+
+    set -l pwd_status $color_cwd (smart-pwd) $normal
+
+    echo -ns $pwd_status $jobs_status " " $vcs_status $prompt_status $color_status $suffix $normal " "
 end
