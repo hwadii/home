@@ -159,6 +159,7 @@ alias gsr "git svn rebase"
 alias gss "git status -s"
 alias gst "git status"
 
+alias gsta "git stash push"
 alias gstaa "git stash apply"
 alias gstc "git stash clear"
 alias gstd "git stash drop"
