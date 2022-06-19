@@ -71,7 +71,7 @@ alias gg "git gui citool"
 alias gga "git gui citool --amend"
 
 function git_current_branch
-  fish_vcs_prompt | sed 's/\(\s\|(\|)\)//g'
+  command git branch --show-current
 end
 
 alias ggpur "ggu"
@@ -87,7 +87,6 @@ alias ghh "git help"
 
 alias gignore "git update-index --assume-unchanged"
 alias gignored "git ls-files -v | grep "^[[:lower:]]""
-# alias git-svn-dcommit-push "git svn dcommit && git push github $(git_main_branch):svntrunk"
 
 alias gk "gitk --all --branches &!"
 alias gke "gitk --all (git log -g --pretty=%h) &!"
