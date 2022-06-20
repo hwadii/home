@@ -23,7 +23,7 @@ function fish_prompt --description "Write out the prompt"
     end
 
     set -l background_jobs
-    if jobs
+    if jobs --quiet
         set background_jobs "!"
     else
         set background_jobs ""
