@@ -105,7 +105,7 @@ lspconfig.tsserver.setup({
   }
 })
 
-local libpath = vim.fn.expand('~/.config/nvm/versions/node/v16.14.2/lib/node_modules/typescript/lib')
+local libpath = vim.fn.expand('~/.config/nvm/versions/node/v16.15.1/lib/node_modules/typescript/lib')
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", libpath, "", "--ngProbeLocations", libpath, ""}
 lspconfig.angularls.setup({
   on_attach = custom_attach,
