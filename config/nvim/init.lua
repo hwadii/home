@@ -112,3 +112,4 @@ vim.g.rooter_manual_only = true
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
+vim.g.navic_silence = true
