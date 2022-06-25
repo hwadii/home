@@ -50,7 +50,7 @@ return packer.startup({function(use)
     },
     config = function()
       require('cmp_git').setup({
-        filetypes = { 'gitcommit', 'markdown' },
+        filetypes = { 'gitcommit' },
       })
     end,
   }
