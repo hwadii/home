@@ -88,8 +88,8 @@ alias ghh "git help"
 alias gignore "git update-index --assume-unchanged"
 alias gignored "git ls-files -v | grep "^[[:lower:]]""
 
-alias gk "gitk --all --branches &!"
-alias gke "gitk --all (git log -g --pretty=%h) &!"
+alias gk "gitk --all --branches &; disown"
+alias gke "gitk --all (git log -g --pretty=%h) &; disown"
 
 alias gl "git pull"
 alias glg "git log --stat"
