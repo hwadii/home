@@ -101,14 +101,12 @@ vim.g.vim_markdown_emphasis_multiline = 0
 vim.g.vim_markdown_conceal = 0
 vim.g.vim_markdown_conceal_code_blocks = 0
 vim.g.vim_markdown_frontmatter = 1
-vim.g.rooter_silent_chdir = 1
 vim.g.ledger_align_at = 52
 vim.g.slime_target = 'tmux'
 vim.g.slime_paste_file = '/tmp/.slime_paste'
 vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
 vim.g.slime_dont_ask_default = 1
 vim.g.rsi_no_meta = 1
-vim.g.rooter_manual_only = true
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]

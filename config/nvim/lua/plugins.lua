@@ -11,7 +11,6 @@ return packer.startup({function(use)
   use 'wbthomason/packer.nvim'
 
   use 'AndrewRadev/splitjoin.vim'
-  use 'airblade/vim-rooter'
   use {
     'windwp/nvim-autopairs',
     config = function()
