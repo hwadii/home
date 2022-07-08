@@ -41,9 +41,9 @@ function fish_prompt --description "Write out the prompt"
     set -g __fish_git_prompt_char_dirtystate "*"
     set -g __fish_git_prompt_char_untrackedfiles "?"
     set -g __fish_git_prompt_color_flags yellow --bold
-    set -g __fish_git_prompt_color_suffix green
+    set -g __fish_git_prompt_color_suffix "#A09FDF"
 
-    set -l color_vcs (set_color green)
+    set -l color_vcs (set_color "#A09FDF")
     set -l vcs_status $color_vcs (vcs) $normal
 
     set -l pwd_status $color_cwd (prompt_pwd) $normal
