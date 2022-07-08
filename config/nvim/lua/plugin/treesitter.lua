@@ -1,7 +1,8 @@
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
-    "rust", "css", "dot", "json", "python", "yaml", "vue", "markdown", "html"
+    "rust", "css", "dot", "json", "python", "yaml", "vue", "markdown", "html",
+    "sql"
   },
   textobjects = {
     select = {
