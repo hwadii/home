@@ -1,3 +1,3 @@
 function o -d "Shortcut to open an app from the command line"
-    open $argv
+    open $argv &; disown
 end
