@@ -73,3 +73,6 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
+
+# extract
+alias x="aunpack --explain"
