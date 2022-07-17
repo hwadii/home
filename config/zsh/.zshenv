@@ -1,6 +1,7 @@
 skip_global_compinit=1
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LANG=en_US
 export LC_ALL=en_US.UTF-8
 export TERMINAL="foot"
 export SNAP="/snap"
