@@ -32,7 +32,7 @@ map('n', '<C-s>', telescope.current_buffer_fuzzy_find)
 -- git
 map('n', '<Leader>gs', '<cmd>Git<cr>')
 map('n', '<Leader>gc', '<cmd>Git commit<cr>')
-map('n', '<Leader>gp', '<cmd>Git push<cr>')
+map('n', '<Leader>gp', '<cmd>Git! push<cr>')
 map('n', '<Leader>gl', '<cmd>Git log<cr>')
 map('n', '<Leader>gd', '<cmd>Git diff<cr>')
 map('n', '<Leader>gb', '<cmd>Git blame<cr>')
@@ -43,8 +43,8 @@ map('n', '<Leader>c', '<cmd>ColorizerToggle<cr>')
 
 -- custom commands
 
-vim.api.nvim_create_user_command('Gpf', 'Git push --force-with-lease', {})
-vim.api.nvim_create_user_command('Gpff', 'Git push --force', {})
+vim.api.nvim_create_user_command('Gpf', 'Git! push --force-with-lease', {})
+vim.api.nvim_create_user_command('Gpff', 'Git! push --force', {})
 vim.api.nvim_create_user_command('Gupa', 'Git pull --rebase --autostash', {})
 vim.api.nvim_create_user_command('Gh', '!gh <f-args>', { nargs = 1 })
 vim.api.nvim_create_user_command('Gbr', 'Gh browse', {})
