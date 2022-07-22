@@ -78,4 +78,4 @@ abbr tl "tmux list-sessions"
 abbr ts "tmux new-session -s"
 
 # extract
-alias x "aunpack --explain $argv"
+alias x "aunpack $argv"
