@@ -66,6 +66,9 @@ alias gmet "git machete traverse"
 alias gmetw "git machete traverse -W"
 alias gmeu "git machete update"
 
+# lazygit
+alias lg lazygit
+
 alias dc "docker compose"
 alias e2e "docker compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
 
