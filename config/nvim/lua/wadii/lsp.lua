@@ -9,7 +9,7 @@ local custom_attach = function(client, bufnr)
     underline = true,
     update_in_insert = false,
     float = { header = false },
-    virtual_text = { prefix = '»' },
+    virtual_text = { prefix = '■' },
   })
 
   local opts = { buffer = bufnr }
