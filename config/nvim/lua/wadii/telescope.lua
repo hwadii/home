@@ -1,7 +1,7 @@
 local telescope = require('telescope')
 local actions = require('telescope.actions')
+local themes = require('telescope.themes')
 local action_state = require('telescope.actions.state')
-telescope.load_extension('fzf')
 telescope.setup{
   defaults = {
     layout_strategy = 'flex',
@@ -60,4 +60,11 @@ telescope.setup{
       }
     },
   },
+  extensions = {
+    ['ui-select'] = {
+      themes.get_cursor()
+    }
+  }
 }
+telescope.load_extension('fzf')
+telescope.load_extension('ui-select')
