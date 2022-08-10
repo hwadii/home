@@ -1,4 +1,2 @@
 bundle
-config/weechat/logs/
-weechat.log
 config/nvim/lua/packer_compiled.lua
