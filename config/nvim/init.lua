@@ -108,3 +108,4 @@ vim.g.slime_dont_ask_default = 1
 vim.g.rsi_no_meta = 1
 vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
 vim.g.navic_silence = true
+vim.g.netrw_banner = false
