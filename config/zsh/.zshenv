@@ -39,6 +39,7 @@ export FZF_DEFAULT_OPTS="
     --bind 'alt-a:select-all'
     --color=16,hl:3,hl+:6,fg+:-1,pointer:6,bg+:-1
 "
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--select-1 --exit-0"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude '.git' --exclude 'node_modules'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
