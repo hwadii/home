@@ -41,8 +41,12 @@ map('n', '<Leader>ga', '<cmd>Git branch<cr>')
 -- colorizer
 map('n', '<Leader>c', '<cmd>ColorizerToggle<cr>')
 
--- custom commands
+-- floaterm
+map('n', '<Leader>fn', '<cmd>FloatermNew<cr>')
+map('n', '<Leader>fc', '<cmd>FloatermKill<cr>')
+map('n', '<Leader>ft', '<cmd>FloatermToggle<cr>')
 
+-- custom commands
 vim.api.nvim_create_user_command('Gpf', 'Git! push --force-with-lease', {})
 vim.api.nvim_create_user_command('Gpff', 'Git! push --force', {})
 vim.api.nvim_create_user_command('Gupa', 'Git pull --rebase --autostash', {})
