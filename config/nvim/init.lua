@@ -1,7 +1,8 @@
+require('impatient')
+
 local opt = vim.opt
 opt.termguicolors = true
 
-require('impatient')
 require('wadii')
 require('plugin.treesitter')
 
@@ -11,7 +12,12 @@ vim.g.zenbones = {
   darkness = 'stark',
   lightness = 'dim'
 }
-vim.g.colors_name = 'zenbones'
+vim.g.zenwritten = {
+  lighten_noncurrent_window = true,
+  colorize_diagnostic_underline_text = true,
+  darkness = nil,
+}
+vim.g.colors_name = 'zenwritten'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true
@@ -90,8 +96,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
 })
 
-vim.api.nvim_set_hl(0, 'User1', { fg = '#B4BDC3', bg = '#302825', bold = true })
-vim.api.nvim_set_hl(0, 'User2', { fg = '#CAD0D4', bg = '#272321', italic = true, reverse = true })
+local zen = require('zenwritten')
+vim.api.nvim_set_hl(0, 'User1', { fg = tostring(zen.StatusLine.fg), bg = tostring(zen.StatusLine.bg), bold = true })
+vim.api.nvim_set_hl(0, 'User2', { fg = tostring(zen.StatusLineNC.fg), bg = tostring(zen.StatusLineNC.bg), italic = true, reverse = true })
 vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
 
 vim.g.vim_markdown_override_foldtext = 0
