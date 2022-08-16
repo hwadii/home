@@ -8,6 +8,8 @@
   prune = true
 [pull]
   rebase = false
+[push]
+  autoSetupRemote = true
 [rebase]
   autoStash = true
 [pager]
