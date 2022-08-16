@@ -114,11 +114,11 @@ lspconfig.angularls.setup({
     new_config.cmd = cmd
   end,
 })
-lspconfig.html.setup({
-    on_attach = custom_attach,
-  })
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup({
     on_attach = custom_attach,
+    capabilities = capabilities,
   })
 lspconfig.rust_analyzer.setup({
   on_attach = custom_attach,
@@ -155,6 +155,7 @@ local servers = {
   'emmet_ls',
   'sumneko_lua',
   'gopls',
+  'html',
 }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
