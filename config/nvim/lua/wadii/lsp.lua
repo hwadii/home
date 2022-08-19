@@ -71,18 +71,9 @@ null_ls.setup({
 
 lspconfig.tsserver.setup({
   init_options = {
-    hostInfo = "neovim",
     preferences = {
       importModuleSpecifierPreference = "relative",
-      includeCompletionsForImportStatements = true,
       includeCompletionsWithSnippetText = true,
-      includeInlayParameterNameHints = "none",
-      includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-      includeInlayFunctionParameterTypeHints = false,
-      includeInlayVariableTypeHints = false,
-      includeInlayPropertyDeclarationTypeHints = false,
-      includeInlayFunctionLikeReturnTypeHints = false,
-      includeInlayEnumMemberValueHints = false,
     },
   },
   on_attach = function(client, bufnr)
