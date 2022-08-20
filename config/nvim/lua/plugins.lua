@@ -122,7 +122,12 @@ return packer.startup({function(use)
   use 'chrisbra/unicode.vim'
   use 'preservim/vim-markdown'
   use 'tpope/vim-abolish'
-  use 'tpope/vim-surround'
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require('nvim-surround').setup()
+    end
+  }
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-fugitive'
