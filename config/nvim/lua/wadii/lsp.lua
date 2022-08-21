@@ -133,7 +133,14 @@ lspconfig.rust_analyzer.setup({
 })
 lspconfig.omnisharp.setup({
   on_attach = custom_attach,
-  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) }
+  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+  enable_editorconfig_support = true,
+  enable_ms_build_load_projects_on_demand = false,
+  organize_imports_on_format = true,
+  enable_import_completion = false,
+  sdk_include_prereleases = true,
+  enable_roslyn_analyzers = false,
+  analyze_open_documents_only = false,
 })
 
 local servers = {
