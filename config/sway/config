@@ -258,7 +258,7 @@ bar {
 }
 
 exec kanshi
-exec nm-applet
+exec nm-applet --indicator
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec wl-paste -t text --watch clipman store -P
 
@@ -274,5 +274,7 @@ for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky
 for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, border none
 for_window [title="Indicateur de partage"] floating enable, sticky enable, border none
 
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec systemd-notify --ready
+exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
