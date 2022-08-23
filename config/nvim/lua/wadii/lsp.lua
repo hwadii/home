@@ -4,6 +4,11 @@ local telescope = require('telescope.builtin')
 local themes = require('telescope.themes')
 local navic = require('nvim-navic')
 
+local handlers = {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 }),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, { max_width = 100 }),
+}
+
 local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
     underline = true,
@@ -68,6 +73,7 @@ null_ls.setup({
     null_ls.builtins.code_actions.eslint_d,
     null_ls.builtins.formatting.eslint_d,
   },
+  handlers = handlers,
 })
 
 lspconfig.tsserver.setup({
@@ -94,7 +100,8 @@ lspconfig.tsserver.setup({
   end,
   flags = {
     allow_incremental_sync = true,
-  }
+  },
+  handlers = handlers,
 })
 
 local libpath = vim.fn.expand('~/.config/nvm/versions/node/v16.15.1/lib/node_modules/typescript/lib')
@@ -105,12 +112,14 @@ lspconfig.angularls.setup({
   on_new_config = function(new_config, _)
     new_config.cmd = cmd
   end,
+  handlers = handlers,
 })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
+    handlers = handlers,
   })
 lspconfig.rust_analyzer.setup({
   on_attach = custom_attach,
@@ -130,7 +139,8 @@ lspconfig.rust_analyzer.setup({
         command = "clippy"
       }
     }
-  }
+  },
+  handlers = handlers,
 })
 lspconfig.omnisharp.setup({
   on_attach = custom_attach,
@@ -142,6 +152,7 @@ lspconfig.omnisharp.setup({
   sdk_include_prereleases = true,
   enable_roslyn_analyzers = false,
   analyze_open_documents_only = false,
+  handlers = handlers,
 })
 
 local servers = {
@@ -159,6 +170,7 @@ local servers = {
 for _, server in pairs(servers) do
   lspconfig[server].setup {
     on_attach = custom_attach,
+    handlers = handlers
   }
 end
 
