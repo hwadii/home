@@ -29,7 +29,7 @@ local custom_attach = function(client, bufnr)
   map('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder)
   map('n', '<localleader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
   map('n', 'gR', vim.lsp.buf.rename)
-  map('n', '<localleader>f', vim.lsp.buf.format)
+  map('n', '<localleader>f', function() vim.lsp.buf.format { async = true } end)
   map('n', '<localleader>q', vim.diagnostic.setloclist)
   map('n', ']d', vim.diagnostic.goto_next)
   map('n', '[d', vim.diagnostic.goto_prev)
@@ -43,7 +43,7 @@ local custom_attach = function(client, bufnr)
   map('n', '<localleader>d', vim.diagnostic.get)
   map('n', '<localleader>i', vim.diagnostic.open_float)
 
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', vim.lsp.buf.format, { desc = 'Format current buffer with LSP' })
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function() vim.lsp.buf.format { async = true } end, { desc = 'Format current buffer with LSP' })
 
   if client.server_capabilities.documentHighlightProvider then
     local group = vim.api.nvim_create_augroup('lsp_autcmds', { clear = true })
