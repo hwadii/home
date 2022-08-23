@@ -46,16 +46,17 @@ local custom_attach = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function() vim.lsp.buf.format { async = true } end, { desc = 'Format current buffer with LSP' })
 
   if client.server_capabilities.documentHighlightProvider then
-    local group = vim.api.nvim_create_augroup('lsp_autcmds', { clear = true })
-    vim.api.nvim_create_autocmd('CursorHold', {
-      pattern = '<buffer>',
+    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
+    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = 'lsp_document_highlight' })
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = 'lsp_document_highlight',
+      buffer = bufnr,
       callback = vim.lsp.buf.document_highlight,
-      group = group,
     })
     vim.api.nvim_create_autocmd('CursorMoved', {
-      pattern = '<buffer>',
+      group = 'lsp_document_highlight',
+      buffer = bufnr,
       callback = vim.lsp.buf.clear_references,
-      group = group,
     })
   end
   navic.attach(client, bufnr)
