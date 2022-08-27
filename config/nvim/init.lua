@@ -116,3 +116,5 @@ vim.g.rsi_no_meta = 1
 vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
 vim.g.navic_silence = true
 vim.g.netrw_banner = false
+vim.g.matchup_matchparen_deferred = true
+vim.g.matchup_surround_enabled = true

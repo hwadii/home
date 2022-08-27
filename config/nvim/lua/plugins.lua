@@ -137,6 +137,7 @@ return packer.startup({function(use)
   use 'lewis6991/impatient.nvim'
   use 'rktjmp/lush.nvim'
   use 'mcchrish/zenbones.nvim'
+  use 'andymass/vim-matchup'
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
