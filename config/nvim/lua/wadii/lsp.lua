@@ -114,11 +114,11 @@ lspconfig.angularls.setup({
   end,
   handlers = handlers,
 })
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
+cssls_capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup({
     on_attach = custom_attach,
-    capabilities = capabilities,
+    capabilities = cssls_capabilities,
     handlers = handlers,
   })
 lspconfig.rust_analyzer.setup({
@@ -153,6 +153,30 @@ lspconfig.omnisharp.setup({
   enable_roslyn_analyzers = false,
   analyze_open_documents_only = false,
   handlers = handlers,
+})
+
+local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()
+clangd_capabilities.textDocument.semanticHighlighting = true
+clangd_capabilities.offsetEncoding = "utf-8"
+lspconfig.clangd.setup({
+  on_attach = custom_attach,
+  handlers = handlers,
+  capabilities = clangd_capabilities,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--pch-storage=memory",
+    "--clang-tidy",
+    "--suggest-missing-includes",
+    "--cross-file-rename",
+    "--completion-style=detailed",
+  },
+  init_options = {
+    clangdFileStatus = true,
+    usePlaceholders = true,
+    completeUnimported = true,
+    semanticHighlighting = true,
+  },
 })
 
 local servers = {
