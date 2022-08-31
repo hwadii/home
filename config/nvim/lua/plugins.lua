@@ -18,7 +18,6 @@ return packer.startup({function(use)
     end
   }
   use 'ledger/vim-ledger'
-  use 'wlangstroth/vim-racket'
   use 'jpalardy/vim-slime'
   use 'neovim/nvim-lspconfig'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
