@@ -118,3 +118,5 @@ vim.g.navic_silence = true
 vim.g.netrw_banner = false
 vim.g.matchup_matchparen_deferred = true
 vim.g.matchup_surround_enabled = true
+vim.g.matchup_matchparen_offscreen = {}
+vim.g.matchup_matchparen_hi_surround_always = false
