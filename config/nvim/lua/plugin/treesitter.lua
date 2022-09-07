@@ -78,9 +78,6 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = false,
   },
-  matchup = {
-    enable = true,
-  }
 }
 
 require'nvim-treesitter'.define_modules {
