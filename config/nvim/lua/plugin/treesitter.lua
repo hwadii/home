@@ -36,7 +36,8 @@ require'nvim-treesitter.configs'.setup {
     custom_captures = {
       ["TextYankPost"] = "IncSearch",
     },
-    additional_vim_regex_highlighting = false
+    additional_vim_regex_highlighting = false,
+    disable = { "typescript" },
   },
   fold = {
     enable = true,
