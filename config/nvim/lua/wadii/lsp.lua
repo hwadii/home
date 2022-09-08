@@ -157,6 +157,7 @@ lspconfig.omnisharp.setup({
 
 local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()
 clangd_capabilities.textDocument.semanticHighlighting = true
+clangd_capabilities.textDocument.completion.completionItem.snippetSupport = true
 clangd_capabilities.offsetEncoding = "utf-8"
 lspconfig.clangd.setup({
   on_attach = custom_attach,
