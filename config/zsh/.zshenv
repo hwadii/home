@@ -46,4 +46,5 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"
 export NNN_BMS="d:$HOME/dl;b:$HOME/things/books;c:$HOME/code;s:/media/wadii/garbage"
 export MANWIDTH=80
+export JQ_COLORS="2;37:0;37:0;37:0;37:0;32:1;37:1;37"
 if [ -e /home/wadii/.nix-profile/etc/profile.d/nix.sh ]; then . /home/wadii/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
