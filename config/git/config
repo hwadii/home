@@ -47,3 +47,5 @@
   defaultBranch = main
 [safe]
   directory = *
+[diff "ansible-vault"]
+  textconv = ansible-vault view --vault-password-file=~/.vaultpass
