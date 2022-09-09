@@ -15,7 +15,7 @@ vim.g.zenbones = {
 vim.g.zenwritten = {
   lighten_noncurrent_window = true,
   colorize_diagnostic_underline_text = true,
-  darkness = nil,
+  darkness = 'stark',
 }
 vim.g.colors_name = 'zenwritten'
 opt.encoding = 'utf-8'
