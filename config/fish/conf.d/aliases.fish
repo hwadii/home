@@ -14,6 +14,7 @@ alias l ls
 alias ll "exa --git --group-directories-first -l"
 alias lll "exa --git --group-directories-first -l --icons -h"
 alias la "exa --git --group-directories-first -l -a"
+alias lh "exa --git --group-directories-first -l -a -H"
 alias lk "exa --git --group-directories-first -l -s=size"
 alias lm "exa --git --group-directories-first -l -s=modified"
 alias lc "exa --git --group-directories-first --created -s=created"
