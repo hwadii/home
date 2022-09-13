@@ -1,4 +1,4 @@
-function fish_prompt --description "Write out the prompt"
+function fish_prompt --description 'Write out the prompt'
     set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 
     function vcs

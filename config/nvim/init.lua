@@ -11,7 +11,6 @@ vim.g.zenbones = {
   colorize_diagnostic_underline_text = true,
   darkness = nil,
   lightness = 'dim',
-  darken_non_text = 30,
 }
 vim.g.zenwritten = {
   lighten_noncurrent_window = true,
