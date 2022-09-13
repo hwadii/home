@@ -134,8 +134,7 @@ return packer.startup({function(use)
   use 'tpope/vim-eunuch'
   use 'justinmk/vim-dirvish'
   use 'lewis6991/impatient.nvim'
-  use 'rktjmp/lush.nvim'
-  use 'mcchrish/zenbones.nvim'
+  use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()

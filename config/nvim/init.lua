@@ -9,15 +9,17 @@ require('plugin.treesitter')
 vim.g.zenbones = {
   lighten_noncurrent_window = true,
   colorize_diagnostic_underline_text = true,
-  darkness = 'stark',
-  lightness = 'dim'
+  darkness = nil,
+  lightness = 'dim',
+  darken_non_text = 30,
 }
 vim.g.zenwritten = {
   lighten_noncurrent_window = true,
   colorize_diagnostic_underline_text = true,
   darkness = nil,
+  darken_non_text = 30,
 }
-vim.g.colors_name = 'zenwritten'
+vim.g.colors_name = 'zenbones'
 opt.encoding = 'utf-8'
 opt.magic = true
 opt.autoindent = true
@@ -96,7 +98,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
 })
 
-local zen = require('zenwritten')
+local zen = require('zenbones')
 vim.api.nvim_set_hl(0, 'User1', { fg = tostring(zen.StatusLine.fg), bg = tostring(zen.StatusLine.bg), bold = true })
 vim.api.nvim_set_hl(0, 'User2', { fg = tostring(zen.StatusLineNC.fg), bg = tostring(zen.StatusLineNC.bg), italic = true, reverse = true })
 vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
