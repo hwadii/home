@@ -18,6 +18,8 @@ vim.g.zenwritten = {
   darkness = nil,
   darken_non_text = 30,
 }
+vim.g.rasmus_italic_functions = true
+vim.g.rasmus_bold_keywords = true
 vim.g.colors_name = 'zenbones'
 opt.encoding = 'utf-8'
 opt.magic = true
