@@ -83,6 +83,3 @@ abbr ts "tmux new-session -s"
 
 # extract
 alias x "aunpack $argv"
-
-# wget
-alias wget wget2
