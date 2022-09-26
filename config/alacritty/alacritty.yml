@@ -1,6 +1,8 @@
 env:
   TERM: alacritty
 
+shell: fish
+
 window:
   gtk_theme_variant: dark
 
