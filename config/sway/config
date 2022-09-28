@@ -165,7 +165,7 @@ mode notifications {
     bindsym s exec makoctl restore
 }
 
-bindsym $mod+c mode kanshi
+bindsym $mod+$alt+k mode kanshi
 mode kanshi {
   bindsym Escape mode default
   bindsym r exec kanshictl reload; mode default
