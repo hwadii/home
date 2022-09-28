@@ -5,6 +5,7 @@ bookmark-autopilot yes
 history-limit 400
 text-width 88
 suppress-first-reload yes
+confirm-mark-feed-read no
 
 # Display and sort by first tag
 feed-sort-order firsttag
