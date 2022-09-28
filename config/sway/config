@@ -253,7 +253,8 @@ for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky
 for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, border none
 for_window [title="Indicateur de partage"] floating enable, sticky enable, border none
 
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec systemd-notify --ready
 exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
