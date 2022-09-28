@@ -27,6 +27,7 @@ map('n', '<localleader><localleader>', telescope.buffers)
 map('n', '<Leader>s?', telescope.oldfiles)
 map('n', '<Leader>sc', telescope.git_commits)
 map('n', '<Leader>se', telescope.resume)
+map('n', '<Leader>s"', telescope.registers)
 map('n', '<C-s>', telescope.current_buffer_fuzzy_find)
 
 -- git
