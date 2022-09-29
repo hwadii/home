@@ -202,6 +202,13 @@ mode music {
   bindsym q exec "playerctl --player=spotify,%any stop"
 }
 
+bindsym $mod+$alt+s mode scratch
+mode scratch {
+  bindsym $mod+shift+minus move scratchpad
+  bindsym $mod+minus scratchpad show
+  bindsym Escape mode default
+}
+
 seat seat0 xcursor_theme "Adwaita"
 
 set $bof #555555
