@@ -26,6 +26,9 @@ font pango:$font_family, IPA Gothic 8
 
 
 output * bg $background fill
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 
 exec swayidle -w \
          timeout 600 'swaylock -f -c 000000' \
@@ -236,7 +239,6 @@ bar {
         }
 }
 
-exec kanshi
 exec nm-applet --indicator
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec wl-paste -t text --watch clipman store -P
@@ -258,3 +260,5 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec systemd-notify --ready
 exec gnome-keyring-daemon --start --components=gpg,ssh,secrets
+
+# vim: set ft=swayconfig
