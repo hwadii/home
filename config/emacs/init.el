@@ -119,7 +119,7 @@
 (global-display-line-numbers-mode)
 
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka Output-11"))
+             '(font . "Fira Code-10"))
 
 ;; Start server.
 (require 'server)
