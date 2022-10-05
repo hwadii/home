@@ -40,7 +40,7 @@ map('n', '<Leader>gb', '<cmd>Git blame<cr>')
 map('n', '<Leader>ga', '<cmd>Git branch<cr>')
 
 -- colorizer
-map('n', '<Leader>c', '<cmd>ColorizerToggle<cr>')
+map('n', '<Leader>c', '<cmd>HighlightColorsToggle<cr>')
 
 -- floaterm
 map('n', '<Leader>fn', '<cmd>FloatermNew<cr>')

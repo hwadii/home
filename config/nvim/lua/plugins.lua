@@ -34,10 +34,7 @@ return packer.startup({function(use)
       })
     end,
   }
-  use {
-    'norcalli/nvim-colorizer.lua',
-    config = function() require('colorizer').setup({}, { names = false }) end,
-  }
+  use 'brenoprata10/nvim-highlight-colors'
   use {
     'hrsh7th/nvim-cmp',
     requires = {
