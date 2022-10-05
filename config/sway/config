@@ -77,7 +77,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+w kill
 
 bindsym $mod+d exec $bemenurun
-bindsym $mod+Shift+e exec emoji-picker
+bindsym $mod+Shift+e exec shmoji bemenu
 bindsym $mod+Shift+p exec passmenu
 
 floating_modifier $mod normal
