@@ -31,6 +31,11 @@ on_click = "pavucontrol"
 format = "♬ {volume} •"
 
 [[block]]
+block = "memory"
+format_mem = "{mem_used}/{mem_total} •"
+format_swap = "{swap_used}/{swap_total} •"
+
+[[block]]
 block = "time"
 interval = 60
 format = "%a %d %b %H:%M %p"
