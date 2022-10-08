@@ -115,6 +115,7 @@ return packer.startup({function(use)
   use 'nvim-treesitter/nvim-treesitter-refactor'
   use 'nvim-treesitter/nvim-treesitter-angular'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'nvim-treesitter/playground'
   use 'chrisbra/unicode.vim'
   use 'preservim/vim-markdown'
   use 'tpope/vim-abolish'
@@ -132,7 +133,7 @@ return packer.startup({function(use)
   use 'justinmk/vim-dirvish'
   use 'lewis6991/impatient.nvim'
   use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
-  use 'kvrohit/rasmus.nvim'
+  use { '~/code/ploy.nvim', requires = 'rktjmp/lush.nvim' }
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
