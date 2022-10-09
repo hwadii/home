@@ -99,10 +99,12 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
 })
 
-local zen = require('zenbones')
-vim.api.nvim_set_hl(0, 'User1', { fg = tostring(zen.StatusLine.fg), bg = tostring(zen.StatusLine.bg), bold = true })
-vim.api.nvim_set_hl(0, 'User2', { fg = tostring(zen.StatusLineNC.fg), bg = tostring(zen.StatusLineNC.bg), italic = true, reverse = true })
-vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
+if vim.g.colors_name == 'zenbones' then
+  local zen = require('zenbones')
+  vim.api.nvim_set_hl(0, 'User1', { fg = tostring(zen.StatusLine.fg), bg = tostring(zen.StatusLine.bg), bold = true })
+  vim.api.nvim_set_hl(0, 'User2', { fg = tostring(zen.StatusLineNC.fg), bg = tostring(zen.StatusLineNC.bg), italic = true, reverse = true })
+  vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
+end
 
 vim.g.vim_markdown_override_foldtext = 0
 vim.g.vim_markdown_no_default_key_mappings = 1
