@@ -100,7 +100,9 @@ end
 
 statusline.active = function()
   vim.opt_local.statusline = ''
-  .. '🌸 %<'
+  .. '%1*'
+  .. '» %<'
+  .. '%*'
   .. '%{v:lua.wadii.statusline.fileprefix()}'
   .. '%1*'
   .. '%t'
