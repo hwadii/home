@@ -179,6 +179,15 @@ lspconfig.clangd.setup({
     semanticHighlighting = true,
   },
 })
+lspconfig.sumneko_lua.setup({
+  on_attach = custom_attach,
+  handlers = handlers,
+  settings = {
+    Lua = {
+      diagnostics = { globals = { 'vim' } },
+    }
+  }
+})
 
 local servers = {
   'solargraph',
@@ -188,7 +197,6 @@ local servers = {
   'pylsp',
   'racket_langserver',
   'emmet_ls',
-  'sumneko_lua',
   'gopls',
   'html',
 }
