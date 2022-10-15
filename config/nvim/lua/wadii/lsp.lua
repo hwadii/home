@@ -8,6 +8,7 @@ local handlers = {
   ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 }),
   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, { max_width = 100 }),
 }
+local capabalities = require('cmp_nvim_lsp').default_capabilities()
 
 local custom_attach = function(client, bufnr)
   vim.diagnostic.config({
@@ -114,11 +115,9 @@ lspconfig.angularls.setup({
   end,
   handlers = handlers,
 })
-local cssls_capabilities = vim.lsp.protocol.make_client_capabilities()
-cssls_capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup({
     on_attach = custom_attach,
-    capabilities = cssls_capabilities,
+    capabilities = capabalities,
     handlers = handlers,
   })
 lspconfig.rust_analyzer.setup({
@@ -155,9 +154,7 @@ lspconfig.omnisharp.setup({
   handlers = handlers,
 })
 
-local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()
-clangd_capabilities.textDocument.semanticHighlighting = true
-clangd_capabilities.textDocument.completion.completionItem.snippetSupport = true
+local clangd_capabilities = vim.deepcopy(capabalities)
 clangd_capabilities.offsetEncoding = "utf-8"
 lspconfig.clangd.setup({
   on_attach = custom_attach,
