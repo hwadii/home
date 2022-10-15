@@ -4,13 +4,13 @@ env:
 shell: fish
 
 window:
-  gtk_theme_variant: dark
+  decorations_theme_variant: dark
 
 font:
   normal:
-    family: Fira Code
+    family: Input
 
-  size: 10.5
+  size: 10
 
   offset:
    x: 0
@@ -18,7 +18,7 @@ font:
 
   glyph_offset:
     x: 0
-    y: -1
+    y: 0
 
 import:
   - ~/.config/alacritty/zenbones_dark.yml
