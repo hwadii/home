@@ -134,6 +134,14 @@ return packer.startup({function(use)
   use 'lewis6991/impatient.nvim'
   use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
   use { '~/code/ploy.nvim', requires = 'rktjmp/lush.nvim' }
+  use {
+    'rktjmp/paperplanes.nvim',
+    config = function()
+      require('paperplanes').setup({
+        provider = 'paste.rs',
+      })
+    end
+  }
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
