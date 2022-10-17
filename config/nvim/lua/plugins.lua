@@ -43,13 +43,7 @@ return packer.startup({function(use)
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-      'petertriho/cmp-git',
     },
-    config = function()
-      require('cmp_git').setup({
-        filetypes = { 'gitcommit' },
-      })
-    end,
   }
   use 'L3MON4D3/LuaSnip'
   use 'lewis6991/github_dark.nvim'
