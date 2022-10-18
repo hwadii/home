@@ -37,7 +37,6 @@ require'nvim-treesitter.configs'.setup {
       ["TextYankPost"] = "IncSearch",
     },
     additional_vim_regex_highlighting = false,
-    disable = { "typescript" },
   },
   fold = {
     enable = true,

@@ -107,7 +107,7 @@ return packer.startup({function(use)
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-refactor'
-  use 'nvim-treesitter/nvim-treesitter-angular'
+  -- use { 'nvim-treesitter/nvim-treesitter-angular' }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
   use 'chrisbra/unicode.vim'
