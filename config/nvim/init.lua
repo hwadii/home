@@ -106,18 +106,19 @@ if vim.g.colors_name == 'zenbones' then
   vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
 end
 
-vim.g.vim_markdown_override_foldtext = 0
-vim.g.vim_markdown_no_default_key_mappings = 1
-vim.g.vim_markdown_emphasis_multiline = 0
-vim.g.vim_markdown_conceal = 0
-vim.g.vim_markdown_conceal_code_blocks = 0
-vim.g.vim_markdown_frontmatter = 1
+vim.g.vim_markdown_override_foldtext = false
+vim.g.vim_markdown_no_default_key_mappings = true
+vim.g.vim_markdown_emphasis_multiline = false
+vim.g.vim_markdown_conceal = false
+vim.g.vim_markdown_conceal_code_blocks = false
+vim.g.vim_markdown_frontmatter = true
 vim.g.ledger_align_at = 52
 vim.g.slime_target = 'tmux'
 vim.g.slime_paste_file = '/tmp/.slime_paste'
 vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
-vim.g.slime_dont_ask_default = 1
-vim.g.rsi_no_meta = 1
+vim.g.slime_dont_ask_default = true
+vim.g.slime_no_mappings = true
+vim.g.rsi_no_meta = true
 vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
 vim.g.navic_silence = true
 vim.g.netrw_banner = false
