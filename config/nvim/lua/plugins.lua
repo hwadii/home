@@ -104,7 +104,12 @@ return packer.startup({function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'nvim-telescope/telescope-ui-select.nvim' }
   use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use {
+    'jose-elias-alvarez/typescript.nvim',
+    config = function()
+      require('typescript').setup({})
+    end
+  }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-refactor'
   -- use { 'nvim-treesitter/nvim-treesitter-angular' }

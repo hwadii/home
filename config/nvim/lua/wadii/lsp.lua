@@ -88,15 +88,6 @@ lspconfig.tsserver.setup({
     custom_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-    local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({
-      eslint_bin = "eslint_d",
-      eslint_config_fallback = nil,
-      eslint_enable_diagnostics = false,
-      enable_formatting = true,
-      formatter = "prettier",
-    })
-    ts_utils.setup_client(client)
     vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
   end,
   flags = {
