@@ -12,6 +12,13 @@ function fish_prompt --description 'Write out the prompt'
     set -q fish_color_status or set -g fish_color_status --background=red white
     set -l bold_flag --bold
 
+    set -l nix_shell_info (set_color cyan) (
+      echo "$PATH" | grep -qc '/nix/store'
+      if test $status -eq 0
+        echo -n " <nix-shell>"
+      end
+    ) $normal
+
     # Color the prompt differently when we're root
     set -l color_cwd (set_color $bold_flag grey)
     set suffix "»"
@@ -48,5 +55,5 @@ function fish_prompt --description 'Write out the prompt'
 
     set -l pwd_status $color_cwd (prompt_pwd) $normal
 
-    echo -ns $pwd_status $jobs_status " " $vcs_status $prompt_status $color_suffix $suffix $normal " "
+    echo -ns $pwd_status $nix_shell_info $jobs_status " " $vcs_status $prompt_status $color_suffix $suffix $normal " "
 end
