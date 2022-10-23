@@ -19,7 +19,7 @@ set $ws7 7
 set $ws8 8
 set $ws9 9
 set $ws10 10
-set $font_family mono
+set $font_family Berkeley Mono
 set $font_size 11
 
 font pango:$font_family, IPA Gothic 8
