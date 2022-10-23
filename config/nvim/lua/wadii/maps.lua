@@ -39,6 +39,7 @@ map('n', '<Leader>gl', '<cmd>Git log<cr>')
 map('n', '<Leader>gd', '<cmd>Git diff<cr>')
 map('n', '<Leader>gb', '<cmd>Git blame<cr>')
 map('n', '<Leader>ga', '<cmd>Git branch<cr>')
+map('n', '<Leader>gr', '<cmd>Gr<cr>', { silent = true })
 
 -- colorizer
 map('n', '<Leader>c', '<cmd>HighlightColorsToggle<cr>')
