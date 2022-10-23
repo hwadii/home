@@ -1,5 +1,6 @@
 local telescope = require('telescope.builtin')
 local map = vim.keymap.set
+local various = require('wadii.various')
 
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
@@ -42,10 +43,8 @@ map('n', '<Leader>ga', '<cmd>Git branch<cr>')
 -- colorizer
 map('n', '<Leader>c', '<cmd>HighlightColorsToggle<cr>')
 
--- floaterm
-map('n', '<Leader>fn', '<cmd>FloatermNew<cr>')
-map('n', '<Leader>fc', '<cmd>FloatermKill<cr>')
-map('n', '<Leader>ft', '<cmd>FloatermToggle<cr>')
+-- various
+map('n', '<Leader>yf', various.yank_current_path)
 
 -- custom commands
 vim.api.nvim_create_user_command('Gpf', 'Git! push --force-with-lease', {})

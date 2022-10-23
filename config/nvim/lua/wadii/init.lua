@@ -8,6 +8,7 @@ _G.wadii = {
   completion = require'wadii.completion',
   packer_compiled = require'packer_compiled',
   plugins = require'plugins',
+  various = require'wadii.various',
 }
 
 return _G.wadii
