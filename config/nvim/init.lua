@@ -4,7 +4,6 @@ local opt = vim.opt
 opt.termguicolors = true
 
 require('wadii')
-require('plugin.treesitter')
 
 vim.g.zenbones = {
   lighten_noncurrent_window = true,
