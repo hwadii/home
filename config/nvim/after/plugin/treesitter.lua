@@ -84,7 +84,7 @@ require'nvim-treesitter.configs'.setup {
 require'nvim-treesitter'.define_modules {
   fold = {
     attach = function(_, _)
-      vim.cmd'set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()'
+      vim.cmd'set foldmethod=expr foldexpr=nvim_treesitter#foldexpr() nofoldenable'
     end,
     detach = function() end,
   }
