@@ -7,7 +7,7 @@ require'nvim-treesitter.configs'.setup {
   },
   textobjects = {
     select = {
-      enable = true,
+      enable = false,
       keymaps = {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
@@ -16,7 +16,7 @@ require'nvim-treesitter.configs'.setup {
       },
     },
     swap = {
-      enable = true,
+      enable = false,
       swap_next = {
         ["<leader>a"] = "@parameter.inner",
       },
@@ -25,7 +25,7 @@ require'nvim-treesitter.configs'.setup {
       },
     },
     lsp_interop = {
-      enable = true,
+      enable = false,
       peek_definition_code = {
         ["<leader>df"] = "@function.outer",
         ["<leader>dF"] = "@class.outer",
