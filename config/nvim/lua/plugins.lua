@@ -35,15 +35,15 @@ return packer.startup({function(use)
     end,
   }
   use 'brenoprata10/nvim-highlight-colors'
+  use { 'hrsh7th/nvim-cmp' }
   use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-    },
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    requires = { 'hrsh7th/nvim-cmp' },
+    after = { 'hrsh7th/nvim-cmp' }
   }
   use 'L3MON4D3/LuaSnip'
   use 'lewis6991/github_dark.nvim'
@@ -68,29 +68,29 @@ return packer.startup({function(use)
             if vim.wo.diff then return ']c' end
             vim.schedule(function() gs.next_hunk() end)
             return '<Ignore>'
-          end, {expr=true})
+          end, { expr = true })
 
           map('n', '[c', function()
             if vim.wo.diff then return '[c' end
             vim.schedule(function() gs.prev_hunk() end)
             return '<Ignore>'
-          end, {expr=true})
+          end, { expr = true })
 
           -- Actions
-          map({'n', 'v'}, '<leader>hs', gs.stage_hunk)
-          map({'n', 'v'}, '<leader>hr', gs.reset_hunk)
+          map({ 'n', 'v' }, '<leader>hs', gs.stage_hunk)
+          map({ 'n', 'v' }, '<leader>hr', gs.reset_hunk)
           map('n', '<leader>hS', gs.stage_buffer)
           map('n', '<leader>hu', gs.undo_stage_hunk)
           map('n', '<leader>hR', gs.reset_buffer)
           map('n', '<leader>hp', gs.preview_hunk)
-          map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+          map('n', '<leader>hb', function() gs.blame_line { full = true } end)
           map('n', '<leader>tb', gs.toggle_current_line_blame)
           map('n', '<leader>hd', gs.diffthis)
           map('n', '<leader>hD', function() gs.diffthis('~') end)
           map('n', '<leader>td', gs.toggle_deleted)
 
           -- Text object
-          map({'o', 'x'}, 'ih', gs.select_hunk)
+          map({ 'o', 'x' }, 'ih', gs.select_hunk)
         end
       })
     end
@@ -142,6 +142,7 @@ return packer.startup({function(use)
     end
   }
   use 'alaviss/nim.nvim'
+  use { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end }
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
