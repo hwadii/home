@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
     "rust", "css", "dot", "json", "python", "yaml", "vue", "markdown", "html",
@@ -16,7 +16,7 @@ require'nvim-treesitter.configs'.setup {
       },
     },
     swap = {
-      enable = false,
+      enable = true,
       swap_next = {
         ["<leader>a"] = "@parameter.inner",
       },
@@ -29,6 +29,26 @@ require'nvim-treesitter.configs'.setup {
       peek_definition_code = {
         ["<leader>df"] = "@function.outer",
         ["<leader>dF"] = "@class.outer",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = { query = "@class.outer", desc = "Next class start" },
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
       },
     },
   },
@@ -81,10 +101,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require'nvim-treesitter'.define_modules {
+require 'nvim-treesitter'.define_modules {
   fold = {
     attach = function(_, _)
-      vim.cmd'set foldmethod=expr foldexpr=nvim_treesitter#foldexpr() nofoldenable'
+      vim.cmd 'set foldmethod=expr foldexpr=nvim_treesitter#foldexpr() nofoldenable'
     end,
     detach = function() end,
   }
