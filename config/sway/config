@@ -92,10 +92,11 @@ bindsym $mod+Shift+r reload
 bindsym $mod+y mode shot
 mode shot {
   bindsym Escape mode default
-  bindsym p exec grimshot --notify copy area
-  bindsym s exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
-  bindsym a exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n
-  bindsym g exec record-selection
+  bindsym p exec grimshot --notify copy area; mode default
+  bindsym Shift+p exec grim -g "$(slurp)" - | swappy -f -; mode default
+  bindsym s exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
+  bindsym a exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
+  bindsym g exec record-selection; mode default
 }
 
 bindsym $mod+$left focus left
