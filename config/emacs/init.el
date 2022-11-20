@@ -115,6 +115,11 @@
   (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+(use-package elfeed
+  :init
+  (global-set-key (kbd "C-x w") 'elfeed))
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -143,7 +148,7 @@
 (global-display-line-numbers-mode)
 
 (add-to-list 'default-frame-alist
-             '(font . "Berkeley Mono-10.5"))
+             '(font . "Berkeley Mono-10"))
 
 ;; Start server.
 (require 'server)
