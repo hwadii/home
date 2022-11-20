@@ -23,6 +23,7 @@
 (ido-everywhere)
 (setq ido-enable-flex-matching t)
 (fido-mode)
+(setq ido-use-filename-at-point 'guess)
 
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
@@ -69,6 +70,15 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
+(setq nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
+
+(setq explicit-shell-file-name "/bin/fish")
+
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
 ;; Enable installation of packages from MELPA.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -76,10 +86,35 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-and-compile
+  (setq use-package-always-ensure t
+        use-package-expand-minimally t))
+
 ;; Install packages.
-(dolist (package '(markdown-mode paredit rainbow-delimiters))
-  (unless (package-installed-p package)
-    (package-install package)))
+(use-package markdown-mode)
+(use-package paredit)
+(use-package rainbow-delimiters)
+(use-package projectile
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map)))
+(use-package magit
+  :commands magit-get-top-dir
+  :bind (("C-c g" . magit-status)))
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
+(use-package git-gutter-fringe
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -95,7 +130,6 @@
 (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 
 ;; Customize Rainbow Delimiters.
-(require 'rainbow-delimiters)
 (set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")  ; red
 (set-face-foreground 'rainbow-delimiters-depth-2-face "#6c6")  ; green
 (set-face-foreground 'rainbow-delimiters-depth-3-face "#69f")  ; blue
@@ -106,20 +140,10 @@
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#666")  ; dark gray
 
-;; Custom command.
-(defun show-current-time ()
-  "Show current time."
-  (interactive)
-  (message (current-time-string)))
-
-;; Custom key sequences.
-(global-set-key (kbd "C-c t") 'show-current-time)
-(global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
-
 (global-display-line-numbers-mode)
 
 (add-to-list 'default-frame-alist
-             '(font . "Fira Code-10"))
+             '(font . "Berkeley Mono-10.5"))
 
 ;; Start server.
 (require 'server)
