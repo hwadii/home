@@ -45,7 +45,7 @@ map('n', '<Leader>gr', '<cmd>Gr<cr>', { silent = true })
 map('n', '<Leader>c', '<cmd>HighlightColorsToggle<cr>')
 
 -- various
-map('n', '<Leader>yf', various.yank_current_path)
+map('n', '<Leader>L', various.yank_current_path)
 
 -- custom commands
 vim.api.nvim_create_user_command('Gpf', 'Git! push --force-with-lease', {})
