@@ -74,6 +74,9 @@
 
 (setq explicit-shell-file-name "/bin/fish")
 
+(setq scroll-conservatively 101)
+(setq scroll-margin 1)
+
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
@@ -117,9 +120,23 @@
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 (use-package elfeed
   :init
-  (global-set-key (kbd "C-x w") 'elfeed))
+  (global-set-key (kbd "C-x w") 'elfeed)
+  :bind (:map elfeed-search-mode-map
+              ("f" . elfeed-update)))
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
+(use-package tree-sitter-langs
+  :ensure t)
+(use-package tree-sitter
+  :config
+  (require 'tree-sitter-langs)
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+(use-package rust-mode)
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -154,3 +171,4 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+(put 'narrow-to-region 'disabled nil)
