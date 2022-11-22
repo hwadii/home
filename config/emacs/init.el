@@ -82,6 +82,8 @@
 (setq recentf-max-saved-items 25)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
+(setq vterm-shell "/bin/fish")
+
 ;; Enable installation of packages from MELPA.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -137,6 +139,8 @@
   :ensure t
   :config
   (add-hook 'after-init-hook 'global-company-mode))
+(use-package vterm
+  :ensure t)
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
