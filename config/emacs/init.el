@@ -87,7 +87,13 @@
 (setq recentf-max-saved-items 25)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
-(setq vterm-shell "/bin/fish")
+;; Show directories first in dired.
+(setq ls-lisp-dirs-first t)
+(setq ls-lisp-use-insert-directory-program nil)
+
+;; Typed text replaces the selection if typed text replaces the
+;; selection if the selection is active
+(delete-selection-mode 1)
 
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -132,20 +138,26 @@
               ("f" . elfeed-update)))
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
-(use-package tree-sitter-langs
-  :ensure t)
+(use-package tree-sitter-langs)
 (use-package tree-sitter
   :config
   (require 'tree-sitter-langs)
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 (use-package rust-mode)
+(use-package typescript-mode)
 (use-package company
-  :ensure t
   :config
   (add-hook 'after-init-hook 'global-company-mode))
-(use-package vterm
-  :ensure t)
+(use-package vterm)
+(use-package which-key
+  :disabled)
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+(use-package sudo-utils)
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
