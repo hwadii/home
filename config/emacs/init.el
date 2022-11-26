@@ -62,9 +62,12 @@
 ;; Disable lockfiles.
 (setq create-lockfiles nil)
 
-;; Workaround for https://debbugs.gnu.org/34341 in GNU Emacs <= 26.3.
-(when (and (version< emacs-version "26.3") (>= libgnutls-version 30603))
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+(setq savehist-file "~/.config/emacs/savehist"
+      history-length 1000
+      history-delete-duplicates t
+      savehist-save-minibuffer-history t
+      savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+(savehist-mode 1)
 
 ;; Write customizations to a separate file instead of this file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -72,7 +75,9 @@
 
 (setq nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
 
+(setq shell-file-name "/bin/fish")
 (setq explicit-shell-file-name "/bin/fish")
+(setq vterm-shell "/bin/fish")
 
 (setq scroll-conservatively 101)
 (setq scroll-margin 1)
