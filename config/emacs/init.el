@@ -114,11 +114,6 @@
 (use-package markdown-mode)
 (use-package paredit)
 (use-package rainbow-delimiters)
-(use-package projectile
-  :init
-  (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("C-c p" . projectile-command-map)))
 (use-package magit
   :commands magit-get-top-dir
   :bind (("C-c g" . magit-status)))
@@ -165,6 +160,7 @@
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'minibuffer-setup-hook 'disable-paredit-mode)
 
 ;; Enable Rainbow Delimiters.
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
@@ -193,3 +189,6 @@
 (unless (server-running-p)
   (server-start))
 (put 'narrow-to-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
