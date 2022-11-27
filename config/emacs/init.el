@@ -121,15 +121,10 @@
 (use-package magit
   :commands magit-get-top-dir
   :bind (("C-c g" . magit-status)))
-(use-package git-gutter
-  :hook (prog-mode . git-gutter-mode)
+(use-package diff-hl
   :config
-  (setq git-gutter:update-interval 0.02))
-(use-package git-gutter-fringe
-  :config
-  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
+  (add-hook 'after-init-hook 'global-diff-hl-mode)
+  (diff-hl-flydiff-mode))
 (use-package elfeed
   :init
   (global-set-key (kbd "C-x w") 'elfeed)
