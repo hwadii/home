@@ -21,6 +21,9 @@
 (fido-vertical-mode)
 (setq ido-use-filename-at-point 'guess)
 
+;; Complete pairs
+(electric-pair-mode)
+
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
