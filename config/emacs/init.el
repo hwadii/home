@@ -92,6 +92,8 @@
 
 (setq xref-search-program 'ripgrep)
 
+(setq diff-hl-show-staged-changes nil)
+
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
 (delete-selection-mode 1)
