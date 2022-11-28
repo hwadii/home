@@ -18,7 +18,7 @@
 (ido-mode 1)
 (ido-everywhere)
 (setq ido-enable-flex-matching t)
-(fido-mode)
+(fido-vertical-mode)
 (setq ido-use-filename-at-point 'guess)
 
 ;; Show stray whitespace.
@@ -87,6 +87,8 @@
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
 
+(setq xref-search-program 'ripgrep)
+
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
 (delete-selection-mode 1)
@@ -111,9 +113,11 @@
 
 ;; Install packages.
 (use-package emacs
+  :init
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t)
   :config
   ;; Load the theme of your choice:
-  (load-theme 'modus-vivendi)
   :bind ("<f5>" . modus-themes-toggle))
 (use-package markdown-mode)
 (use-package paredit)
@@ -183,6 +187,8 @@
 (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140)))
 (add-hook 'typescript-mode-hook (lambda () (setq-local fill-column 120)))
 
+(add-hook 'vterm-mode-hook (lambda () (setq-local show-trailing-whitespace nil)))
+
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
@@ -197,7 +203,7 @@
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 
 (add-to-list 'default-frame-alist
-             '(font . "Berkeley Mono-10"))
+             '(font . "Berkeley Mono-10.5"))
 
 ;; Start server.
 (require 'server)
