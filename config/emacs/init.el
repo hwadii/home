@@ -104,7 +104,6 @@
 (setq tab-bar-new-button-show nil
       tab-bar-close-button-show nil)
 
-Kubernets
 (setq org-directory "~/code/notes")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 ;;; Capturing
@@ -155,6 +154,9 @@ Kubernets
   :commands magit-get-top-dir
   :bind (("C-c g" . magit-status)))
 (use-package diff-hl
+  :after magit
+  :demand
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :config
   (add-hook 'after-init-hook 'global-diff-hl-mode)
   (diff-hl-flydiff-mode))
