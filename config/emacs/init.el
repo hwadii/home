@@ -15,14 +15,10 @@
 (setq gc-cons-threshold 100000000)
 
 ;; Interactively do things.
-(ido-mode 1)
-(ido-everywhere)
-(setq ido-enable-flex-matching t)
-(fido-vertical-mode)
-(setq ido-use-filename-at-point 'guess)
+(fido-mode 1)
 
 ;; Complete pairs
-(electric-pair-mode)
+(electric-pair-mode 11)
 
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
@@ -86,6 +82,8 @@
 (setq recentf-max-saved-items 25)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
+(tab-bar-mode 1)
+
 ;; Show directories first in dired.
 (setq ls-lisp-dirs-first t)
 (setq ls-lisp-use-insert-directory-program nil)
@@ -98,8 +96,34 @@
 ;; selection if the selection is active
 (delete-selection-mode 1)
 
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-z") 'eshell)
+(global-set-key (kbd "C-c o") 'find-file-at-point)
+(global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
+
+(setq tab-bar-new-button-show nil
+      tab-bar-close-button-show nil)
+
+Kubernets
+(setq org-directory "~/code/notes")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+;;; Capturing
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(setq org-capture-templates
+      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
+         "* NEXT %?\n%U\n")
+        ("n" "note" entry (file "")
+         "* %? :NOTE:\n%U\n%a\n")
+        ))
+(setq org-todo-keywords
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
+              (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
+              (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)")))
+      org-todo-repeat-to-state "NEXT")
+(setq org-todo-keyword-faces
+      (quote (("NEXT" :inherit warning)
+              ("PROJECT" :inherit font-lock-string-face))))
 
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -150,9 +174,13 @@
 (use-package rust-mode)
 (use-package typescript-mode)
 (use-package company
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
-(use-package vterm)
+             :config
+             (add-hook 'after-init-hook 'global-company-mode)
+             (setq company-idle-delay 0
+                   company-minimum-prefix-length 4
+                   company-selection-wrap-around t))
+(use-package vterm
+  :bind ("C-c t" . vterm))
 (use-package which-key
   :disabled)
 (use-package auto-package-update
@@ -161,7 +189,6 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 (use-package sudo-utils)
-(use-package ef-themes)
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
@@ -173,6 +200,9 @@
   :config
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
+(use-package json-mode)
+(use-package password-store)
+(use-package solarized-theme)
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -208,7 +238,7 @@
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 
 (add-to-list 'default-frame-alist
-             '(font . "Berkeley Mono-10.5"))
+             '(font . "Input-10.5"))
 
 ;; Start server.
 (require 'server)
