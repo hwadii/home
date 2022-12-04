@@ -101,6 +101,21 @@
 (global-set-key (kbd "C-c o") 'find-file-at-point)
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-c =") 'calculator)
+(global-set-key (kbd "M-i") 'imenu)
+
+(defun wadii/insert-date ()
+  (interactive)
+  (insert (format-time-string "%F")))
+(defun wadii/insert-time ()
+  (interactive)
+  (insert (format-time-string "%FT%T%z")))
+(defun wadii/insert-uuid ()
+  (interactive)
+  (insert (string-trim (shell-command-to-string "uuid"))))
+
+(global-set-key (kbd "C-c i d") 'wadii/insert-date)
+(global-set-key (kbd "C-c i t") 'wadii/insert-time)
+(global-set-key (kbd "C-c i u") 'wadii/insert-uuid)
 
 (setq tab-bar-new-button-show nil
       tab-bar-close-button-show nil)
@@ -211,6 +226,11 @@
   (setq solarized-use-more-italic t)
   (setq solarized-use-less-bold t))
 (use-package ef-themes)
+(use-package rg
+  :config
+  (rg-enable-default-bindings)
+  :bind (:map isearch-mode-map
+              ("M-s r" . rg-isearch-menu)))
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -235,8 +255,8 @@
   (display-line-numbers-mode -1)
   (display-fill-column-indicator-mode -1))
 
-(add-hook 'vterm-mode-hook 'wadii/term-mode)
-(add-hook 'eshell-mode-hook 'wadii/term-mode)
+(add-hook 'vterm-mode-hook #'wadii/term-mode)
+(add-hook 'eshell-mode-hook #'wadii/term-mode)
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
