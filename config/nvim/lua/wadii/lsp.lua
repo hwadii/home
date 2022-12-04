@@ -188,6 +188,7 @@ local servers = {
   'emmet_ls',
   'gopls',
   'html',
+  'zls',
 }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
