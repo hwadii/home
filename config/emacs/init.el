@@ -100,6 +100,7 @@
 (global-set-key (kbd "C-z") 'eshell)
 (global-set-key (kbd "C-c o") 'find-file-at-point)
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-c =") 'calculator)
 
 (setq tab-bar-new-button-show nil
       tab-bar-close-button-show nil)
@@ -155,7 +156,6 @@
   :bind (("C-c g" . magit-status)))
 (use-package diff-hl
   :after magit
-  :demand
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :config
   (add-hook 'after-init-hook 'global-diff-hl-mode)
@@ -175,12 +175,13 @@
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 (use-package rust-mode)
 (use-package typescript-mode)
+(use-package zig-mode)
 (use-package company
-             :config
-             (add-hook 'after-init-hook 'global-company-mode)
-             (setq company-idle-delay 0
-                   company-minimum-prefix-length 4
-                   company-selection-wrap-around t))
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-idle-delay 0
+        company-minimum-prefix-length 4
+        company-selection-wrap-around t))
 (use-package vterm
   :bind ("C-c t" . vterm))
 (use-package which-key
@@ -191,20 +192,25 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 (use-package sudo-utils)
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
+(use-package eglot
   :hook (
-         (ruby-mode . lsp-deferred)
-         (typescript-mode . lsp-deferred))
-  :commands (lsp lsp-deferred))
+         (ruby-mode . eglot-ensure)
+         (zig-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure))
+  :commands (eglot-ensure)
+  :config
+  (setq eldoc-echo-area-use-multiline-p nil))
 (use-package flymake
   :config
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 (use-package json-mode)
 (use-package password-store)
-(use-package solarized-theme)
+(use-package solarized-theme
+  :init
+  (setq solarized-use-more-italic t)
+  (setq solarized-use-less-bold t))
+(use-package ef-themes)
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -224,7 +230,13 @@
 (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140)))
 (add-hook 'typescript-mode-hook (lambda () (setq-local fill-column 120)))
 
-(add-hook 'vterm-mode-hook (lambda () (setq-local show-trailing-whitespace nil)))
+(defun wadii/term-mode ()
+  (setq-local show-trailing-whitespace nil)
+  (display-line-numbers-mode -1)
+  (display-fill-column-indicator-mode -1))
+
+(add-hook 'vterm-mode-hook 'wadii/term-mode)
+(add-hook 'eshell-mode-hook 'wadii/term-mode)
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
@@ -239,8 +251,7 @@
 (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 
-(add-to-list 'default-frame-alist
-             '(font . "Input-10.5"))
+(add-to-list 'default-frame-alist '(font . "Berkeley Mono-10.5"))
 
 ;; Start server.
 (require 'server)
@@ -250,3 +261,13 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(defun wadii/show-buffer-file-name ()
+  "Show the full path to the current file in the minibuffer."
+  (interactive)
+  (let ((file-name (buffer-file-name)))
+    (if file-name
+        (progn
+          (message file-name)
+          (kill-new file-name))
+      (error "Buffer not visiting a file"))))
