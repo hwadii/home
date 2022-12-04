@@ -102,6 +102,7 @@
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-c =") 'calculator)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key (kbd "C-c C-/") #'company-other-backend)
 
 (defun wadii/insert-date ()
   (interactive)
@@ -192,6 +193,7 @@
 (use-package typescript-mode)
 (use-package zig-mode)
 (use-package company
+  :bind (("C-c f" . company-files))
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0
@@ -206,12 +208,15 @@
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
-(use-package sudo-utils)
+(use-package sudo-utils
+  :bind (
+         ("C-M-!" . sudo-utils-shell-command)))
 (use-package eglot
   :hook (
          (ruby-mode . eglot-ensure)
          (zig-mode . eglot-ensure)
-         (typescript-mode . eglot-ensure))
+         (typescript-mode . eglot-ensure)
+         (rust-mode . eglot-ensure))
   :commands (eglot-ensure)
   :config
   (setq eldoc-echo-area-use-multiline-p nil))
