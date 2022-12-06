@@ -64,6 +64,8 @@
       savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
 (savehist-mode 1)
 
+(setq desktop-path '("~/.config/emacs/desktops/"))
+(desktop-save-mode 1)
 ;; Write customizations to a separate file instead of this file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
