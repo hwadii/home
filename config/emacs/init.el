@@ -104,6 +104,10 @@
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "C-c C-/") #'company-other-backend)
 
+(defun wadii/term-mode ()
+  (setq-local show-trailing-whitespace nil)
+  (display-line-numbers-mode -1)
+  (display-fill-column-indicator-mode -1))
 (defun wadii/insert-date ()
   (interactive)
   (insert (format-time-string "%F")))
@@ -165,22 +169,46 @@
   ;; Load the theme of your choice:
   :bind ("<f5>" . modus-themes-toggle))
 (use-package markdown-mode)
-(use-package paredit)
-(use-package rainbow-delimiters)
+(use-package paredit
+  :config
+  ;; Enable Paredit.
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'minibuffer-setup-hook 'disable-paredit-mode))
+(use-package rainbow-delimiters
+  :config
+  ;; Enable Rainbow Delimiters.
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+
+  (set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")  ; red
+  (set-face-foreground 'rainbow-delimiters-depth-2-face "#6c6")  ; green
+  (set-face-foreground 'rainbow-delimiters-depth-3-face "#69f")  ; blue
+  (set-face-foreground 'rainbow-delimiters-depth-4-face "#cc6")  ; yellow
+  (set-face-foreground 'rainbow-delimiters-depth-5-face "#6cc")  ; cyan
+  (set-face-foreground 'rainbow-delimiters-depth-6-face "#c6c")  ; magenta
+  (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
+  (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
+)
 (use-package magit
   :commands magit-get-top-dir
   :bind (("C-c g" . magit-status)))
 (use-package diff-hl
-  :after magit
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
-  :config
-  (add-hook 'after-init-hook 'global-diff-hl-mode)
-  (diff-hl-flydiff-mode))
-(use-package elfeed
+  :commands global-diff-hl-mode
   :init
-  (global-set-key (kbd "C-x w") 'elfeed)
-  :bind (:map elfeed-search-mode-map
-              ("f" . elfeed-update)))
+  (add-hook 'after-init-hook #'global-diff-hl-mode)
+  :config
+  (diff-hl-flydiff-mode)
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
+(use-package elfeed
+  :bind (
+         :map elfeed-search-mode-map
+         ("f" . elfeed-update)))
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 (use-package tree-sitter-langs)
@@ -190,17 +218,24 @@
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 (use-package rust-mode)
-(use-package typescript-mode)
-(use-package zig-mode)
-(use-package company
-  :bind (("C-c f" . company-files))
+(use-package typescript-mode
   :config
+  (add-hook 'typescript-mode-hook (lambda () (setq-local fill-column 120))))
+(use-package json-mode)
+(use-package zig-mode)
+(use-package ruby-mode
+  :config
+  (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140))))
+(use-package company
+  :commands global-company-mode
+  :init
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0
         company-minimum-prefix-length 4
         company-selection-wrap-around t))
 (use-package vterm
-  :bind ("C-c t" . vterm))
+  :bind ("C-c t" . vterm)
+  :hook (vterm-mode . wadii/term-mode))
 (use-package which-key
   :disabled)
 (use-package auto-package-update
@@ -224,7 +259,6 @@
   :config
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
-(use-package json-mode)
 (use-package password-store)
 (use-package solarized-theme
   :init
@@ -232,51 +266,32 @@
   (setq solarized-use-less-bold t))
 (use-package ef-themes)
 (use-package rg
-  :config
-  (rg-enable-default-bindings)
-  :bind (:map isearch-mode-map
-              ("M-s r" . rg-isearch-menu)))
-
-;; Enable Paredit.
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-(add-hook 'lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'minibuffer-setup-hook 'disable-paredit-mode)
-
-;; Enable Rainbow Delimiters.
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-
-;; Language major modes hooks
-(add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140)))
-(add-hook 'typescript-mode-hook (lambda () (setq-local fill-column 120)))
-
-(defun wadii/term-mode ()
-  (setq-local show-trailing-whitespace nil)
-  (display-line-numbers-mode -1)
-  (display-fill-column-indicator-mode -1))
-
-(add-hook 'vterm-mode-hook #'wadii/term-mode)
-(add-hook 'eshell-mode-hook #'wadii/term-mode)
+  :hook (after-init . rg-enable-default-bindings)
+  :bind (
+         :map isearch-mode-map
+         ("M-s r" . rg-isearch-menu)))
+(use-package forge
+  :after magit)
+(use-package eshell
+  :ensure nil
+  :hook (eshell-mode . wadii/term-mode))
+(use-package standard-themes
+  :ensure t)
+(use-package emacs
+  :ensure nil
+  :hook (after-init . windmove-default-keybindings))
+(use-package elfeed-summary
+  :bind (
+         ("C-x w" . elfeed-summary)
+         :map elfeed-summary-mode-map
+         ("C-<tab>" . nil))
+  )
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
 ;; Customize Rainbow Delimiters.
-(set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")  ; red
-(set-face-foreground 'rainbow-delimiters-depth-2-face "#6c6")  ; green
-(set-face-foreground 'rainbow-delimiters-depth-3-face "#69f")  ; blue
-(set-face-foreground 'rainbow-delimiters-depth-4-face "#cc6")  ; yellow
-(set-face-foreground 'rainbow-delimiters-depth-5-face "#6cc")  ; cyan
-(set-face-foreground 'rainbow-delimiters-depth-6-face "#c6c")  ; magenta
-(set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
-(set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
-
-(add-to-list 'default-frame-alist '(font . "Berkeley Mono-10.5"))
+(add-to-list 'default-frame-alist '(font . "Iosevka Output-11"))
 
 ;; Start server.
 (require 'server)
