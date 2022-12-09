@@ -168,6 +168,7 @@
   (setq modus-themes-italic-constructs t
         modus-themes-bold-constructs t)
   :config
+  :hook (after-init . windmove-default-keybindings)
   ;; Load the theme of your choice:
   :bind ("<f5>" . modus-themes-toggle))
 (use-package markdown-mode)
@@ -266,7 +267,6 @@
   :init
   (setq solarized-use-more-italic t)
   (setq solarized-use-less-bold t))
-(use-package ef-themes)
 (use-package rg
   :hook (after-init . rg-enable-default-bindings)
   :bind (
@@ -277,16 +277,30 @@
 (use-package eshell
   :ensure nil
   :hook (eshell-mode . wadii/term-mode))
-(use-package standard-themes
-  :ensure t)
-(use-package emacs
-  :ensure nil
-  :hook (after-init . windmove-default-keybindings))
 (use-package elfeed-summary
   :bind (
          ("C-x w" . elfeed-summary)
          :map elfeed-summary-mode-map
          ("C-<tab>" . nil))
+  )
+(use-package fd-dired)
+(use-package ligature
+  :disabled t
+  :config
+  (ligature-set-ligatures 't '"|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                          ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                          "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                          "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                          "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                          "..." "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                          "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                          "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                          ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                          "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                          "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "?:"
+                          "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                          "\\\\" "://")
+  (global-ligature-mode t)
   )
 
 (global-display-line-numbers-mode)
