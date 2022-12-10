@@ -99,12 +99,14 @@
 (delete-selection-mode 1)
 
 (global-set-key [remap list-buffers] 'ibuffer)
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-set-key (kbd "C-z") 'eshell)
 (global-set-key (kbd "C-c o") 'find-file-at-point)
 (global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-c =") 'calculator)
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "C-c C-/") #'company-other-backend)
+(global-set-key (kbd "M-Z") 'zap-up-to-char)
 
 (defun wadii/term-mode ()
   (setq-local show-trailing-whitespace nil)
@@ -119,6 +121,13 @@
 (defun wadii/insert-uuid ()
   (interactive)
   (insert (string-trim (shell-command-to-string "uuid"))))
+(defun sudo ()
+  "Use TRAMP to `sudo' the current buffer."
+  (interactive)
+  (when buffer-file-name
+    (find-alternate-file
+     (concat "/sudo:root@localhost:"
+             buffer-file-name))))
 
 (global-set-key (kbd "C-c i d") 'wadii/insert-date)
 (global-set-key (kbd "C-c i t") 'wadii/insert-time)
@@ -133,11 +142,10 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
-      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
-         "* NEXT %?\n%U\n")
-        ("n" "note" entry (file "")
-         "* %? :NOTE:\n%U\n%a\n")
-        ))
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
               (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
@@ -146,6 +154,7 @@
 (setq org-todo-keyword-faces
       (quote (("NEXT" :inherit warning)
               ("PROJECT" :inherit font-lock-string-face))))
+(setq calendar-week-start-day 1)
 
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -285,29 +294,26 @@
   )
 (use-package fd-dired)
 (use-package ligature
-  :disabled t
   :config
-  (ligature-set-ligatures 't '"|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                          ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                          "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                          "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                          "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                          "..." "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                          "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                          "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                          ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                          "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                          "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "?:"
-                          "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                          "\\\\" "://")
-  (global-ligature-mode t)
-  )
+  (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                               ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                               "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                               "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                               "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                               "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                               "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                               "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                               ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                               "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                               "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                               "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                               "\\\\" "://"))
+  :hook (prog-mode . ligature-mode))
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
-;; Customize Rainbow Delimiters.
-(add-to-list 'default-frame-alist '(font . "Iosevka Output-11"))
+(set-face-attribute 'default nil :family "Input" :height 105 :weight 'normal)
 
 ;; Start server.
 (require 'server)
