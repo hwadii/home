@@ -15,7 +15,7 @@
 (setq gc-cons-threshold 100000000)
 
 ;; Interactively do things.
-(fido-mode 1)
+(fido-vertical-mode 1)
 
 ;; Complete pairs
 (electric-pair-mode 11)
@@ -138,13 +138,14 @@
 
 (setq org-directory "~/code/notes")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-default-jounral-file (concat org-directory "/journal.org"))
 ;;; Capturing
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+      '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
          "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+        ("j" "Journal" entry (file+olp+datetree org-default-jounral-file)
          "* %?\nEntered on %U\n  %i\n  %a")))
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
