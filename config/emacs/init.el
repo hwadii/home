@@ -242,13 +242,11 @@
 (use-package ruby-mode
   :config
   (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140))))
-(use-package company
-  :commands global-company-mode
+(use-package corfu
+  :custom
+  (corfu-auto t)
   :init
-  (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-idle-delay 0
-        company-minimum-prefix-length 4
-        company-selection-wrap-around t))
+  (global-corfu-mode))
 (use-package vterm
   :bind ("C-c t" . vterm)
   :hook (vterm-mode . wadii/term-mode))
