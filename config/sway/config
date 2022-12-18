@@ -58,7 +58,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_layout us
   repeat_delay 400
   repeat_rate 30
-  xkb_options caps:escape,compose:ralt
+  xkb_options caps:ctrl_modifier,compose:ralt
 }
 
 input "1278:32:PFU_Limited_HHKB-Classic" {
