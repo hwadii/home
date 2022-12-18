@@ -176,9 +176,12 @@
 (use-package emacs
   :init
   (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs t)
+        modus-themes-bold-constructs t
+        completion-cycle-threshold 3
+        tab-always-indent 'complete)
   :config
-  :hook (after-init . windmove-default-keybindings)
+  :hook ((after-init . windmove-default-keybindings)
+         (completion-list-mode . wadii/term-mode))
   ;; Load the theme of your choice:
   :bind ("<f5>" . modus-themes-toggle))
 (use-package markdown-mode)
@@ -310,6 +313,13 @@
                                "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                                "\\\\" "://"))
   :hook (prog-mode . ligature-mode))
+(use-package marginalia
+  :defer t
+  :bind (
+         ("C-c )" . marginalia-mode)
+         :map minibuffer-mode-map
+         ("M-A" . marginalia-cycle)))
+(use-package kaolin-themes)
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
