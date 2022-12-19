@@ -131,6 +131,10 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+Ctrl+$left move workspace to left
+bindsym $mod+Shift+Ctrl+$down move workspace to down
+bindsym $mod+Shift+Ctrl+$up move workspace to up
+bindsym $mod+Shift+Ctrl+$right move workspace to right
 bindsym $mod+b splith
 bindsym $mod+v splitv
 bindsym $mod+c split n
