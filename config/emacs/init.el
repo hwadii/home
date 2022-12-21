@@ -136,25 +136,6 @@
 (setq tab-bar-new-button-show nil
       tab-bar-close-button-show nil)
 
-(setq org-directory "~/code/notes")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-default-jounral-file (concat org-directory "/journal.org"))
-;;; Capturing
-(global-set-key (kbd "C-c c") 'org-capture)
-
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+olp+datetree org-default-jounral-file)
-         "* %?\nEntered on %U\n  %i\n  %a")))
-(setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
-              (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
-              (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)")))
-      org-todo-repeat-to-state "NEXT")
-(setq org-todo-keyword-faces
-      (quote (("NEXT" :inherit warning)
-              ("PROJECT" :inherit font-lock-string-face))))
 (setq calendar-week-start-day 1)
 
 ;; Enable installation of packages from MELPA.
@@ -172,7 +153,27 @@
   (setq use-package-always-ensure t
         use-package-expand-minimally t))
 
-;; Install packages.
+(use-package org
+  :ensure nil
+  :config
+  (setq org-directory "~/code/notes"
+        org-default-notes-file (concat org-directory "/notes.org")
+        org-default-jounral-file (concat org-directory "/journal.org")
+        org-default-reading-file (concat org-directory "/reading.org")
+        org-todo-keywords (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")))
+        org-todo-keyword-faces (quote (("NEXT" :inherit warning
+                                        ("PROJECT" :inherit font-lock-string-face))))))
+(use-package org-capture
+  :ensure nil
+  :after org
+  :config
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
+           "* TODO %?\n  %i\n  %a")
+          ("j" "Journal" entry (file+datetree org-default-jounral-file)
+           "* %?\n  %i\n  %a")
+          ))
+  :bind ("C-c c" . org-capture))
 (use-package emacs
   :init
   (setq modus-themes-italic-constructs t
@@ -310,19 +311,19 @@
                                "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
                                "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
                                "\\\\" "://"))
-  :hook (prog-mode . ligature-mode))
+  :hook (prog-mode text-mode))
 (use-package marginalia
   :defer t
   :bind (
          ("C-c )" . marginalia-mode)
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
-(use-package kaolin-themes)
+(use-package color-theme-sanityinc-tomorrow)
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
-(set-face-attribute 'default nil :family "Input" :height 105 :weight 'normal)
+(set-face-attribute 'default nil :family "Iosevka Output Reader" :height 105 :weight 'normal :width 'expanded)
 
 ;; Start server.
 (require 'server)
