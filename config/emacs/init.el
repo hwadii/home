@@ -15,10 +15,11 @@
 (setq gc-cons-threshold 100000000)
 
 ;; Interactively do things.
-(fido-vertical-mode 1)
+(fido-vertical-mode 0)
+(ido-mode 0)
 
 ;; Complete pairs
-(electric-pair-mode 11)
+(electric-pair-mode 1)
 
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
@@ -56,13 +57,6 @@
 
 ;; Disable lockfiles.
 (setq create-lockfiles nil)
-
-(setq savehist-file "~/.config/emacs/savehist"
-      history-length 1000
-      history-delete-duplicates t
-      savehist-save-minibuffer-history t
-      savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
-(savehist-mode 1)
 
 (setq desktop-path '("~/.config/emacs/desktops/"))
 (desktop-save-mode 1)
@@ -185,6 +179,19 @@
          (completion-list-mode . wadii/term-mode))
   ;; Load the theme of your choice:
   :bind ("<f5>" . modus-themes-toggle))
+(use-package savehist
+  :ensure nil
+  :init
+  (setq savehist-file "~/.config/emacs/savehist"
+        history-length 1000
+        history-delete-duplicates t
+        savehist-save-minibuffer-history t
+        savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+  (savehist-mode 1))
+(use-package vertico
+  :init
+  (setq completion-styles '(basic partial-completion emacs22 flex))
+  (vertico-mode))
 (use-package markdown-mode)
 (use-package paredit
   :config
@@ -323,7 +330,7 @@
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
-(set-face-attribute 'default nil :family "Iosevka Output Reader" :height 105 :weight 'normal :width 'expanded)
+(set-face-attribute 'default nil :family "Source Code Pro" :height 105 :weight 'normal :width 'expanded)
 
 ;; Start server.
 (require 'server)
