@@ -175,6 +175,7 @@
         completion-cycle-threshold 3
         tab-always-indent 'complete)
   :config
+  (adwaita-dark-theme-arrow-fringe-bmp-enable)
   :hook ((after-init . windmove-default-keybindings)
          (completion-list-mode . wadii/term-mode))
   ;; Load the theme of your choice:
@@ -209,15 +210,6 @@
   (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
   (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
   (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-
-  (set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")  ; red
-  (set-face-foreground 'rainbow-delimiters-depth-2-face "#6c6")  ; green
-  (set-face-foreground 'rainbow-delimiters-depth-3-face "#69f")  ; blue
-  (set-face-foreground 'rainbow-delimiters-depth-4-face "#cc6")  ; yellow
-  (set-face-foreground 'rainbow-delimiters-depth-5-face "#6cc")  ; cyan
-  (set-face-foreground 'rainbow-delimiters-depth-6-face "#c6c")  ; magenta
-  (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
-  (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 )
 (use-package magit
   :commands magit-get-top-dir
@@ -228,14 +220,17 @@
   (add-hook 'after-init-hook #'global-diff-hl-mode)
   :config
   (diff-hl-flydiff-mode)
+  (adwaita-dark-theme-diff-hl-fringe-bmp-enable)
   :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 (use-package elfeed
   :bind (
+         ("C-c w" . elfeed)
          :map elfeed-search-mode-map
          ("f" . elfeed-update)))
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 (use-package tree-sitter-langs)
+(use-package tree-sitter-indent)
 (use-package tree-sitter
   :config
   (require 'tree-sitter-langs)
@@ -296,16 +291,10 @@
 (use-package eshell
   :ensure nil
   :hook (eshell-mode . wadii/term-mode))
-(use-package elfeed-summary
-  :bind (
-         ("C-x w" . elfeed-summary)
-         :map elfeed-summary-mode-map
-         ("C-<tab>" . nil))
-  )
 (use-package fd-dired)
 (use-package ligature
   :config
-  (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+  (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "||=" "||>"
                                ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
                                "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
                                "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
@@ -326,6 +315,7 @@
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
 (use-package color-theme-sanityinc-tomorrow)
+(use-package adwaita-dark-theme)
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
