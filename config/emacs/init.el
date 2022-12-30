@@ -73,11 +73,6 @@
 (setq scroll-conservatively 101)
 (setq scroll-margin 1)
 
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
-
 (tab-bar-mode 1)
 
 ;; Show directories first in dired.
@@ -94,13 +89,6 @@
 
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-(global-set-key (kbd "C-z") 'eshell)
-(global-set-key (kbd "C-c o") 'find-file-at-point)
-(global-set-key (kbd "C-c d") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-c =") 'calculator)
-(global-set-key (kbd "M-i") 'imenu)
-(global-set-key (kbd "C-c C-/") #'company-other-backend)
-(global-set-key (kbd "M-Z") 'zap-up-to-char)
 
 (defun wadii/term-mode ()
   (setq-local show-trailing-whitespace nil)
@@ -122,10 +110,6 @@
     (find-alternate-file
      (concat "/sudo:root@localhost:"
              buffer-file-name))))
-
-(global-set-key (kbd "C-c i d") 'wadii/insert-date)
-(global-set-key (kbd "C-c i t") 'wadii/insert-time)
-(global-set-key (kbd "C-c i u") 'wadii/insert-uuid)
 
 (setq tab-bar-new-button-show nil
       tab-bar-close-button-show nil)
@@ -181,8 +165,18 @@
   (adwaita-dark-theme-arrow-fringe-bmp-enable)
   :hook ((after-init . windmove-default-keybindings)
          (completion-list-mode . wadii/term-mode))
-  ;; Load the theme of your choice:
-  :bind ("<f5>" . modus-themes-toggle))
+  :bind (
+         ("<f5>" . modus-themes-toggle)
+         ("C-c o" . find-file-at-point)
+         ("C-c d" . delete-trailing-whitespace)
+         ("M-i" . imenu)
+         ("M-Z" . zap-up-to-char)
+         ("C-c i d" . wadii/insert-date)
+         ("C-c i t" . wadii/insert-time)
+         ("C-c i u" . wadii/insert-uuid)))
+(use-package calculator
+  :ensure nil
+  :bind (("C-c =" . calculator)))
 (use-package savehist
   :ensure nil
   :init
@@ -194,7 +188,10 @@
   (savehist-mode 1))
 (use-package vertico
   :init
-  (setq completion-styles '(basic partial-completion emacs22 flex))
+  (setq read-file-name-completion-ignore-case t
+        read-buffer-completion-ignore-case t
+        completion-ignore-case t
+        completion-styles '(basic partial-completion emacs22 flex))
   (vertico-mode))
 (use-package markdown-mode)
 (use-package paredit
@@ -250,7 +247,7 @@
   (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140))))
 (use-package corfu
   :custom
-  (corfu-auto t)
+  (corfu-auto nil)
   :init
   (global-corfu-mode))
 (use-package vterm
@@ -268,6 +265,7 @@
          ("C-M-!" . sudo-utils-shell-command)))
 (use-package eglot
   :hook (
+         (javascript-mode . eglot-ensure)
          (ruby-mode . eglot-ensure)
          (zig-mode . eglot-ensure)
          (typescript-mode . eglot-ensure)
@@ -293,7 +291,8 @@
   :after magit)
 (use-package eshell
   :ensure nil
-  :hook (eshell-mode . wadii/term-mode))
+  :hook (eshell-mode . wadii/term-mode)
+  :bind (("C-z" . eshell)))
 (use-package fd-dired)
 (use-package ligature
   :config
@@ -318,16 +317,20 @@
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
 (use-package color-theme-sanityinc-tomorrow)
+(use-package inf-ruby)
+(use-package doom-themes)
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
               ("r" . dired-start-process)))
+(use-package csharp-mode)
 (use-package adwaita-dark-theme)
 
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
-(set-face-attribute 'default nil :family "Source Code Pro" :height 105 :weight 'normal :width 'expanded)
+(set-face-attribute 'default nil :font "Hasklig-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
 (require 'server)
