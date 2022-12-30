@@ -168,6 +168,9 @@
            "* %?\n  %i\n  %a")
           ))
   :bind ("C-c c" . org-capture))
+(use-package tab-bar
+  :ensure nil
+  :bind ("C-x t (" . tab-bar-mode))
 (use-package emacs
   :init
   (setq modus-themes-italic-constructs t
