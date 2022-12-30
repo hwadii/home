@@ -315,6 +315,10 @@
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
 (use-package color-theme-sanityinc-tomorrow)
+(use-package dired
+  :ensure nil
+  :bind (:map dired-mode-map
+              ("r" . dired-start-process)))
 (use-package adwaita-dark-theme)
 
 (global-display-line-numbers-mode)
@@ -340,3 +344,24 @@
           (message file-name)
           (kill-new file-name))
       (error "Buffer not visiting a file"))))
+
+(defun dired-start-process (cmd &optional file-list)
+  (interactive
+   (let ((files (dired-get-marked-files
+                 t current-prefix-arg)))
+     (list
+      (dired-read-shell-command "& on %s: "
+                                current-prefix-arg files)
+      files)))
+  (let (list-switch)
+    (start-process
+     cmd nil shell-file-name
+     shell-command-switch
+     (format
+      "nohup &>/dev/null %s \"%s\""
+      (if (and (> (length file-list) 1)
+               (setq list-switch
+                     (cadr (assoc cmd dired-filelist-cmd))))
+          (format "%s %s" cmd list-switch)
+        cmd)
+      (mapconcat #'expand-file-name file-list "\" \"")))))
