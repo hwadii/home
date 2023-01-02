@@ -193,6 +193,14 @@
         completion-ignore-case t
         completion-styles '(basic partial-completion emacs22 flex))
   (vertico-mode))
+(use-package vertico-directory
+  :ensure nil
+  :after vertico
+  :demand
+  :bind (:map vertico-map
+              ("RET"   . vertico-directory-enter)
+              ("DEL"   . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word)))
 (use-package markdown-mode)
 (use-package paredit
   :config
@@ -329,7 +337,7 @@
 (global-display-line-numbers-mode)
 (global-display-fill-column-indicator-mode)
 
-(set-face-attribute 'default nil :font "Hasklig-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "Berkeley Mono-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal:width=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.

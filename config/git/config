@@ -50,3 +50,5 @@
   directory = *
 [diff "ansible-vault"]
   textconv = ansible-vault view --vault-password-file=~/.vaultpass
+[github]
+  user = hwadii
