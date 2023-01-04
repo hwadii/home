@@ -69,6 +69,8 @@
 
 (setq diff-hl-show-staged-changes nil)
 
+(setq switch-to-buffer-obey-display-actions t)
+
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
 (delete-selection-mode 1)
@@ -147,10 +149,13 @@
         modus-themes-bold-constructs t
         completion-cycle-threshold 3
         tab-always-indent 'complete)
+  (global-display-fill-column-indicator-mode)
+  (global-hl-line-mode)
   :config
   (adwaita-dark-theme-arrow-fringe-bmp-enable)
   :hook ((after-init . windmove-default-keybindings)
-         (completion-list-mode . wadii/term-mode))
+         (completion-list-mode . wadii/term-mode)
+         (prog-mode . display-line-numbers-mode))
   :bind (
          ("<f5>" . modus-themes-toggle)
          ("C-c o" . find-file-at-point)
@@ -177,7 +182,7 @@
   (setq read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
         completion-ignore-case t
-        completion-styles '(basic partial-completion emacs22 flex))
+        completion-styles '(basic initials substring))
   (vertico-mode))
 (use-package vertico-directory
   :ensure nil
@@ -320,10 +325,7 @@
 (use-package csharp-mode)
 (use-package adwaita-dark-theme)
 
-(global-display-line-numbers-mode)
-(global-display-fill-column-indicator-mode)
-
-(set-face-attribute 'default nil :font "Berkeley Mono-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal:width=normal")
+(set-face-attribute 'default nil :font "Berkeley Mono-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
