@@ -14,8 +14,7 @@
 (setq inhibit-startup-echo-area-message (user-login-name))
 
 ;; Customize user interface.
-(menu-bar-mode 0)
-(when (display-graphic-p)
-  (tool-bar-mode 0)
-  (scroll-bar-mode 0))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 (column-number-mode)

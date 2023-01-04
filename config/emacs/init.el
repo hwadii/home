@@ -80,7 +80,6 @@
 
 (defun wadii/term-mode ()
   (setq-local show-trailing-whitespace nil)
-  (display-line-numbers-mode -1)
   (display-fill-column-indicator-mode -1))
 (defun wadii/insert-date ()
   (interactive)
@@ -150,12 +149,12 @@
         completion-cycle-threshold 3
         tab-always-indent 'complete)
   (global-display-fill-column-indicator-mode)
-  (global-hl-line-mode)
   :config
   (adwaita-dark-theme-arrow-fringe-bmp-enable)
   :hook ((after-init . windmove-default-keybindings)
          (completion-list-mode . wadii/term-mode)
-         (prog-mode . display-line-numbers-mode))
+         (prog-mode . display-line-numbers-mode)
+         ((prog-mode text-mode) . hl-line-mode))
   :bind (
          ("<f5>" . modus-themes-toggle)
          ("C-c o" . find-file-at-point)
@@ -321,7 +320,8 @@
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
-              ("r" . dired-start-process)))
+              ("r" . dired-start-process)
+              ("z" . dired-xdg-open)))
 (use-package csharp-mode)
 (use-package adwaita-dark-theme)
 
@@ -367,3 +367,7 @@
           (format "%s %s" cmd list-switch)
         cmd)
       (mapconcat #'expand-file-name file-list "\" \"")))))
+
+(defun dired-xdg-open ()
+  (interactive)
+  (browse-url-xdg-open (car (dired-get-marked-files))))
