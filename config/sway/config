@@ -8,7 +8,7 @@ set $up k
 set $right l
 set $term foot
 set $bemenurun bemenu-run --no-exec | xargs swaymsg exec --
-set $background ~/artwork/mountains-2.jpg
+set $background ~/artwork/blacksand.jpg
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -80,6 +80,8 @@ bindsym $mod+d exec $bemenurun
 bindsym $mod+Shift+e exec shmoji bemenu
 bindsym $mod+Shift+p exec passmenu
 
+bindsym $mod+o exec $BROWSER
+
 floating_modifier $mod normal
 
 bindsym $mod+Shift+x exec swaylock --daemonize
@@ -89,15 +91,17 @@ bindsym $mod+Shift+s exec systemctl suspend
 
 bindsym $mod+Shift+r reload
 
-bindsym $mod+y mode shot
-mode shot {
+set $shot 1 selected, 2 active, 3 selected clipboard, 4 active clipboard, 5 swappy, 6 record
+mode "$shot" {
   bindsym Escape mode default
-  bindsym p exec grimshot --notify copy area; mode default
-  bindsym Shift+p exec grim -g "$(slurp)" - | swappy -f -; mode default
-  bindsym s exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
-  bindsym a exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
-  bindsym g exec record-selection; mode default
+  bindsym 1 exec grimshot --notify save area ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
+  bindsym 2 exec grimshot --notify save active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
+  bindsym 3 exec grimshot --notify copy area; mode default
+  bindsym 4 exec grimshot --notify copy active ~/pics/$(date +"Screenshot-%F-%T.png") | wl-copy -n; mode default
+  bindsym 5 exec 'grim -g "$(slurp)" - | swappy -f -'; mode default
+  bindsym 6 exec record-selection; mode default
 }
+bindsym $mod+y mode "$shot"
 
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
