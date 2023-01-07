@@ -7,10 +7,16 @@
 ;; Complete pairs
 (electric-pair-mode 1)
 
+(pixel-scroll-precision-mode 1)
+
+(setq frame-title-format '("%b"))
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
+
+;; Remove message in scratch buffer.
+(setq-default initial-scratch-message nil)
 
 ;; Add a newline automatically at the end of a file while saving.
 (setq-default require-final-newline t)
@@ -27,6 +33,7 @@
 ;; Indentation setting for various languages.
 (setq c-basic-offset 4)
 (setq js-indent-level 2)
+(setq typescript-indent-level 2)
 (setq css-indent-offset 2)
 
 ;; Highlight matching pairs of parentheses.
@@ -74,6 +81,11 @@
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
 (delete-selection-mode 1)
+
+(setq user-full-name       "Wadii Hajji"
+      user-real-login-name "Wadii Hajji"
+      user-login-name      "hwadii"
+      user-mail-address    "wadii@cardiologs.com")
 
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
