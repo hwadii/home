@@ -69,8 +69,7 @@
 (tab-bar-mode 1)
 
 ;; Show directories first in dired.
-(setq ls-lisp-dirs-first t)
-(setq ls-lisp-use-insert-directory-program nil)
+(setq dired-listing-switches "-alUh")
 
 (setq xref-search-program 'ripgrep)
 
@@ -90,26 +89,6 @@
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(defun wadii/term-mode ()
-  (setq-local show-trailing-whitespace nil)
-  (display-fill-column-indicator-mode -1))
-(defun wadii/insert-date ()
-  (interactive)
-  (insert (format-time-string "%F")))
-(defun wadii/insert-time ()
-  (interactive)
-  (insert (format-time-string "%FT%T%z")))
-(defun wadii/insert-uuid ()
-  (interactive)
-  (insert (string-trim (shell-command-to-string "uuid"))))
-(defun sudo ()
-  "Use TRAMP to `sudo' the current buffer."
-  (interactive)
-  (when buffer-file-name
-    (find-alternate-file
-     (concat "/sudo:root@localhost:"
-             buffer-file-name))))
-
 (setq tab-bar-new-button-show nil
       tab-bar-close-button-show nil)
 
@@ -121,10 +100,6 @@
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 
 (eval-and-compile
   (setq use-package-always-ensure t
@@ -139,7 +114,10 @@
         org-default-reading-file (concat org-directory "/reading.org")
         org-todo-keywords (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")))
         org-todo-keyword-faces (quote (("NEXT" :inherit warning
-                                        ("PROJECT" :inherit font-lock-string-face))))))
+                                        ("PROJECT" :inherit font-lock-string-face))))
+        org-goto-interface 'outline-path-completion
+        org-outline-path-complete-in-steps nil
+        org-goto-max-level 5))
 (use-package org-capture
   :ensure nil
   :after org
@@ -193,7 +171,7 @@
   (setq read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
         completion-ignore-case t
-        completion-styles '(basic initials substring))
+        completion-styles '(orderless flex))
   (vertico-mode))
 (use-package vertico-directory
   :ensure nil
@@ -326,7 +304,6 @@
          ("C-c )" . marginalia-mode)
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
-(use-package color-theme-sanityinc-tomorrow)
 (use-package inf-ruby)
 (use-package doom-themes)
 (use-package dired
@@ -334,10 +311,10 @@
   :bind (:map dired-mode-map
               ("r" . dired-start-process)
               ("z" . dired-xdg-open)))
-(use-package csharp-mode)
 (use-package adwaita-dark-theme)
+(use-package orderless)
 
-(set-face-attribute 'default nil :font "Berkeley Mono-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "Victor Mono-10.5:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=medium")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
@@ -383,3 +360,23 @@
 (defun dired-xdg-open ()
   (interactive)
   (browse-url-xdg-open (car (dired-get-marked-files))))
+
+(defun wadii/term-mode ()
+  (setq-local show-trailing-whitespace nil)
+  (display-fill-column-indicator-mode -1))
+(defun wadii/insert-date ()
+  (interactive)
+  (insert (format-time-string "%F")))
+(defun wadii/insert-time ()
+  (interactive)
+  (insert (format-time-string "%FT%T%z")))
+(defun wadii/insert-uuid ()
+  (interactive)
+  (insert (string-trim (shell-command-to-string "uuid"))))
+(defun sudo ()
+  "Use TRAMP to `sudo' the current buffer."
+  (interactive)
+  (when buffer-file-name
+    (find-alternate-file
+     (concat "/sudo:root@localhost:"
+             buffer-file-name))))
