@@ -69,7 +69,8 @@
 (tab-bar-mode 1)
 
 ;; Show directories first in dired.
-(setq dired-listing-switches "-alUh")
+(setq insert-directory-program "ls")
+(setq dired-listing-switches "-vhal --group-directories-first")
 
 (setq xref-search-program 'ripgrep)
 
