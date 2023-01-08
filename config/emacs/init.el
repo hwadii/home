@@ -310,8 +310,8 @@
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
-              ("r" . dired-start-process)
-              ("z" . dired-xdg-open)))
+              ("z" . dired-start-process)
+              ("r" . dired-xdg-open)))
 (use-package adwaita-dark-theme)
 (use-package orderless)
 
