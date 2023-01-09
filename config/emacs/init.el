@@ -172,7 +172,7 @@
   (setq read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
         completion-ignore-case t
-        completion-styles '(orderless flex))
+        completion-styles '(orderless basic))
   (vertico-mode))
 (use-package vertico-directory
   :ensure nil
@@ -261,16 +261,18 @@
          (rust-mode . eglot-ensure))
   :commands (eglot-ensure)
   :config
-  (setq eldoc-echo-area-use-multiline-p nil))
-(use-package flymake
-  :config
-  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
-(use-package password-store)
-(use-package solarized-theme
+  (setq eldoc-echo-area-use-multiline-p nil
+        eglot-autoshutdown t
+        eglot-sync-connect 1
+        eglot-connect-timeout 10
+        eglot-stay-out-of '(flymake)))
+(use-package flycheck
   :init
-  (setq solarized-use-more-italic t)
-  (setq solarized-use-less-bold t))
+  (global-flycheck-mode)
+  :bind (:map flycheck-mode-map
+         ("M-n" . flycheck-next-error)
+         ("M-p" . flycheck-prev-error)))
+(use-package password-store)
 (use-package rg
   :hook (after-init . rg-enable-default-bindings)
   :bind (
@@ -313,9 +315,13 @@
               ("z" . dired-start-process)
               ("r" . dired-xdg-open)))
 (use-package adwaita-dark-theme)
-(use-package orderless)
+(use-package orderless
+  :after vertico
+  :custom
+  (orderless-matching-styles '(orderless-flex))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(set-face-attribute 'default nil :font "Victor Mono-10.5:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=medium")
+(set-face-attribute 'default nil :font "Berkeley Mono-10.5:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
