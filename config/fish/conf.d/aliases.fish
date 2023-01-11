@@ -28,6 +28,7 @@ alias esc "nvim ~/.oh-my-zsh/custom/scripts.sh"
 alias rzsh ". ~/.zshrc"
 alias val "nvim ~/.oh-my-zsh/custom/aliases.zsh"
 alias ev "nvim ~/.config/nvim/init.vim"
+alias hx helix
 
 # qol
 alias wholistens "netstat -tulpn | rg LISTEN"

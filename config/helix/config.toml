@@ -1,0 +1,22 @@
+theme = "rasmus"
+
+[editor]
+bufferline = "multiple"
+cursorline = true
+auto-format = false
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.normal]
+C-p = "file_picker"
+C-A-j = "extend_line_down"
+C-A-k = "extend_line_up"
+g = { q = ":reflow" }
+C-y = "scroll_up"
+C-e = "scroll_down"
+
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+right = ["file-type", "selections", "position"]

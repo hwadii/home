@@ -29,8 +29,8 @@ export RUBY_YJIT_ENABLE=1
 export PYENV_ROOT="$XDG_CONFIG_HOME/pyenv"
 export DOTNET_ROOT="$HOME/.local/dotnet"
 export PATH="$XDG_LOCAL_BIN:$PATH:$NVM_DIR/versions/node/v18.12.1/bin:$HOME/.rvm/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$XDG_LOCAL_BIN/git-extras:$HOME/.local/texlive/2020/bin/x86_64-linux:$CARGO_HOME/bin:$GOPATH/bin:$GEM_HOME/bin:$RVM_DIR/rubies/default/bin:$PYENV_ROOT/bin:$PYENV_ROOT/versions/3.8.7/bin/:$HOME/.local/dotnet/bin:$HOME/.local/rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-export EDITOR=emacsclient
-export VISUAL=emacsclient
+export EDITOR=helix
+export VISUAL=helix
 export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden -E".git"'
 export FZF_DEFAULT_OPTS="
     --height 40%
