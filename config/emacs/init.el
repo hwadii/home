@@ -182,7 +182,9 @@
               ("RET"   . vertico-directory-enter)
               ("DEL"   . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word)))
-(use-package markdown-mode)
+(use-package markdown-mode
+  :custom
+  (markdown-fontify-code-blocks-natively t))
 (use-package paredit
   :config
   ;; Enable Paredit.
@@ -267,11 +269,16 @@
         eglot-connect-timeout 10
         eglot-stay-out-of '(flymake)))
 (use-package flycheck
-  :init
-  (global-flycheck-mode)
+  :hook
+  (prog-mode . flycheck-mode)
   :bind (:map flycheck-mode-map
          ("M-n" . flycheck-next-error)
-         ("M-p" . flycheck-prev-error)))
+         ("M-p" . flycheck-previous-error))
+  :custom
+  (flycheck-check-syntax-automatically '(save mode-enabled)))
+(use-package tide
+  :after (typescript-mode flycheck)
+  :hook ((typescript-mode . tide-setup)))
 (use-package password-store)
 (use-package rg
   :hook (after-init . rg-enable-default-bindings)
