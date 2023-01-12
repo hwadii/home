@@ -1,3 +1,8 @@
 [[language]]
 name = "ruby"
 config = { "diagnostics" = true }
+rulers = [140]
+
+[[language]]
+name = "typescript"
+rulers = [120]

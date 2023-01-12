@@ -16,7 +16,6 @@ g = { q = ":reflow" }
 C-y = "scroll_up"
 C-e = "scroll_down"
 
-
 [editor.statusline]
 left = ["mode", "spinner", "file-name"]
 right = ["file-type", "selections", "position"]
