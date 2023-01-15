@@ -1,9 +1,11 @@
 theme = "rasmus"
 
 [editor]
+scrolloff = 0
 bufferline = "multiple"
 cursorline = true
 auto-format = false
+rulers = [80]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -13,8 +15,7 @@ C-p = "file_picker"
 C-A-j = "extend_line_down"
 C-A-k = "extend_line_up"
 g = { q = ":reflow" }
-C-y = "scroll_up"
-C-e = "scroll_down"
+C-w = { c = ":buffer-close" }
 
 [editor.statusline]
 left = ["mode", "spinner", "file-name"]
