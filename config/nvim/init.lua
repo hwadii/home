@@ -65,7 +65,7 @@ opt.shiftwidth = 2
 opt.shortmess:append('actFTWI')
 opt.matchpairs:append('<:>')
 opt.showbreak = '↳ '
-opt.signcolumn = 'auto'
+opt.signcolumn = 'yes'
 opt.smartcase = true -- make search case insensitive by default
 opt.smartindent = true
 opt.softtabstop = 2
