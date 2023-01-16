@@ -2,6 +2,7 @@ local telescope = require('telescope')
 local actions = require('telescope.actions')
 local themes = require('telescope.themes')
 local action_state = require('telescope.actions.state')
+local action_layout = require('telescope.actions.layout')
 telescope.setup{
   defaults = {
     layout_strategy = 'flex',
@@ -15,9 +16,11 @@ telescope.setup{
         ['<esc>'] = actions.close,
         ['<C-[>'] = actions.close,
         ['<C-c>'] = actions.close,
+        ["<M-p>"] = action_layout.toggle_preview
       },
       n = {
-        ['<esc>'] = actions.close
+        ['<esc>'] = actions.close,
+        ["<M-p>"] = action_layout.toggle_preview
       },
     },
   },
@@ -27,8 +30,9 @@ telescope.setup{
       find_command = { 'fd', '--hidden', '-E.git', '-tf' },
       path_display = { 'truncate' },
       layout_config = {
-        height = 25,
+        height = 12,
       },
+      previewer = false,
     },
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
