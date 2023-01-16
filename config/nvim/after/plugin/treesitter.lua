@@ -7,7 +7,7 @@ require 'nvim-treesitter.configs'.setup {
   },
   textobjects = {
     select = {
-      enable = false,
+      enable = true,
       keymaps = {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
@@ -25,18 +25,20 @@ require 'nvim-treesitter.configs'.setup {
       },
     },
     lsp_interop = {
-      enable = false,
+      enable = true,
+      border = 'none',
+      floating_preview_opts = {},
       peek_definition_code = {
         ["<leader>df"] = "@function.outer",
         ["<leader>dF"] = "@class.outer",
       },
     },
     move = {
-      enable = true,
+      enable = false,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         ["]m"] = "@function.outer",
-        ["]]"] = { query = "@class.outer", desc = "Next class start" },
+        ["]]"] = "@class.outer",
       },
       goto_next_end = {
         ["]M"] = "@function.outer",
@@ -54,9 +56,6 @@ require 'nvim-treesitter.configs'.setup {
   },
   highlight = {
     enable = true,
-    custom_captures = {
-      ["TextYankPost"] = "IncSearch",
-    },
     additional_vim_regex_highlighting = false,
   },
   fold = {
@@ -70,7 +69,7 @@ require 'nvim-treesitter.configs'.setup {
     highlight_definitions = { enable = false },
     highlight_current_scope = { enable = false },
     navigation = {
-      enable = false,
+      enable = true,
       keymaps = {
         goto_definition = "gnd",
         list_definitions = "gnD",
@@ -90,14 +89,14 @@ require 'nvim-treesitter.configs'.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<a-w>", -- maps in normal mode to init the node/scope selection
-      node_incremental = "<a-w>", -- increment to the upper named parent
-      node_decremental = "<a-C-w>", -- decrement to the previous node
+      init_selection = "<a-o>", -- maps in normal mode to init the node/scope selection
+      node_incremental = "<a-o>", -- increment to the upper named parent
+      node_decremental = "<a-i>", -- decrement to the previous node
       scope_incremental = "<a-e>", -- increment to the upper scope (as defined in locals.scm)
     },
   },
   indent = {
-    enable = false,
+    enable = true,
   },
 }
 
