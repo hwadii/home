@@ -18,5 +18,5 @@ g = { q = ":reflow" }
 C-w = { c = ":buffer-close" }
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name"]
-right = ["file-type", "selections", "position"]
+left = ["mode", "spinner", "file-name", "file-type"]
+right = ["diagnostics", "workspace-diagnostics", "selections", "position"]
