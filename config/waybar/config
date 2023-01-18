@@ -1,0 +1,67 @@
+{
+    "spacing": 8, // Gaps between modules (4px)
+    "height": 18,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": [],
+    "modules-right": ["sway/window", "custom/separator", "custom/media", "custom/separator", "sway/scratchpad", "custom/separator", "pulseaudio", "custom/separator", "network", "custom/separator", "memory", "custom/separator", "battery", "battery#bat2", "custom/separator", "clock", "custom/separator", "tray"],
+    "tray": {
+        "spacing": 10
+    },
+    "sway/scratchpad": {
+      "format": "scratch: {count}",
+      "show-empty": true,
+      "tooltip": true,
+      "tooltip-format": "{app}: {title}"
+    },
+    "wlr/taskbar": {
+      "all-outputs": false,
+      "format": "{app_id}",
+      "tooltip-format": "{title}",
+      "on-click": "minimize-raise",
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%a %d %b %H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
+        "interval": 60,
+        "locale": "fr_FR.UTF-8"
+    },
+    "memory": {
+        "format": "{}%"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}%",
+        "format-charging": "{capacity}% CHARGING",
+        "format-plugged": "{capacity}% PLUGGED",
+        "format-alt": "{time}"
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        "format-wifi": "{essid}",
+        "format-ethernet": "{ipaddr}/{cidr}",
+    },
+    "pulseaudio": {
+        "format": "{volume}%",
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{}",
+        "return-type": "json",
+        "max-length": 40,
+        "escape": true,
+        "exec": "$XDG_CONFIG_HOME/waybar/mediaplayer.py",
+        "on-click": "playerctl play-pause"
+    },
+    "custom/separator": {
+      "format": "•",
+      "interval": "once",
+      "tooltip": false
+    },
+}
+

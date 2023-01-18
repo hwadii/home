@@ -1,0 +1,31 @@
+window#waybar {
+  font-family: mono, "Font Awesome 5 Pro Solid", "Font Awesome 5 Brands";
+  font-size: 12px;
+  background-color: #282828;
+}
+
+#workspaces button {
+  padding: 0;
+  border-radius: 0;
+  margin: -2px 0;
+  border: 1px solid #3D3D3D;
+  color: #B0BEC5;
+}
+
+#workspaces button.focused {
+  background-color: #424242;
+  color: white;
+}
+
+#workspaces button.urgent {
+  background-color: red;
+}
+
+#taskbar button {
+  padding: 0px 6px;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+#taskbar button.active {
+  color: white;
+}
