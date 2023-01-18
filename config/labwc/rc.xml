@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<labwc_config>
+  <theme>
+    <name>Numix-Clone</name>
+    <font name="sans" size="10" />
+  </theme>
+
+  <keyboard>
+    <repeatRate>30</repeatRate>
+    <repeatDelay>400</repeatDelay>
+    <default />
+    <!-- Use a different terminal emulator -->
+    <keybind key="W-Return"><action name="Execute" command="foot" /></keybind>
+    <keybind key="W-d">
+      <action name="Execute" command="bemenu-run" />
+    </keybind>
+    <keybind key="W-w"><action name="Close" /></keybind>
+    <keybind key="W-f"><action name="ToggleFullscreen" /></keybind>
+    <keybind key="W-S-r"><action name="Reconfigure" /></keybind>
+    <keybind key="W-bracketleft"><action name="GoToDesktop" to="left" /></keybind>
+    <keybind key="W-bracketright"><action name="GoToDesktop" to="right" /></keybind>
+    <keybind key="W-1"><action name="GoToDesktop" to="1" /></keybind>
+    <keybind key="W-2"><action name="GoToDesktop" to="2" /></keybind>
+    <keybind key="W-3"><action name="GoToDesktop" to="3" /></keybind>
+    <keybind key="W-4"><action name="GoToDesktop" to="4" /></keybind>
+    <keybind key="W-5"><action name="GoToDesktop" to="5" /></keybind>
+    <keybind key="W-S-braceleft"><action name="SendToDesktop" to="left" /></keybind>
+    <keybind key="W-S-braceright"><action name="SendToDesktop" to="right" /></keybind>
+    <keybind key="W-semicolon"><action name="Execute"><command>clipman pick -t bemenu --tool-args="-p '>'"</command></action></keybind>
+    <keybind key="W-S-e"><action name="Execute" command="shmoji bemenu" /></keybind>
+    <keybind key="W-S-p"><action name="Execute" command="passmenu" /></keybind>
+    <keybind key="W-S-c"><action name="Execute" command="colorpick" /></keybind>
+    <keybind key="W-S-exclam">
+      <action name="Execute"><command>grim -g "$(slurp)" -</command></action>
+    </keybind>
+    <keybind key="W-S-at">
+      <action name="Execute" command="grim ~/pics/$(date +&quot;Screenshot-%F-%T.png&quot;) | notify-send &quot;Screenshot saved&quot;"></action>
+    </keybind>
+    <keybind key="W-S-percent">
+      <action name="Execute"><command>grim -g "$(slurp -d)" - | swappy -f -</command></action>
+    </keybind>
+    <keybind key="W-S-g"><action name="Execute" command="record-selection" /></keybind>
+    <keybind key="W-p"><action name="Execute" command="playerctl play-pause" /></keybind>
+    <keybind key="W-equal"><action name="Execute" command="playerctl next" /></keybind>
+    <keybind key="W-minus"><action name="Execute" command="playerctl previous" /></keybind>
+    <keybind key="W-S-plus">
+      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ +2%" />
+    </keybind>
+    <keybind key="W-S-underscore">
+      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ -2%" />
+    </keybind>
+    <keybind key="XF86_AudioLowerVolume">
+      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ -2%" />
+    </keybind>
+    <keybind key="XF86_AudioRaiseVolume">
+      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ +2%" />
+    </keybind>
+    <keybind key="XF86_AudioMute">
+      <action name="Execute" command="pactl set-sink-mute @DEFAULT_SINK@ toggle" />
+    </keybind>
+    <keybind key="XF86_AudioMicMute">
+      <action name="Execute" command="pactl set-source-mute @DEFAULT_SINK@ toggle" />
+    </keybind>
+    <keybind key="W-space"><action name="ShowMenu" menu="root-menu"></action></keybind>
+    <keybind key="W-S-s"><action name="Execute" command="systemctl suspend"></action></keybind>
+  </keyboard>
+
+  <desktops>
+    <popupTime>1000</popupTime>
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+      <name>4</name>
+      <name>5</name>
+    </names>
+  </desktops>
+
+  <mouse>
+    <default />
+    <context name="Root">
+      <mousebind button="Left" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>
+    </context>
+    <context name="Frame">
+      <mousebind button="W-Left" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="W-Left" action="Drag">
+        <action name="Move" />
+      </mousebind>
+      <mousebind button="W-Right" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="W-Right" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+  </mouse>
+
+  <libinput>
+    <device category="Logitech G403 HERO Gaming Mouse">
+      <pointerSpeed>-0.4</pointerSpeed>
+      <naturalScroll>no</naturalScroll>
+    </device>
+    <device category="default">
+      <naturalScroll>yes</naturalScroll>
+      <leftHanded></leftHanded>
+      <pointerSpeed></pointerSpeed>
+      <accelProfile></accelProfile>
+      <tap>yes</tap>
+      <tapButtonMap></tapButtonMap>
+      <middleEmulation>yes</middleEmulation>
+      <disableWhileTyping></disableWhileTyping>
+    </device>
+  </libinput>
+</labwc_config>

@@ -1,0 +1,8 @@
+XKB_DEFAULT_LAYOUT=us
+XKB_DEFAULT_OPTIONS=compose:ralt,caps:ctrl_modifier
+XDG_SESSION_TYPE=wayland
+XDG_CURRENT_DESKTOP=wlroots
+MOZ_ENABLE_WAYLAND=1
+MOZ_WEBRENDER=1
+PATH=$PATH:$HOME/.local/bin:$HOME/.local/cargo/bin
+BEMENU_OPTS=-p '>' --tf '#ffffff' --hb '#555555' --hf '#ffffff'

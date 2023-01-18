@@ -1,0 +1,11 @@
+swaybg -i ~/artwork/blacksand.jpg >/dev/null 2>&1 &
+kanshi >/dev/null 2>&1 &
+mako >/dev/null 2>&1 &
+swayidle -w \
+  timeout 300 'swaylock -f -c 000000' \
+  timeout 600 'wlopm --off \*' \
+  resume 'wlopm --on \*' \
+  before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
+wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000 >/dev/null 2>&1 &
+wl-paste -t text --watch clipman store -P >/dev/null 2>&1 &
+waybar >/dev/null 2>&1 &
