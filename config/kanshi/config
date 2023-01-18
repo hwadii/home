@@ -1,13 +1,8 @@
-profile home {
-  output eDP-1 disable
-  output "Dell Inc. DELL U2419H J6MYV13"
-}
-
-profile work {
+profile {
   output eDP-1 enable position 0,1080
   output HDMI-A-2 position 0,0
 }
 
-profile laptop {
+profile {
   output eDP-1 enable
 }
