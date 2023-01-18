@@ -49,7 +49,7 @@ input type:touchpad {
 }
 
 default_orientation auto
-default_border pixel
+default_border pixel 2
 hide_edge_borders smart
 smart_borders on
 titlebar_padding 3 3
@@ -91,6 +91,8 @@ bindsym $mod+Shift+s exec systemctl suspend
 
 bindsym $mod+Shift+r reload
 
+bindsym $mod+e exec nautilus
+
 set $shot 1 selected, 2 active, 3 selected clipboard, 4 active clipboard, 5 swappy, 6 record
 mode "$shot" {
   bindsym Escape mode default
@@ -107,8 +109,12 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+bindsym $mod+g focus next
+bindsym $mod+Shift+g focus prev
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
+bindsym $mod+Shift+braceleft move container to workspace prev_on_output
+bindsym $mod+Shift+braceright move container to workspace next_on_output
 bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+$left move left
@@ -139,13 +145,13 @@ bindsym $mod+Shift+Ctrl+$left move workspace to left
 bindsym $mod+Shift+Ctrl+$down move workspace to down
 bindsym $mod+Shift+Ctrl+$up move workspace to up
 bindsym $mod+Shift+Ctrl+$right move workspace to right
-bindsym $mod+b splith
 bindsym $mod+v splitv
 bindsym $mod+c split n
 
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+# Change layouts with mod+,./
+bindsym $mod+comma layout stacking
+bindsym $mod+period layout tabbed
+bindsym $mod+slash layout toggle split
 
 bindsym $mod+f fullscreen
 
@@ -157,7 +163,9 @@ bindsym $mod+a focus parent
 
 bindsym $mod+Shift+a focus child
 
-mode "resize" {
+mode "window" {
+  bindsym s split v; mode "default"
+    bindsym v split h; mode "default"
     bindsym $left resize shrink width 20px
     bindsym $down resize grow height 20px
     bindsym $up resize shrink height 20px
@@ -166,16 +174,10 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "window"
 
-bindsym $mod+n mode notifications
-mode notifications {
-    bindsym Escape mode default
-    bindsym Return exec makoctl invoke; exec makoctl dismiss; mode default
-    bindsym d exec makoctl dismiss; mode default
-    bindsym Shift+d exec makoctl dismiss -a; mode default
-    bindsym s exec makoctl restore
-}
+bindsym $mod+n exec makoctl dismiss
+bindsym $mod+Shift+n exec makoctl dismiss -a
 
 bindsym $mod+$alt+k mode kanshi
 mode kanshi {
@@ -212,11 +214,15 @@ mode music {
 }
 
 bindsym $mod+$alt+s mode scratch
+bindsym $mod+Shift+t move scratchpad
+bindsym $mod+t scratchpad show
 mode scratch {
   bindsym $mod+shift+minus move scratchpad
   bindsym $mod+minus scratchpad show
   bindsym Escape mode default
 }
+
+bindsym $mod+b border toggle
 
 seat seat0 xcursor_theme "Adwaita"
 
@@ -238,7 +244,7 @@ client.focused_inactive $boi    $bgi  $fgi  $bg       $boi
 client.unfocused        $bou    $bgu  $fgu  $bg       $bgu
 
 bar {
-        status_command i3status-rs
+        swaybar_command waybar
         position top
         font pango:IPAGothic 10, FontAwesome 9, $font_family 9
         pango_markup disabled
@@ -255,9 +261,9 @@ bar {
         }
 }
 
-exec nm-applet --indicator
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
 exec wl-paste -t text --watch clipman store -P
+exec kanshi
 
 assign [class="^Slack$"] → workspace $ws7
 assign [class="^Spotify$"] → workspace $ws6
@@ -266,10 +272,11 @@ for_window [app_id="org.gnome.Nautilus"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [title="Zoom Cloud Meetings"] floating enable
+for_window [title="Zoom - Free Account"] floating enable
 for_window [shell="xwayland"] title_format "[X] %title"
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
-for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, border none
-for_window [title="Indicateur de partage"] floating enable, sticky enable, border none
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
+for_window [app_id="firefox" title="Indicateur de partage"] kill
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec hash dbus-update-activation-environment 2>/dev/null && \
