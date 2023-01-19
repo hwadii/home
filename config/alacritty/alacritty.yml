@@ -8,9 +8,9 @@ window:
 
 font:
   normal:
-    family: Input
+    family: Berkeley Mono
 
-  size: 10
+  size: 10.5
 
   offset:
    x: 0
@@ -21,7 +21,7 @@ font:
     y: 0
 
 import:
-  - ~/.config/alacritty/zenbones_dark.yml
+  - ~/.config/alacritty/ploy.yml
 
 mouse:
   hide_when_typing: true
@@ -32,11 +32,21 @@ hints:
   enabled:
     - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
               [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      hyperlinks: true
       command: xdg-open
       post_processing: true
       mouse:
         enabled: true
-        mods: Shift
+        mods: None
+      binding:
+        key: O
+        mods: Control|Shift
+
+    - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+              [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      hyperlinks: true
+      action: Copy
+      post_processing: true
       binding:
         key: U
         mods: Control|Shift
