@@ -56,6 +56,7 @@ require 'nvim-treesitter.configs'.setup {
   },
   highlight = {
     enable = true,
+    disable = { "sql" },
     additional_vim_regex_highlighting = false,
   },
   fold = {
@@ -97,6 +98,7 @@ require 'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,
+    disable = { "ruby" },
   },
 }
 
