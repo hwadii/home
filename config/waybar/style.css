@@ -8,7 +8,7 @@ window#waybar {
   padding: 0;
   border-radius: 0;
   margin: -2px 0;
-  border: 1px solid #3D3D3D;
+  border-right: 2px solid #3D3D3D;
   color: #B0BEC5;
 }
 
