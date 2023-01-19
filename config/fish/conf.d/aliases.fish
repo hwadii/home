@@ -23,6 +23,7 @@ alias lr "exa --git --group-directories-first -R --git-ignore"
 
 # shortcuts to edit various files
 alias vim nvim
+alias vi nvim
 alias ezsh "nvim ~/.zshrc"
 alias esc "nvim ~/.oh-my-zsh/custom/scripts.sh"
 alias rzsh ". ~/.zshrc"
