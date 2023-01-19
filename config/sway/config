@@ -145,8 +145,6 @@ bindsym $mod+Shift+Ctrl+$left move workspace to left
 bindsym $mod+Shift+Ctrl+$down move workspace to down
 bindsym $mod+Shift+Ctrl+$up move workspace to up
 bindsym $mod+Shift+Ctrl+$right move workspace to right
-bindsym $mod+v splitv
-bindsym $mod+c split n
 
 # Change layouts with mod+,./
 bindsym $mod+comma layout stacking
@@ -166,10 +164,10 @@ bindsym $mod+Shift+a focus child
 mode "window" {
   bindsym s split v; mode "default"
     bindsym v split h; mode "default"
-    bindsym $left resize shrink width 20px
-    bindsym $down resize grow height 20px
-    bindsym $up resize shrink height 20px
-    bindsym $right resize grow width 20px
+    bindsym $left resize grow width 30px
+    bindsym $down resize shrink height 30px
+    bindsym $up resize grow height 30px
+    bindsym $right resize shrink width 30px
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
