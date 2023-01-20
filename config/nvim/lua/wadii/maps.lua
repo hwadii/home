@@ -21,6 +21,7 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- telescope
 map('n', '<C-p>', telescope.find_files)
+map('n', '<Leader>sf', telescope.find_files)
 map('n', '<Leader>?', telescope.builtin)
 map('n', '<Leader>/', telescope.live_grep)
 map('n', '<Leader>sw', telescope.grep_string)
