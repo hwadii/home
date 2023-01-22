@@ -6,7 +6,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term foot
+set $term alacritty
 set $bemenurun bemenu-run --no-exec | xargs swaymsg exec --
 set $background ~/artwork/blacksand.jpg
 set $ws1 1
@@ -163,14 +163,15 @@ bindsym $mod+Shift+a focus child
 
 mode "window" {
   bindsym s split v; mode "default"
-    bindsym v split h; mode "default"
-    bindsym $left resize grow width 30px
-    bindsym $down resize shrink height 30px
-    bindsym $up resize grow height 30px
-    bindsym $right resize shrink width 30px
+  bindsym v split h; mode "default"
+  bindsym c split none; mode "default"
+  bindsym $left resize grow width 30px
+  bindsym $down resize shrink height 30px
+  bindsym $up resize grow height 30px
+  bindsym $right resize shrink width 30px
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 bindsym $mod+r mode "window"
 
@@ -265,13 +266,13 @@ exec kanshi
 
 assign [class="^Slack$"] → workspace $ws7
 assign [class="^Spotify$"] → workspace $ws6
-for_window [app_id="gnome-calculator"] floating enable
-for_window [app_id="org.gnome.Nautilus"] floating enable
+for_window [app_id="org.gnome.*"] floating enable
+for_window [app_id="gnome-*"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [title="Zoom Cloud Meetings"] floating enable
 for_window [title="Zoom - Free Account"] floating enable
-for_window [shell="xwayland"] title_format "[X] %title"
+for_window [title="."] title_format "%title (app_id=%app_id shell=%shell)"
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
 for_window [app_id="firefox" title="Indicateur de partage"] kill
