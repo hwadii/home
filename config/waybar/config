@@ -1,15 +1,15 @@
 {
     "spacing": 8, // Gaps between modules (4px)
     "height": 18,
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": [],
-    "modules-right": ["sway/window", "custom/separator", "custom/media", "custom/separator", "sway/scratchpad", "custom/separator", "pulseaudio", "custom/separator", "network", "custom/separator", "memory", "custom/separator", "battery", "battery#bat2", "custom/separator", "clock", "tray"],
+    "modules-right": ["sway/window", "custom/separator", "custom/media", "custom/separator", "pulseaudio", "custom/separator", "network", "custom/separator", "memory", "custom/separator", "battery", "battery#bat2", "custom/separator", "clock", "tray"],
     "tray": {
         "spacing": 10
     },
     "sway/scratchpad": {
       "format": "scratch: {count}",
-      "show-empty": true,
+      "show-empty": false,
       "tooltip": true,
       "tooltip-format": "{app}: {title}"
     },
