@@ -120,3 +120,4 @@ vim.g.rsi_no_meta = true
 vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
 vim.g.navic_silence = true
 vim.g.netrw_banner = false
+vim.g.loaded_fzf = true

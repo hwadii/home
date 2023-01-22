@@ -127,6 +127,7 @@ return packer.startup({function(use)
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
   use 'tpope/vim-rsi'
   use 'tpope/vim-eunuch'
   use 'justinmk/vim-dirvish'
