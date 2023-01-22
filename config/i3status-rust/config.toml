@@ -16,7 +16,8 @@ block = "music"
 dynamic_width = true
 max_width = 1000
 marquee = false
-format = "{artist} — {title} • "
+format = "{combo} • "
+separator = " — "
 hide_when_empty = true
 on_click = "playerctl play-pause"
 
@@ -34,6 +35,15 @@ format = "♬ {volume} •"
 block = "memory"
 format_mem = "{mem_used}/{mem_total} •"
 format_swap = "{swap_used}/{swap_total} •"
+
+[[block]]
+block = "net"
+device = "wlp2s0"
+format = "{ssid} •"
+on_click = "gnome-control-center"
+interval = 30
+hide_missing = true
+hide_inactive = true
 
 [[block]]
 block = "time"
