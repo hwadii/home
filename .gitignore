@@ -1,3 +1,4 @@
 bundle
 config/nvim/lua/packer_compiled.lua
+config/nvim/spell/
 .zcompdump
