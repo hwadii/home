@@ -8,17 +8,17 @@ window:
 
 font:
   normal:
-    family: Berkeley Mono
+    family: Martian Mono Nr Lt
 
-  size: 10.5
+  size: 9
 
   offset:
    x: 0
-   y: 0
+   y: 2
 
   glyph_offset:
     x: 0
-    y: 0
+    y: 1
 
 import:
   - ~/.config/alacritty/ploy.yml
