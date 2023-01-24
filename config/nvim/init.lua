@@ -43,7 +43,6 @@ opt.listchars = {
   precedes = '«',
   trail = "·",
 }
-opt.emoji = false
 opt.hidden = true
 opt.ignorecase = true
 opt.inccommand = 'split'

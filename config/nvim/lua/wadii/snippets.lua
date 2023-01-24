@@ -7,8 +7,8 @@ vim.api.nvim_set_keymap('s', '<a-j>', '<Plug>luasnip-next-choice', {})
 vim.api.nvim_set_keymap('i', '<a-j>', '<Plug>luasnip-next-choice', {})
 
 ls.add_snippets('all', {
-  s('date', {
-    t(os.date('%Y-%m-%d')),
+  s('today', {
+    t(os.date('%Y-%m-%d %a')),
   }),
   s('todo', {
     t('TODO(wadii): '),
