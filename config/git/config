@@ -52,3 +52,5 @@
   textconv = ansible-vault view --vault-password-file=~/.vaultpass
 [github]
   user = hwadii
+[commit]
+  gpgsign = true
