@@ -50,7 +50,7 @@ input type:touchpad {
 
 default_orientation auto
 default_border pixel 2
-hide_edge_borders smart
+hide_edge_borders none
 smart_borders on
 titlebar_padding 3 3
 

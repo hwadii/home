@@ -5,20 +5,6 @@ opt.termguicolors = true
 
 require('wadii')
 
-vim.g.zenbones = {
-  lighten_noncurrent_window = true,
-  colorize_diagnostic_underline_text = true,
-  darkness = nil,
-  lightness = 'dim',
-}
-vim.g.zenwritten = {
-  lighten_noncurrent_window = true,
-  colorize_diagnostic_underline_text = true,
-  darkness = nil,
-  darken_non_text = 30,
-}
-vim.g.rasmus_italic_functions = true
-vim.g.rasmus_bold_keywords = true
 vim.g.colors_name = 'ploy'
 opt.encoding = 'utf-8'
 opt.magic = true
@@ -64,7 +50,7 @@ opt.shiftwidth = 2
 opt.shortmess:append('actFTWI')
 opt.matchpairs:append('<:>')
 opt.showbreak = '↳ '
-opt.signcolumn = 'auto'
+opt.signcolumn = 'number'
 opt.smartcase = true -- make search case insensitive by default
 opt.smartindent = true
 opt.softtabstop = 2
