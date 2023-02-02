@@ -21,14 +21,25 @@ require('lazy').setup('plugins', {
     rtp = {
       disabled_plugins = {
         'gzip',
+        'tar',
+        'tarPlugin',
+        'zip',
+        'zipPlugin',
+
         'matchit',
         'matchparen',
+
         'netrw',
         'netrwPlugin',
-        'tarPlugin',
         'tohtml',
         'tutor',
-        'zipPlugin',
+        'getscript',
+        'getscriptPlugin',
+        'vimball',
+        'vimballPlugin',
+        'netrwSettings',
+        'rrhelper',
+        'logiPat',
       },
     },
   },
