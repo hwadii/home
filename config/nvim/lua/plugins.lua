@@ -37,11 +37,25 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-    'saadparwaiz1/cmp_luasnip',
+    'dcampos/cmp-snippy',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     dependencies = { 'hrsh7th/nvim-cmp' },
   },
-  'L3MON4D3/LuaSnip',
+  {
+    'dcampos/nvim-snippy',
+    keys = {
+    },
+    config = function ()
+      require('snippy').setup({
+        mappings = {
+          i = {
+            ["<C-j>"] = "expand_or_advance",
+            ["<C-k>"] = "previous",
+          },
+        },
+      })
+    end
+  },
   'lewis6991/github_dark.nvim',
   {
     'lewis6991/gitsigns.nvim',
