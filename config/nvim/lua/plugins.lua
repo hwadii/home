@@ -1,55 +1,42 @@
-local fn = vim.fn
-local packer = require('packer')
-local util = require('packer.util')
-
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-
-return packer.startup({function(use)
-  use 'wbthomason/packer.nvim'
-
-  use 'AndrewRadev/splitjoin.vim'
-  use {
+return {
+  'wbthomason/packer.nvim',
+  'AndrewRadev/splitjoin.vim',
+  {
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup()
     end
-  }
-  use 'ledger/vim-ledger'
-  use 'jpalardy/vim-slime'
-  use 'neovim/nvim-lspconfig'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'kg8m/vim-simple-align'
-  use {
+  },
+  'ledger/vim-ledger',
+  'jpalardy/vim-slime',
+  'neovim/nvim-lspconfig',
+  'JoosepAlviste/nvim-ts-context-commentstring',
+  'kg8m/vim-simple-align',
+  {
     "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig"
-  }
-  use {
+    dependencies = "neovim/nvim-lspconfig"
+  },
+  {
     'numToStr/Comment.nvim',
     config = function()
-      require('Comment').setup({
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      })
+      require('Comment').setup()
     end,
-  }
-  use 'brenoprata10/nvim-highlight-colors'
-  use { 'hrsh7th/nvim-cmp' }
-  use {
+  },
+  'brenoprata10/nvim-highlight-colors',
+  { 'hrsh7th/nvim-cmp' },
+  {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp-signature-help',
-    requires = { 'hrsh7th/nvim-cmp' },
-    after = { 'hrsh7th/nvim-cmp' }
-  }
-  use 'L3MON4D3/LuaSnip'
-  use 'lewis6991/github_dark.nvim'
-  use {
+    dependencies = { 'hrsh7th/nvim-cmp' },
+  },
+  'L3MON4D3/LuaSnip',
+  'lewis6991/github_dark.nvim',
+  {
     'lewis6991/gitsigns.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim'
     },
     config = function()
@@ -94,59 +81,54 @@ return packer.startup({function(use)
         end
       })
     end
-  }
-  use {
+  },
+  {
     'nvim-telescope/telescope.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
     }
-  }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use { 'nvim-telescope/telescope-ui-select.nvim' }
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use {
+  },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+  'jose-elias-alvarez/null-ls.nvim',
+  {
     'jose-elias-alvarez/typescript.nvim',
     config = function()
       require('typescript').setup({})
     end
-  }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'nvim-treesitter/nvim-treesitter-refactor'
-  -- use { 'nvim-treesitter/nvim-treesitter-angular' }
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'nvim-treesitter/playground'
-  use 'chrisbra/unicode.vim'
-  use 'preservim/vim-markdown'
-  use 'tpope/vim-abolish'
-  use {
+  },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  'nvim-treesitter/nvim-treesitter-refactor',
+  -- { 'nvim-treesitter/nvim-treesitter-angular' }
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  'nvim-treesitter/playground',
+  'chrisbra/unicode.vim',
+  'preservim/vim-markdown',
+  'tpope/vim-abolish',
+  {
     'kylechui/nvim-surround',
     config = function()
       require('nvim-surround').setup()
     end
-  }
-  use 'tpope/vim-unimpaired'
-  use 'tpope/vim-sleuth'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
-  use 'tpope/vim-rsi'
-  use 'tpope/vim-eunuch'
-  use 'justinmk/vim-dirvish'
-  use 'lewis6991/impatient.nvim'
-  use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
-  use { '~/code/ploy.nvim', requires = 'rktjmp/lush.nvim' }
-  use {
+  },
+  'tpope/vim-unimpaired',
+  'tpope/vim-sleuth',
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'tpope/vim-rsi',
+  'tpope/vim-eunuch',
+  'justinmk/vim-dirvish',
+  'lewis6991/impatient.nvim',
+  { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim' },
+  { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
+  {
     'rktjmp/paperplanes.nvim',
     config = function()
       require('paperplanes').setup({
         provider = 'paste.rs',
       })
     end
-  }
-  use 'alaviss/nim.nvim'
-  use { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end }
-
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
-  end
-end, config = { compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'), }
-})
+  },
+  'alaviss/nim.nvim',
+  { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end },
+}

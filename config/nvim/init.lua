@@ -1,93 +1,44 @@
-require('impatient')
+vim.g.mapleader = ','
+vim.g.maplocalleader = ' '
 
-local opt = vim.opt
-opt.termguicolors = true
-
-require('wadii')
-
-vim.g.colors_name = 'ploy'
-opt.encoding = 'utf-8'
-opt.magic = true
-opt.autoindent = true
-opt.background = 'dark'
-opt.briopt = 'shift:2'
-opt.completeopt = 'menuone,noselect'
-opt.cursorline = true
-opt.expandtab = true
-opt.formatoptions = 'jcrqnl'
-opt.fillchars = {
-  diff = '∙',
-  eob = '~',
-  fold = '·',
-  msgsep = '‾',
-}
-opt.list = true
-opt.listchars = {
-  tab = "┊ ",
-  nbsp = '⦸',
-  extends = '»',
-  precedes = '«',
-  trail = "·",
-}
-opt.hidden = true
-opt.ignorecase = true
-opt.inccommand = 'split'
-opt.laststatus = 3 -- Show global statusline as opposed to a statusline per window
-opt.lazyredraw = true
-opt.linebreak = true
-opt.breakindent = true
-opt.mouse = 'a'
-opt.backup = false
-opt.joinspaces = false
-opt.swapfile = false
-opt.writebackup = false
-opt.number = true
-opt.pumheight = 20
-opt.redrawtime = 10000
-opt.report = 0
-opt.rnu = false
-opt.shiftwidth = 2
-opt.shortmess:append('actFTWI')
-opt.matchpairs:append('<:>')
-opt.showbreak = '↳ '
-opt.signcolumn = 'number'
-opt.smartcase = true -- make search case insensitive by default
-opt.smartindent = true
-opt.softtabstop = 2
-opt.splitbelow = true  -- Splitting a window will put the new window below the current
-opt.splitright = true  -- Splitting a window will put the new window right of the current
-opt.tabstop = 2
-opt.undofile = true        -- Persistent undo
-opt.undolevels = 1000      -- Maximum number of changes that can be undone
-opt.undoreload = 10000     -- Maximum number lines to save for undo on a buffer reload
-opt.updatetime = 250
-opt.wildmenu = true
-opt.wildoptions = 'pum'
-opt.wildignore = { '__pycache__', '*.o', '*~', '*.pyc', '*pycache*' }
-opt.winminheight = 0
-opt.foldtext = 'v:lua.wadii.foldtext()'
-opt.grepprg = 'rg --vimgrep --no-heading'
-opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 1000 })
-  end,
-  group = vim.api.nvim_create_augroup('yank_post_group', { clear = true }),
-})
-
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = 'plugins.lua',
-  command = 'source <afile> | PackerCompile',
-  group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
-})
-
-if vim.g.colors_name == 'zenbones' then
-  local zen = require('zenbones')
-  vim.api.nvim_set_hl(0, 'User1', { fg = tostring(zen.StatusLine.fg), bg = tostring(zen.StatusLine.bg), bold = true })
-  vim.api.nvim_set_hl(0, 'User2', { fg = tostring(zen.StatusLineNC.fg), bg = tostring(zen.StatusLineNC.bg), italic = true, reverse = true })
-  vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    '--single-branch',
+    'https://github.com/folke/lazy.nvim.git',
+    lazypath,
+  }
 end
+
+vim.opt.runtimepath:prepend(lazypath)
+
+require('lazy').setup('plugins', {
+  defaults = { lazy = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrw',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
+})
+vim.g.colors_name = 'ploy'
+
+require('impatient')
+require('wadii')
+require('wadii.options')
+require('wadii.autocmds')
 
 vim.g.vim_markdown_override_foldtext = false
 vim.g.vim_markdown_no_default_key_mappings = true
@@ -106,3 +57,7 @@ vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
 vim.g.navic_silence = true
 vim.g.netrw_banner = false
 vim.g.loaded_fzf = true
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0

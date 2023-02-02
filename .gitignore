@@ -1,4 +1,5 @@
 bundle
 config/nvim/lua/packer_compiled.lua
+config/nvim/lazy-lock.json
 config/nvim/spell/
 .zcompdump

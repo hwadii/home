@@ -2,9 +2,6 @@ local telescope = require('telescope.builtin')
 local map = vim.keymap.set
 local various = require('wadii.various')
 
-vim.g.mapleader = ','
-vim.g.maplocalleader = ' '
-
 -- general
 map('n', '<A-j>', '<cmd>m .+1<CR>==')
 map('n', '<A-k>', '<cmd>m .-2<CR>==')

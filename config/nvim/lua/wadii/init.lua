@@ -6,8 +6,6 @@ _G.wadii = {
   telescope = require'wadii.telescope',
   maps = require'wadii.maps',
   completion = require'wadii.completion',
-  packer_compiled = require'packer_compiled',
-  plugins = require'plugins',
   various = require'wadii.various',
 }
 
