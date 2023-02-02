@@ -1,6 +1,15 @@
 return {
-  'wbthomason/packer.nvim',
   'AndrewRadev/splitjoin.vim',
+  {
+    'andymass/vim-matchup',
+    init = function()
+      vim.g.matchup_matchparen_deferred = true
+      vim.g.matchup_matchparen_deferred_show_delay = 100
+      vim.g.matchup_matchparen_hi_surround_always = false
+      vim.g.matchup_delim_start_plaintext = false
+      vim.g.matchup_transmute_enabled = 0
+    end
+  },
   {
     'windwp/nvim-autopairs',
     config = function()
@@ -119,7 +128,7 @@ return {
   'tpope/vim-eunuch',
   'justinmk/vim-dirvish',
   'lewis6991/impatient.nvim',
-  { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim' },
+  { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
   { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
   {
     'rktjmp/paperplanes.nvim',
