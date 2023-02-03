@@ -1,16 +1,6 @@
 return {
   'AndrewRadev/splitjoin.vim',
   {
-    'andymass/vim-matchup',
-    init = function()
-      vim.g.matchup_matchparen_deferred = true
-      vim.g.matchup_matchparen_deferred_show_delay = 100
-      vim.g.matchup_matchparen_hi_surround_always = false
-      vim.g.matchup_delim_start_plaintext = false
-      vim.g.matchup_transmute_enabled = 0
-    end
-  },
-  {
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup()

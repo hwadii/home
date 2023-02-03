@@ -26,9 +26,6 @@ require('lazy').setup('plugins', {
         'zip',
         'zipPlugin',
 
-        'matchit',
-        'matchparen',
-
         'netrw',
         'netrwPlugin',
         'tohtml',
