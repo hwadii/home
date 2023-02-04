@@ -6,8 +6,8 @@ return {
       require('nvim-autopairs').setup()
     end
   },
-  'ledger/vim-ledger',
-  'jpalardy/vim-slime',
+  { 'ledger/vim-ledger', enabled = false },
+  { 'jpalardy/vim-slime', enabled = false },
   'neovim/nvim-lspconfig',
   'JoosepAlviste/nvim-ts-context-commentstring',
   'kg8m/vim-simple-align',
@@ -46,7 +46,7 @@ return {
       })
     end
   },
-  'lewis6991/github_dark.nvim',
+  { 'lewis6991/github_dark.nvim', enabled = false },
   {
     'lewis6991/gitsigns.nvim',
     dependencies = {
