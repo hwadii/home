@@ -41,7 +41,7 @@ telescope.setup{
     lsp_definitions = { theme = 'dropdown' },
     lsp_implementations = { theme = 'dropdown' },
     buffers = {
-      ignore_current_buffer = true,
+      ignore_current_buffer = false,
       sort_mru = true,
       theme = 'dropdown',
       previewer = false,
