@@ -270,6 +270,7 @@ for_window [app_id="org.gnome.*"] floating enable
 for_window [app_id="gnome-*"] floating enable
 for_window [app_id="gedit"] floating enable
 for_window [app_id="drawing"] floating enable
+for_window [app_id="soffice"] floating enable
 for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [title="Zoom Cloud Meetings"] floating enable
