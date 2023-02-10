@@ -56,7 +56,7 @@ require 'nvim-treesitter.configs'.setup {
   },
   highlight = {
     enable = true,
-    disable = { "sql", "markdown" },
+    disable = { "sql" },
     additional_vim_regex_highlighting = false,
   },
   fold = {
