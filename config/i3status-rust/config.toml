@@ -1,15 +1,23 @@
 [theme]
 theme = "native"
+[icons]
+icons = "none"
+[icons.overrides]
+bat = " | | "
+bat_full = " |X| "
+bat_charging = " |^| "
+bat_discharging = " |v| "
+volume_muted = "MUTED"
 [theme.overrides]
 separator = ""
 
 [[block]]
 block = "focused_window"
-format = "{$title.str(max_w:50)|} •"
+format = "{$title.str(max_w:50)|} • "
 
 [[block]]
 block = "music"
-format = " {$combo.str(max_w:20)|None} • "
+format = "{$combo.str(max_w:1000)|None} • "
 [[block.click]]
 button = "left"
 action = "play_pause"
