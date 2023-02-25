@@ -33,7 +33,7 @@ format = "$icon $volume •"
 show_volume_when_muted = true
 [[block.click]]
 button = "left"
-action = "pavucontrol"
+cmd = "pavucontrol"
 
 [[block]]
 block = "memory"
@@ -42,6 +42,9 @@ format_alt = "$swap_used/$swap_total •"
 
 [[block]]
 block = "net"
+[[block.click]]
+button = "left"
+cmd = "gnome-control-center"
 
 [[block]]
 block = "time"
