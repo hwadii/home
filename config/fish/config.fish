@@ -1,6 +1,7 @@
 set fish_greeting
 
 zoxide init fish | source
+rtx activate fish | source
 
 if status --is-interactive; and not set -q SSH_AUTH_SOCK
     eval (ssh-agent -c)
