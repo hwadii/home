@@ -1,3 +1,6 @@
 function vg -d "Grep pattern and select file where it appears"
-    rg --line-number . | fzf --delimiter : --nth 3.. --bind 'enter:become($EDITOR {1} +{2})'
+    set ret (rg --line-number --no-heading $argv | fzf -0 -1 | awk -F: '{print $1, $2}' | string split " ")
+    set file $ret[1]
+    set line $ret[2]
+    test -n "$file" && nvim $file +$line
 end

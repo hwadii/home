@@ -1,3 +1,4 @@
 function fe -d "Open the selected file with the default editor"
-    fzf --query="$argv[1]" --multi --exit-0 --bind 'enter:become($EDITOR {+})'
+    set files (fzf --query="$argv[1]" --multi --select-1 --exit-0)
+    test -n "$files" && $EDITOR $files
 end
