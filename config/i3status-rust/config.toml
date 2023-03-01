@@ -3,10 +3,6 @@ theme = "native"
 [icons]
 icons = "none"
 [icons.overrides]
-bat = " | | "
-bat_full = " |X| "
-bat_charging = " |^| "
-bat_discharging = " |v| "
 volume_muted = "MUTED"
 [theme.overrides]
 separator = ""
@@ -26,6 +22,9 @@ action = "play_pause"
 block = "battery"
 format = "$percentage $time • "
 full_format = "FULL • "
+missing_format = "$icon • "
+empty_format = "$icon • "
+not_charging_format = "$icon • "
 
 [[block]]
 block = "sound"
