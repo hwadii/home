@@ -1,3 +1,4 @@
 function fo -d "Open the selected file with xdg-open"
-    fd -tf | fzf --query="$argv[1]" --multi --exit-0 --bind 'enter:become(open {+})'
+    set file (fd -tf | fzf --query="$argv[1]" --select-1 --exit-0)
+    test -n "$file" && open $file
 end
