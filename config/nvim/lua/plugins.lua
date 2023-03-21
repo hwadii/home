@@ -119,9 +119,10 @@ return {
   'preservim/vim-markdown',
   'tpope/vim-abolish',
   {
-    'kylechui/nvim-surround',
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
     config = function()
-      require('nvim-surround').setup()
+      require("nvim-surround").setup()
     end
   },
   'tpope/vim-unimpaired',
