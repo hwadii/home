@@ -27,7 +27,6 @@ require('lazy').setup('plugins', {
         'zipPlugin',
 
         'netrw',
-        'netrwPlugin',
         'tohtml',
         'tutor',
         'getscript',
