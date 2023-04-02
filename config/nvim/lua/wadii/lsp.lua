@@ -180,6 +180,16 @@ lspconfig.lua_ls.setup({
     }
   }
 })
+lspconfig.ruby_ls.setup({
+  on_attach = custom_attach,
+  enabled = false,
+  handlers = handlers,
+  settings = {
+    init_options = {
+      enabledFeatures = { "documentHighlights", "documentSymbols", "foldingRanges", "selectionRanges", "formatting", "codeActions" }
+    }
+  }
+})
 
 local servers = {
   'solargraph',
