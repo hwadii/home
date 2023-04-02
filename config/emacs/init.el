@@ -328,7 +328,7 @@
   (orderless-matching-styles '(orderless-flex))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(set-face-attribute 'default nil :font "Berkeley Mono-10.5:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "Berkeley Mono-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.

@@ -6,3 +6,7 @@ rulers = [140]
 [[language]]
 name = "typescript"
 rulers = [120]
+
+[[language]]
+name = "markdown"
+rulers = []
