@@ -43,7 +43,7 @@ vim.opt.shiftwidth = 2
 vim.opt.shortmess:append('actFTWI')
 vim.opt.matchpairs:append('<:>')
 vim.opt.showbreak = '↳ '
-vim.opt.signcolumn = 'number'
+vim.opt.signcolumn = 'yes'
 vim.opt.smartcase = true -- make search case insensitive by default
 vim.opt.smartindent = true
 vim.opt.softtabstop = 2
