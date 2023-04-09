@@ -22,4 +22,9 @@ M.yank_current_path = function(register)
   end
 end
 
+M.remove_bomb = function()
+  vim.opt_local.bomb = true
+  vim.opt_local.bomb = false
+end
+
 return M
