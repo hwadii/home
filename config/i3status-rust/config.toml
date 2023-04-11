@@ -36,8 +36,8 @@ cmd = "pavucontrol"
 
 [[block]]
 block = "memory"
-format = "$mem_used/$mem_total •"
-format_alt = "$swap_used/$swap_total •"
+format = " $mem_used.eng(w:3)/$mem_total •"
+format_alt = " $swap_used.eng(w:3)/$swap_total •"
 
 [[block]]
 block = "net"
