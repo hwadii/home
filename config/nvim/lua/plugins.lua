@@ -1,5 +1,14 @@
 return {
-  'AndrewRadev/splitjoin.vim',
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({
+        use_default_keymaps = false,
+        notify = false,
+      })
+    end,
+  },
   {
     'windwp/nvim-autopairs',
     config = function()

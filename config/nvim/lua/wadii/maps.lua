@@ -1,6 +1,7 @@
 local telescope = require('telescope.builtin')
 local map = vim.keymap.set
 local various = require('wadii.various')
+local treesj = require('treesj')
 
 -- general
 map('n', '<A-j>', '<cmd>m .+1<CR>==')
@@ -54,3 +55,6 @@ vim.api.nvim_create_user_command('Gh', '!gh <f-args>', { nargs = 1 })
 vim.api.nvim_create_user_command('Gbr', 'Gh browse', {})
 vim.api.nvim_create_user_command('Gpr', 'Gh p', {})
 vim.api.nvim_create_user_command('Gr', 'Gh r', {})
+
+map('n', 'gJ', treesj.join)
+map('n', 'gS', treesj.split)
