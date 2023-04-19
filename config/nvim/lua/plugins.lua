@@ -124,6 +124,10 @@ return {
   -- { 'nvim-treesitter/nvim-treesitter-angular' }
   'nvim-treesitter/nvim-treesitter-textobjects',
   'nvim-treesitter/playground',
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
   'chrisbra/unicode.vim',
   'preservim/vim-markdown',
   'tpope/vim-abolish',
@@ -140,7 +144,6 @@ return {
   'tpope/vim-rhubarb',
   'tpope/vim-rsi',
   'tpope/vim-eunuch',
-  'justinmk/vim-dirvish',
   'lewis6991/impatient.nvim',
   { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
   { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },

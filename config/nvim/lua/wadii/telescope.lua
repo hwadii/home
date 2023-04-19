@@ -64,8 +64,16 @@ telescope.setup{
   extensions = {
     ['ui-select'] = {
       themes.get_cursor()
+    },
+    file_browser = {
+      theme = 'ivy',
+      hijack_netrw = true,
+      layout_config = {
+        height = 40,
+      }
     }
   }
 }
 telescope.load_extension('fzf')
 telescope.load_extension('ui-select')
+telescope.load_extension('file_browser')

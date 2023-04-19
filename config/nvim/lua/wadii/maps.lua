@@ -1,4 +1,5 @@
 local telescope = require('telescope.builtin')
+local file_browser = require('telescope').extensions.file_browser
 local map = vim.keymap.set
 local various = require('wadii.various')
 local treesj = require('treesj')
@@ -19,7 +20,7 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- telescope
 map('n', '<C-p>', telescope.find_files)
-map('n', '<Leader>sf', telescope.find_files)
+map('n', '-', function() file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end)
 map('n', '<Leader>?', telescope.builtin)
 map('n', '<Leader>/', telescope.live_grep)
 map('n', '<Leader>sw', telescope.grep_string)
@@ -28,6 +29,7 @@ map('n', '<Leader>s?', telescope.oldfiles)
 map('n', '<Leader>sc', telescope.git_commits)
 map('n', '<Leader>se', telescope.resume)
 map('n', '<Leader>s"', telescope.registers)
+map('n', '<Leader>sf', function() file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end)
 map('n', '<C-s>', telescope.current_buffer_fuzzy_find)
 
 -- git
