@@ -70,7 +70,8 @@ telescope.setup{
       hijack_netrw = true,
       layout_config = {
         height = 40,
-      }
+      },
+      grouped = true,
     }
   }
 }
