@@ -121,7 +121,6 @@ return {
   },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'nvim-treesitter/nvim-treesitter-refactor',
-  -- { 'nvim-treesitter/nvim-treesitter-angular' }
   'nvim-treesitter/nvim-treesitter-textobjects',
   'nvim-treesitter/playground',
   {
@@ -147,6 +146,17 @@ return {
   'lewis6991/impatient.nvim',
   { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
   { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
+  {
+    'aktersnurra/no-clown-fiesta.nvim',
+    dependencies = 'rktjmp/lush.nvim',
+    config = function()
+      require('no-clown-fiesta').setup({
+        styles = {
+          comments = { italic = true },
+        },
+      })
+    end,
+  },
   {
     'rktjmp/paperplanes.nvim',
     config = function()
