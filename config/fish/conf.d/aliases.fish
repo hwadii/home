@@ -85,3 +85,6 @@ abbr ts "tmux new-session -s"
 
 # extract
 alias x "aunpack $argv"
+
+# bang
+alias b bangdo
