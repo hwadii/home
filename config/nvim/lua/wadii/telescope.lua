@@ -7,6 +7,9 @@ telescope.setup{
   defaults = {
     layout_strategy = 'flex',
     path_display = { 'shorten' },
+    layout_config = {
+      prompt_position = 'top',
+    },
     mappings = {
       i = {
         ['<C-j>'] = actions.move_selection_next,
@@ -16,7 +19,7 @@ telescope.setup{
         ['<esc>'] = actions.close,
         ['<C-[>'] = actions.close,
         ['<C-c>'] = actions.close,
-        ["<M-p>"] = action_layout.toggle_preview
+        ['<M-p>'] = action_layout.toggle_preview
       },
       n = {
         ['<esc>'] = actions.close,
@@ -66,11 +69,7 @@ telescope.setup{
       themes.get_cursor()
     },
     file_browser = {
-      theme = 'ivy',
       hijack_netrw = true,
-      layout_config = {
-        height = 40,
-      },
       grouped = true,
     }
   }
