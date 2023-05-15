@@ -7,9 +7,6 @@ telescope.setup{
   defaults = {
     layout_strategy = 'flex',
     path_display = { 'shorten' },
-    layout_config = {
-      prompt_position = 'top',
-    },
     mappings = {
       i = {
         ['<C-j>'] = actions.move_selection_next,
