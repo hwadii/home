@@ -15,7 +15,7 @@ return {
       require('nvim-autopairs').setup()
     end
   },
-  { 'ledger/vim-ledger', enabled = false },
+  { 'ledger/vim-ledger',  enabled = false },
   { 'jpalardy/vim-slime', enabled = false },
   'neovim/nvim-lspconfig',
   'JoosepAlviste/nvim-ts-context-commentstring',
@@ -44,7 +44,7 @@ return {
     'dcampos/nvim-snippy',
     keys = {
     },
-    config = function ()
+    config = function()
       require('snippy').setup({
         mappings = {
           i = {
@@ -144,8 +144,8 @@ return {
   'tpope/vim-rsi',
   'tpope/vim-eunuch',
   'lewis6991/impatient.nvim',
-  { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
-  { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
+  { 'mcchrish/zenbones.nvim',          dependencies = 'rktjmp/lush.nvim', enabled = false },
+  { dir = '~/code/ploy.nvim',          dependencies = 'rktjmp/lush.nvim' },
   {
     'aktersnurra/no-clown-fiesta.nvim',
     dependencies = 'rktjmp/lush.nvim',
