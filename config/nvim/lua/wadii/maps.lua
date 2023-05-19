@@ -43,7 +43,8 @@ map('n', '<Leader>ga', '<cmd>Git branch<cr>')
 map('n', '<Leader>gr', '<cmd>Gr<cr>', { silent = true })
 
 -- colorizer
-map('n', '<Leader>c', '<cmd>HighlightColorsToggle<cr>')
+map('n', '<Leader>cc', '<cmd>CccHighlighterToggle<cr>')
+map('n', '<Leader>cp', '<cmd>CccPick<cr>')
 
 -- various
 map('n', '<Leader>L', various.yank_current_path)

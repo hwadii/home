@@ -30,7 +30,12 @@ return {
       require('Comment').setup()
     end,
   },
-  'brenoprata10/nvim-highlight-colors',
+  {
+    'uga-rosa/ccc.nvim',
+    config = function()
+      require('ccc').setup()
+    end,
+  },
   { 'hrsh7th/nvim-cmp' },
   {
     'hrsh7th/cmp-buffer',
