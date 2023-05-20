@@ -37,6 +37,9 @@ cmp.setup {
       end
     end,
   }),
+  window = {
+    documentation = cmp.config.window.bordered(),
+  },
   sources = cmp.config.sources({
       { name = "nvim_lsp" },
       { name = "snippy" },
