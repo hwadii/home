@@ -3,6 +3,7 @@ local file_browser = require('telescope').extensions.file_browser
 local map = vim.keymap.set
 local various = require('wadii.various')
 local treesj = require('treesj')
+local oil = require('oil')
 
 -- general
 map('n', '<A-j>', '<cmd>m .+1<CR>==')
@@ -20,7 +21,7 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- telescope
 map('n', '<C-p>', telescope.find_files)
-map('n', '-', function() file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end)
+map('n', '-', oil.open, { desc = "Open parent directory" })
 map('n', '<Leader>?', telescope.builtin)
 map('n', '<Leader>/', telescope.live_grep)
 map('n', '<Leader>sw', function() telescope.grep_string({ search = vim.fn.input("Grep For > ") }) end)

@@ -130,7 +130,13 @@ return {
   'nvim-treesitter/playground',
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  },
+  {
+    'stevearc/oil.nvim',
+    config = function()
+      require('oil').setup()
+    end
   },
   'chrisbra/unicode.vim',
   'preservim/vim-markdown',
@@ -170,6 +176,10 @@ return {
       })
     end
   },
-  'alaviss/nim.nvim',
+  {
+    'alaviss/nim.nvim',
+    enabled = false,
+  },
+  'nvim-tree/nvim-web-devicons',
   { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end },
 }
