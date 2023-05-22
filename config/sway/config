@@ -176,7 +176,7 @@ mode "window" {
 bindsym $mod+r mode "window"
 
 bindsym $mod+n exec makoctl dismiss
-bindsym $mod+Shift+n exec makoctl dismiss -a
+bindsym $mod+Shift+n exec makoctl restore
 
 bindsym $mod+$alt+k mode kanshi
 mode kanshi {
