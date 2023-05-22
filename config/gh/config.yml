@@ -7,10 +7,9 @@ pager: less
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
-    todo: issue list -a 'hwadii'
+    todo: issue list -a hwadii
     ongoing: pr list -a hwadii -s open
     done: pr list -a hwadii -s closed
     r: repo view --web
     p: pr view --web
-    wip: pr list -a 'hwadii'
-
+    wip: pr list -a hwadii
