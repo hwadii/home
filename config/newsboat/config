@@ -38,7 +38,6 @@ bind-key h quit
 bind-key a toggle-article-read
 bind-key D pb-download
 bind-key U show-urls
-bind-key N prev-unread
 
 color listnormal white default
 color listfocus black white standout bold
