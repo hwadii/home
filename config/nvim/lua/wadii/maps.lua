@@ -21,6 +21,7 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- telescope
 map('n', '<C-p>', telescope.find_files)
+map('n', '<Leader>sf', telescope.find_files)
 map('n', '-', oil.open, { desc = "Open parent directory" })
 map('n', '<Leader>?', telescope.builtin)
 map('n', '<Leader>/', telescope.live_grep)
@@ -30,7 +31,7 @@ map('n', '<Leader>s?', telescope.oldfiles)
 map('n', '<Leader>sc', telescope.git_commits)
 map('n', '<Leader>se', telescope.resume)
 map('n', '<Leader>s"', telescope.registers)
-map('n', '<Leader>sf', function() file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end)
+map('n', '<Leader>s-', function() file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end)
 map('n', '<C-s>', telescope.current_buffer_fuzzy_find)
 
 -- git
