@@ -7,6 +7,7 @@ _G.wadii = {
   completion = require('wadii.completion'),
   various = require('wadii.various'),
   format = require('wadii.format'),
+  filetype = require('wadii.filetype')
 }
 
 return _G.wadii

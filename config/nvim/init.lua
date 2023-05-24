@@ -46,6 +46,7 @@ require('impatient')
 require('wadii')
 require('wadii.options')
 require('wadii.autocmds')
+require('wadii.filetype')
 
 vim.g.vim_markdown_override_foldtext = false
 vim.g.vim_markdown_no_default_key_mappings = true
