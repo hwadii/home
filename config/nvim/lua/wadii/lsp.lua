@@ -170,7 +170,7 @@ lspconfig.omnisharp.setup({
       range = true,
     }
   end,
-  cmd = { 'dotnet', '/home/wadii/.vscode/extensions/ms-dotnettools.csharp-1.25.7-linux-x64/.omnisharp/1.39.6-net6.0/OmniSharp.dll' },
+  cmd = { 'dotnet', '/home/wadii/.local/omnisharp/OmniSharp.dll' },
   enable_editorconfig_support = true,
   enable_ms_build_load_projects_on_demand = false,
   organize_imports_on_format = true,
