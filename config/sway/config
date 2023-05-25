@@ -275,6 +275,8 @@ for_window [title="Slack Call Minipanel"] floating enable
 for_window [title="À propos de Firefox Developer Edition"] floating enable
 for_window [title="Zoom Cloud Meetings"] floating enable
 for_window [title="Zoom - Free Account"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="thunderbird" title=".*rappel"] floating enable
 for_window [title="."] title_format "%title (app_id=%app_id shell=%shell)"
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
