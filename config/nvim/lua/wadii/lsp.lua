@@ -103,7 +103,7 @@ lspconfig.tsserver.setup({
 })
 
 local ngserver_cmd = function()
-  local node_path = string.gsub(vim.fn.system('rtx where nodejs'), "\n", '')
+  local node_path = string.gsub(vim.fn.system('rtx where node'), "\n", '')
   local libpath = vim.fn.expand(node_path .. '/lib/node_modules/typescript/lib')
   return { 'ngserver', '--stdio', '--tsProbeLocations', libpath, '--ngProbeLocations', libpath }
 end
