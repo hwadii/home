@@ -156,6 +156,7 @@ https://archlinux.org/feeds/news/ "Releases"
 https://codeberg.org/dnkl/foot.rss "Commits" "Linux"
 https://github.com/emacs-mirror/emacs/commits.atom "Commits" "Linux"
 https://github.com/fish-shell/fish-shell/commits.atom "Commits" "Linux"
+https://github.com/OmniSharp/omnisharp-roslyn/releases.atom "Releases"
 
 # Podcasts
 https://feeds.transistor.fm/on-the-metal-0294649e-ec23-4eab-975a-9eb13fd94e06 "Audio" "Media" "Linux"
