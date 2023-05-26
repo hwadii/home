@@ -44,7 +44,7 @@ cmp.setup {
       { name = "nvim_lsp" },
       { name = "snippy" },
     }, {
-      { name = "buffer", option = { keyword_length = 5, max_item_count = 5 } },
+      { name = "buffer", option = { keyword_length = 5 } },
       { name = "path" },
     }),
 }
