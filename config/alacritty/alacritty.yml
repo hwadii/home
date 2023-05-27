@@ -8,13 +8,13 @@ window:
 
 font:
   normal:
-    family: BerkeleyMono Nerd Font
+    family: ComicCode Nerd Font
 
-  size: 11
+  size: 10.5
 
   offset:
    x: 0
-   y: 0
+   y: -2
 
   glyph_offset:
     x: 0
