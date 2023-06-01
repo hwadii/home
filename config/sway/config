@@ -113,8 +113,8 @@ bindsym $mod+g focus next
 bindsym $mod+Shift+g focus prev
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
-bindsym $mod+Shift+braceleft move container to workspace prev_on_output
-bindsym $mod+Shift+braceright move container to workspace next_on_output
+bindsym $mod+Shift+bracketright move container to workspace next_on_output
+bindsym $mod+Shift+bracketleft move container to workspace prev_on_output
 bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+$left move left
@@ -165,10 +165,10 @@ mode "window" {
   bindsym s split v; mode "default"
   bindsym v split h; mode "default"
   bindsym c split none; mode "default"
-  bindsym $left resize grow width 30px
-  bindsym $down resize shrink height 30px
-  bindsym $up resize grow height 30px
-  bindsym $right resize shrink width 30px
+  bindsym $left resize shrink width 30px
+  bindsym $right resize grow width 30px
+  bindsym Shift+equal resize grow height 30px
+  bindsym Shift+minus resize shrink height 30px
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
