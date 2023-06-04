@@ -1,0 +1,8 @@
+#!/bin/sh
+
+current_mode=$(makoctl mode)
+if [[ $current_mode = "dnd" ]]; then
+  makoctl mode -s "default"
+else
+  makoctl mode -s "dnd"
+fi

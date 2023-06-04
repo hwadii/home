@@ -30,6 +30,7 @@ not_charging_format = "$icon • "
 block = "sound"
 format = "$icon $volume •"
 show_volume_when_muted = true
+headphones_indicator = true
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
@@ -50,3 +51,14 @@ block = "time"
 interval = 60
 [block.format]
 full = "• $timestamp.datetime(f:'%a %d %b %H:%M %p', l:fr_FR)"
+
+[[block]]
+block = "custom"
+command = '''case $(makoctl mode) in default) echo "󰂚" ;; dnd) echo "󰂛" ;; esac'''
+format = " $text "
+interval = "once"
+[[block.click]]
+cmd = "do-not-disturb"
+button = "left"
+update = true
+sync = true
