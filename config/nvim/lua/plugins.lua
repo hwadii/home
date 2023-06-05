@@ -140,6 +140,7 @@ return {
           show_hidden = true,
         },
         keymaps = {
+          ["!"] = "actions.open_terminal",
           ["."] = "actions.open_cmdline",
         },
       })
