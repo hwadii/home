@@ -178,7 +178,7 @@ lspconfig.omnisharp.setup({
   sdk_include_prereleases = true,
   enable_roslyn_analyzers = false,
   analyze_open_documents_only = false,
-  handlers = handlers,
+  handlers = vim.tbl_extend('keep', { ["textDocument/definition"] = require('omnisharp_extended').handler }, handlers),
 })
 
 local clangd_capabilities = vim.deepcopy(capabalities)

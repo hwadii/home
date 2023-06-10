@@ -124,6 +124,7 @@ return {
       require('typescript').setup({})
     end
   },
+  'Hoffs/omnisharp-extended-lsp.nvim',
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'nvim-treesitter/nvim-treesitter-refactor',
   'nvim-treesitter/nvim-treesitter-textobjects',
