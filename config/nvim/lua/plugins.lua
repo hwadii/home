@@ -33,7 +33,9 @@ return {
   {
     'uga-rosa/ccc.nvim',
     config = function()
-      require('ccc').setup()
+      require('ccc').setup({
+        empty_point_bg = false,
+      })
     end,
   },
   { 'hrsh7th/nvim-cmp' },
@@ -164,11 +166,12 @@ return {
   'tpope/vim-rsi',
   'tpope/vim-eunuch',
   'lewis6991/impatient.nvim',
-  { 'mcchrish/zenbones.nvim',          dependencies = 'rktjmp/lush.nvim', enabled = false },
-  { dir = '~/code/ploy.nvim',          dependencies = 'rktjmp/lush.nvim' },
+  { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
+  { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
   {
     'aktersnurra/no-clown-fiesta.nvim',
     dependencies = 'rktjmp/lush.nvim',
+    enabled = false,
     config = function()
       require('no-clown-fiesta').setup({
         styles = {
@@ -190,5 +193,5 @@ return {
     enabled = false,
   },
   'nvim-tree/nvim-web-devicons',
-  { 'j-hui/fidget.nvim', config = function() require('fidget').setup() end },
+  { 'j-hui/fidget.nvim', tag = "legacy", config = function() require('fidget').setup() end },
 }
