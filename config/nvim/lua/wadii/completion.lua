@@ -5,6 +5,7 @@ local pumvisible = vim.fn.pumvisible
 local replace_termcodes = function(key)
   return vim.api.nvim_replace_termcodes(key, true, true, true)
 end
+local autopairs = require('nvim-autopairs.completion.cmp')
 
 cmp.setup {
   snippet = {
@@ -44,7 +45,9 @@ cmp.setup {
       { name = "nvim_lsp" },
       { name = "snippy" },
     }, {
-      { name = "buffer", max_item_count = 5 },
+      { name = "buffer", max_item_count = 10 },
       { name = "path" },
     }),
 }
+
+cmp.event:on('confirm_done', autopairs.on_confirm_done())
