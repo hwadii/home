@@ -11,9 +11,8 @@ return {
   },
   {
     'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end
+    event = "InsertEnter",
+    opts = {}
   },
   { 'ledger/vim-ledger',  enabled = false },
   { 'jpalardy/vim-slime', enabled = false },
