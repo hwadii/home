@@ -12,7 +12,9 @@ return {
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    opts = {}
+    opts = {
+      fast_wrap = {},
+    }
   },
   { 'ledger/vim-ledger',  enabled = false },
   { 'jpalardy/vim-slime', enabled = false },
