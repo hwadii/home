@@ -8,7 +8,7 @@ window:
 
 font:
   normal:
-    family: BerkeleyMono Nerd Font
+    family: mono
 
   size: 11
 
