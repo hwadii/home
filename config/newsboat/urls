@@ -1,6 +1,6 @@
 # News and blogs
-https://thoughtbot.com/blog/feed.xml
-https://thume.ca/atom.xml
+https://thoughtbot.com/blog/feed.xml "Blog"
+https://thume.ca/atom.xml "Blog"
 https://thesquareplanet.com/feed.xml
 https://www.charlieharrington.com/rss.xml
 https://bernsteinbear.com/feed.xml
@@ -10,9 +10,9 @@ https://ghedam.at/feed "Nix"
 https://christine.website/blog.rss "Blog" "Nix"
 https://raphlinus.github.io/feed.xml
 https://karl-voit.at/feeds/lazyblorg-all.atom_1.0.links-and-content.xml
-https://icyphox.sh/blog/feed.xml
-https://fasterthanli.me/index.xml
-https://blog.burntsushi.net/index.xml
+https://icyphox.sh/blog/feed.xml "Blog"
+https://fasterthanli.me/index.xml "Blog"
+https://blog.burntsushi.net/index.xml "Blog"
 https://michael.stapelberg.ch/feed.xml
 https://drewdevault.com/blog/index.xml "Blog" "Favorites"
 https://emersion.fr/blog/atom.xml "Blog" "Favorites"
@@ -126,6 +126,8 @@ https://daringfireball.net/feeds/main "Blog"
 https://martinfowler.com/feed.atom "Blog"
 https://tinyclouds.org/feed "Blog"
 https://rakhim.org/index.xml "Blog"
+https://benhoyt.com/writings/rss.xml "Blog"
+https://research.swtch.com/feed.atom "Blog"
 
 http://c2.com/cgi/wikiRss?min=0&days=.2 "Wiki"
 
