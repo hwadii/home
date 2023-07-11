@@ -14,6 +14,7 @@
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
+(setq-default require-final-newline t)
 
 ;; Remove message in scratch buffer.
 (setq-default initial-scratch-message nil)
@@ -149,7 +150,6 @@
   :bind (
          ("<f5>" . modus-themes-toggle)
          ("C-c o" . find-file-at-point)
-         ("C-c d" . delete-trailing-whitespace)
          ("M-i" . imenu)
          ("M-Z" . zap-up-to-char)
          ("C-c i d" . wadii/insert-date)
@@ -182,6 +182,14 @@
               ("RET"   . vertico-directory-enter)
               ("DEL"   . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word)))
+(use-package crux
+  :ensure t
+  :commands crux-open-with
+  :bind
+  (("C-c d" . crux-duplicate-current-line-or-region)
+   ("C-S-<return>" . crux-smart-open-line-above)
+   ("S-<return>" . crux-smart-open-line)
+   ("C-c n" . crux-cleanup-buffer-or-region)))
 (use-package markdown-mode
   :custom
   (markdown-fontify-code-blocks-natively t))
@@ -328,7 +336,7 @@
   (orderless-matching-styles '(orderless-flex))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(set-face-attribute 'default nil :font "BerkeleyMono Nerd Font-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "Maple Mono NF-10.5:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
@@ -387,10 +395,3 @@
 (defun wadii/insert-uuid ()
   (interactive)
   (insert (string-trim (shell-command-to-string "uuid"))))
-(defun sudo ()
-  "Use TRAMP to `sudo' the current buffer."
-  (interactive)
-  (when buffer-file-name
-    (find-alternate-file
-     (concat "/sudo:root@localhost:"
-             buffer-file-name))))
