@@ -3,7 +3,7 @@ require 'nvim-treesitter.configs'.setup {
     "c", "cpp", "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
     "rust", "css", "dot", "json", "python", "yaml", "vue", "org", "markdown",
     "markdown_inline", "html", "sql", "c_sharp", "fish", "diff", "git_rebase",
-    "gitignore", "gitattributes", "help", "nix", "comment", "hare", "hcl", "groovy"
+    "gitignore", "gitattributes", "vimdoc", "nix", "comment", "hare", "hcl", "groovy"
   },
   textobjects = {
     select = {
