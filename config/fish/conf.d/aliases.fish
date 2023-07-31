@@ -5,7 +5,7 @@ alias mv "mv -v"
 
 alias sard "mpv https://twitch.tv/sardoche --quiet >/dev/null"
 alias kameto "mpv https://www.twitch.tv/kamet0 --quiet >/dev/null"
-alias coro "mpv https://twitch.tv/corobizar --quiet >/dev/null"
+
 alias dragon-x11 "GDK_BACKEND=x11 dragon"
 
 # list
@@ -13,8 +13,8 @@ alias ls "exa --git --group-directories-first"
 alias l ls
 alias ll "exa --git --group-directories-first -l"
 alias lll "exa --git --group-directories-first -l --icons -h"
-alias la "exa --git --group-directories-first -l -a"
-alias lh "exa --git --group-directories-first -l -a -H"
+alias la "exa --git --group-directories-first -l -a -I.DS_Store"
+alias lh "exa --git --group-directories-first -l -a -H -I.DS_Store"
 alias lk "exa --git --group-directories-first -l -s=size"
 alias lm "exa --git --group-directories-first -l -s=modified"
 alias lc "exa --git --group-directories-first --created -s=created"
@@ -24,19 +24,11 @@ alias lr "exa --git --group-directories-first -R --git-ignore"
 # shortcuts to edit various files
 alias vim nvim
 alias vi nvim
-alias ezsh "nvim ~/.zshrc"
-alias esc "nvim ~/.oh-my-zsh/custom/scripts.sh"
-alias rzsh ". ~/.zshrc"
-alias val "nvim ~/.oh-my-zsh/custom/aliases.zsh"
-alias ev "nvim ~/.config/nvim/init.vim"
 alias hx helix
 
 # qol
 alias wholistens "netstat -tulpn | rg LISTEN"
-alias sf screenfetch
-alias duh "du -sh"
 alias p python3
-alias c "clipcopy"
 alias map "xargs -n1"
 alias md "mkdir -p"
 
@@ -73,7 +65,6 @@ alias gmeu "git machete update"
 alias lg lazygit
 
 alias dc "docker compose"
-alias e2e "docker compose -f ~/code/cardiologs/front/cypress/docker-compose.yml"
 
 # tmux
 abbr ta "tmux attach -t"
