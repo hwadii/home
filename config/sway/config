@@ -184,8 +184,8 @@ mode kanshi {
   bindsym r exec kanshictl reload; mode default
 }
 
-bindsym $mod+semicolon exec clipman pick -t bemenu --tool-args="-p '>'"
-bindsym $mod+Shift+c exec colorpick
+bindsym $mod+semicolon exec cliphist list | bemenu -l 10 | cliphist decode | wl-copy
+bindsym $mod+Shift+c exec hyprpicker
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym --locked $mod+Shift+equal exec pactl set-sink-volume @DEFAULT_SINK@ +2%
@@ -261,7 +261,8 @@ bar {
 }
 
 exec wlsunset -l 48.8 -L 2.3 -T 6000 -t 3000
-exec wl-paste -t text --watch clipman store -P
+exec wl-paste -t text --watch cliphist store -max-items 100
+exec wl-paste -t image --watch cliphist store -max-items 20
 exec kanshi
 
 assign [class="^Slack$"] → workspace $ws7
