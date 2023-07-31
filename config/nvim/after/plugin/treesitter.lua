@@ -1,6 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = {
-    "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
+    "c", "cpp", "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
     "rust", "css", "dot", "json", "python", "yaml", "vue", "org", "markdown",
     "markdown_inline", "html", "sql", "c_sharp", "fish", "diff", "git_rebase",
     "gitignore", "gitattributes", "help", "nix", "comment", "hare", "hcl", "groovy"
@@ -13,6 +13,8 @@ require 'nvim-treesitter.configs'.setup {
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["ad"] = "@block.outer",
+        ["id"] = "@block.inner",
       },
     },
     swap = {
