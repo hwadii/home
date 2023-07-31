@@ -31,6 +31,7 @@ map('n', '<Leader>s?', telescope.oldfiles)
 map('n', '<Leader>sc', telescope.git_commits)
 map('n', '<Leader>se', telescope.resume)
 map('n', '<Leader>s"', telescope.registers)
+map('n', '<Leader>sd', telescope.diagnostics)
 map('n', '<Leader>s-', function() file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end)
 map('n', '<C-s>', telescope.current_buffer_fuzzy_find)
 
