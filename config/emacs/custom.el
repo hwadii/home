@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(adwaita-dark-theme-mode-line-padding 2)
- '(custom-enabled-themes '(adwaita-dark))
+ '(custom-enabled-themes '(standard-dark))
  '(custom-safe-themes t)
  '(elfeed-feeds
    '(("https://github.com/emacs-mirror/emacs/commits.atom")
@@ -146,7 +146,7 @@
  '(isearch-allow-motion t)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(crux forge magit tide flycheck orderless vertico-directory adwaita-dark-theme tree-sitter-indent doom-themes inf-ruby vertico corfu marginalia fd-dired ligature eglot password-store zig-mode json-mode diff-hl sudo-utils graphviz-dot-mode auto-package-update edit-indirect typescript-mode rg yaml-mode vterm rust-mode tree-sitter-hl tree-sitter-langs tree-sitter expand-region elfeed rainbow-delimiters paredit markdown-mode))
+   '(standard-themes ef-themes crux forge magit tide flycheck orderless vertico-directory adwaita-dark-theme tree-sitter-indent doom-themes inf-ruby vertico corfu marginalia fd-dired ligature eglot password-store zig-mode json-mode diff-hl sudo-utils graphviz-dot-mode auto-package-update edit-indirect typescript-mode rg yaml-mode vterm rust-mode tree-sitter-hl tree-sitter-langs tree-sitter expand-region elfeed rainbow-delimiters paredit markdown-mode))
  '(warning-suppress-types '((lsp-mode) (lsp-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

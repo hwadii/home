@@ -145,8 +145,7 @@
   (adwaita-dark-theme-arrow-fringe-bmp-enable)
   :hook ((after-init . windmove-default-keybindings)
          (completion-list-mode . wadii/term-mode)
-         (prog-mode . display-line-numbers-mode)
-         ((prog-mode text-mode) . hl-line-mode))
+         (prog-mode . display-line-numbers-mode))
   :bind (
          ("<f5>" . modus-themes-toggle)
          ("C-c o" . find-file-at-point)
@@ -335,8 +334,10 @@
   :custom
   (orderless-matching-styles '(orderless-flex))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+(use-package ef-themes)
+(use-package standard-themes)
 
-(set-face-attribute 'default nil :font "Maple Mono NF-10.5:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "BerkeleyMono Nerd Font-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
