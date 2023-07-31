@@ -226,7 +226,6 @@ lspconfig.ruby_ls.setup({
 
 local servers = {
   'solargraph',
-  'rubocop',
   'vuels',
   'jsonls',
   'bashls',

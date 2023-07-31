@@ -36,4 +36,5 @@ export PASSWORD_STORE_DIR="$XDG_DATA_DIR/pass"
 export NNN_BMS="d:$HOME/dl;b:$HOME/things/books;c:$HOME/code;s:/media/wadii/garbage"
 export MANWIDTH=80
 export JQ_COLORS="2;37:0;37:0;37:0;37:0;32:1;37:1;37"
+export BEMENU_OPTS="-p '>' --tf '#ffffff' --hb '#555555' --hf '#ffffff'"
 if [ -e /home/wadii/.nix-profile/etc/profile.d/nix.sh ]; then . /home/wadii/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
