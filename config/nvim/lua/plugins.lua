@@ -2,59 +2,93 @@ return {
   {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('treesj').setup({
-        use_default_keymaps = false,
-        notify = false,
-      })
-    end,
+    opts = {
+      use_default_keymaps = false,
+      notify = false,
+    },
+    keys = {
+      { 'gS', '<cmd>TSJToggle<cr>', desc = 'Join Toggle', mode = 'n' },
+    },
   },
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    event = 'InsertEnter',
     opts = {
       fast_wrap = {},
     }
   },
-  { 'ledger/vim-ledger',  enabled = false },
+  { 'ledger/vim-ledger', enabled = false },
   { 'jpalardy/vim-slime', enabled = false },
-  'neovim/nvim-lspconfig',
-  'JoosepAlviste/nvim-ts-context-commentstring',
-  'kg8m/vim-simple-align',
   {
-    "SmiteshP/nvim-navic",
-    dependencies = "neovim/nvim-lspconfig"
+    'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          prefix = '■',
+          spacing = 4,
+          source = "if_many",
+        },
+        severity_sort = true,
+      },
+      capabilities = {},
+    },
+    config = function()
+      require('wadii.lsp')
+      vim.fn.sign_define('DiagnosticSignError', { text = '×', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn',  { text = '!', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignHint',  { text = 'i', texthl = 'DiagnosticSignHint' })
+      vim.fn.sign_define('DiagnosticSignInfo',  { text = 'H', texthl = 'DiagnosticInfo' })
+    end
+  },
+  { 'kg8m/vim-simple-align', cmd = 'SimpleAlign' },
+  {
+    'SmiteshP/nvim-navic',
+    dependencies = 'neovim/nvim-lspconfig',
+    event = 'VeryLazy',
+    opts = {},
   },
   {
     'numToStr/Comment.nvim',
-    opts = {},
-    lazy = false
+    config = function()
+      require('Comment').setup({
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      })
+    end,
+    lazy = false,
+    dependencies = 'JoosepAlviste/nvim-ts-context-commentstring',
   },
   {
     'uga-rosa/ccc.nvim',
-    opts = {
-      empty_point_bg = false,
+    opts = { empty_point_bg = false },
+    cmd = { 'CccHighlighterToggle', 'CccPick' },
+    keys = {
+      { '<leader>cc', '<cmd>CccHighlighterToggle<cr>', mode = 'n' },
+      { '<leader>cp', '<cmd>CccPick<cr>', mode = 'n' },
     },
   },
-  { 'hrsh7th/nvim-cmp' },
   {
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-    'dcampos/cmp-snippy',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    dependencies = { 'hrsh7th/nvim-cmp' },
+    'hrsh7th/nvim-cmp',
+    event = 'BufReadPre',
+    dependencies = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'dcampos/cmp-snippy',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+    }
   },
   {
     'dcampos/nvim-snippy',
-    keys = {
-    },
+    event = 'BufReadPre',
     config = function()
       require('snippy').setup({
         mappings = {
           i = {
-            ["<C-j>"] = "expand_or_advance",
-            ["<C-k>"] = "previous",
+            ['<C-j>'] = 'expand_or_advance',
+            ['<C-k>'] = 'previous',
           },
         },
       })
@@ -66,6 +100,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim'
     },
+    event = 'BufReadPre',
     config = function()
       require('gitsigns').setup({
         on_attach = function(bufnr)
@@ -93,8 +128,8 @@ return {
           -- Actions
           map('n', '<leader>hs', gs.stage_hunk)
           map('n', '<leader>hr', gs.reset_hunk)
-          map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-          map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+          map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+          map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
           map('n', '<leader>hS', gs.stage_buffer)
           map('n', '<leader>hu', gs.undo_stage_hunk)
           map('n', '<leader>hR', gs.reset_buffer)
@@ -115,95 +150,101 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-    }
+    },
+    cmd = 'Telescope',
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
   },
   { 'nvim-telescope/telescope-ui-select.nvim' },
-  'Hoffs/omnisharp-extended-lsp.nvim',
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+  },
+  { 'Hoffs/omnisharp-extended-lsp.nvim', ft = 'csharp' },
   {
     'mhartington/formatter.nvim',
     config = function()
       require('formatter').setup({
-	filetype = {
+        filetype = {
           ['*'] = require('formatter.filetypes.any').remove_trailing_whitespace,
           sql = require('formatter.filetypes.sql').pgformat,
-	}
+        }
       })
-    end
+    end,
+    event = 'VeryLazy',
   },
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  'nvim-treesitter/nvim-treesitter-refactor',
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'nvim-treesitter/playground',
   {
-    'nvim-telescope/telescope-file-browser.nvim',
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-refactor',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    }
+  },
+  {
+    'nvim-treesitter/playground',
+    event = 'VeryLazy',
+    cmd = 'TSPlaygroundToggle',
   },
   {
     'stevearc/oil.nvim',
-    config = function()
-      require('oil').setup({
-        view_options = {
-          show_hidden = true,
-        },
-        keymaps = {
-          ["!"] = "actions.open_terminal",
-          ["."] = "actions.open_cmdline",
-        },
-      })
-    end
+    cmd = 'Oil',
+    keys = {
+      { '-', '<cmd>Oil<cr>', mode = 'n', desc = 'Open parent directory in a buffer.' },
+    },
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+      keymaps = {
+        ['!'] = 'actions.open_terminal',
+        ['.'] = 'actions.open_cmdline',
+      },
+    },
   },
-  'chrisbra/unicode.vim',
-  'preservim/vim-markdown',
-  'tpope/vim-abolish',
+  { 'chrisbra/unicode.vim', event = 'BufReadPre' },
+  { 'preservim/vim-markdown', ft = 'markdown' },
   {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup()
-    end
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    opts = {},
   },
-  'tpope/vim-unimpaired',
-  'tpope/vim-sleuth',
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-  'tpope/vim-rsi',
-  'tpope/vim-eunuch',
-  'lewis6991/impatient.nvim',
+  { 'dstein64/nvim-scrollview', event = 'UIEnter' },
+  { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' } },
+  { 'tpope/vim-unimpaired', keys = { '[', ']' }, event = 'VeryLazy' },
+  { 'tpope/vim-sleuth', event = 'VeryLazy' },
+  {
+    'tpope/vim-fugitive',
+    cmd = { 'Git', 'GBrowse' },
+    dependencies = 'tpope/vim-rhubarb',
+  },
+  { 'tpope/vim-rsi', event = 'InsertEnter' },
+  { 'tpope/vim-eunuch', event = 'CmdLineEnter' },
+  { 'lewis6991/satellite.nvim', opts = {}, enabled = false },
   { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
   { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
   {
-    'aktersnurra/no-clown-fiesta.nvim',
-    dependencies = 'rktjmp/lush.nvim',
-    enabled = false,
-    config = function()
-      require('no-clown-fiesta').setup({
-        styles = {
-          comments = { italic = true },
-        },
-      })
-    end,
-  },
-  {
     'rktjmp/paperplanes.nvim',
-    config = function()
-      require('paperplanes').setup({
-        provider = 'paste.rs',
-      })
-    end
+    opts = {
+      provider = '0x0.st',
+    },
+    cmd = 'PP',
   },
-  {
-    'alaviss/nim.nvim',
-    enabled = false,
-  },
+  { 'alaviss/nim.nvim', ft = 'nim' },
   {
     'pmizio/typescript-tools.nvim',
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
+    event = 'VeryLazy',
   },
   'nvim-tree/nvim-web-devicons',
-  { 'j-hui/fidget.nvim', tag = "legacy", config = function() require('fidget').setup() end },
+  { 'j-hui/fidget.nvim', tag = 'legacy', opts = {}, event = 'BufReadPre' },
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
+    config = true,
+    keys = { { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'DiffView' } },
+  },
 }

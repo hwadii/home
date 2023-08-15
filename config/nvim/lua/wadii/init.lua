@@ -1,6 +1,5 @@
 _G.wadii = {
   foldtext = require('wadii.foldtext'),
-  lsp = require('wadii.lsp'),
   statusline = require('wadii.statusline'),
   telescope = require('wadii.telescope'),
   maps = require('wadii.maps'),

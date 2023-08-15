@@ -7,16 +7,9 @@ local handlers = {
   ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 }),
   ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { max_width = 100 }),
 }
-local capabalities = require('cmp_nvim_lsp').default_capabilities()
+local capabalities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local custom_attach = function(client, bufnr)
-  vim.diagnostic.config({
-    underline = true,
-    update_in_insert = false,
-    float = { header = false },
-    virtual_text = { prefix = '■' },
-  })
-
   local opts = { buffer = bufnr }
 
   local function map(mode, keys, func)
@@ -213,15 +206,4 @@ for _, server in pairs(servers) do
     on_attach = custom_attach,
     handlers = handlers
   }
-end
-
-local signs = {
-  { name = 'DiagnosticSignError', text = '×' },
-  { name = 'DiagnosticSignWarn',  text = '!' },
-  { name = 'DiagnosticSignHint',  text = 'i' },
-  { name = 'DiagnosticSignInfo',  text = 'H' },
-}
-
-for _, value in ipairs(signs) do
-  vim.fn.sign_define(value.name, { text = value.text, texthl = value.name })
 end
