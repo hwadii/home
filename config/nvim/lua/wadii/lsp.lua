@@ -69,25 +69,6 @@ local custom_attach = function(client, bufnr)
   navic.attach(client, bufnr)
 end
 
-lspconfig.tsserver.setup({
-  init_options = {
-    preferences = {
-      importModuleSpecifierPreference = 'relative',
-      includeCompletionsWithSnippetText = true,
-    },
-  },
-  on_attach = function(client, bufnr)
-    custom_attach(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-  end,
-  flags = {
-    allow_incremental_sync = true,
-  },
-  handlers = handlers,
-})
-
 local ngserver_cmd = function()
   local node_path = string.gsub(vim.fn.system('rtx where node'), "\n", '')
   local libpath = vim.fn.expand(node_path .. '/lib/node_modules/typescript/lib')

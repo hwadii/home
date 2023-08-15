@@ -199,6 +199,11 @@ return {
     'alaviss/nim.nvim',
     enabled = false,
   },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   'nvim-tree/nvim-web-devicons',
   { 'j-hui/fidget.nvim', tag = "legacy", config = function() require('fidget').setup() end },
 }
