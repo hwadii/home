@@ -156,7 +156,7 @@ lspconfig.omnisharp.setup({
       range = true,
     }
   end,
-  cmd = { 'dotnet', '/home/wadii/.local/omnisharp/OmniSharp.dll' },
+  cmd = { 'dotnet', vim.fn.expand('$HOME/.local/omnisharp/OmniSharp.dll') },
   enable_editorconfig_support = true,
   enable_ms_build_load_projects_on_demand = false,
   organize_imports_on_format = true,
