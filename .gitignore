@@ -1,5 +1,10 @@
 bundle
-config/nvim/lua/packer_compiled.lua
-config/nvim/lazy-lock.json
-config/nvim/spell/
+lazy-lock.json
 .zcompdump
+/config/.config
+/config/nvim/spell/
+/config/emacs/.last-package-update-day
+/config/emacs/elpa/
+/config/emacs/transient/
+/config/emacs/savehist
+/config/emacs/projects
