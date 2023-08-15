@@ -56,6 +56,10 @@ map('n', '<Leader>B', various.remove_bomb)
 map('n', 'gJ', treesj.join)
 map('n', 'gS', treesj.split)
 
+-- formatter.nvim
+map('n', '<leader>f', '<cmd>Format<cr>')
+map('n', '<leader>F', '<cmd>FormatWrite<cr>')
+
 -- custom commands
 vim.api.nvim_create_user_command('Gpf', 'Git! push --force-with-lease', {})
 vim.api.nvim_create_user_command('Gpff', 'Git! push --force', {})

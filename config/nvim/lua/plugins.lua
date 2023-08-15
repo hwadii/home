@@ -27,17 +27,14 @@ return {
   },
   {
     'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
+    opts = {},
+    lazy = false
   },
   {
     'uga-rosa/ccc.nvim',
-    config = function()
-      require('ccc').setup({
-        empty_point_bg = false,
-      })
-    end,
+    opts = {
+      empty_point_bg = false,
+    },
   },
   { 'hrsh7th/nvim-cmp' },
   {
@@ -120,22 +117,29 @@ return {
       'nvim-lua/plenary.nvim',
     }
   },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
-  { 'nvim-telescope/telescope-ui-select.nvim' },
-  'jose-elias-alvarez/null-ls.nvim',
   {
-    'jose-elias-alvarez/typescript.nvim',
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+  },
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+  'Hoffs/omnisharp-extended-lsp.nvim',
+  {
+    'mhartington/formatter.nvim',
     config = function()
-      require('typescript').setup({})
+      require('formatter').setup({
+	filetype = {
+          ['*'] = require('formatter.filetypes.any').remove_trailing_whitespace,
+          sql = require('formatter.filetypes.sql').pgformat,
+	}
+      })
     end
   },
-  'Hoffs/omnisharp-extended-lsp.nvim',
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'nvim-treesitter/nvim-treesitter-refactor',
   'nvim-treesitter/nvim-treesitter-textobjects',
   'nvim-treesitter/playground',
   {
-    "nvim-telescope/telescope-file-browser.nvim",
+    'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
   {

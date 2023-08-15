@@ -6,7 +6,6 @@ _G.wadii = {
   maps = require('wadii.maps'),
   completion = require('wadii.completion'),
   various = require('wadii.various'),
-  format = require('wadii.format'),
   filetype = require('wadii.filetype')
 }
 

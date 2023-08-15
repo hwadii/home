@@ -1,6 +1,4 @@
 local lspconfig = require('lspconfig')
-local null_ls = require('null-ls')
-local formatters = require('wadii.format')
 local telescope = require('telescope.builtin')
 local themes = require('telescope.themes')
 local navic = require('nvim-navic')
@@ -51,7 +49,7 @@ local custom_attach = function(client, bufnr)
   map('n', '<localleader>d', vim.diagnostic.get)
   map('n', '<localleader>i', vim.diagnostic.open_float)
 
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function() vim.lsp.buf.format { async = true } end,
+  vim.api.nvim_buf_create_user_command(bufnr, 'FormatLsp', function() vim.lsp.buf.format { async = true } end,
     { desc = 'Format current buffer with LSP' })
 
   if client.server_capabilities.documentHighlightProvider then
@@ -70,18 +68,6 @@ local custom_attach = function(client, bufnr)
   end
   navic.attach(client, bufnr)
 end
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
-    require('typescript.extensions.null-ls.code-actions'),
-    formatters.sqlfmt,
-  },
-  handlers = handlers,
-  on_attach = custom_attach,
-})
 
 lspconfig.tsserver.setup({
   init_options = {
