@@ -5,3 +5,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('yank_post_group', { clear = true }),
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
+  callback = require('wadii.statusline').define,
+  group = vim.api.nvim_create_augroup('statusline', { clear = true })
+})

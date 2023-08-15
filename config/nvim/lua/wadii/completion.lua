@@ -5,7 +5,6 @@ local pumvisible = vim.fn.pumvisible
 local replace_termcodes = function(key)
   return vim.api.nvim_replace_termcodes(key, true, true, true)
 end
-local autopairs = require('nvim-autopairs.completion.cmp')
 
 cmp.setup {
   snippet = {
@@ -49,5 +48,3 @@ cmp.setup {
       { name = "path" },
     }),
 }
-
-cmp.event:on('confirm_done', autopairs.on_confirm_done())

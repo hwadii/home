@@ -25,18 +25,20 @@ return {
     opts = {
       diagnostics = {
         underline = true,
+        signs = false,
         update_in_insert = false,
         virtual_text = {
           prefix = '■',
           spacing = 4,
-          source = "if_many",
+          source = 'if_many',
         },
         severity_sort = true,
       },
       capabilities = {},
     },
-    config = function()
+    config = function(_, opts)
       require('wadii.lsp')
+      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
       vim.fn.sign_define('DiagnosticSignError', { text = '×', texthl = 'DiagnosticSignError' })
       vim.fn.sign_define('DiagnosticSignWarn',  { text = '!', texthl = 'DiagnosticSignWarn' })
       vim.fn.sign_define('DiagnosticSignHint',  { text = 'i', texthl = 'DiagnosticSignHint' })
@@ -47,8 +49,7 @@ return {
   {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
-    opts = {},
+    event = 'UIEnter',
   },
   {
     'numToStr/Comment.nvim',
@@ -152,6 +153,30 @@ return {
       'nvim-lua/plenary.nvim',
     },
     cmd = 'Telescope',
+    keys = {
+      { '<C-p>', '<cmd>Telescope find_files<cr>', { mode = 'n' } },
+      { '<Leader>sf', '<cmd>Telescope find_files<cr>', { mode = 'n' } },
+      { '<leader>:', '<cmd>Telescope command_history<cr>' },
+      { '<Leader>?', '<cmd>Telescope builtin<cr>', { mode = 'n' } },
+      { '<Leader>/', '<cmd>Telescope live_grep<cr>', { mode = 'n' } },
+      { '<localleader><localleader>', '<cmd>Telescope buffers<cr>', { mode = 'n' } },
+      { '<leader>sH', '<cmd>Telescope highlights<cr>' },
+      { '<Leader>s?', '<cmd>Telescope oldfiles<cr>', { mode = 'n' } },
+      { '<Leader>sc', '<cmd>Telescope git_commits<cr>', { mode = 'n' } },
+      { '<Leader>se', '<cmd>Telescope resume<cr>', { mode = 'n' } },
+      { '<Leader>s"', '<cmd>Telescope registers<cr>', { mode = 'n' } },
+      { '<Leader>sd', '<cmd>Telescope diagnostics<cr>', { mode = 'n' } },
+      { '<C-s>', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { mode = 'n' } },
+      {
+        '<Leader>s-',
+        function() require('telescope').extensions.file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end,
+      },
+      { '<Leader>sw', function() require('telescope.builtin').grep_string({ search = vim.fn.input('Grep For > '), word_match = '-w' }) end },
+      { '<Leader>sW', function() require('telescope.builtin').grep_string({ word_match = '-w' }) end, mode = 'v' },
+    },
+    config = function()
+      require('wadii.telescope')
+    end
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -173,7 +198,11 @@ return {
         }
       })
     end,
-    event = 'VeryLazy',
+    keys = {
+      { '<leader>f', '<cmd>Format<cr>' },
+      { '<leader>F', '<cmd>FormatWrite<cr>' },
+    },
+    cmd = { 'Format', 'FormatWrite' },
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -211,13 +240,30 @@ return {
     event = 'VeryLazy',
     opts = {},
   },
-  { 'dstein64/nvim-scrollview', event = 'UIEnter' },
+  {
+    'dstein64/nvim-scrollview',
+    event = 'UIEnter',
+    opts = {
+      current_only = true,
+      winblend = 40,
+      signs_on_startup = { 'diagnostics', 'search', 'spell' }
+    }
+  },
   { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' } },
   { 'tpope/vim-unimpaired', keys = { '[', ']' }, event = 'VeryLazy' },
   { 'tpope/vim-sleuth', event = 'VeryLazy' },
   {
     'tpope/vim-fugitive',
     cmd = { 'Git', 'GBrowse' },
+    keys = {
+      { '<Leader>gs', '<cmd>Git<cr>', mode = 'n' },
+      { '<Leader>gc', '<cmd>Git commit<cr>', mode = 'n' },
+      { '<Leader>gp', '<cmd>Git! push<cr>', mode = 'n' },
+      { '<Leader>gl', '<cmd>Git log<cr>', mode = 'n' },
+      { '<Leader>gb', '<cmd>Git blame<cr>', mode = 'n' },
+      { '<Leader>ga', '<cmd>Git branch<cr>', mode = 'n' },
+      { '<Leader>gr', '<cmd>Gr<cr>', { silent = true, mode = 'n' } },
+    },
     dependencies = 'tpope/vim-rhubarb',
   },
   { 'tpope/vim-rsi', event = 'InsertEnter' },

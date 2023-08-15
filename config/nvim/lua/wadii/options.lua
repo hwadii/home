@@ -61,11 +61,3 @@ vim.opt.winminheight = 0
 vim.opt.foldtext = 'v:lua.wadii.foldtext()'
 vim.opt.grepprg = 'rg --vimgrep --no-heading'
 vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-
-if vim.g.colors_name == 'zenbones' then
-  local zen = require('zenbones')
-  vim.api.nvim_set_hl(0, 'User1', { fg = tostring(zen.StatusLine.fg), bg = tostring(zen.StatusLine.bg), bold = true })
-  vim.api.nvim_set_hl(0, 'User2', { fg = tostring(zen.StatusLineNC.fg), bg = tostring(zen.StatusLineNC.bg), italic = true, reverse = true })
-  vim.api.nvim_set_hl(0, 'MsgSeparator', { link = 'VertSplit' })
-end
-
