@@ -246,7 +246,7 @@ return {
     opts = {
       current_only = true,
       winblend = 40,
-      signs_on_startup = { 'diagnostics', 'search', 'spell' }
+      signs_on_startup = { 'diagnostics', 'search', 'spell', 'marks' }
     }
   },
   { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' } },
