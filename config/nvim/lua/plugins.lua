@@ -266,7 +266,7 @@ return {
     },
     dependencies = 'tpope/vim-rhubarb',
   },
-  { 'tpope/vim-rsi', event = 'InsertEnter' },
+  { 'tpope/vim-rsi', event = { 'InsertEnter', 'CmdLineEnter' } },
   { 'tpope/vim-eunuch', event = 'CmdLineEnter' },
   { 'lewis6991/satellite.nvim', opts = {}, enabled = false },
   { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
@@ -274,7 +274,7 @@ return {
   {
     'rktjmp/paperplanes.nvim',
     opts = {
-      provider = '0x0.st',
+      provider = 'paste.rs',
     },
     cmd = 'PP',
   },
