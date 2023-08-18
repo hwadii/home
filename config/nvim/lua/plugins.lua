@@ -72,14 +72,17 @@ return {
   },
   {
     'hrsh7th/nvim-cmp',
-    event = 'BufReadPre',
+    event = 'InsertEnter',
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'dcampos/cmp-snippy',
       'hrsh7th/cmp-nvim-lsp-signature-help',
-    }
+    },
+    config = function()
+      require('wadii.completion')
+    end
   },
   {
     'dcampos/nvim-snippy',
