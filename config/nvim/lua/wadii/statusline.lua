@@ -13,7 +13,9 @@ statusline.branch = function()
   return vim.b.gitsigns_head
 end
 
-statusline.navic = require('nvim-navic').get_location
+statusline.navic = function()
+  return require('nvim-navic').get_location()
+end
 
 statusline.line_and_column = function()
   local rhs = ''

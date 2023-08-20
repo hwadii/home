@@ -49,7 +49,6 @@ return {
   {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
-    event = 'UIEnter',
   },
   {
     'numToStr/Comment.nvim',
@@ -77,12 +76,60 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-emoji',
       'dcampos/cmp-snippy',
       'hrsh7th/cmp-nvim-lsp-signature-help',
     },
-    config = function()
-      require('wadii.completion')
-    end
+    opts = function(_, opts)
+      local cmp = require('cmp')
+
+      local feedkeys = vim.fn.feedkeys
+      local pumvisible = vim.fn.pumvisible
+      local replace_termcodes = function(key)
+        return vim.api.nvim_replace_termcodes(key, true, true, true)
+      end
+      opts.snippet = {
+        expand = function(args)
+          require('snippy').expand_snippet(args.body)
+        end
+      }
+      opts.mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<Tab>"] = function(fallback)
+          if pumvisible() == 1 then
+            feedkeys(replace_termcodes("<C-n>"), "n")
+          elseif cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+        ["<S-Tab>"] = function(fallback)
+          if pumvisible() == 1 then
+            feedkeys(replace_termcodes("<C-p>"), "n")
+          elseif cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
+      })
+      opts.window = {
+        documentation = cmp.config.window.bordered(),
+      }
+      opts.sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "snippy" },
+      }, {
+          { name = "buffer", max_item_count = 10 },
+          { name = "path" },
+          { name = "emoji" },
+        })
+    end,
   },
   {
     'dcampos/nvim-snippy',
@@ -154,6 +201,8 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+      'nvim-telescope/telescope-file-browser.nvim'
     },
     cmd = 'Telescope',
     keys = {
@@ -177,18 +226,86 @@ return {
       { '<Leader>sw', function() require('telescope.builtin').grep_string({ search = vim.fn.input('Grep For > '), word_match = '-w' }) end },
       { '<Leader>sW', function() require('telescope.builtin').grep_string({ word_match = '-w' }) end, mode = 'v' },
     },
-    config = function()
-      require('wadii.telescope')
-    end
+    opts = function(_, opts)
+      local telescope = require('telescope')
+      local actions = require('telescope.actions')
+      local themes = require('telescope.themes')
+      local action_state = require('telescope.actions.state')
+      local action_layout = require('telescope.actions.layout')
+      opts.defaults = {
+        layout_strategy = 'flex',
+        path_display = { 'shorten' },
+        mappings = {
+          i = {
+            ['<C-j>'] = actions.move_selection_next,
+            ['<C-k>'] = actions.move_selection_previous,
+            ['<C-q>'] = actions.send_to_qflist,
+            ['<a-q>'] = actions.send_selected_to_qflist,
+            ['<esc>'] = actions.close,
+            ['<C-[>'] = actions.close,
+            ['<C-c>'] = actions.close,
+            ['<M-p>'] = action_layout.toggle_preview
+          },
+          n = {
+            ['<esc>'] = actions.close,
+            ["<M-p>"] = action_layout.toggle_preview
+          },
+        },
+      }
+      opts.pickers = {
+          find_files = {
+            theme = 'ivy',
+            find_command = { 'fd', '--hidden', '-E.git', '-tf' },
+            path_display = { 'truncate' },
+            previewer = false,
+          },
+          fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = 'smart_case',        -- or 'ignore_case' or 'respect_case'
+          },
+          lsp_references = { theme = 'dropdown' },
+          lsp_definitions = { theme = 'dropdown' },
+          lsp_implementations = { theme = 'dropdown' },
+          buffers = {
+            ignore_current_buffer = true,
+            sort_mru = true,
+            theme = 'dropdown',
+            previewer = false,
+            layout_config = {
+              height = 20,
+            },
+            mappings = {
+              i = {
+                ['<c-d>'] = actions.delete_buffer,
+                ['<a-d>'] = function(prompt_bufnr)
+                  local current_picker = action_state.get_current_picker(prompt_bufnr)
+                  current_picker:delete_selection(function(selection)
+                    vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+                  end)
+                end,
+              }
+            }
+          },
+        }
+      opts.extensions = {
+        ['ui-select'] = {
+          themes.get_cursor()
+        },
+        file_browser = {
+          hijack_netrw = true,
+          grouped = true,
+        }
+      }
+      telescope.load_extension('fzf')
+      telescope.load_extension('ui-select')
+      telescope.load_extension('file_browser')
+    end,
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-  },
-  { 'nvim-telescope/telescope-ui-select.nvim' },
-  {
-    'nvim-telescope/telescope-file-browser.nvim',
-    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
   { 'Hoffs/omnisharp-extended-lsp.nvim', ft = 'csharp' },
   {
@@ -236,7 +353,10 @@ return {
       },
     },
   },
-  { 'chrisbra/unicode.vim', event = 'BufReadPre' },
+  {
+    'chrisbra/unicode.vim',
+    cmd = { 'UnicodeSearch', 'Digraphs' },
+  },
   { 'preservim/vim-markdown', ft = 'markdown' },
   {
     'kylechui/nvim-surround',
@@ -295,5 +415,14 @@ return {
     cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
     config = true,
     keys = { { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'DiffView' } },
+  },
+  {
+    'simrat39/symbols-outline.nvim',
+    cmd = 'SymbolsOutline',
+    keys = { { '<leader>cs', '<cmd>SymbolsOutline<cr>', desc = 'Symbols Outline' } },
+    opts = {
+      -- add your options that should be passed to the setup() function here
+      position = 'left',
+    },
   },
 }
