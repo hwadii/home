@@ -64,4 +64,6 @@
   gpgsign = true
 [diff]
   colorMoved = default
+[jump]
+  grepCmd = rg --vimgrep
 # vim: set ft=gitconfig

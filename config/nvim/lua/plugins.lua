@@ -294,7 +294,7 @@ return {
           themes.get_cursor()
         },
         file_browser = {
-          hijack_netrw = true,
+          hijack_netrw = false,
           grouped = true,
         }
       }
@@ -420,9 +420,6 @@ return {
     'simrat39/symbols-outline.nvim',
     cmd = 'SymbolsOutline',
     keys = { { '<leader>cs', '<cmd>SymbolsOutline<cr>', desc = 'Symbols Outline' } },
-    opts = {
-      -- add your options that should be passed to the setup() function here
-      position = 'left',
-    },
+    opts = { position = 'left' },
   },
 }
