@@ -43,8 +43,9 @@
 [delta]
   navigate = true
   light = false
-  side-by-side = true
+  side-by-side = false
   syntax-theme = ansi
+  hyperlinks = true
 [merge]
   conflictstyle = diff3
   tool = nvim

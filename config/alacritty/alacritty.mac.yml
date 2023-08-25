@@ -1,4 +1,9 @@
-shell: /opt/homebrew/bin/fish
+shell:
+  program: /opt/homebrew/bin/tmux
+  args:
+    - new-session
+    - -ADs
+    - x
 
 window:
   decorations_theme_variant: Dark
@@ -26,8 +31,6 @@ mouse:
   hide_when_typing: true
 
 hints:
-  alphabet: "jfkdls;ahgurieowpq"
-
   enabled:
     - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
               [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
