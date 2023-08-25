@@ -369,7 +369,8 @@ return {
     opts = {
       current_only = true,
       winblend = 40,
-      signs_on_startup = { 'diagnostics', 'search', 'spell', 'marks' }
+      signs_on_startup = { 'diagnostics', 'search', 'spell', 'marks', 'conflicts' },
+      excluded_filetypes = { 'fugitiveblame' }
     }
   },
   { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' } },
