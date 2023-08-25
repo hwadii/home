@@ -44,6 +44,7 @@
   navigate = true
   light = false
   side-by-side = true
+  syntax-theme = ansi
 [merge]
   conflictstyle = diff3
   tool = nvim
