@@ -333,11 +333,6 @@ return {
     }
   },
   {
-    'nvim-treesitter/playground',
-    event = 'VeryLazy',
-    cmd = 'TSPlaygroundToggle',
-  },
-  {
     'stevearc/oil.nvim',
     cmd = 'Oil',
     keys = {
