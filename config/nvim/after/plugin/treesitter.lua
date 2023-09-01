@@ -3,11 +3,13 @@ require 'nvim-treesitter.configs'.setup {
     "c", "cpp", "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
     "rust", "css", "dot", "json", "python", "yaml", "vue", "org", "markdown",
     "markdown_inline", "html", "sql", "c_sharp", "fish", "diff", "git_rebase",
-    "gitignore", "gitattributes", "vimdoc", "nix", "comment", "hare", "hcl", "groovy"
+    "gitignore", "gitattributes", "vimdoc", "nix", "comment", "hare", "hcl", "groovy",
+    "csv", "racket"
   },
   textobjects = {
     select = {
       enable = true,
+      lookahead = true,
       keymaps = {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",

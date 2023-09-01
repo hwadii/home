@@ -31,20 +31,6 @@ alias p python3
 alias map "xargs -n1"
 alias md "mkdir -p"
 
-# npm
-alias ni "npm install"
-alias nin "npm init"
-alias nu "npm update"
-alias nis "npm i -S"
-alias nid "npm i -D"
-alias nig "npm i -g"
-alias nr "npm run"
-alias nrs "npm run start"
-alias nrss "npm run start:staging"
-alias nrb "npm run build"
-alias nrt "npm run test"
-alias nrc "npm run commit"
-
 alias mp3 "youtube-dl -x --embed-thumbnail --audio-format mp3"
 
 alias ytdl yt-dlp
