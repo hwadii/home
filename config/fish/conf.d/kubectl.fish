@@ -11,3 +11,4 @@ alias kgswide "kgs -o wide"
 alias kgsw "kgs --watch"
 
 alias keti "tsh kubectl exec -it"
+alias ketic "tsh kubectl exec -n cardiologs -it"

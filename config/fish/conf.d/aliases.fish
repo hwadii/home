@@ -9,16 +9,16 @@ alias kameto "mpv https://www.twitch.tv/kamet0 --quiet >/dev/null"
 alias dragon-x11 "GDK_BACKEND=x11 dragon"
 
 # list
-alias ls "exa --git --group-directories-first"
+alias ls "eza --git --group-directories-first"
 alias l ls
-alias ll "exa --git --group-directories-first -l"
-alias lll "exa --git --group-directories-first -l --icons -h"
-alias la "exa --git --group-directories-first -l -a -I.DS_Store"
-alias lh "exa --git --group-directories-first -l -a -H -I.DS_Store"
-alias lm "exa --git --group-directories-first -l -s=modified"
-alias lc "exa --git --group-directories-first --created -s=created"
-alias lt "exa --git --group-directories-first --tree --git-ignore"
-alias lr "exa --git --group-directories-first -R --git-ignore"
+alias ll "eza --git --group-directories-first -l"
+alias lll "eza --git --group-directories-first -l --icons -h"
+alias la "eza --git --group-directories-first -l -a -I.DS_Store"
+alias lh "eza --git --group-directories-first -l -a -H -I.DS_Store"
+alias lm "eza --git --group-directories-first -l -s=modified"
+alias lc "eza --git --group-directories-first --created -s=created"
+alias lt "eza --git --group-directories-first --tree --git-ignore"
+alias lr "eza --git --group-directories-first -R --git-ignore"
 
 # shortcuts to edit various files
 alias vim nvim
