@@ -1,7 +1,7 @@
 [core]
   editor = $EDITOR
   excludesfile = ~/.config/git/ignore
-  pager = less
+  pager = delta
 [user]
   name = Wadii Hajji
   email = wadii@cardiologs.com
