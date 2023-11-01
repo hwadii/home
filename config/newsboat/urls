@@ -49,7 +49,6 @@ https://hacks.mozilla.org/feed/ "Firefox" "Dev"
 https://www.possiblerust.com/feed.xml "Rust"
 https://ianthehenry.com/feed.xml "Nix"
 https://bicompact.space/feeds/all.rss.xml "Blog"
-https://armaanb.net/feed
 https://work.lisk.in/atom.xml
 https://cosine.blue/rss.xml "Blog"
 https://notes.yukiisbo.red/feed.xml "Blog"
@@ -67,7 +66,6 @@ https://briancallahan.net/blog/feed.xml "Blog"
 https://typesanitizer.com/blog/rss.xml "Blog"
 https://microservices.io/feed.xml "Blog"
 https://hirrolot.github.io/rss.xml "Blog"
-https://leahneukirchen.org/blog/index.atom "Blog"
 https://0pointer.net/blog/index.atom "Blog"
 https://benjamincongdon.me/blog/feed.xml "Blog"
 https://tomcritchlow.com/feed "Blog"
@@ -133,6 +131,7 @@ https://www.alexmolas.com/feed.xml "Blog"
 https://rachit.pl/%20post/atom.xml "Blog"
 https://matklad.github.io/feed.xml "Blog"
 https://wozniak.ca/blog/atom.xml "Blog"
+https://www.stilldrinking.org/rss/feed.xml "Blog"
 
 http://c2.com/cgi/wikiRss?min=0&days=.2 "Wiki"
 
