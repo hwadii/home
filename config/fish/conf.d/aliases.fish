@@ -23,7 +23,6 @@ alias lr "eza --git --group-directories-first -R --git-ignore"
 # shortcuts to edit various files
 alias vim nvim
 alias vi nvim
-alias hx helix
 
 # qol
 alias wholistens "netstat -tulpn | rg LISTEN"
