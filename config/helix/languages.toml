@@ -1,7 +1,11 @@
 [[language]]
 name = "ruby"
-config = { "diagnostics" = true }
+language-servers = [{ name = "solargraph" }]
 rulers = [140]
+
+[[language]]
+name = "c-sharp"
+rulers = []
 
 [[language]]
 name = "typescript"
