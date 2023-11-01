@@ -274,7 +274,9 @@
         eglot-autoshutdown t
         eglot-sync-connect 1
         eglot-connect-timeout 10
-        eglot-stay-out-of '(flymake)))
+        eglot-stay-out-of '(flymake)
+        eglot-send-changes-idle-time 0.1))
+  (fset #'jsonrpc--log-event #'ignore)
 (use-package flycheck
   :hook
   (prog-mode . flycheck-mode)
