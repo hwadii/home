@@ -60,7 +60,6 @@ end
 
 statusline.right_hand_side = function()
   local all_components = {
-    statusline.navic(),
     statusline.gitstatus(),
     statusline.branch(),
     statusline.line_and_column(),

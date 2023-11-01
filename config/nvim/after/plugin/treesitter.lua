@@ -4,7 +4,7 @@ require 'nvim-treesitter.configs'.setup {
     "rust", "css", "dot", "json", "python", "yaml", "vue", "org", "markdown",
     "markdown_inline", "html", "sql", "c_sharp", "fish", "diff", "git_rebase",
     "gitignore", "gitattributes", "vimdoc", "nix", "comment", "hare", "hcl", "groovy",
-    "csv", "racket"
+    "csv", "racket", "terraform"
   },
   textobjects = {
     select = {
@@ -101,6 +101,7 @@ require 'nvim-treesitter.configs'.setup {
     },
   },
   indent = {
+    disable = { "ruby" },
     enable = true,
   },
 }
