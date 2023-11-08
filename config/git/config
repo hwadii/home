@@ -2,6 +2,7 @@
   editor = $EDITOR
   excludesfile = ~/.config/git/ignore
   pager = delta
+  attributesFile = ~/.config/git/attributes
 [user]
   name = Wadii Hajji
   email = wadii@cardiologs.com

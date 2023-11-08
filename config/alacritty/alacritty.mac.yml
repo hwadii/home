@@ -12,6 +12,7 @@ window:
 font:
   normal:
     family: BerkeleyMono Nerd Font
+    style: Regular
 
   size: 15
 
