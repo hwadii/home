@@ -45,7 +45,7 @@ return {
       vim.fn.sign_define('DiagnosticSignInfo',  { text = 'H', texthl = 'DiagnosticInfo' })
     end
   },
-  { 'kg8m/vim-simple-align', cmd = 'SimpleAlign' },
+  { 'godlygeek/tabular', cmd = 'Tabularize' },
   {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
@@ -308,6 +308,7 @@ return {
     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
   },
   { 'Hoffs/omnisharp-extended-lsp.nvim', ft = 'csharp' },
+  { 'aklt/plantuml-syntax', ft = 'plantuml' },
   {
     'mhartington/formatter.nvim',
     config = function()
