@@ -31,7 +31,6 @@ require('lazy').setup('plugins', {
         'tarPlugin',
         'zip',
         'zipPlugin',
-        'netrw',
         'tohtml',
         'tutor',
         'getscript',
@@ -58,6 +57,7 @@ vim.g.vim_markdown_emphasis_multiline = 0
 vim.g.vim_markdown_conceal = 0
 vim.g.vim_markdown_conceal_code_blocks = 0
 vim.g.vim_markdown_frontmatter = 1
+vim.g.vim_markdown_borderless_table = 0
 vim.g.ledger_align_at = 52
 vim.g.slime_target = 'tmux'
 vim.g.slime_paste_file = '/tmp/.slime_paste'
