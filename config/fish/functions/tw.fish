@@ -1,3 +1,3 @@
 function tw
-  mpv https://twitch.tv/$argv --quiet
+    mpv https://twitch.tv/$argv --quiet
 end
