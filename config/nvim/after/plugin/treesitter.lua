@@ -66,10 +66,6 @@ require 'nvim-treesitter.configs'.setup {
   fold = {
     enable = true,
   },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
   refactor = {
     highlight_definitions = { enable = false },
     highlight_current_scope = { enable = false },

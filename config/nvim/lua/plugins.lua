@@ -61,6 +61,12 @@ return {
     dependencies = 'JoosepAlviste/nvim-ts-context-commentstring',
   },
   {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    opts = {
+      enable_autocmd = false,
+    }
+  },
+  {
     'uga-rosa/ccc.nvim',
     opts = { empty_point_bg = false },
     cmd = { 'CccHighlighterToggle', 'CccPick' },

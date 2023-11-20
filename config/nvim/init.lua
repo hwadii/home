@@ -74,3 +74,4 @@ vim.g.loaded_netrwPlugin = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
+vim.g.skip_ts_context_commentstring_module = true
