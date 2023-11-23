@@ -229,8 +229,12 @@ return {
         '<Leader>s-',
         function() require('telescope').extensions.file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end,
       },
-      { '<Leader>sw', function() require('telescope.builtin').grep_string({ search = vim.fn.input('Grep For > '), word_match = '-w' }) end },
-      { '<Leader>sW', function() require('telescope.builtin').grep_string({ word_match = '-w' }) end, mode = 'v' },
+      { '<Leader>sw', function()
+        vim.ui.input({ prompt = 'Grep For > ' }, function(input)
+          require('telescope.builtin').grep_string({ search = input, word_match = '-w' })
+        end)
+      end },
+      { '<Leader>sW', function() require('telescope.builtin').grep_string({ word_match = '-w' }) end },
     },
     opts = function(_, opts)
       local telescope = require('telescope')

@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
 local telescope = require('telescope.builtin')
 local themes = require('telescope.themes')
-local navic = require('nvim-navic')
 
 local handlers = {
   ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 }),
@@ -59,7 +58,6 @@ local custom_attach = function(client, bufnr)
       callback = vim.lsp.buf.clear_references,
     })
   end
-  navic.attach(client, bufnr)
 end
 
 local ngserver_cmd = function()
