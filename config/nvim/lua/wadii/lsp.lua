@@ -181,11 +181,6 @@ lspconfig.ruby_ls.setup({
     }
   }
 })
-lspconfig.rubocop.setup({
-  on_attach = custom_attach,
-  enabled = false,
-  handlers = handlers,
-})
 
 local servers = {
   'solargraph',
