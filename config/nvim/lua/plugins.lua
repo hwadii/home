@@ -40,9 +40,9 @@ return {
       require('wadii.lsp')
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
       vim.fn.sign_define('DiagnosticSignError', { text = '×', texthl = 'DiagnosticSignError' })
-      vim.fn.sign_define('DiagnosticSignWarn',  { text = '!', texthl = 'DiagnosticSignWarn' })
-      vim.fn.sign_define('DiagnosticSignHint',  { text = 'i', texthl = 'DiagnosticSignHint' })
-      vim.fn.sign_define('DiagnosticSignInfo',  { text = 'H', texthl = 'DiagnosticInfo' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = '!', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = 'i', texthl = 'DiagnosticSignHint' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = 'H', texthl = 'DiagnosticInfo' })
     end
   },
   { 'godlygeek/tabular', cmd = 'Tabularize' },
@@ -131,10 +131,10 @@ return {
         { name = "nvim_lsp" },
         { name = "snippy" },
       }, {
-          { name = "buffer", max_item_count = 10 },
-          { name = "path" },
-          { name = "emoji" },
-        })
+        { name = "buffer", max_item_count = 10 },
+        { name = "path" },
+        { name = "emoji" },
+      })
     end,
   },
   {
@@ -226,8 +226,7 @@ return {
       { '<Leader>sd', '<cmd>Telescope diagnostics<cr>', { mode = 'n' } },
       { '<C-s>', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { mode = 'n' } },
       {
-        '<Leader>s-',
-        function() require('telescope').extensions.file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end,
+        '<Leader>s-', function() require('telescope').extensions.file_browser.file_browser({ path = '%:p:h', select_buffer = true }) end,
       },
       { '<Leader>sw', function()
         vim.ui.input({ prompt = 'Grep For > ' }, function(input)
@@ -236,82 +235,87 @@ return {
       end },
       { '<Leader>sW', function() require('telescope.builtin').grep_string({ word_match = '-w' }) end },
     },
-    opts = function(_, opts)
+    config = function()
       local telescope = require('telescope')
       local actions = require('telescope.actions')
       local themes = require('telescope.themes')
       local action_state = require('telescope.actions.state')
       local action_layout = require('telescope.actions.layout')
-      opts.defaults = {
-        layout_strategy = 'flex',
-        path_display = { 'shorten' },
-        mappings = {
-          i = {
-            ['<C-j>'] = actions.move_selection_next,
-            ['<C-k>'] = actions.move_selection_previous,
-            ['<C-q>'] = actions.send_to_qflist,
-            ['<a-q>'] = actions.send_selected_to_qflist,
-            ['<esc>'] = actions.close,
-            ['<C-[>'] = actions.close,
-            ['<C-c>'] = actions.close,
-            ['<M-p>'] = action_layout.toggle_preview
-          },
-          n = {
-            ['<esc>'] = actions.close,
-            ["<M-p>"] = action_layout.toggle_preview
-          },
-        },
-      }
-      opts.pickers = {
-        find_files = {
-          theme = 'ivy',
-          find_command = { 'fd', '--hidden', '-E.git', '-tf' },
-          path_display = { 'truncate' },
-          previewer = false,
-        },
-        fzf = {
-          fuzzy = true,                    -- false will only do exact matching
-          override_generic_sorter = true,  -- override the generic sorter
-          override_file_sorter = true,     -- override the file sorter
-          case_mode = 'smart_case',        -- or 'ignore_case' or 'respect_case'
-        },
-        lsp_references = { theme = 'dropdown' },
-        lsp_definitions = { theme = 'dropdown' },
-        lsp_implementations = { theme = 'dropdown' },
-        buffers = {
-          ignore_current_buffer = true,
-          sort_mru = true,
-          theme = 'dropdown',
-          previewer = false,
-          layout_config = {
-            height = 20,
-          },
+
+      telescope.setup({
+        defaults = {
+          layout_strategy = 'flex',
+          path_display = { 'shorten' },
           mappings = {
             i = {
-              ['<c-d>'] = actions.delete_buffer,
-              ['<a-d>'] = function(prompt_bufnr)
-                local current_picker = action_state.get_current_picker(prompt_bufnr)
-                current_picker:delete_selection(function(selection)
-                  vim.api.nvim_buf_delete(selection.bufnr, { force = true })
-                end)
-              end,
+              ['<C-j>'] = actions.move_selection_next,
+              ['<C-k>'] = actions.move_selection_previous,
+              ['<C-q>'] = actions.send_to_qflist,
+              ['<a-q>'] = actions.send_selected_to_qflist,
+              ['<esc>'] = actions.close,
+              ['<C-[>'] = actions.close,
+              ['<C-c>'] = actions.close,
+              ['<M-p>'] = action_layout.toggle_preview
+            },
+            n = {
+              ['<esc>'] = actions.close,
+              ["<M-p>"] = action_layout.toggle_preview
+            },
+          },
+        },
+        pickers = {
+          find_files = {
+            theme = 'ivy',
+            find_command = { 'fd', '--hidden', '-E.git', '-tf' },
+            path_display = { 'truncate' },
+            previewer = false,
+          },
+          fzf = {
+            fuzzy = true,             -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = 'smart_case', -- or 'ignore_case' or 'respect_case'
+          },
+          lsp_references = { theme = 'dropdown' },
+          lsp_definitions = { theme = 'dropdown' },
+          lsp_implementations = { theme = 'dropdown' },
+          lsp_code_actions = { theme = 'cursor' },
+          code_action = { theme = 'cursor' },
+          buffers = {
+            ignore_current_buffer = true,
+            sort_mru = true,
+            theme = 'dropdown',
+            previewer = false,
+            layout_config = {
+              height = 20,
+            },
+            mappings = {
+              i = {
+                ['<c-d>'] = actions.delete_buffer,
+                ['<a-d>'] = function(prompt_bufnr)
+                  local current_picker = action_state.get_current_picker(prompt_bufnr)
+                  current_picker:delete_selection(function(selection)
+                    vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+                  end)
+                end,
+              }
             }
+          },
+        },
+        extensions = {
+          ['ui-select'] = {
+            themes.get_cursor()
+          },
+          file_browser = {
+            hijack_netrw = false,
+            grouped = true,
           }
-        },
-      }
-      opts.extensions = {
-        ['ui-select'] = {
-          themes.get_cursor()
-        },
-        file_browser = {
-          hijack_netrw = false,
-          grouped = true,
         }
-      }
+      })
       telescope.load_extension('fzf')
       telescope.load_extension('ui-select')
       telescope.load_extension('file_browser')
-    end,
+    end
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
