@@ -301,6 +301,13 @@ return {
               }
             }
           },
+          marks = {
+            mappings = {
+              i = {
+                ['<a-d>'] = actions.delete_mark,
+              }
+            }
+          }
         },
         extensions = {
           ['ui-select'] = {
