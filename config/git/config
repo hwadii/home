@@ -47,14 +47,9 @@
   side-by-side = false
   syntax-theme = ansi
   hyperlinks = true
+  paging = always
 [merge]
   conflictstyle = diff3
-  tool = nvim
-[mergetool "nvim"]
-  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
-[mergetool]
-  prompt = false
-  keepBackup = false
 [init]
   defaultBranch = main
 [safe]
@@ -69,4 +64,4 @@
   colorMoved = default
 [jump]
   grepCmd = rg --vimgrep
-# vim: set ft=gitconfig
+# vim: ft=gitconfig
