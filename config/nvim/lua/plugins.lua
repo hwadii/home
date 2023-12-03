@@ -337,6 +337,7 @@ return {
         filetype = {
           ['*'] = require('formatter.filetypes.any').remove_trailing_whitespace,
           sql = require('formatter.filetypes.sql').pgformat,
+          xml = require('formatter.filetypes.xml').xmllint,
         }
       })
     end,
