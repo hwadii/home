@@ -2,4 +2,4 @@
 
 repo=${1:-"front"}
 
-gh label ls --repo CardioLogs/$repo --limit 110 --json name --jq '.[].name' | sort | fzf | awk '{ print $1 }' | pbcopy
+gh label ls --repo CardioLogs/$repo --limit 200 --json name --jq '.[].name' | sort | fzf | awk '{ print $1 }' | tr -d "\n" | pbcopy
