@@ -288,5 +288,3 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec systemd-notify --ready
 exec_always gnome-keyring-daemon --start --components=gpg,ssh,secrets
-
-# vim: set ft=swayconfig
