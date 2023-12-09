@@ -330,6 +330,7 @@ return {
   },
   { 'Hoffs/omnisharp-extended-lsp.nvim', ft = 'csharp' },
   { 'aklt/plantuml-syntax', ft = 'plantuml' },
+  { 'terrastruct/d2-vim', ft = 'd2' },
   {
     'mhartington/formatter.nvim',
     config = function()
