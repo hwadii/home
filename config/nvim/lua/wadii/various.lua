@@ -22,9 +22,11 @@ M.yank_current_path = function(register)
   end
 end
 
-M.remove_bomb = function()
+M.make_unix = function()
+  vim.cmd("set ff=unix")
   vim.opt_local.bomb = true
   vim.opt_local.bomb = false
+  vim.cmd("%s/\r//ge")
 end
 
 return M

@@ -16,5 +16,5 @@ map('t', '<M-[>', '<C-\\><C-n>')
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- various
-map('n', '<Leader>L', various.yank_current_path)
-map('n', '<Leader>B', various.remove_bomb)
+map('n', '<Leader>wp', various.yank_current_path)
+map('n', '<Leader>wu', various.make_unix)
