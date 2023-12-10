@@ -13,3 +13,4 @@ aliases:
     r: repo view --web
     p: pr view --web
     wip: pr list -a hwadii
+version: "1"
