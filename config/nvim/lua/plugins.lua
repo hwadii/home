@@ -395,7 +395,8 @@ return {
       excluded_filetypes = { 'fugitiveblame' }
     }
   },
-  { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' } },
+  { 'github/copilot.vim', cmd = { 'Copilot' } },
+  { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' },
   { 'tpope/vim-unimpaired', keys = { '[', ']' }, event = 'VeryLazy' },
   { 'tpope/vim-sleuth', event = 'VeryLazy' },
   {
