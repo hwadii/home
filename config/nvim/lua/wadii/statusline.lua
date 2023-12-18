@@ -58,9 +58,14 @@ statusline.gitstatus = function()
   return vim.b.gitsigns_status
 end
 
+statusline.fileformat = function()
+  return vim.bo.fileformat
+end
+
 statusline.right_hand_side = function()
   local all_components = {
     statusline.gitstatus(),
+    statusline.fileformat(),
     statusline.branch(),
     statusline.line_and_column(),
   }
