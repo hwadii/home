@@ -125,7 +125,9 @@ return {
         end,
       })
       opts.window = {
-        documentation = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered({
+          winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"
+        }),
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
