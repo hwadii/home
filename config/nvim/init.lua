@@ -51,26 +51,10 @@ require('wadii.options')
 require('wadii.autocmds')
 require('wadii.filetype')
 
-vim.g.vim_markdown_override_foldtext = 0
-vim.g.vim_markdown_no_default_key_mappings = 1
-vim.g.vim_markdown_emphasis_multiline = 0
-vim.g.vim_markdown_conceal = 0
-vim.g.vim_markdown_conceal_code_blocks = 0
-vim.g.vim_markdown_frontmatter = 1
-vim.g.vim_markdown_borderless_table = 0
-vim.g.ledger_align_at = 52
-vim.g.slime_target = 'tmux'
-vim.g.slime_paste_file = '/tmp/.slime_paste'
-vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
-vim.g.slime_dont_ask_default = 1
-vim.g.slime_no_mappings = 1
-vim.g.rsi_no_meta = 1
-vim.g.dirvish_mode = [[ :sort ,^.*[\/], ]]
-vim.g.navic_silence = 1
 vim.g.netrw_banner = 0
 vim.g.loaded_fzf = 1
 vim.g.loaded_python3_provider = 0
-vim.g.loaded_netrwPlugin = 0
+vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0

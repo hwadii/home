@@ -17,8 +17,24 @@ return {
       fast_wrap = {},
     }
   },
-  { 'ledger/vim-ledger', enabled = false },
-  { 'jpalardy/vim-slime', enabled = false },
+  {
+    'ledger/vim-ledger',
+    enabled = false,
+    init = function()
+      vim.g.ledger_align_at = 52
+    end
+  },
+  {
+    'jpalardy/vim-slime',
+    enabled = false,
+    init = function()
+      vim.g.slime_target = 'tmux'
+      vim.g.slime_paste_file = '/tmp/.slime_paste'
+      vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+      vim.g.slime_dont_ask_default = 1
+      vim.g.slime_no_mappings = 1
+    end
+  },
   {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -49,6 +65,10 @@ return {
   {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
+    init = function()
+      vim.g.navic_silence = 1
+    end,
+    enabled = false,
   },
   {
     'numToStr/Comment.nvim',
@@ -57,7 +77,7 @@ return {
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
       })
     end,
-    lazy = false,
+    keys = { "gc" },
     dependencies = 'JoosepAlviste/nvim-ts-context-commentstring',
   },
   {
@@ -131,6 +151,7 @@ return {
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "vim-dadbod-completion" },
         { name = "snippy" },
       }, {
         { name = "buffer", max_item_count = 10 },
@@ -379,7 +400,19 @@ return {
     'chrisbra/unicode.vim',
     cmd = { 'UnicodeSearch', 'Digraphs' },
   },
-  { 'preservim/vim-markdown', ft = 'markdown' },
+  {
+    'preservim/vim-markdown',
+    ft = 'markdown',
+    init = function()
+      vim.g.vim_markdown_override_foldtext = 0
+      vim.g.vim_markdown_no_default_key_mappings = 1
+      vim.g.vim_markdown_emphasis_multiline = 0
+      vim.g.vim_markdown_conceal = 0
+      vim.g.vim_markdown_conceal_code_blocks = 0
+      vim.g.vim_markdown_frontmatter = 1
+      vim.g.vim_markdown_borderless_table = 0
+    end
+  },
   {
     'kylechui/nvim-surround',
     event = 'VeryLazy',
@@ -413,8 +446,30 @@ return {
     },
     dependencies = 'tpope/vim-rhubarb',
   },
-  { 'tpope/vim-rsi', event = { 'InsertEnter', 'CmdLineEnter' } },
+  {
+    'tpope/vim-rsi',
+    event = { 'InsertEnter', 'CmdLineEnter' },
+    init = function()
+      vim.g.rsi_no_meta = 1
+    end
+  },
   { 'tpope/vim-eunuch', event = 'CmdLineEnter' },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
   { 'lewis6991/satellite.nvim', opts = {}, enabled = false },
   { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
   { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
