@@ -3,3 +3,4 @@
 --colors=path:fg:3
 --smart-case
 --type-add=web:*.{html,css,js,ts}*
+--hyperlink-format=default

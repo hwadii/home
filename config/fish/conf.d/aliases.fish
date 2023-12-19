@@ -9,16 +9,16 @@ alias kameto "mpv https://www.twitch.tv/kamet0 --quiet >/dev/null"
 alias dragon-x11 "GDK_BACKEND=x11 dragon"
 
 # list
-alias ls "eza --git --group-directories-first"
+alias ls "eza --git --group-directories-first --hyperlink"
 alias l ls
-alias ll "eza --git --group-directories-first -l"
-alias lll "eza --git --group-directories-first -l --icons -h"
-alias la "eza --git --group-directories-first -l -a -I.DS_Store"
-alias lh "eza --git --group-directories-first -l -a -H -I.DS_Store"
-alias lm "eza --git --group-directories-first -l -s=modified"
-alias lc "eza --git --group-directories-first --created -s=created"
-alias lt "eza --git --group-directories-first --tree --git-ignore"
-alias lr "eza --git --group-directories-first -R --git-ignore"
+alias ll "ls -l"
+alias lll "ls -l --icons -h"
+alias la "ls -l -a -I.DS_Store"
+alias lh "ls -l -a -H -I.DS_Store"
+alias lm "ls -l -s=modified"
+alias lc "ls --created -s=created"
+alias lt "ls --tree --git-ignore"
+alias lr "ls -R --git-ignore"
 
 # shortcuts to edit various files
 alias vim nvim
