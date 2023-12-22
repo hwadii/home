@@ -289,7 +289,7 @@ return {
         pickers = {
           find_files = {
             theme = 'ivy',
-            find_command = { 'fd', '--hidden', '-E.git', '-tf' },
+            find_command = { 'fd', '--hidden', '-tf' },
             path_display = { 'truncate' },
             previewer = false,
           },
