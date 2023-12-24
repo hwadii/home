@@ -1,6 +1,10 @@
---max-columns-preview
---colors=match:fg:4
---colors=path:fg:3
+--colors=match:fg:blue
+--colors=path:fg:yellow
+--colors=line:fg:cyan
+--colors=column:fg:cyan
 --smart-case
+--sort=path
 --type-add=web:*.{html,css,js,ts}*
 --hyperlink-format=default
+--max-columns=300
+--max-columns-preview
