@@ -1,0 +1,45 @@
+import = ["~/.config/alacritty/ploy.toml"]
+
+[font]
+size = 12.25
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "BerkeleyMonoVariable Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[hints.enabled]]
+command = "open"
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+persist = false
+hyperlinks = true
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[[hints.enabled]]
+action = "Copy"
+binding = { key = "U", mods = "Control|Shift" }
+persist = false
+hyperlinks = true
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[mouse]
+hide_when_typing = true
+
+[shell]
+program = "/opt/homebrew/bin/fish"
+args = ["-c", "tmux new-session -ADs x"]
+
+[window]
+decorations_theme_variant = "Dark"
+option_as_alt = "OnlyLeft"
+startup_mode = "Maximized"
