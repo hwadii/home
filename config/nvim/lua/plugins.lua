@@ -108,12 +108,6 @@ return {
     },
     opts = function(_, opts)
       local cmp = require('cmp')
-
-      local feedkeys = vim.fn.feedkeys
-      local pumvisible = vim.fn.pumvisible
-      local replace_termcodes = function(key)
-        return vim.api.nvim_replace_termcodes(key, true, true, true)
-      end
       opts.snippet = {
         expand = function(args)
           require('snippy').expand_snippet(args.body)
@@ -125,24 +119,6 @@ return {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = function(fallback)
-          if pumvisible() == 1 then
-            feedkeys(replace_termcodes("<C-n>"), "n")
-          elseif cmp.visible() then
-            cmp.select_next_item()
-          else
-            fallback()
-          end
-        end,
-        ["<S-Tab>"] = function(fallback)
-          if pumvisible() == 1 then
-            feedkeys(replace_termcodes("<C-p>"), "n")
-          elseif cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end,
       })
       opts.window = {
         documentation = cmp.config.window.bordered({
@@ -151,6 +127,7 @@ return {
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "copilot" },
         { name = "vim-dadbod-completion" },
         { name = "snippy" },
       }, {
@@ -219,7 +196,6 @@ return {
           map('n', '<leader>hd', gs.diffthis)
           map('n', '<leader>hD', function() gs.diffthis('~') end)
           map('n', '<leader>td', gs.toggle_deleted)
-
           -- Text object
           map({ 'o', 'x' }, 'ih', gs.select_hunk)
         end
@@ -428,7 +404,24 @@ return {
       excluded_filetypes = { 'fugitiveblame' }
     }
   },
-  { 'github/copilot.vim', cmd = { 'Copilot' } },
+  {
+    'zbirenbaum/copilot.lua',
+    dependencies = { 'zbirenbaum/copilot-cmp' },
+    cmd = 'Copilot',
+    build = ':Copilot auth',
+    config = function()
+      require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    config = function()
+      require('copilot_cmp').setup()
+    end
+  },
   { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' },
   { 'tpope/vim-unimpaired', keys = { '[', ']' }, event = 'VeryLazy' },
   { 'tpope/vim-sleuth', event = 'VeryLazy' },
