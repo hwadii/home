@@ -472,7 +472,13 @@ return {
   },
   { 'lewis6991/satellite.nvim', opts = {}, enabled = false },
   { 'mcchrish/zenbones.nvim', dependencies = 'rktjmp/lush.nvim', enabled = false },
-  { dir = '~/code/ploy.nvim', dependencies = 'rktjmp/lush.nvim' },
+  {
+    dir = '~/code/ploy.nvim',
+    dependencies = 'rktjmp/lush.nvim',
+    init = function()
+      vim.g.colors_name = 'ploy'
+    end
+  },
   {
     'rktjmp/paperplanes.nvim',
     opts = {

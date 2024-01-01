@@ -44,7 +44,6 @@ require('lazy').setup('plugins', {
     },
   },
 })
-vim.g.colors_name = 'ploy'
 
 require('wadii')
 require('wadii.options')
