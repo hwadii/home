@@ -498,9 +498,12 @@ return {
     },
   },
   {
-    'simrat39/symbols-outline.nvim',
-    cmd = 'SymbolsOutline',
-    keys = { { '<leader>cs', '<cmd>SymbolsOutline<cr>', desc = 'Symbols Outline' } },
-    opts = { position = 'left' },
+
+    'hedyhli/outline.nvim',
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = { -- Example mapping to toggle outline
+      { '<leader>cs', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+    },
+    opts = { { position = 'right' } },
   },
 }
