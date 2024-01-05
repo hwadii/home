@@ -26,8 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder)
     map('n', '<localleader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
     map('n', 'gR', vim.lsp.buf.rename)
-    map('n', '<localleader>f', function() vim.lsp.buf.format { async = true } end)
-    map('v', '<localleader>f', function() vim.lsp.buf.format { async = true } end)
+    map({ 'n', 'v' }, '<localleader>f', function() vim.lsp.buf.format { async = true, timeout_ms = 10000 } end)
     map('n', '<localleader>q', vim.diagnostic.setloclist)
     map('n', ']d', vim.diagnostic.goto_next)
     map('n', '[d', vim.diagnostic.goto_prev)
@@ -35,9 +34,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<Leader>sd', function() telescope.diagnostics(themes.get_dropdown({ previewer = false })) end)
     map('n', '<Leader>so', telescope.lsp_document_symbols)
     map('n', '<Leader>sr', telescope.lsp_references)
-
     map('n', '<localleader>o', vim.lsp.buf.document_symbol)
-    map('n', '<localleader>d', vim.diagnostic.get)
     map('n', '<localleader>i', vim.diagnostic.open_float)
 
     vim.api.nvim_buf_create_user_command(event.buf, 'FormatLsp', function() vim.lsp.buf.format { async = true } end,
