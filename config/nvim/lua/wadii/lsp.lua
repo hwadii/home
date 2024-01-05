@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local ngserver_cmd = function()
-  local node_path = string.gsub(vim.fn.system('rtx where node'), "\n", '')
+  local node_path = string.gsub(vim.fn.system('mise where node'), "\n", '')
   local libpath = vim.fn.expand(node_path .. '/lib/node_modules/typescript/lib')
   return { 'ngserver', '--stdio', '--tsProbeLocations', libpath, '--ngProbeLocations', libpath }
 end
