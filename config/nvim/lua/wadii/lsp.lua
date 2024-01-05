@@ -46,7 +46,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         group = 'lsp_document_highlight',
         buffer = event.buf,
-        callback = vim.lsp.buf.document_highlight,
+        callback = function()
+          -- Ignore decompiled c# source files
+          if not event.file:match('metadata') and vim.lsp.buf.server_ready() then
+            vim.lsp.buf.document_highlight()
+          end
+        end,
       })
       vim.api.nvim_create_autocmd('CursorMoved', {
         group = 'lsp_document_highlight',
