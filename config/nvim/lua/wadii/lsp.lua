@@ -6,7 +6,7 @@ local handlers = {
   ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 }),
   ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { max_width = 100 }),
 }
-local capabalities = require('cmp_nvim_lsp').default_capabilities()
+local capabalities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'Lsp actions',

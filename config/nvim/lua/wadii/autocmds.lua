@@ -1,8 +1,9 @@
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 1000 })
+    vim.highlight.on_yank({ higroup = 'IncSearch' })
   end,
-  group = vim.api.nvim_create_augroup('yank_post_group', { clear = true }),
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
+  pattern = '*',
 })
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
