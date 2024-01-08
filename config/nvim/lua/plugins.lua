@@ -527,4 +527,11 @@ return {
     },
     opts = { { position = 'right' } },
   },
+  {
+    'danobi/prr',
+    ft = 'prr',
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/vim")
+    end
+  }
 }
