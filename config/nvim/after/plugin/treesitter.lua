@@ -111,3 +111,13 @@ require 'nvim-treesitter'.define_modules {
     detach = function() end,
   }
 }
+
+local list = require('nvim-treesitter.parsers').get_parser_configs()
+
+list.prr = {
+  install_info = {
+    url = 'https://github.com/bcspragu/tree-sitter-prr', -- local path or git repo
+    branch = 'main',
+    files = { 'src/parser.c' }, -- note that some parsers also require src/scanner.c or src/scanner.cc
+  },
+}
