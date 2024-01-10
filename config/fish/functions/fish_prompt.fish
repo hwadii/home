@@ -15,7 +15,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l nix_shell_info (set_color cyan) (
       echo "$PATH" | grep -qc '/nix/store'
       if test $status -eq 0
-        echo -n " <nix-shell>"
+        echo -n " <nix>"
       end
     ) $normal
 
@@ -44,9 +44,10 @@ function fish_prompt --description 'Write out the prompt'
     set -l color_status (set_color -o yellow)
     set -l jobs_status $color_status $background_jobs $normal
 
+    set -g __fish_git_prompt_char_untrackedfiles "?"
+    set -g __fish_git_prompt_showuntrackedfiles 1
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_char_dirtystate "*"
-    set -g __fish_git_prompt_char_untrackedfiles "?"
     set -g __fish_git_prompt_color_flags yellow --bold
     set -g __fish_git_prompt_color_suffix "#A09FDF"
 
@@ -55,5 +56,5 @@ function fish_prompt --description 'Write out the prompt'
 
     set -l pwd_status $color_cwd (prompt_pwd) $normal
 
-    echo -ns $pwd_status $nix_shell_info $jobs_status " " $vcs_status $prompt_status $color_suffix $suffix $normal " "
+    echo -ns $pwd_status $jobs_status $nix_shell_info " " $vcs_status $prompt_status $color_suffix $suffix $normal " "
 end
