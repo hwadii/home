@@ -270,6 +270,7 @@ return {
             i = {
               ['<C-j>'] = actions.move_selection_next,
               ['<C-k>'] = actions.move_selection_previous,
+              ['<C-s>'] = actions.select_horizontal,
               ['<C-q>'] = actions.send_to_qflist,
               ['<a-q>'] = actions.send_selected_to_qflist,
               ['<esc>'] = actions.close,
@@ -386,6 +387,10 @@ return {
     opts = {
       view_options = {
         show_hidden = true,
+      },
+      buf_options = {
+        buflisted = true,
+        bufhidden = 'hide',
       },
       keymaps = {
         ['!'] = 'actions.open_terminal',
@@ -519,7 +524,6 @@ return {
     },
   },
   {
-
     'hedyhli/outline.nvim',
     cmd = { 'Outline', 'OutlineOpen' },
     keys = { -- Example mapping to toggle outline
