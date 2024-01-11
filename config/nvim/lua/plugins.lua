@@ -129,11 +129,13 @@ return {
         { name = "copilot" },
         { name = "vim-dadbod-completion" },
         { name = "snippy" },
-      }, {
         { name = "buffer", max_item_count = 10 },
         { name = "path" },
         { name = "emoji" },
       })
+      opts.experimental = {
+        ghost_text = false,
+      }
     end,
   },
   {
@@ -302,7 +304,7 @@ return {
           lsp_code_actions = { theme = 'cursor' },
           code_action = { theme = 'cursor' },
           buffers = {
-            ignore_current_buffer = true,
+            ignore_current_buffer = false,
             sort_mru = true,
             theme = 'dropdown',
             previewer = false,
@@ -433,6 +435,10 @@ return {
     'zbirenbaum/copilot.lua',
     dependencies = { 'zbirenbaum/copilot-cmp' },
     cmd = 'Copilot',
+    keys = {
+      { '<leader>pe', '<cmd>Copilot enable<cr>', mode = 'n', desc = 'Copilot enable' },
+      { '<leader>ps', '<cmd>Copilot status<cr>', mode = 'n', desc = 'Copilot status' },
+    },
     build = ':Copilot auth',
     config = function()
       require('copilot').setup({
@@ -448,7 +454,7 @@ return {
     end
   },
   { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' },
-  { 'tpope/vim-unimpaired', keys = { '[', ']' }, event = 'VeryLazy' },
+  { 'tpope/vim-unimpaired', keys = { '[', ']', 'yo' } },
   { 'tpope/vim-sleuth', event = 'VeryLazy' },
   {
     'tpope/vim-fugitive',
@@ -456,7 +462,7 @@ return {
     keys = {
       { '<Leader>gs', '<cmd>Git<cr>', mode = 'n' },
       { '<Leader>gc', '<cmd>Git commit<cr>', mode = 'n' },
-      { '<Leader>gp', '<cmd>Git! push<cr>', mode = 'n' },
+      { '<Leader>gp', '<cmd>Git push<cr>', mode = 'n' },
       { '<Leader>gl', '<cmd>Git log<cr>', mode = 'n' },
       { '<Leader>gb', '<cmd>Git blame<cr>', mode = 'n' },
       { '<Leader>ga', '<cmd>Git branch<cr>', mode = 'n' },
