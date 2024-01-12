@@ -281,7 +281,7 @@ return {
             },
             n = {
               ['<esc>'] = actions.close,
-              ["<M-p>"] = action_layout.toggle_preview
+              ['<M-p>'] = action_layout.toggle_preview
             },
           },
         },
@@ -380,7 +380,27 @@ return {
     }
   },
   {
+    'echasnovski/mini.files',
+    keys = {
+      { '-', "<cmd>lua require('mini.files').open(vim.api.nvim_buf_get_name(0))<cr>", mode = 'n', desc = 'Open parent directory in a buffer.' },
+    },
+  },
+  {
+    'echasnovski/mini.move',
+    keys = {
+      { '<M-k>', "<cmd>lua require('mini.move').move_line('up')<cr>", mode = 'n', desc = 'Move line up' },
+      { '<M-j>', "<cmd>lua require('mini.move').move_line('down')<cr>", mode = 'n', desc = 'Move line down' },
+      { '<M-l>', "<cmd>lua require('mini.move').move_line('right')<cr>", mode = 'n', desc = 'Move line right' },
+      { '<M-h>', "<cmd>lua require('mini.move').move_line('left')<cr>", mode = 'n', desc = 'Move line left' },
+      { '<M-k>', "<cmd>lua require('mini.move').move_selection('up')<cr>", mode = 'v', desc = 'Move selection up' },
+      { '<M-j>', "<cmd>lua require('mini.move').move_selection('down')<cr>", mode = 'v', desc = 'Move selection down' },
+      { '<M-l>', "<cmd>lua require('mini.move').move_selection('right')<cr>", mode = 'v', desc = 'Move selection right' },
+      { '<M-h>', "<cmd>lua require('mini.move').move_selection('left')<cr>", mode = 'v', desc = 'Move selection left' },
+    },
+  },
+  {
     'stevearc/oil.nvim',
+    enabled = false,
     cmd = 'Oil',
     keys = {
       { '-', '<cmd>Oil<cr>', mode = 'n', desc = 'Open parent directory in a buffer.' },
