@@ -29,4 +29,9 @@ M.make_unix = function()
   vim.cmd("%s/\r//ge")
 end
 
+M.toggle_minifiles = function(...)
+  local minifile = require('mini.files')
+  if not minifile.close() then minifile.open(..., nil) end
+end
+
 return M
