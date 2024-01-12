@@ -193,6 +193,7 @@ local servers = {
   'gopls',
   'html',
   'zls',
+  'docker_compose_language_service',
 }
 for _, server in pairs(servers) do
   lspconfig[server].setup {
