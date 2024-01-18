@@ -38,7 +38,7 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_git_prompt_char_dirtystate "*"
     set -g __fish_git_prompt_showuntrackedfiles 1
     set -g __fish_git_prompt_showdirtystate 1
-    set -g __fish_git_prompt_showupstream auto
+    set -g __fish_git_prompt_showupstream informative
     set -g __fish_git_prompt_color_upstream yellow -o
     set -g __fish_git_prompt_color_flags yellow -o
     set -g __fish_git_prompt_color blue
