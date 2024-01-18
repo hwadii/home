@@ -488,6 +488,7 @@ return {
       { '<Leader>gb', '<cmd>Git blame<cr>', mode = 'n' },
       { '<Leader>ga', '<cmd>Git branch<cr>', mode = 'n' },
       { '<Leader>gr', '<cmd>Gr<cr>', { silent = true, mode = 'n' } },
+      { '<Leader>gf', '<cmd>Gfa<cr>', mode = 'n' },
     },
     dependencies = 'tpope/vim-rhubarb',
   },
