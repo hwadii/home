@@ -269,11 +269,11 @@ return {
           path_display = { 'shorten' },
           mappings = {
             i = {
-              ['<C-j>'] = actions.move_selection_next,
-              ['<C-k>'] = actions.move_selection_previous,
               ['<C-s>'] = actions.select_horizontal,
-              ['<C-q>'] = actions.send_to_qflist,
-              ['<a-q>'] = actions.send_selected_to_qflist,
+              ['<C-f>'] = actions.preview_scrolling_right,
+              ['<C-b>'] = actions.preview_scrolling_left,
+              ['<a-l>'] = actions.smart_send_to_loclist + actions.open_loclist,
+              ['<a-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
               ['<esc>'] = actions.close,
               ['<C-[>'] = actions.close,
               ['<C-c>'] = actions.close,
@@ -304,6 +304,7 @@ return {
           lsp_code_actions = { theme = 'cursor' },
           code_action = { theme = 'cursor' },
           buffers = {
+            path_display = { shorten = 3 },
             ignore_current_buffer = false,
             sort_mru = true,
             theme = 'dropdown',
