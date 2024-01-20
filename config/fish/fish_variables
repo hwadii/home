@@ -1,5 +1,25 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export BROWSER:firefox
+SETUVAR --export CARGO_TARGET_DIR:/home/wadii/\x2elocal/\x2ecargo/target
+SETUVAR --export DOTNET_ROOT:/home/wadii/\x2elocal/share/mise/installs/dotnet\x2dcore/8\x2e0\x2e100
+SETUVAR --export EDITOR:nvim
+SETUVAR --export FZF_ALT_C_COMMAND:fd\x1e\x2d\x2dtype\x1ed\x1e\x2d\x2dhidden\x1e\x2d\x2dfollow\x1e\x2d\x2dexclude\x1e\x2egit\x1e\x2d\x2dexclude\x1enode_modules
+SETUVAR --export FZF_ALT_C_OPTS:\x2d\x2dpreview\x3d\x27tree\x20\x2dC\x20\x7b\x7d\x27\x20\x7c\x20head\x20\x2d200
+SETUVAR --export FZF_CTRL_T_COMMAND:fd\x20\x2d\x2dtype\x20file\x20\x2d\x2dhidden\x20\x2d\x2dfollow
+SETUVAR --export FZF_CTRL_T_OPTS:\x2d\x2dselect\x2d1\x1e\x2d\x2dexit\x2d0
+SETUVAR --export FZF_DEFAULT_COMMAND:fd\x1e\x2d\x2dtype\x1ef\x1e\x2d\x2dfollow\x1e\x2d\x2dhidden\x1e\x2dE\x2egit
+SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dheight\x1e40\x25\x1e\x2d\x2dbind\x1etab\x3adown\x1e\x2d\x2dbind\x1ebtab\x3aup\x1e\x2d\x2dbind\x1ectrl\x2ds\x3atoggle\x1e\x2d\x2dbind\x1ealt\x2da\x3aselect\x2dall\x1e\x2d\x2dcolor\x3d16\x2chl\x3a3\x2chl\x2b\x3a6\x2cfg\x2b\x3a\x2d1\x2cpointer\x3a6\x2cbg\x2b\x3a\x2d1
+SETUVAR --export JQ_COLORS:2\x3b37\x3a0\x3b37\x3a0\x3b37\x3a0\x3b37\x3a0\x3b32\x3a1\x3b37\x3a1\x3b37
+SETUVAR --export LANG:en_US\x2eUTF\x2d8
+SETUVAR --export LANGUAGE:en_US\x2eUTF\x2d8
+SETUVAR --export LESS:\x1e\x2d\x2dmouse\x1e\x2dRi
+SETUVAR --export MANWIDTH:80
+SETUVAR --export PAGER:less
+SETUVAR --export PASSWORD_STORE_DIR:/home/wadii/\x2elocal/share/pass/
+SETUVAR --export --path RIPGREP_CONFIG_PATH:/home/wadii/\x2econfig/ripgrep/ripgreprc
+SETUVAR --export VIUSAL:nvim
+SETUVAR --export XDG_CONFIG_HOME:/home/wadii/\x2econfig/
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_ta:tmux\x20attach\x20\x2dt
 SETUVAR _fish_abbr_tad:tmux\x20attach\x20\x2dd\x20\x2dt
