@@ -1,5 +1,8 @@
 import = ["~/.config/alacritty/ploy.toml"]
-shell = "fish"
+
+[shell]
+program = "fish"
+args = ["-c", "tmux new-session -ADs x"]
 
 [font]
 size = 11
@@ -40,3 +43,4 @@ hide_when_typing = true
 
 [window]
 decorations_theme_variant = "Dark"
+startup_mode = "Maximized"
