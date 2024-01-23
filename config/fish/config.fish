@@ -5,6 +5,9 @@ set -gx VISUAL nvim
 
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
+fish_add_path ~/.local/omnisharp
+
+set -gx BROWSER firefox
 
 set -x LESS " --mouse -Ri"
 set -x PAGER less
@@ -17,6 +20,8 @@ set -x LANG en_US.utf8
 set -x LANGUAGE en_US.utf8
 set -x LC_ALL fr_FR.UTF-8
 set -x JQ_COLORS "2;37:0;37:0;37:0;37:0;32:1;37:1;37"
+
+set -x DOTNET_ROOT (mise where dotnet-core)
 set -x CARGO_TARGET_DIR ~/.local/cargo/target
 
 zoxide init fish | source
