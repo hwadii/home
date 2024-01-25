@@ -27,6 +27,7 @@ M.make_unix = function()
   vim.opt_local.bomb = true
   vim.opt_local.bomb = false
   vim.cmd("%s/\r//ge")
+  vim.notify('File format is now ' .. vim.bo.fileformat)
 end
 
 M.toggle_minifiles = function(...)
