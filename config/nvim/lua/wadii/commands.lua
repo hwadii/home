@@ -6,3 +6,5 @@ vim.api.nvim_create_user_command('Gh', '!gh <f-args>', { nargs = 1 })
 vim.api.nvim_create_user_command('Gbr', 'Gh browse', {})
 vim.api.nvim_create_user_command('Gpr', 'Gh p', {})
 vim.api.nvim_create_user_command('Gr', 'Gh r', {})
+
+vim.api.nvim_create_user_command('Mf', function() require('wadii.various').toggle_minifiles(vim.api.nvim_buf_get_name(0)) end, {})

@@ -383,9 +383,7 @@ return {
   },
   {
     'echasnovski/mini.files',
-    keys = {
-      { '-', "<cmd>lua require('wadii.various').toggle_minifiles(vim.api.nvim_buf_get_name(0))<cr>", mode = 'n', desc = 'Open parent directory in a buffer.' },
-    },
+    cmd = 'Mf',
   },
   {
     'echasnovski/mini.move',
