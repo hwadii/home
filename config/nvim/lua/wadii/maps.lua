@@ -2,8 +2,6 @@ local map = vim.keymap.set
 local various = require('wadii.various')
 
 -- general
-map('n', '<esc>', '<cmd>noh<return><esc>')
-map('n', '<C-/>', '<cmd>set hlsearch!<cr>')
 map('n', '<A-[>', '<cmd>vertical resize -5<cr>', { desc = 'Decrease window width' })
 map('n', '<A-]>', '<cmd>vertical resize +5<cr>', { desc = 'Increase window width' })
 map('n', '<A-Up>', '<cmd>horizontal resize +5<cr>', { desc = 'Increase window height' })
