@@ -269,6 +269,7 @@ return {
           path_display = { 'shorten' },
           mappings = {
             i = {
+              ['<C-k>'] = actions.nop,
               ['<C-s>'] = actions.select_horizontal,
               ['<C-f>'] = actions.preview_scrolling_right,
               ['<C-b>'] = actions.preview_scrolling_left,
