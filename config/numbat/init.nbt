@@ -1,0 +1,4 @@
+@name("Moroccan dirham")
+@url("https://en.wikipedia.org/wiki/Moroccan_dirham")
+@aliases(MAD, DH: short)
+unit mad: Money = 0.093 euros

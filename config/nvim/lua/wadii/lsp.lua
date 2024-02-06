@@ -194,6 +194,7 @@ local servers = {
   'html',
   'zls',
   'docker_compose_language_service',
+  'terraformls',
 }
 for _, server in pairs(servers) do
   lspconfig[server].setup {

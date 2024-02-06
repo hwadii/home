@@ -14,4 +14,4 @@ map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- various
 map('n', '<Leader>wp', various.yank_current_path, { desc = 'Yank the current absolute path in clipboard register' })
 map('n', '<Leader>wu', various.make_unix, { desc = 'Make fileformat unix' })
-map('n', '<Leader>w-', '<cmd>Explore<cr>', { desc = 'Open netrw' })
+map('n', '-', '<cmd>Explore<cr>', { desc = 'Open netrw' })

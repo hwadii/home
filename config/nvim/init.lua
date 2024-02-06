@@ -51,6 +51,8 @@ require('wadii.autocmds')
 require('wadii.filetype')
 
 vim.g.netrw_banner = 0
+vim.g.netrw_keepdir = 1
+vim.g.netrw_sort_options = 'i'
 vim.g.loaded_fzf = 1
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_netrwPlugin = 1
