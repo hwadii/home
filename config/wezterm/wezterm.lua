@@ -3,13 +3,14 @@ local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 config.default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" }
+config.term = 'wezterm'
 config.font = wezterm.font 'BerkeleyMono Nerd Font'
 config.font_size = 15
-config.enable_tab_bar = false
+config.underline_thickness = 1
+config.enable_tab_bar = true
+config.hide_tab_bar_if_only_one_tab = true
 config.window_close_confirmation = "NeverPrompt"
 config.use_ime = false
-config.anti_alias_custom_block_glyphs = false
-config.custom_block_glyphs = false
 config.line_height = 1
 config.enable_scroll_bar = false
 config.window_padding = {
@@ -18,6 +19,10 @@ config.window_padding = {
   top = 0,
   bottom = 0,
 }
+
+wezterm.on("update-right-status", function(window, pane)
+  window:set_right_status(window:active_workspace())
+end)
 
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
@@ -31,7 +36,7 @@ config.keys = {
     action = wezterm.action.QuickSelectArgs {
       label = 'open url',
       patterns = {
-        'https?://\\S+',
+        'https://\\S+|s3://\\S+',
       },
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
@@ -40,6 +45,17 @@ config.keys = {
       end),
     },
   },
+  {
+    key = 'Y',
+    mods = 'CTRL',
+    action = wezterm.action.QuickSelectArgs {
+      label = 'copy url',
+      patterns = {
+        'https://\\S+|s3://\\S+',
+      },
+      action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
+    },
+  }
 }
 
 config.colors = {
@@ -110,7 +126,8 @@ config.colors = {
 
   quick_select_label_bg = { Color = '#ffc591' },
   quick_select_label_fg = { Color = '#1a1a19' },
-  quick_select_match_fg = { Color = '#d1d1d1'},
+  quick_select_match_bg = { Color = '#444444' },
+  quick_select_match_fg = { Color = '#d1d1d1' },
 }
 
 return config
