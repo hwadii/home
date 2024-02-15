@@ -1,11 +1,12 @@
 local wezterm = require 'wezterm'
 local mux = wezterm.mux
-local config = {}
+local config = wezterm.config_builder()
 
 config.default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" }
 config.font = wezterm.font 'BerkeleyMono Nerd Font'
 config.font_size = 15
 config.enable_tab_bar = false
+config.window_close_confirmation = "NeverPrompt"
 config.use_ime = false
 config.anti_alias_custom_block_glyphs = false
 config.custom_block_glyphs = false
@@ -53,6 +54,8 @@ config.colors = {
   -- Overrides the text color when the current cell is occupied by the cursor
   cursor_fg = '#1a1a19',
 
+  cursor_border = '#dbdbdb',
+
   -- the foreground color of selected text
   selection_fg = '#1a1a19',
   -- the background color of selected text
@@ -89,7 +92,7 @@ config.colors = {
   -- When the IME, a dead key or a leader key are being processed and are effectively
   -- holding input pending the result of input composition, change the cursor
   -- to this color to give a visual cue about the compose state.
-  compose_cursor = 'orange',
+  compose_cursor = '#ffc591',
 
   -- Colors for copy_mode and quick_select
   -- available since: 20220807-113146-c2fee766
@@ -101,13 +104,13 @@ config.colors = {
   -- (index 0-15) using one of the names "Black", "Maroon", "Green",
   --  "Olive", "Navy", "Purple", "Teal", "Silver", "Grey", "Red", "Lime",
   -- "Yellow", "Blue", "Fuchsia", "Aqua" or "White".
-  copy_mode_active_highlight_fg = { AnsiColor = 'Black' },
-  copy_mode_inactive_highlight_bg = { Color = '#52ad70' },
+  copy_mode_active_highlight_fg = { Color = '#1a1a19' },
+  copy_mode_inactive_highlight_bg = { Color = '#d1d1d1' },
   copy_mode_inactive_highlight_fg = { AnsiColor = 'White' },
 
-  quick_select_label_bg = { Color = 'peru' },
+  quick_select_label_bg = { Color = '#ffc591' },
   quick_select_label_fg = { Color = '#1a1a19' },
-  quick_select_match_fg = { Color = '#ffffff' },
+  quick_select_match_fg = { Color = '#d1d1d1'},
 }
 
 return config
