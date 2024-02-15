@@ -237,12 +237,12 @@ return {
       { '<leader>:', '<cmd>Telescope command_history<cr>' },
       { '<Leader>?', '<cmd>Telescope builtin<cr>', { mode = 'n' } },
       { '<Leader>/', '<cmd>Telescope live_grep<cr>', { mode = 'n' } },
+      { '<Leader>"', '<cmd>Telescope registers<cr>', { mode = 'n' } },
       { '<localleader><localleader>', '<cmd>Telescope buffers<cr>', { mode = 'n' } },
       { '<leader>sH', '<cmd>Telescope highlights<cr>' },
       { '<Leader>s?', '<cmd>Telescope oldfiles<cr>', { mode = 'n' } },
       { '<Leader>sc', '<cmd>Telescope git_commits<cr>', { mode = 'n' } },
       { '<Leader>se', '<cmd>Telescope resume<cr>', { mode = 'n' } },
-      { '<Leader>s"', '<cmd>Telescope registers<cr>', { mode = 'n' } },
       { '<Leader>sd', '<cmd>Telescope diagnostics<cr>', { mode = 'n' } },
       { '<C-s>', '<cmd>Telescope current_buffer_fuzzy_find<cr>', { mode = 'n' } },
       {
