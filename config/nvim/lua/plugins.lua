@@ -398,6 +398,13 @@ return {
     },
   },
   {
+    'justinmk/vim-dirvish',
+    lazy = false,
+    config = function()
+      vim.g.dirvish_mode = ':sort ,^.*[\\/],|silent keeppatterns g@\\v/\\.[^\\/]+/?$@d'
+    end
+  },
+  {
     'stevearc/oil.nvim',
     enabled = false,
     cmd = 'Oil',
@@ -445,7 +452,7 @@ return {
     event = 'UIEnter',
     opts = {
       current_only = true,
-      winblend = 40,
+      winblend_gui = 40,
       signs_on_startup = { 'diagnostics', 'search', 'spell', 'marks', 'conflicts' },
       excluded_filetypes = { 'fugitiveblame' }
     }
