@@ -5,7 +5,7 @@
   attributesFile = ~/.config/git/attributes
 [user]
   name = Wadii Hajji
-  email = wadii@cardiologs.com
+  email = hajji.wadii@yahoo.fr
   signingkey = DE79453757EEE689
 [fetch]
   prune = true
@@ -32,13 +32,14 @@
   me = !"git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --author=\"$(git config user.name)\""
   wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
   choose-rebase = !"git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | awk '{ print $1 }' | xargs -o git rebase -i"
+  lc = log-compact
 [showbranch]
   default = --topo-order
 [pretty]
   fzf = %C(auto)%h %s %C(cyan)%cr
   simple = %C(auto)%h %<(72,trunc)%s %C(blue)%aN%C(reset) %C(green)%cr%C(red)%d
 [branch]
-  sort=-committerdate
+  sort = -committerdate
 [absorb]
   maxStack = 20
 [delta]
@@ -64,4 +65,10 @@
   colorMoved = default
 [jump]
   grepCmd = rg --vimgrep
+[rerere]
+  enabled = true
+[column]
+  ui = auto
+[includeIf "gitdir:~/code/cardiologs/"]
+  path = ~/.config/git/work
 # vim: ft=gitconfig
