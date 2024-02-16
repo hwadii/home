@@ -401,7 +401,7 @@ return {
     'justinmk/vim-dirvish',
     lazy = false,
     config = function()
-      vim.g.dirvish_mode = ':sort ,^.*[\\/],|silent keeppatterns g@\\v/\\.[^\\/]+/?$@d'
+      vim.g.dirvish_mode = ':sort ,^.*[\\/],'
     end
   },
   {

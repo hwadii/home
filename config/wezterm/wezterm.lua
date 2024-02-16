@@ -2,12 +2,13 @@ local wezterm = require 'wezterm'
 local mux = wezterm.mux
 local config = wezterm.config_builder()
 
-config.default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" }
+-- config.default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" }
 config.term = 'wezterm'
 config.font = wezterm.font 'BerkeleyMono Nerd Font'
 config.font_size = 15
 config.underline_thickness = 1
 config.enable_tab_bar = true
+config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
 config.window_close_confirmation = "NeverPrompt"
 config.use_ime = false
@@ -20,6 +21,17 @@ config.window_padding = {
   bottom = 0,
 }
 
+local function basename(s)
+  return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local title = basename(tab.active_pane.foreground_process_name)
+  return {
+    { Text = " " .. title .. " " },
+  }
+end)
+
 wezterm.on("update-right-status", function(window, pane)
   window:set_right_status(window:active_workspace())
 end)
@@ -29,7 +41,14 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
+config.leader = { key = 'q', mods = 'CTRL', timeout = 1000 }
+
 config.keys = {
+  {
+    key = 'q',
+    mods = 'LEADER|CTRL',
+    action = wezterm.action.SendKey { key = 'q', mods = 'CTRL' },
+  },
   {
     key = 'O',
     mods = 'CTRL',
@@ -122,7 +141,7 @@ config.colors = {
   -- "Yellow", "Blue", "Fuchsia", "Aqua" or "White".
   copy_mode_active_highlight_fg = { Color = '#1a1a19' },
   copy_mode_inactive_highlight_bg = { Color = '#d1d1d1' },
-  copy_mode_inactive_highlight_fg = { AnsiColor = 'White' },
+  copy_mode_inactive_highlight_fg = { Color = '#1a1a19' },
 
   quick_select_label_bg = { Color = '#ffc591' },
   quick_select_label_fg = { Color = '#1a1a19' },
