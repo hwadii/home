@@ -4,7 +4,8 @@ local config = wezterm.config_builder()
 
 config.term = 'wezterm'
 config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font Mono' }
-config.font_size = 15
+config.font_size = 12
+config.enable_wayland = false
 config.underline_thickness = 1
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
