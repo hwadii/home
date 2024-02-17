@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 -- config.default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" }
 config.term = 'wezterm'
-config.font = wezterm.font 'BerkeleyMono Nerd Font'
+config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font Mono' }
 config.font_size = 15
 config.underline_thickness = 1
 config.enable_tab_bar = true
