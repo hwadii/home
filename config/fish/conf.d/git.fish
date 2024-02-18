@@ -155,7 +155,7 @@ alias gsh "git show"
 alias gsi "git submodule init"
 alias gsps "git show --pretty=short --show-signature"
 alias gsr "git svn rebase"
-alias gss "git status -s"
+alias gss "git status -bs"
 alias gst "git status"
 
 alias gsta "git stash push"

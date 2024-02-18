@@ -19,6 +19,7 @@
   branch = false
 [interactive]
   diffFilter = delta --color-only
+  singleKey = true
 [alias]
   st = status --short --branch
   rank = shortlog -sn --no-merges
@@ -50,7 +51,8 @@
   hyperlinks = true
   paging = always
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
+  ff = only
 [init]
   defaultBranch = main
 [safe]
@@ -61,8 +63,10 @@
   user = hwadii
 [commit]
   gpgsign = true
+  verbose = true
 [diff]
   colorMoved = default
+  algorithm = patience
 [jump]
   grepCmd = rg --vimgrep
 [rerere]
