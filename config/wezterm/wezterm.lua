@@ -18,6 +18,7 @@ config.window_padding = {
   top = 0,
   bottom = 0,
 }
+config.quick_select_alphabet = 'jfkdls;ahgurieowpq'
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local title = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
