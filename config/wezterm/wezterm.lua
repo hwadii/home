@@ -8,7 +8,6 @@ config.font_size = 15
 config.underline_thickness = 1
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
-config.hide_tab_bar_if_only_one_tab = true
 config.window_close_confirmation = "NeverPrompt"
 config.use_ime = false
 config.line_height = 1
@@ -20,12 +19,8 @@ config.window_padding = {
   bottom = 0,
 }
 
-local function basename(s)
-  return string.gsub(s, '(.*[/\\])(.*)', '%2')
-end
-
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local title = basename(tab.active_pane.foreground_process_name)
+  local title = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
   return {
     { Text = " " .. title .. " " },
   }

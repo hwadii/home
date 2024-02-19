@@ -381,10 +381,6 @@ return {
     }
   },
   {
-    'echasnovski/mini.files',
-    cmd = 'Mf',
-  },
-  {
     'echasnovski/mini.move',
     keys = {
       { '<M-k>', "<cmd>lua require('mini.move').move_line('up')<cr>", mode = 'n', desc = 'Move line up' },
@@ -398,15 +394,7 @@ return {
     },
   },
   {
-    'justinmk/vim-dirvish',
-    lazy = false,
-    config = function()
-      vim.g.dirvish_mode = ':sort ,^.*[\\/],'
-    end
-  },
-  {
     'stevearc/oil.nvim',
-    enabled = false,
     cmd = 'Oil',
     keys = {
       { '-', '<cmd>Oil<cr>', mode = 'n', desc = 'Open parent directory in a buffer.' },
@@ -416,7 +404,7 @@ return {
         show_hidden = true,
       },
       buf_options = {
-        buflisted = true,
+        buflisted = false,
         bufhidden = 'hide',
       },
       keymaps = {
