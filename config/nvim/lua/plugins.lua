@@ -468,7 +468,7 @@ return {
     end
   },
   { 'tpope/vim-abolish', cmd = { 'Abolish', 'Subvert' }, keys = 'cr' },
-  { 'tpope/vim-unimpaired', keys = { '[', ']', 'yo' } },
+  { 'tpope/vim-unimpaired', keys = { '[', ']', 'yo', '=', '<', '>' } },
   { 'tpope/vim-sleuth', event = 'VeryLazy' },
   {
     'tpope/vim-fugitive',
