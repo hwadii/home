@@ -23,15 +23,14 @@
 [alias]
   st = status --short --branch
   rank = shortlog -sn --no-merges
-  sd = standup
   chop = !"git branch -vv --no-color | cut -c 3- | grep ': gone]' | awk '{ print $1 }' | xargs -n1 git branch -D"
-  sb = show-branch
   as = rebase --autosquash --interactive
   asu = rebase --autosquash --interactive --update-refs
   fixup = commit --amend --no-edit -v
-  ff = pull --ff-only
   me = !"git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --author=\"$(git config user.name)\""
   wip = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+  smartlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)[%H]%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)[%ae]%Creset%n%C(cyan)%s%n%Creset'
+  sl = smartlog
   choose-rebase = !"git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | awk '{ print $1 }' | xargs -o git rebase -i"
   lc = log-compact
 [showbranch]
