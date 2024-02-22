@@ -274,13 +274,9 @@ return {
               ['<C-b>'] = actions.preview_scrolling_left,
               ['<a-l>'] = actions.smart_send_to_loclist + actions.open_loclist,
               ['<a-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
-              ['<esc>'] = actions.close,
-              ['<C-[>'] = actions.close,
-              ['<C-c>'] = actions.close,
               ['<M-p>'] = action_layout.toggle_preview
             },
             n = {
-              ['<esc>'] = actions.close,
               ['<M-p>'] = action_layout.toggle_preview
             },
           },
