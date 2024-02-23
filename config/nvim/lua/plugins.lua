@@ -374,6 +374,7 @@ return {
         json = { "jq" },
         ruby = { "rubocop" },
         lua = { "stylua" },
+        csharp = { "csharpier" },
       },
     },
     keys = {

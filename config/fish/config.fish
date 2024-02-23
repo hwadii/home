@@ -6,6 +6,7 @@ set -gx VISUAL nvim
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.local/omnisharp
+fish_add_path ~/.dotnet/tools
 
 set -gx BROWSER firefox
 
