@@ -1,5 +1,5 @@
 local M = {}
-local Path = require('plenary.path')
+local Path = require("plenary.path")
 
 M.yank_path = function(bufnr, register)
   bufnr = bufnr or 0
@@ -27,12 +27,7 @@ M.make_unix = function()
   vim.opt_local.bomb = true
   vim.opt_local.bomb = false
   vim.cmd("%s/\r//ge")
-  vim.notify('File format is now ' .. vim.bo.fileformat)
-end
-
-M.toggle_minifiles = function(...)
-  local minifile = require('mini.files')
-  if not minifile.close() then minifile.open(..., nil) end
+  vim.notify("File format is now " .. vim.bo.fileformat)
 end
 
 return M

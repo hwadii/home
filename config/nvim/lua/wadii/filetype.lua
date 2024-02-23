@@ -1,9 +1,9 @@
 vim.filetype.add({
   extension = {
-    prr = 'prr',
+    prr = "prr",
   },
   pattern = {
-    ['.*Jenkinsfile.*'] = 'groovy',
+    [".*Jenkinsfile.*"] = "groovy",
     [".*docker%-compose%..*"] = "yaml.docker-compose",
   },
 })

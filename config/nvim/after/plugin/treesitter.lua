@@ -1,11 +1,49 @@
-require 'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    "c", "cpp", "ruby", "typescript", "scheme", "go", "javascript", "tsx", "vim", "lua",
-    "rust", "css", "dot", "json", "python", "yaml", "vue", "org", "markdown",
-    "markdown_inline", "html", "sql", "c_sharp", "fish", "diff", "git_rebase",
-    "gitignore", "gitattributes", "vimdoc", "nix", "comment", "hare", "hcl", "groovy",
-    "csv", "racket", "terraform", "angular", "gitcommit", "query", "bash", "toml", "dockerfile",
-    "tmux"
+    "c",
+    "cpp",
+    "ruby",
+    "typescript",
+    "scheme",
+    "go",
+    "javascript",
+    "tsx",
+    "vim",
+    "lua",
+    "rust",
+    "css",
+    "dot",
+    "json",
+    "python",
+    "yaml",
+    "vue",
+    "org",
+    "markdown",
+    "markdown_inline",
+    "html",
+    "sql",
+    "c_sharp",
+    "fish",
+    "diff",
+    "git_rebase",
+    "gitignore",
+    "gitattributes",
+    "vimdoc",
+    "nix",
+    "comment",
+    "hare",
+    "hcl",
+    "groovy",
+    "csv",
+    "racket",
+    "terraform",
+    "angular",
+    "gitcommit",
+    "query",
+    "bash",
+    "toml",
+    "dockerfile",
+    "tmux",
   },
   textobjects = {
     select = {
@@ -100,23 +138,23 @@ require 'nvim-treesitter.configs'.setup {
     disable = { "ruby" },
     enable = true,
   },
-}
+})
 
-require 'nvim-treesitter'.define_modules {
+require("nvim-treesitter").define_modules({
   fold = {
     attach = function(_, _)
-      vim.cmd 'set foldmethod=expr foldexpr=nvim_treesitter#foldexpr() nofoldenable'
+      vim.cmd("set foldmethod=expr foldexpr=nvim_treesitter#foldexpr() nofoldenable")
     end,
     detach = function() end,
-  }
-}
+  },
+})
 
-local list = require('nvim-treesitter.parsers').get_parser_configs()
+local list = require("nvim-treesitter.parsers").get_parser_configs()
 
 list.prr = {
   install_info = {
-    url = 'https://github.com/bcspragu/tree-sitter-prr', -- local path or git repo
-    branch = 'main',
-    files = { 'src/parser.c' }, -- note that some parsers also require src/scanner.c or src/scanner.cc
+    url = "https://github.com/bcspragu/tree-sitter-prr", -- local path or git repo
+    branch = "main",
+    files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
   },
 }
