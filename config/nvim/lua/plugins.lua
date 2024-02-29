@@ -243,6 +243,7 @@ return {
       { "<Leader>sc", "<cmd>Telescope git_commits<cr>", { mode = "n" } },
       { "<Leader>se", "<cmd>Telescope resume<cr>", { mode = "n" } },
       { "<Leader>sd", "<cmd>Telescope diagnostics<cr>", { mode = "n" } },
+      { "<Leader>sh", "<cmd>Telescope help_tags<cr>", { mode = "n" } },
       { "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { mode = "n" } },
       {
         "<Leader>s-",
@@ -396,57 +397,12 @@ return {
     },
   },
   {
-    "echasnovski/mini.move",
-    keys = {
-      {
-        "<M-k>",
-        "<cmd>lua require('mini.move').move_line('up')<cr>",
-        mode = "n",
-        desc = "Move line up",
-      },
-      {
-        "<M-j>",
-        "<cmd>lua require('mini.move').move_line('down')<cr>",
-        mode = "n",
-        desc = "Move line down",
-      },
-      {
-        "<M-l>",
-        "<cmd>lua require('mini.move').move_line('right')<cr>",
-        mode = "n",
-        desc = "Move line right",
-      },
-      {
-        "<M-h>",
-        "<cmd>lua require('mini.move').move_line('left')<cr>",
-        mode = "n",
-        desc = "Move line left",
-      },
-      {
-        "<M-k>",
-        "<cmd>lua require('mini.move').move_selection('up')<cr>",
-        mode = "v",
-        desc = "Move selection up",
-      },
-      {
-        "<M-j>",
-        "<cmd>lua require('mini.move').move_selection('down')<cr>",
-        mode = "v",
-        desc = "Move selection down",
-      },
-      {
-        "<M-l>",
-        "<cmd>lua require('mini.move').move_selection('right')<cr>",
-        mode = "v",
-        desc = "Move selection right",
-      },
-      {
-        "<M-h>",
-        "<cmd>lua require('mini.move').move_selection('left')<cr>",
-        mode = "v",
-        desc = "Move selection left",
-      },
-    },
+    "echasnovski/mini.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("mini.ai").setup()
+      require("mini.move").setup()
+    end,
   },
   {
     "stevearc/oil.nvim",
