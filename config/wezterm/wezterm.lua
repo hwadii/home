@@ -65,11 +65,21 @@ config.keys = {
     action = wezterm.action.QuickSelectArgs {
       label = 'copy url',
       patterns = {
-        'https://\\S+|s3://\\S+',
+        'https://\\S+|s3://\\S+|file:\\S+',
       },
       action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
     },
-  }
+  },
+  {
+    key = 'LeftArrow',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'RightArrow',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 config.colors = {
