@@ -13,6 +13,7 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
+    enabled = false,
     opts = {
       fast_wrap = {},
     },
@@ -116,7 +117,20 @@ return {
       opts.mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-e>"] = cmp.mapping.abort { select = true },
+        ["<C-y>"] = cmp.mapping.confirm { select = true },
+        ["<CR>"] = cmp.mapping.confirm { select = true },
+        ["<C-l>"] = cmp.mapping(function()
+          if require("snippy").can_expand_or_advance() then
+            require("snippy").expand_or_advance()
+          end
+        end, { "i", "s" }),
+
+        ["<C-h>"] = cmp.mapping(function()
+          if require("snippy").can_jump(-1) then
+            require("snippy").previous()
+          end
+        end, { "i", "s" }),
       })
       opts.window = {
         documentation = cmp.config.window.bordered({
@@ -443,7 +457,7 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = "VeryLazy",
+    event = "VimEnter",
     opts = {},
   },
   {
@@ -480,7 +494,7 @@ return {
   },
   { "tpope/vim-abolish", cmd = { "Abolish", "Subvert" }, keys = "cr" },
   { "tpope/vim-unimpaired", keys = { "[", "]", "yo", "=", "<", ">" } },
-  { "tpope/vim-sleuth", event = "VeryLazy" },
+  { "tpope/vim-sleuth", event = "VimEnter" },
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "GBrowse" },
@@ -541,7 +555,7 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
-    event = "VeryLazy",
+    event = "VimEnter",
   },
   "nvim-tree/nvim-web-devicons",
   { "j-hui/fidget.nvim", tag = "legacy", opts = {}, event = "BufReadPre" },

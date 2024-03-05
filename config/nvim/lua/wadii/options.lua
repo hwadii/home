@@ -40,7 +40,7 @@ vim.opt.redrawtime = 10000
 vim.opt.report = 0
 vim.opt.rnu = false
 vim.opt.shiftwidth = 2
-vim.opt.shortmess:append("actFTWI")
+vim.opt.shortmess:append("actFTW")
 vim.opt.matchpairs:append("<:>")
 vim.opt.showbreak = "↳ "
 vim.opt.signcolumn = "yes"
