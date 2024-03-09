@@ -9,6 +9,7 @@
   signingkey = DE79453757EEE689
 [fetch]
   prune = true
+  all = true
 [pull]
   rebase = false
 [push]

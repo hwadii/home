@@ -497,7 +497,7 @@ return {
   { "tpope/vim-sleuth", event = "VimEnter" },
   {
     "tpope/vim-fugitive",
-    cmd = { "Git", "GBrowse" },
+    cmd = { "Git" },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
       { "<Leader>gc", "<cmd>Git commit<cr>", mode = "n" },
@@ -509,6 +509,11 @@ return {
       { "<Leader>gf", "<cmd>Gfa<cr>", mode = "n" },
     },
     dependencies = "tpope/vim-rhubarb",
+  },
+  {
+    "linrongbin16/gitlinker.nvim",
+    opts = {},
+    cmd = { "GitLink" },
   },
   {
     "tpope/vim-rsi",

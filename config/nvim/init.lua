@@ -37,6 +37,7 @@ require("lazy").setup("plugins", {
         "getscriptPlugin",
         "vimball",
         "vimballPlugin",
+        "netrwPlugin",
         "netrwSettings",
         "rrhelper",
         "logiPat",
