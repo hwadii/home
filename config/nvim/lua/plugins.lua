@@ -73,19 +73,8 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-    end,
-    event = "BufReadPre",
-    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    opts = {
-      enable_autocmd = false,
-    },
+    opts = {},
+    keys = { "gc", "gb" },
   },
   {
     "uga-rosa/ccc.nvim",
@@ -117,9 +106,9 @@ return {
       opts.mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.abort { select = true },
-        ["<C-y>"] = cmp.mapping.confirm { select = true },
-        ["<CR>"] = cmp.mapping.confirm { select = true },
+        ["<C-e>"] = cmp.mapping.abort({ select = true }),
+        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<C-l>"] = cmp.mapping(function()
           if require("snippy").can_expand_or_advance() then
             require("snippy").expand_or_advance()
@@ -154,16 +143,7 @@ return {
   {
     "dcampos/nvim-snippy",
     event = "BufReadPre",
-    config = function()
-      require("snippy").setup({
-        mappings = {
-          i = {
-            ["<C-j>"] = "expand_or_advance",
-            ["<C-k>"] = "previous",
-          },
-        },
-      })
-    end,
+    opts = {},
   },
   { "lewis6991/github_dark.nvim", enabled = false },
   {
@@ -479,18 +459,14 @@ return {
       { "<leader>ps", "<cmd>Copilot status<cr>", mode = "n", desc = "Copilot status" },
     },
     build = ":Copilot auth",
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-    end,
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    },
   },
   {
     "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
+    opts = {},
   },
   { "tpope/vim-abolish", cmd = { "Abolish", "Subvert" }, keys = "cr" },
   { "tpope/vim-unimpaired", keys = { "[", "]", "yo", "=", "<", ">" } },
