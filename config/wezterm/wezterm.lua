@@ -36,21 +36,14 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
-config.leader = { key = 'q', mods = 'CTRL', timeout = 1000 }
-
 config.keys = {
-  {
-    key = 'q',
-    mods = 'LEADER|CTRL',
-    action = wezterm.action.SendKey { key = 'q', mods = 'CTRL' },
-  },
   {
     key = 'O',
     mods = 'CTRL',
     action = wezterm.action.QuickSelectArgs {
       label = 'open url',
       patterns = {
-        'https://\\S+|s3://\\S+',
+        'https://\\S+|s3://\\S+|file:\\S+',
       },
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
@@ -78,6 +71,11 @@ config.keys = {
   {
     key = 'RightArrow',
     mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'Enter',
+    mods = 'ALT',
     action = wezterm.action.DisableDefaultAssignment,
   },
 }
