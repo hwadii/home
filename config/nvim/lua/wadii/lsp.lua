@@ -19,12 +19,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local function map(mode, keys, func)
       vim.keymap.set(mode, keys, func, { buffer = event.buf })
     end
+    if client.name == "omnisharp" then
+      map("n", "gr", require("omnisharp_extended").lsp_references)
+      map("n", "gd", require("omnisharp_extended").lsp_definition)
+      map("n", "<leader>i", require("omnisharp_extended").lsp_implementation)
+      map("n", "<Leader>sr", require("omnisharp_extended").telescope_lsp_references)
+    else
+      map("n", "gr", vim.lsp.buf.references)
+      map("n", "gd", vim.lsp.buf.definition)
+      map("n", "<leader>i", vim.lsp.buf.implementation)
+      map("n", "<Leader>sr", telescope.lsp_references)
+    end
     map("n", "gA", vim.lsp.buf.code_action)
-    map("n", "gd", vim.lsp.buf.definition)
     map("n", "K", vim.lsp.buf.hover)
-    map("n", "<leader>i", vim.lsp.buf.implementation)
     map("n", "gy", vim.lsp.buf.type_definition)
-    map("n", "gr", vim.lsp.buf.references)
     map("n", "<localleader>ws", vim.lsp.buf.workspace_symbol)
     map("n", "<localleader>wa", vim.lsp.buf.add_workspace_folder)
     map("n", "<localleader>wr", vim.lsp.buf.remove_workspace_folder)
@@ -40,7 +48,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       telescope.diagnostics(themes.get_dropdown({ previewer = false }))
     end)
     map("n", "<Leader>so", telescope.lsp_document_symbols)
-    map("n", "<Leader>sr", telescope.lsp_references)
     map("n", "<localleader>o", vim.lsp.buf.document_symbol)
     map("n", "<localleader>i", vim.diagnostic.open_float)
 
@@ -194,11 +201,6 @@ lspconfig.omnisharp.setup({
   sdk_include_prereleases = true,
   enable_roslyn_analyzers = false,
   analyze_open_documents_only = false,
-  handlers = vim.tbl_extend(
-    "keep",
-    { ["textDocument/definition"] = require("omnisharp_extended").handler },
-    handlers
-  ),
 })
 
 local clangd_capabilities = vim.deepcopy(capabalities)
