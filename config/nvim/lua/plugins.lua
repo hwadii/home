@@ -484,7 +484,6 @@ return {
       { "<Leader>gl", "<cmd>Git log<cr>", mode = "n" },
       { "<Leader>gb", "<cmd>Git blame<cr>", mode = "n" },
       { "<Leader>ga", "<cmd>Git branch<cr>", mode = "n" },
-      { "<Leader>gr", "<cmd>Gr<cr>", { silent = true, mode = "n" } },
       { "<Leader>gf", "<cmd>Gfa<cr>", mode = "n" },
     },
     dependencies = "tpope/vim-rhubarb",
@@ -493,6 +492,12 @@ return {
     "linrongbin16/gitlinker.nvim",
     opts = {},
     cmd = { "GitLink" },
+    keys = {
+      { "<Leader>go", "<cmd>GitLink!<cr>", mode = "n" },
+      { "<Leader>go", "<cmd>GitLink<cr>", mode = "x" },
+      { "<Leader>gO", "<cmd>GitLink! default_branch<cr>", mode = "n" },
+      { "<Leader>gO", "<cmd>GitLink default_branch<cr>", mode = "x" },
+    },
   },
   {
     "tpope/vim-rsi",
