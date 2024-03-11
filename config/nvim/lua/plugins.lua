@@ -74,7 +74,10 @@ return {
   {
     "numToStr/Comment.nvim",
     opts = {},
-    keys = { "gc", "gb" },
+    keys = {
+      { "gc", mode = { "n", "x" } },
+      { "gb", mode = { "n", "x" } },
+    },
   },
   {
     "uga-rosa/ccc.nvim",
