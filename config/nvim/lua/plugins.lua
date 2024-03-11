@@ -476,7 +476,7 @@ return {
   { "tpope/vim-sleuth", event = "VimEnter" },
   {
     "tpope/vim-fugitive",
-    cmd = { "Git" },
+    cmd = { "Git", "GBrowse" },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
       { "<Leader>gc", "<cmd>Git commit<cr>", mode = "n" },
