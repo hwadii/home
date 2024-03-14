@@ -1,1 +1,0 @@
-/home/wadii/code/git/fzf/shell/key-bindings.fish

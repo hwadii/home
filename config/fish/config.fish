@@ -28,3 +28,4 @@ set -x CARGO_TARGET_DIR ~/.local/cargo/target
 set -x PRE_COMMIT_COLOR never
 
 zoxide init fish | source
+fzf --fish | source
