@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 config.term = 'wezterm'
 config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font Mono' }
-config.font_size = 11.5
+config.font_size = 11
 config.enable_wayland = false
 config.underline_thickness = 1
 config.enable_tab_bar = true
@@ -20,7 +20,7 @@ config.window_padding = {
   bottom = 0,
 }
 config.quick_select_alphabet = 'jfkdls;ahgurieowpq'
-config.enable_kitty_protocol = true
+config.enable_kitty_keyboard = true
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local title = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
