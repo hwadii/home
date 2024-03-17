@@ -47,9 +47,6 @@ require("lazy").setup("plugins", {
 })
 
 require("wadii")
-require("wadii.options")
-require("wadii.autocmds")
-require("wadii.filetype")
 
 vim.g.netrw_banner = 0
 vim.g.netrw_keepdir = 1

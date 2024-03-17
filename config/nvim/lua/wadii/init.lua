@@ -1,9 +1,10 @@
 _G.wadii = {
-  foldtext = require("wadii.foldtext"),
+  autocmds = require("wadii.autocmds"),
   commands = require("wadii.commands"),
-  maps = require("wadii.maps"),
-  various = require("wadii.various"),
   filetype = require("wadii.filetype"),
+  foldtext = require("wadii.foldtext"),
+  maps = require("wadii.maps"),
+  options = require("wadii.options"),
 }
 
 return _G.wadii
