@@ -44,6 +44,7 @@ require("nvim-treesitter.configs").setup({
     "toml",
     "dockerfile",
     "tmux",
+    "zig",
   },
   textobjects = {
     select = {
