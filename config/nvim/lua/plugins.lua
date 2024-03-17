@@ -36,41 +36,7 @@ return {
       vim.g.slime_no_mappings = 1
     end,
   },
-  {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      diagnostics = {
-        underline = true,
-        signs = false,
-        update_in_insert = false,
-        virtual_text = {
-          prefix = "■",
-          spacing = 4,
-          source = "if_many",
-        },
-        severity_sort = true,
-      },
-      capabilities = {},
-    },
-    config = function(_, opts)
-      require("wadii.lsp")
-      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-      vim.fn.sign_define("DiagnosticSignError", { text = "×", texthl = "DiagnosticSignError" })
-      vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
-      vim.fn.sign_define("DiagnosticSignHint", { text = "i", texthl = "DiagnosticSignHint" })
-      vim.fn.sign_define("DiagnosticSignInfo", { text = "H", texthl = "DiagnosticInfo" })
-    end,
-  },
   { "godlygeek/tabular", cmd = "Tabularize" },
-  {
-    "SmiteshP/nvim-navic",
-    dependencies = "neovim/nvim-lspconfig",
-    init = function()
-      vim.g.navic_silence = 1
-    end,
-    enabled = false,
-  },
   {
     "numToStr/Comment.nvim",
     opts = {},
@@ -536,7 +502,7 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
-    event = "VimEnter",
+    ft = { "typescript", "javascript", "html" },
   },
   "nvim-tree/nvim-web-devicons",
   { "j-hui/fidget.nvim", tag = "legacy", opts = {}, event = "BufReadPre" },
