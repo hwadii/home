@@ -264,6 +264,7 @@ local servers = {
   "zls",
   "docker_compose_language_service",
   "terraformls",
+  "gleam",
 }
 for _, server in pairs(servers) do
   lspconfig[server].setup({
