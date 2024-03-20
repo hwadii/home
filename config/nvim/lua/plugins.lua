@@ -304,12 +304,9 @@ return {
     cmd = { "Git", "GBrowse" },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
-      { "<Leader>gc", "<cmd>Git commit<cr>", mode = "n" },
       { "<Leader>gp", "<cmd>Git push<cr>", mode = "n" },
       { "<Leader>gl", "<cmd>Git log<cr>", mode = "n" },
       { "<Leader>gb", "<cmd>Git blame<cr>", mode = "n" },
-      { "<Leader>ga", "<cmd>Git branch<cr>", mode = "n" },
-      { "<Leader>gf", "<cmd>Gfa<cr>", mode = "n" },
     },
     dependencies = "tpope/vim-rhubarb",
   },
