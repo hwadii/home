@@ -199,6 +199,7 @@ return {
       formatters_by_ft = {
         ["*"] = { "trim_whitespace" },
         sql = { "pg_format" },
+        yaml = { "yamlfmt" },
         xml = { "xmllint" },
         json = { "jq" },
         ruby = { "rubocop" },
