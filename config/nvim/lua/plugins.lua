@@ -253,13 +253,14 @@ return {
     "preservim/vim-markdown",
     ft = "markdown",
     init = function()
-      vim.g.vim_markdown_override_foldtext = 0
+      vim.g.vim_markdown_override_foldtext = 1
       vim.g.vim_markdown_no_default_key_mappings = 1
       vim.g.vim_markdown_emphasis_multiline = 0
       vim.g.vim_markdown_conceal = 0
       vim.g.vim_markdown_conceal_code_blocks = 0
       vim.g.vim_markdown_frontmatter = 1
       vim.g.vim_markdown_borderless_table = 0
+      vim.g.vim_markdown_folding_disabled = 1
     end,
   },
   {
