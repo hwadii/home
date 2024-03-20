@@ -315,10 +315,10 @@ return {
     opts = {},
     cmd = { "GitLink" },
     keys = {
-      { "<Leader>go", "<cmd>GitLink!<cr>", mode = "n" },
-      { "<Leader>go", "<cmd>GitLink<cr>", mode = "x" },
-      { "<Leader>gO", "<cmd>GitLink! default_branch<cr>", mode = "n" },
-      { "<Leader>gO", "<cmd>GitLink default_branch<cr>", mode = "x" },
+      { "<Leader>gO", "<cmd>GitLink!<cr>", mode = { "n", "v" } },
+      { "<Leader>go", "<cmd>GitLink<cr>", mode = { "n", "v" } },
+      { "<Leader>gD", "<cmd>GitLink! default_branch<cr>", mode = { "n", "v" } },
+      { "<Leader>gd", "<cmd>GitLink default_branch<cr>", mode = { "n", "v" } },
     },
   },
   {
@@ -386,12 +386,5 @@ return {
       { "<leader>cs", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
     opts = { { position = "right" } },
-  },
-  {
-    "danobi/prr",
-    ft = "prr",
-    config = function(plugin)
-      vim.opt.rtp:append(plugin.dir .. "/vim")
-    end,
   },
 }
