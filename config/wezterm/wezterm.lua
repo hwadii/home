@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 config.default_prog = { '/opt/homebrew/bin/fish', '-c', 'tmux new-session -ADs x' }
 config.term = 'wezterm'
-config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font Mono' }
+config.font = wezterm.font_with_fallback { { family = 'Berkeley Mono', harfbuzz_features = { 'ss04' } }, 'Symbols Nerd Font Mono' }
 config.font_size = 14.5
 config.underline_thickness = 1
 config.enable_tab_bar = false
@@ -45,7 +45,7 @@ config.keys = {
     action = wezterm.action.QuickSelectArgs {
       label = 'open url',
       patterns = {
-        'https://\\S+|s3://\\S+|file:\\S+',
+        'https?://\\S+|s3://\\S+|file:\\S+',
       },
       action = wezterm.action_callback(function(window, pane)
         local url = window:get_selection_text_for_pane(pane)
@@ -60,7 +60,7 @@ config.keys = {
     action = wezterm.action.QuickSelectArgs {
       label = 'copy url',
       patterns = {
-        'https://\\S+|s3://\\S+|file:\\S+',
+        'https?://\\S+|s3://\\S+|file:\\S+',
       },
       action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
     },
