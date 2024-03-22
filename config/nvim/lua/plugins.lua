@@ -319,7 +319,6 @@ return {
       { "<Leader>gO", "<cmd>GitLink!<cr>", mode = { "n", "v" } },
       { "<Leader>go", "<cmd>GitLink<cr>", mode = { "n", "v" } },
       { "<Leader>gD", "<cmd>GitLink! default_branch<cr>", mode = { "n", "v" } },
-      { "<Leader>gd", "<cmd>GitLink default_branch<cr>", mode = { "n", "v" } },
     },
   },
   {
