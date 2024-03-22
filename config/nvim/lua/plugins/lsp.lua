@@ -20,16 +20,13 @@ return {
       local lspconfig = require("lspconfig")
       local telescope = require("telescope.builtin")
       local themes = require("telescope.themes")
-
-      local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(
-          vim.lsp.handlers.signature_help,
-          { max_width = 100 }
-        ),
-      }
       local capabalities =
         require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+      vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(vim.lsp.handlers.hover, { max_width = 100 })
+      vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { max_width = 100 })
 
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "Lsp actions",
@@ -114,10 +111,8 @@ return {
         on_new_config = function(new_config, _)
           new_config.cmd = ngserver_cmd()
         end,
-        handlers = handlers,
       })
       lspconfig.cssls.setup({
-        handlers = handlers,
         capabilities = capabalities,
       })
       lspconfig.rust_analyzer.setup({
@@ -139,7 +134,6 @@ return {
             },
           },
         },
-        handlers = handlers,
       })
       lspconfig.omnisharp.setup({
         on_attach = function(client)
@@ -232,7 +226,6 @@ return {
       local clangd_capabilities = vim.deepcopy(capabalities)
       clangd_capabilities.offsetEncoding = "utf-8"
       lspconfig.clangd.setup({
-        handlers = handlers,
         capabilities = clangd_capabilities,
         cmd = {
           "clangd",
@@ -251,7 +244,6 @@ return {
         },
       })
       lspconfig.lua_ls.setup({
-        handlers = handlers,
         capabalities = capabalities,
         settings = {
           Lua = {
@@ -261,7 +253,6 @@ return {
       })
       lspconfig.ruby_ls.setup({
         enabled = false,
-        handlers = handlers,
         capabalities = capabalities,
         settings = {
           init_options = {
@@ -294,7 +285,6 @@ return {
       }
       for _, server in pairs(servers) do
         lspconfig[server].setup({
-          handlers = handlers,
           capabalities = capabalities,
         })
       end

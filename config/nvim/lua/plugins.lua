@@ -91,9 +91,10 @@ return {
         end, { "i", "s" }),
       })
       opts.window = {
-        documentation = cmp.config.window.bordered({
-          winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
-        }),
+        documentation = vim.tbl_extend('force',
+          cmp.config.window.bordered({ winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None" }),
+          { max_width = 100 }
+        ),
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
