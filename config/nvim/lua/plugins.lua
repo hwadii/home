@@ -379,18 +379,22 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    config = true,
+    opts = {},
     keys = {
       { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
       { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
     },
   },
   {
-    "hedyhli/outline.nvim",
-    cmd = { "Outline", "OutlineOpen" },
-    keys = { -- Example mapping to toggle outline
-      { "<leader>cs", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    "stevearc/aerial.nvim",
+    cmd = "AerialToggle",
+    keys = {
+      { "<leader>cs", "<cmd>AerialToggle right<CR>", desc = "Toggle outline" },
     },
-    opts = { { position = "right" } },
+    opts = {},
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
   },
 }
