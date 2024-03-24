@@ -315,7 +315,18 @@ return {
   { "tpope/vim-sleuth", event = "VimEnter" },
   {
     "tpope/vim-fugitive",
-    cmd = { "Git", "GBrowse" },
+    cmd = {
+      "Git",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "Gdiffsplit",
+      "Gvdiffsplit",
+    },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
       { "<Leader>gp", "<cmd>Git push<cr>", mode = "n" },
