@@ -230,6 +230,13 @@ return {
     config = function()
       require("mini.ai").setup({ n_lines = 200 })
       require("mini.move").setup()
+      require("mini.operators").setup({
+        evaluate = { prefix = "" },
+        exchange = { prefix = "" },
+        multiply = { prefix = "" },
+        replace = { prefix = "" },
+        sort = { prefix = "gs" },
+      })
     end,
   },
   {
