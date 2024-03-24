@@ -219,6 +219,12 @@ return {
     },
   },
   {
+    'stevearc/stickybuf.nvim',
+    opts = {},
+    ft = { "fugitive", "neogit", "help" },
+    cmd = { "PinBuffer", "PinFiletype", "PinBuftype" },
+  },
+  {
     "echasnovski/mini.nvim",
     event = "BufReadPre",
     config = function()
