@@ -336,6 +336,22 @@ return {
     dependencies = "tpope/vim-rhubarb",
   },
   {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
+    keys = {
+      { "<Leader>gS", "<cmd>Neogit<cr>", mode = "n" },
+    },
+    opts = {
+      disable_hint = true,
+      kind = "tab",
+    },
+  },
+  {
     "linrongbin16/gitlinker.nvim",
     opts = {},
     cmd = { "GitLink" },
