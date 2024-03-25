@@ -221,7 +221,7 @@ return {
   {
     'stevearc/stickybuf.nvim',
     opts = {},
-    ft = { "fugitive", "neogit", "help" },
+    ft = { "fugitive", "NeogitCommitMessage", "help" },
     cmd = { "PinBuffer", "PinFiletype", "PinBuftype" },
   },
   {
@@ -297,7 +297,7 @@ return {
     dependencies = { "zbirenbaum/copilot-cmp" },
     cmd = "Copilot",
     keys = {
-      { "<leader>pe", "<cmd>Copilot enable<cr>", mode = "n", desc = "Copilot enable" },
+      { "<leader>pt", "<cmd>Copilot toggle<cr>", mode = "n", desc = "Copilot enable" },
       { "<leader>ps", "<cmd>Copilot status<cr>", mode = "n", desc = "Copilot status" },
     },
     build = ":Copilot auth",
