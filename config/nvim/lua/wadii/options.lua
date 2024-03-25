@@ -42,7 +42,7 @@ vim.opt.rnu = false
 vim.opt.shiftwidth = 2
 vim.opt.shortmess:append("actFTW")
 vim.opt.matchpairs:append("<:>")
-vim.opt.showbreak = "↳ "
+vim.opt.showbreak = "↪"
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true -- make search case insensitive by default
 vim.opt.smartindent = true
