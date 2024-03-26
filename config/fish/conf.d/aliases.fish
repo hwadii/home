@@ -4,16 +4,15 @@ abbr cp cp -v
 abbr mv mv -v
 
 # list
-abbr ls eza --git --group-directories-first --hyperlink
-abbr l ls
-abbr ll ls -l
-abbr lll ls -l --icons -h
-abbr la ls -l -a -I.DS_Store
-abbr lh ls -l -a -H -I.DS_Store
-abbr lm ls -l -s=modified
-abbr lc ls --created -s=created
-abbr lt ls --tree --git-ignore
-abbr lr ls -R --git-ignore
+abbr ls eza
+abbr ll eza --git --group-directories-first --hyperlink -l
+abbr lll eza --git --group-directories-first --hyperlink -l --icons -h
+abbr la eza --git --group-directories-first --hyperlink -l -a -I.DS_Store
+abbr lh eza --git --group-directories-first --hyperlink -l -a -H -I.DS_Store
+abbr lm eza --git --group-directories-first --hyperlink -l -s=modified
+abbr lc eza --git --group-directories-first --hyperlink --created -s=created
+abbr lt eza --git --group-directories-first --hyperlink --tree --git-ignore
+abbr lr eza --git --group-directories-first --hyperlink -R --git-ignore
 
 # shortcuts to edit various files
 abbr vim nvim
@@ -23,10 +22,6 @@ abbr vi nvim
 abbr wholistens "netstat -tulpn | rg LISTEN"
 abbr map xargs -n1
 abbr md mkdir -p
-
-# more git aliases
-abbr gin git init
-abbr gcnv! git commit --no-verify
 
 # lazygit
 abbr lg lazygit
