@@ -1,27 +1,27 @@
-alias k "kubectl"
+abbr k kubectl
 
-alias kgp "kubectl get pods"
-alias kgpwide "kgp -o wide"
-alias kgpw "kgp --watch"
+abbr kgp kubectl get pods
+abbr kgpwide kgp -o wide
+abbr kgpw kgp --watch
 
-alias kgs "kubectl get svc"
-alias kgswide "kgs -o wide"
-alias kgsw "kgs --watch"
+abbr kgs kubectl get svc
+abbr kgswide kgs -o wide
+abbr kgsw kgs --watch
 
-alias keti "kubectl exec -it"
-alias ketic "kubectl exec -n cardiologs -it"
+abbr keti kubectl exec -it
+abbr ketic kubectl exec -n cardiologs -it
 
-alias tk "tsh kubectl"
-alias kls "tsh kube ls"
-alias klogin "tsh kube login"
+abbr tk tsh kubectl
+abbr kls tsh kube ls
+abbr klogin tsh kube login
 
-alias tkgp "tsh kubectl get pods"
-alias tkgpwide "kgp -o wide"
-alias tkgpw "kgp --watch"
+abbr tkgp tsh kubectl get pods
+abbr tkgpwide kgp -o wide
+abbr tkgpw kgp --watch
 
-alias tkgs "tsh kubectl get svc"
-alias tkgswide "kgs -o wide"
-alias tkgsw "kgs --watch"
+abbr tkgs tsh kubectl get svc
+abbr tkgswide kgs -o wide
+abbr tkgsw kgs --watch
 
-alias tketi "tsh kubectl exec -it"
-alias tketic "tsh kubectl exec -n cardiologs -it"
+abbr tketi tsh kubectl exec -it
+abbr tketic tsh kubectl exec -n cardiologs -it
