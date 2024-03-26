@@ -279,12 +279,12 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = "VeryLazy",
+    event = "VimEnter",
     opts = {},
   },
   {
     "dstein64/nvim-scrollview",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {
       current_only = true,
       winblend_gui = 40,
@@ -312,7 +312,7 @@ return {
   },
   { "tpope/vim-abolish", cmd = { "Abolish", "Subvert" }, keys = "cr" },
   { "tpope/vim-unimpaired", keys = { "[", "]", "yo", "=", "<", ">" } },
-  { "tpope/vim-sleuth", event = "VeryLazy" },
+  { "tpope/vim-sleuth", event = "VimEnter" },
   {
     "tpope/vim-fugitive",
     cmd = {
@@ -358,6 +358,7 @@ return {
     keys = {
       { "<Leader>gO", "<cmd>GitLink!<cr>", mode = { "n", "v" } },
       { "<Leader>go", "<cmd>GitLink<cr>", mode = { "n", "v" } },
+      { "<Leader>gd", "<cmd>GitLink default_branch<cr>", mode = { "v" } },
       { "<Leader>gD", "<cmd>GitLink! default_branch<cr>", mode = { "n", "v" } },
     },
   },
@@ -409,7 +410,7 @@ return {
     ft = { "typescript", "javascript", "html" },
   },
   "nvim-tree/nvim-web-devicons",
-  { "j-hui/fidget.nvim", opts = {}, event = "VeryLazy" },
+  { "j-hui/fidget.nvim", opts = {}, event = "BufReadPre" },
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
