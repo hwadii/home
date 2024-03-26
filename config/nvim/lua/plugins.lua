@@ -98,7 +98,6 @@ return {
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "copilot" },
         { name = "vim-dadbod-completion" },
         { name = "snippy" },
         { name = "buffer", max_item_count = 10 },
@@ -302,8 +301,18 @@ return {
     },
     build = ":Copilot auth",
     opts = {
-      suggestion = { enabled = false },
       panel = { enabled = false },
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = '<M-e>',
+          accept_word = '<M-w>',
+          accept_line = '<M-l>',
+          next = '<M-]>',
+          prev = '<M-[>',
+          dismiss = '<C-]>',
+        },
+      },
     },
   },
   {
