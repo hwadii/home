@@ -65,7 +65,7 @@ return {
           end)
           map("n", "<Leader>so", telescope.lsp_document_symbols)
           map("n", "<localleader>o", vim.lsp.buf.document_symbol)
-          map("n", "<localleader>i", vim.diagnostic.open_float)
+          map("n", "<localleader>i", function() vim.diagnostic.open_float({ max_width = 100 }) end)
 
           vim.api.nvim_buf_create_user_command(event.buf, "FormatLsp", function()
             vim.lsp.buf.format({ async = true })
