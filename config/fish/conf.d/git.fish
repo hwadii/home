@@ -55,7 +55,7 @@ abbr gcssm git commit -S -s -m
 abbr gd git diff
 abbr gdca git diff --cached
 abbr gdcw git diff --cached --word-diff
-abbr gdct git describe --tags (git rev-list --tags --max-count=1)
+abbr gdct "git describe --tags (git rev-list --tags --max-count=1)"
 abbr gds git diff --staged
 abbr gdt git diff-tree --no-commit-id --name-only -r
 abbr gdup git diff @{upstream}
@@ -119,7 +119,7 @@ abbr grs git restore
 abbr grset git remote set-url
 abbr grss git restore --source
 abbr grst git restore --staged
-abbr grt cd (git rev-parse --show-toplevel || echo .)
+abbr grt "cd (git rev-parse --show-toplevel || echo .)"
 abbr gru git reset --
 abbr grup git remote update
 abbr grv git remote -v
@@ -149,7 +149,7 @@ abbr gswm git switch master
 abbr gswd git switch dev
 
 abbr gts git tag -s
-abbr gtv git tag | sort -V
+abbr gtv "git tag | sort -V"
 
 abbr gunignore git update-index --no-assume-unchanged
 abbr gup git pull --rebase
