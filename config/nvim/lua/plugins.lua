@@ -91,8 +91,11 @@ return {
         end, { "i", "s" }),
       })
       opts.window = {
-        documentation = vim.tbl_extend('force',
-          cmp.config.window.bordered({ winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None" }),
+        documentation = vim.tbl_extend(
+          "force",
+          cmp.config.window.bordered({
+            winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
+          }),
           { max_width = 100 }
         ),
       }
@@ -204,7 +207,7 @@ return {
         json = { "jq" },
         ruby = { "rubocop" },
         lua = { "stylua" },
-        csharp = { "csharpier" },
+        cs = { "csharpier" },
       },
     },
     keys = {
@@ -218,7 +221,7 @@ return {
     },
   },
   {
-    'stevearc/stickybuf.nvim',
+    "stevearc/stickybuf.nvim",
     opts = {},
     ft = { "fugitive", "NeogitCommitMessage", "help" },
     cmd = { "PinBuffer", "PinFiletype", "PinBuftype" },
@@ -227,7 +230,7 @@ return {
     "echasnovski/mini.nvim",
     event = "BufReadPre",
     config = function()
-      require("mini.ai").setup({ n_lines = 200 })
+      require("mini.ai").setup({ search_method = "cover", n_lines = 200 })
       require("mini.move").setup()
       require("mini.operators").setup({
         evaluate = { prefix = "" },
@@ -242,7 +245,14 @@ return {
     "stevearc/oil.nvim",
     cmd = "Oil",
     keys = {
-      { "-", "<cmd>Oil<cr>", mode = "n", desc = "Open parent directory in a buffer." },
+      {
+        "-",
+        function()
+          require("oil").open()
+        end,
+        mode = "n",
+        desc = "Open parent directory in a buffer.",
+      },
     },
     opts = {
       view_options = {
@@ -305,12 +315,12 @@ return {
       suggestion = {
         auto_trigger = true,
         keymap = {
-          accept = '<M-e>',
-          accept_word = '<M-w>',
-          accept_line = '<M-l>',
-          next = '<M-]>',
-          prev = '<M-[>',
-          dismiss = '<C-]>',
+          accept = "<M-e>",
+          accept_word = "<M-w>",
+          accept_line = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
         },
       },
     },
@@ -438,7 +448,7 @@ return {
     opts = {},
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons",
     },
   },
 }
