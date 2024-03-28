@@ -22,13 +22,13 @@ abbr gbsg git bisect good
 abbr gbsr git bisect reset
 abbr gbss git bisect start
 
-abbr gc git commit -v
-abbr gc! git commit -v --amend
-abbr gcn! git commit -v --no-edit --amend
-abbr gca git commit -v -a
-abbr gca! git commit -v -a --amend
-abbr gcan! git commit -v -a --no-edit --amend
-abbr gcans! git commit -v -a -s --no-edit --amend
+abbr gc git commit
+abbr gc! git commit --amend
+abbr gcn! git commit --no-edit --amend
+abbr gca git commit -a
+abbr gca! git commit -a --amend
+abbr gcan! git commit -a --no-edit --amend
+abbr gcans! git commit -a -s --no-edit --amend
 abbr gcam git commit -a -m
 abbr gcsm git commit -s -m
 abbr gcas git commit -a -s
