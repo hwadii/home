@@ -230,7 +230,7 @@ return {
     "echasnovski/mini.nvim",
     event = "BufReadPre",
     config = function()
-      require("mini.ai").setup({ search_method = "cover", n_lines = 200 })
+      require("mini.ai").setup({ search_method = "cover_or_next", n_lines = 200 })
       require("mini.move").setup()
       require("mini.operators").setup({
         evaluate = { prefix = "" },

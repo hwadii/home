@@ -76,7 +76,8 @@ return {
         pickers = {
           find_files = {
             theme = "ivy",
-            find_command = { "fd", "--hidden", "-tf" },
+            find_command = { "fd", "--type", "f", "--color", "never" },
+            hidden = true,
             path_display = { "truncate" },
             previewer = false,
           },
