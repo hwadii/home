@@ -385,9 +385,6 @@ return {
   {
     "tpope/vim-rsi",
     event = { "InsertEnter", "CmdLineEnter" },
-    init = function()
-      vim.g.rsi_no_meta = 1
-    end,
   },
   { "tpope/vim-eunuch", event = "CmdLineEnter" },
   {
