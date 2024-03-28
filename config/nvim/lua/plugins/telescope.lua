@@ -21,6 +21,7 @@ return {
       { "<Leader>se", "<cmd>Telescope resume<cr>", { mode = "n" } },
       { "<Leader>sd", "<cmd>Telescope diagnostics<cr>", { mode = "n" } },
       { "<Leader>sh", "<cmd>Telescope help_tags<cr>", { mode = "n" } },
+      { "<Leader>sk", "<cmd>Telescope keymaps<cr>", { mode = "n" } },
       { "<C-s>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { mode = "n" } },
       {
         "<Leader>s-",
