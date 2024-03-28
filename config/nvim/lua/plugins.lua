@@ -349,7 +349,6 @@ return {
     },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
-      { "<Leader>gp", "<cmd>Git push<cr>", mode = "n" },
       { "<Leader>gl", "<cmd>Git log<cr>", mode = "n" },
       { "<Leader>gb", "<cmd>Git blame<cr>", mode = "n" },
     },
