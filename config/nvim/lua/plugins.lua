@@ -208,6 +208,7 @@ return {
         ruby = { "rubocop" },
         lua = { "stylua" },
         cs = { "csharpier" },
+        markdown = { "prettierd" },
       },
     },
     keys = {
