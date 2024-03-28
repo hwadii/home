@@ -73,6 +73,7 @@ abbr gga git gui citool --amend
 abbr ghh git help
 
 abbr gl git pull
+abbr ggl git pull
 abbr glg git log --stat
 abbr glgp git log --stat -p
 abbr glgg git log --graph
@@ -90,6 +91,7 @@ abbr gmum git merge upstream/master
 abbr gma git merge --abort
 
 abbr gp git push
+abbr ggp git push
 abbr gpd git push --dry-run
 abbr gpf git push --force-with-lease --force-if-includes
 abbr gpf! git push --force
