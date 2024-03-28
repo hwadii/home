@@ -1,18 +1,12 @@
 # verbose
-abbr rm rm -v
-abbr cp cp -v
-abbr mv mv -v
+alias rm "rm -v"
+alias cp "cp -v"
+alias mv "mv -v"
 
 # list
-abbr ls eza
-abbr ll eza --git --group-directories-first --hyperlink -l
-abbr lll eza --git --group-directories-first --hyperlink -l --icons -h
-abbr la eza --git --group-directories-first --hyperlink -l -a -I.DS_Store
-abbr lh eza --git --group-directories-first --hyperlink -l -a -H -I.DS_Store
-abbr lm eza --git --group-directories-first --hyperlink -l -s=modified
-abbr lc eza --git --group-directories-first --hyperlink --created -s=created
-abbr lt eza --git --group-directories-first --hyperlink --tree --git-ignore
-abbr lr eza --git --group-directories-first --hyperlink -R --git-ignore
+alias ls eza
+alias l "eza -l"
+alias ll "eza --git --group-directories-first --hyperlink -l"
 
 # shortcuts to edit various files
 abbr vim nvim
@@ -37,4 +31,4 @@ abbr tl tmux list-sessions
 abbr ts tmux new-session -s
 
 # extract
-abbr x aunpack
+alias x aunpack

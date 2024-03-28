@@ -47,8 +47,8 @@ function fish_prompt --description 'Write out the prompt'
     set -l pwd_status $color_cwd (prompt_pwd) $normal
 
     if string length -q $vcs_status
-      echo -ns $pwd_status $jobs_status $nix_shell_info $vcs_status $suffix_status " "
+        echo -ns $pwd_status $jobs_status $nix_shell_info $vcs_status $suffix_status " "
     else
-      echo -ns $pwd_status $jobs_status $nix_shell_info " " $suffix_status " "
+        echo -ns $pwd_status $jobs_status $nix_shell_info " " $suffix_status " "
     end
 end
