@@ -67,9 +67,10 @@ return {
     },
     opts = function(_, opts)
       local cmp = require("cmp")
+      local snippy = require("snippy")
       opts.snippet = {
         expand = function(args)
-          require("snippy").expand_snippet(args.body)
+          snippy.expand_snippet(args.body)
         end,
       }
       opts.mapping = cmp.mapping.preset.insert({
@@ -79,14 +80,14 @@ return {
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<C-l>"] = cmp.mapping(function()
-          if require("snippy").can_expand_or_advance() then
-            require("snippy").expand_or_advance()
+          if snippy.can_expand_or_advance() then
+            snippy.expand_or_advance()
           end
         end, { "i", "s" }),
 
         ["<C-h>"] = cmp.mapping(function()
-          if require("snippy").can_jump(-1) then
-            require("snippy").previous()
+          if snippy.can_jump(-1) then
+            snippy.previous()
           end
         end, { "i", "s" }),
       })
@@ -127,7 +128,7 @@ return {
     opts = {
       attach_to_untracked = true,
       on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+        local gs = require("gitsigns")
 
         local function map(mode, l, r, opts)
           opts = opts or {}
