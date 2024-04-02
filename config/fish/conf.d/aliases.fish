@@ -7,6 +7,7 @@ alias mv "mv -v"
 alias ls eza
 alias l "eza -l"
 alias ll "eza --git --group-directories-first --hyperlink -l"
+alias la "eza --git --group-directories-first --hyperlink -lah"
 
 # shortcuts to edit various files
 abbr vim nvim
