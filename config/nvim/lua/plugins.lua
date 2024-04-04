@@ -424,7 +424,7 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
-    ft = { "typescript", "javascript", "html" },
+    ft = { "typescript", "javascript", "html", "typescriptreact" },
   },
   "nvim-tree/nvim-web-devicons",
   { "j-hui/fidget.nvim", opts = {}, event = "BufReadPre" },
