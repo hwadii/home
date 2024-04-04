@@ -33,17 +33,12 @@ abbr gcam git commit -a -m
 abbr gcsm git commit -s -m
 abbr gcas git commit -a -s
 abbr gcasm git commit -a -s -m
-abbr gcb git checkout -b
 abbr gcf git config --list
 
 
 abbr gcl git clone --recurse-submodules
 abbr gclean git clean -id
-abbr gcm git checkout master
-abbr gcd git checkout dev
-abbr gcmsg git commit -m
-abbr gco git checkout
-abbr gcor git checkout --recurse-submodules
+abbr gcm git commit -m
 abbr gcount git shortlog -sn
 abbr gcp git cherry-pick
 abbr gcpa git cherry-pick --abort
