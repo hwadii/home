@@ -1,7 +1,6 @@
 --height 40%
---bind tab:down
---bind btab:up
 --bind ctrl-s:toggle
 --bind alt-a:select-all
 --color=16,hl:3,hl+:6,fg+:-1,pointer:6,bg+:-1
 --inline-info
+--no-separator
