@@ -33,3 +33,7 @@ abbr ts tmux new-session -s
 
 # extract
 alias x aunpack
+
+abbr fe file-edit
+abbr fo file-open
+abbr fp file-preview
