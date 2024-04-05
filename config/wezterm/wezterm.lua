@@ -11,10 +11,9 @@ return {
   term = 'wezterm',
   font = wezterm.font_with_fallback {
     {
-      family = 'Iosevka Term',
+      family = 'Berkeley Mono',
       weight = 'Regular',
-      stretch = 'Expanded',
-      harfbuzz_features = { 'ss09' },
+      harfbuzz_features = { 'ss07' },
     },
   },
   font_size = 14.5,
