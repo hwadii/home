@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function(cmd)
@@ -7,15 +7,16 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 return {
-  default_prog = { '/opt/homebrew/bin/fish', '-c', 'tmux new-session -ADs x' },
-  term = 'wezterm',
-  font = wezterm.font_with_fallback {
+  default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" },
+  term = "wezterm",
+  font = wezterm.font_with_fallback({
     {
-      family = 'Berkeley Mono',
-      weight = 'Regular',
-      harfbuzz_features = { 'ss07' },
+      family = "Iosevka",
+      weight = "Regular",
+      stretch = "Normal",
+      harfbuzz_features = { "ss07" },
     },
-  },
+  }),
   font_size = 14.5,
   underline_thickness = 1,
   enable_tab_bar = false,
@@ -30,77 +31,77 @@ return {
     top = 0,
     bottom = 0,
   },
-  quick_select_alphabet = 'jfkdls;ahgurieowpq',
+  quick_select_alphabet = "jfkdls;ahgurieowpq",
   enable_kitty_keyboard = true,
 
   keys = {
     {
-      key = 'O',
-      mods = 'CTRL',
-      action = wezterm.action.QuickSelectArgs {
-        label = 'open url',
+      key = "O",
+      mods = "CTRL",
+      action = wezterm.action.QuickSelectArgs({
+        label = "open url",
         patterns = {
-          'https?://\\S+|s3://\\S+|file:\\S+',
+          "https?://\\S+|s3://\\S+|file:\\S+",
         },
         action = wezterm.action_callback(function(window, pane)
           local url = window:get_selection_text_for_pane(pane)
-          wezterm.log_info('opening: ' .. url)
+          wezterm.log_info("opening: " .. url)
           wezterm.open_with(url)
         end),
-      },
+      }),
     },
     {
-      key = 'Y',
-      mods = 'CTRL',
-      action = wezterm.action.QuickSelectArgs {
-        label = 'copy url',
+      key = "Y",
+      mods = "CTRL",
+      action = wezterm.action.QuickSelectArgs({
+        label = "copy url",
         patterns = {
-          'https?://\\S+|s3://\\S+|file:\\S+',
+          "https?://\\S+|s3://\\S+|file:\\S+",
         },
-        action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
-      },
+        action = wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
+      }),
     },
     {
-      key = 'LeftArrow',
-      mods = 'CTRL|SHIFT',
+      key = "LeftArrow",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.DisableDefaultAssignment,
     },
     {
-      key = 'RightArrow',
-      mods = 'CTRL|SHIFT',
+      key = "RightArrow",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.DisableDefaultAssignment,
     },
     {
-      key = 'Enter',
-      mods = 'ALT',
+      key = "Enter",
+      mods = "ALT",
       action = wezterm.action.DisableDefaultAssignment,
     },
   },
 
   colors = {
     -- The default text color
-    foreground = '#d1d1d1',
+    foreground = "#d1d1d1",
     -- The default background color
-    background = '#1a1a19',
+    background = "#1a1a19",
 
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
-    cursor_bg = '#dbdbdb',
+    cursor_bg = "#dbdbdb",
     -- Overrides the text color when the current cell is occupied by the cursor
-    cursor_fg = '#1a1a19',
+    cursor_fg = "#1a1a19",
 
-    cursor_border = '#dbdbdb',
+    cursor_border = "#dbdbdb",
 
     -- the foreground color of selected text
-    selection_fg = '#d1d1d1',
+    selection_fg = "#d1d1d1",
     -- the background color of selected text
-    selection_bg = '#614444',
+    selection_bg = "#614444",
 
     -- The color of the scrollbar "thumb"; the portion that represents the current viewport
-    scrollbar_thumb = '#222222',
+    scrollbar_thumb = "#222222",
 
     -- The color of the split lines between panes
-    split = '#444444',
+    split = "#444444",
 
     ansi = {
       "#222222",
@@ -127,25 +128,25 @@ return {
     -- When the IME, a dead key or a leader key are being processed and are effectively
     -- holding input pending the result of input composition, change the cursor
     -- to this color to give a visual cue about the compose state.
-    compose_cursor = '#ffc591',
+    compose_cursor = "#ffc591",
 
     -- Colors for copy_mode and quick_select
     -- available since: 20220807-113146-c2fee766
     -- In copy_mode, the color of the active text is:
     -- 1. copy_mode_active_highlight_* if additional text was selected using the mouse
     -- 2. selection_* otherwise
-    copy_mode_active_highlight_bg = { Color = '#000000' },
+    copy_mode_active_highlight_bg = { Color = "#000000" },
     -- use `AnsiColor` to specify one of the ansi color palette values
     -- (index 0-15) using one of the names "Black", "Maroon", "Green",
     --  "Olive", "Navy", "Purple", "Teal", "Silver", "Grey", "Red", "Lime",
     -- "Yellow", "Blue", "Fuchsia", "Aqua" or "White".
-    copy_mode_active_highlight_fg = { Color = '#1a1a19' },
-    copy_mode_inactive_highlight_bg = { Color = '#d1d1d1' },
-    copy_mode_inactive_highlight_fg = { Color = '#1a1a19' },
+    copy_mode_active_highlight_fg = { Color = "#1a1a19" },
+    copy_mode_inactive_highlight_bg = { Color = "#d1d1d1" },
+    copy_mode_inactive_highlight_fg = { Color = "#1a1a19" },
 
-    quick_select_label_bg = { Color = '#ffc591' },
-    quick_select_label_fg = { Color = '#1a1a19' },
-    quick_select_match_bg = { Color = '#444444' },
-    quick_select_match_fg = { Color = '#d1d1d1' },
+    quick_select_label_bg = { Color = "#ffc591" },
+    quick_select_label_fg = { Color = "#1a1a19" },
+    quick_select_match_bg = { Color = "#444444" },
+    quick_select_match_fg = { Color = "#d1d1d1" },
   },
 }

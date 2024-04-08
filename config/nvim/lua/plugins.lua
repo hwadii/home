@@ -153,9 +153,13 @@ return {
           end
         end)
 
-        map("n", "[C", function() gitsigns.nav_hunk("first") end)
+        map("n", "[C", function()
+          gitsigns.nav_hunk("first")
+        end)
 
-        map("n", "]C", function() gitsigns.nav_hunk("last") end)
+        map("n", "]C", function()
+          gitsigns.nav_hunk("last")
+        end)
 
         -- Actions
         map("n", "<leader>hs", gitsigns.stage_hunk)
