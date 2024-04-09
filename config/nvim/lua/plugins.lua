@@ -268,6 +268,8 @@ return {
       keymaps = {
         ["!"] = "actions.open_terminal",
         ["."] = "actions.open_cmdline",
+        ["<C-p>"] = false,
+        ["gp"] = "actions.preview",
       },
     },
   },
