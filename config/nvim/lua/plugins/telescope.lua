@@ -9,7 +9,7 @@ return {
     cmd = "Telescope",
     keys = {
       { "<C-p>", "<cmd>Telescope find_files<cr>" },
-      { "<Leader>sf", "<cmd>Telescope find_files<cr>" },
+      { "<Leader>sf", function() require("telescope.builtin").find_files({ no_ignore = true }) end },
       { "<leader>:", "<cmd>Telescope command_history<cr>" },
       { "<Leader>?", "<cmd>Telescope builtin<cr>" },
       { "<Leader>/", "<cmd>Telescope live_grep<cr>" },
