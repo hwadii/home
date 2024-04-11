@@ -334,7 +334,7 @@ return {
     "zbirenbaum/copilot-cmp",
     opts = {},
   },
-  { "tpope/vim-abolish", cmd = { "Abolish", "Subvert" }, keys = "cr" },
+  { "tpope/vim-abolish", cmd = { "Abolish", "Subvert", "S" }, keys = "cr" },
   { "tpope/vim-unimpaired", keys = { "[", "]", "yo", "=", "<", ">" } },
   { "tpope/vim-sleuth", event = "VimEnter" },
   {
