@@ -34,6 +34,14 @@ function fish_prompt --description 'Write out the prompt'
     set -l color_status (set_color -o yellow)
     set -l jobs_status $color_status $background_jobs $normal
 
+    set -l private_mode_status (
+      if test -n "$fish_private_mode"
+        echo -n (set_color -o red) "[P]"
+      else
+        echo -n ""
+      end
+    ) $normal
+
     set -g __fish_git_prompt_char_untrackedfiles "?"
     set -g __fish_git_prompt_char_dirtystate "*"
     set -g __fish_git_prompt_showuntrackedfiles 1
@@ -47,8 +55,8 @@ function fish_prompt --description 'Write out the prompt'
     set -l pwd_status $color_cwd (prompt_pwd) $normal
 
     if string length -q $vcs_status
-        echo -ns $pwd_status $jobs_status $nix_shell_info $vcs_status $suffix_status " "
+        echo -ns $pwd_status $jobs_status $private_mode_status $nix_shell_info $vcs_status $suffix_status " "
     else
-        echo -ns $pwd_status $jobs_status $nix_shell_info " " $suffix_status " "
+        echo -ns $pwd_status $jobs_status $private_mode_status $nix_shell_info $suffix_status " "
     end
 end
