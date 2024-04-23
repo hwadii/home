@@ -187,7 +187,7 @@ return {
           },
         },
       })
-      lspconfig.ruby_ls.setup({
+      lspconfig.ruby_lsp.setup({
         enabled = false,
         capabalities = capabalities,
         settings = {
