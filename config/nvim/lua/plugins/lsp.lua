@@ -60,6 +60,7 @@ return {
           map("n", "]d", vim.diagnostic.goto_next)
           map("n", "[d", vim.diagnostic.goto_prev)
           map("i", "<c-]>", vim.lsp.buf.signature_help)
+          map("i", "<c-_>", vim.lsp.buf.code_action)
           map("n", "<Leader>sd", function()
             telescope.diagnostics(themes.get_dropdown({ previewer = false }))
           end)
