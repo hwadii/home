@@ -311,7 +311,7 @@ return {
     dependencies = { "zbirenbaum/copilot-cmp" },
     cmd = "Copilot",
     keys = {
-      { "<leader>pt", "<cmd>Copilot toggle<cr>", mode = "n", desc = "Copilot enable" },
+      { "<leader>pt", "<cmd>Copilot toggle<cr>", mode = "n", desc = "Copilot toggle" },
       { "<leader>ps", "<cmd>Copilot status<cr>", mode = "n", desc = "Copilot status" },
     },
     build = ":Copilot auth",
