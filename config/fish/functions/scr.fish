@@ -7,7 +7,7 @@ function scr -d "Quickly create a tmp directory" -a operation
         case view
             mkdir -p /tmp/workspaces
             pushd /tmp/workspaces
-            pushd (eza -snew | fzf --preview 'eza -a {}')
+            pushd (eza -snew | fzf --preview 'eza -Ta --git-ignore {}')
         case clean
             rm -rf /tmp/workspaces/*
         case '*'
