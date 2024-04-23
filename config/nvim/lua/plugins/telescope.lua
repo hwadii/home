@@ -9,7 +9,12 @@ return {
     cmd = "Telescope",
     keys = {
       { "<C-p>", "<cmd>Telescope find_files<cr>" },
-      { "<Leader>sf", function() require("telescope.builtin").find_files({ no_ignore = true }) end },
+      {
+        "<Leader>sf",
+        function()
+          require("telescope.builtin").find_files({ no_ignore = true })
+        end,
+      },
       { "<leader>:", "<cmd>Telescope command_history<cr>" },
       { "<Leader>?", "<cmd>Telescope builtin<cr>" },
       { "<Leader>/", "<cmd>Telescope live_grep<cr>" },
@@ -61,12 +66,14 @@ return {
           mappings = {
             i = {
               ["<C-k>"] = actions.nop,
+              ["<C-space>"] = actions.nop,
               ["<C-s>"] = actions.select_horizontal,
               ["<C-f>"] = actions.preview_scrolling_right,
               ["<C-b>"] = actions.preview_scrolling_left,
               ["<a-l>"] = actions.smart_send_to_loclist + actions.open_loclist,
               ["<a-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-              ["<M-p>"] = action_layout.toggle_preview,
+              ["<a-p>"] = action_layout.toggle_preview,
+              ["<a-f>"] = actions.to_fuzzy_refine,
             },
             n = {
               ["<M-p>"] = action_layout.toggle_preview,
@@ -78,7 +85,7 @@ return {
             theme = "ivy",
             find_command = { "fd", "--type", "f", "--color", "never" },
             hidden = true,
-            path_display = { "truncate" },
+            path_display = { "filename_first" },
             previewer = false,
           },
           fzf = {
