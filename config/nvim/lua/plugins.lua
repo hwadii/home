@@ -64,10 +64,12 @@ return {
       "hrsh7th/cmp-emoji",
       "dcampos/cmp-snippy",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "onsails/lspkind.nvim",
     },
     opts = function(_, opts)
       local cmp = require("cmp")
       local snippy = require("snippy")
+      local lspkind = require("lspkind")
       opts.snippet = {
         expand = function(args)
           snippy.expand_snippet(args.body)
@@ -99,6 +101,9 @@ return {
           }),
           { max_width = 100 }
         ),
+      }
+      opts.formatting = {
+        format = lspkind.cmp_format({ mode = "symbol", show_labelDetails = true })
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
