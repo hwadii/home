@@ -7,7 +7,7 @@ M.yank_path = function(bufnr, register)
   local relative_path = Path:new(vim.api.nvim_buf_get_name(bufnr)):make_relative(vim.loop.cwd())
   vim.fn.setreg(register, relative_path)
   if #relative_path ~= 0 then
-    vim.notify('Path yanked into "' .. register)
+    vim.notify('Copied ' .. relative_path .. ' into "' .. register)
   end
 end
 
@@ -15,11 +15,7 @@ M.yank_current_path = function(register)
   register = register or "+"
   -- Make relative in case "%" does not contain the relative path for some
   -- reason.
-  local relative_path = Path:new(vim.fn.getreg("%")):make_relative(vim.loop.cwd())
-  vim.fn.setreg(register, relative_path)
-  if #relative_path ~= 0 then
-    vim.notify('Path yanked into "' .. register)
-  end
+  M.yank_path(0, register)
 end
 
 M.make_unix = function()
