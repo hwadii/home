@@ -25,3 +25,5 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<Leader>wu", various.make_unix, { desc = "Make fileformat unix" })
 vim.keymap.set("n", "<Leader>w-", "<cmd>Explore<cr>", { desc = "Open netrw" })
+
+vim.keymap.set("n", ",,", ",", { noremap = true, desc = "repeat last f/F t/T command" })
