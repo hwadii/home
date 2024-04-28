@@ -32,8 +32,13 @@ return {
         desc = "Lsp actions",
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          local function map(mode, keys, func)
-            vim.keymap.set(mode, keys, func, { buffer = event.buf })
+          local function map(mode, keys, func, options)
+            vim.keymap.set(
+              mode,
+              keys,
+              func,
+              vim.tbl_extend("keep", options or {}, { buffer = event.buf })
+            )
           end
           if client.name == "omnisharp" then
             map("n", "gr", require("omnisharp_extended").lsp_references)
@@ -46,29 +51,37 @@ return {
             map("n", "<leader>i", vim.lsp.buf.implementation)
             map("n", "<Leader>sr", telescope.lsp_references)
           end
-          map("n", "gA", vim.lsp.buf.code_action)
+          map("n", "crn", vim.lsp.buf.rename)
+          map("n", "crr", vim.lsp.buf.code_action)
+          map("x", "<c-r><c-r>", vim.lsp.buf.code_action)
+          map("x", "<c-r>r", vim.lsp.buf.code_action)
           map("n", "K", vim.lsp.buf.hover)
           map("n", "gy", vim.lsp.buf.type_definition)
+          map("i", "<c-s>", vim.lsp.buf.signature_help)
           map("n", "<localleader>ws", vim.lsp.buf.workspace_symbol)
           map("n", "<localleader>wa", vim.lsp.buf.add_workspace_folder)
           map("n", "<localleader>wr", vim.lsp.buf.remove_workspace_folder)
           map("n", "<localleader>wl", function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end)
-          map("n", "gR", vim.lsp.buf.rename)
           map("n", "<localleader>q", vim.diagnostic.setloclist)
-          map("n", "]d", vim.diagnostic.goto_next)
-          map("n", "[d", vim.diagnostic.goto_prev)
-          map("i", "<c-]>", vim.lsp.buf.signature_help)
-          map("i", "<c-_>", vim.lsp.buf.code_action)
+          map("n", "]d", function()
+            vim.diagnostic.goto_next({ float = false })
+          end)
+          map("n", "[d", function()
+            vim.diagnostic.goto_prev({ float = false })
+          end)
           map("n", "<Leader>sd", function()
             telescope.diagnostics(themes.get_dropdown({ previewer = false }))
           end)
           map("n", "<Leader>so", telescope.lsp_document_symbols)
-          map("n", "<localleader>o", vim.lsp.buf.document_symbol)
-          map("n", "<localleader>i", function()
+          map("n", "<c-w>d", function()
             vim.diagnostic.open_float({ max_width = 100 })
           end)
+          map("n", "<C-W><C-D>", "<C-W>d", {
+            remap = true,
+            desc = "Open a floating window showing diagnostics under the cursor",
+          })
 
           vim.api.nvim_buf_create_user_command(event.buf, "FormatLsp", function()
             vim.lsp.buf.format({ async = true })
