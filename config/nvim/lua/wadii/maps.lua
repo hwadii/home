@@ -19,9 +19,9 @@ vim.keymap.set("n", "<C-I>", "<C-I>", { noremap = true })
 -- various
 vim.keymap.set(
   "n",
-  "<Leader>wp",
+  "y.",
   various.yank_current_path,
-  { desc = "Yank the current absolute path in clipboard register" }
+  { desc = "Yank the current relative path in clipboard register" }
 )
 vim.keymap.set("n", "<Leader>wu", various.make_unix, { desc = "Make fileformat unix" })
 vim.keymap.set("n", "<Leader>w-", "<cmd>Explore<cr>", { desc = "Open netrw" })
