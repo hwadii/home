@@ -40,7 +40,7 @@ vim.opt.redrawtime = 10000
 vim.opt.report = 0
 vim.opt.rnu = false
 vim.opt.shiftwidth = 2
-vim.opt.shortmess:append("actFTW")
+vim.opt.shortmess:append("acCtFTW")
 vim.opt.matchpairs:append("<:>")
 vim.opt.showbreak = "↪"
 vim.opt.signcolumn = "yes"
@@ -59,5 +59,17 @@ vim.opt.wildoptions = "pum"
 vim.opt.wildignore = { "*.o", "*~" }
 vim.opt.winminheight = 0
 vim.opt.foldtext = "v:lua.wadii.foldtext()"
-vim.opt.grepprg = "rg --vimgrep --no-heading"
-vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+vim.o.grepprg = "rg --vimgrep -uu"
+vim.o.grepformat = "%f:%l:%c:%m"
+vim.cmd([[
+  vnoremenu PopUp.Cut                     "+x
+  vnoremenu PopUp.Copy                    "+y
+  anoremenu PopUp.Paste                   "+gP
+  vnoremenu PopUp.Paste                   "+P
+  vnoremenu PopUp.Delete                  "_x
+  nnoremenu PopUp.Select\ All             ggVG
+  vnoremenu PopUp.Select\ All             gg0oG$
+  inoremenu PopUp.Select\ All             <C-Home><C-O>VG
+  anoremenu PopUp.Inspect                 <Cmd>Inspect<CR>
+  anoremenu PopUp.-1-                     <Nop>
+]])
