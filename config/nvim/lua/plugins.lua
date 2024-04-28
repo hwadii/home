@@ -81,9 +81,14 @@ return {
         ["<C-e>"] = cmp.mapping.abort({ select = true }),
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-]>"] = cmp.mapping(function()
+          if snippy.can_expand() then
+            snippy.expand()
+          end
+        end, { "i", "s" }),
         ["<C-l>"] = cmp.mapping(function()
-          if snippy.can_expand_or_advance() then
-            snippy.expand_or_advance()
+          if snippy.can_jump(1) then
+            snippy.next()
           end
         end, { "i", "s" }),
 
