@@ -3,7 +3,8 @@ local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 config.term = "wezterm"
-config.font = wezterm.font_with_fallback({ "Berkeley Mono", "Symbols Nerd Font Mono" })
+config.font =
+  wezterm.font_with_fallback({ { family = "Berkeley Mono", harfbuzz_features = { "ss04" } } })
 config.font_size = 11
 config.enable_wayland = false
 config.underline_thickness = 1
