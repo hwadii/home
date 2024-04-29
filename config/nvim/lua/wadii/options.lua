@@ -59,7 +59,7 @@ vim.opt.wildoptions = "pum"
 vim.opt.wildignore = { "*.o", "*~" }
 vim.opt.winminheight = 0
 vim.opt.foldtext = "v:lua.wadii.foldtext()"
-vim.o.grepprg = "rg --vimgrep -uu"
+vim.o.grepprg = "rg --vimgrep"
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.cmd([[
   vnoremenu PopUp.Cut                     "+x
