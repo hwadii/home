@@ -9,13 +9,11 @@ end)
 return {
   default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" },
   term = "wezterm",
-  font = wezterm.font_with_fallback({
-    {
-      family = "Berkeley Mono",
-      weight = "Regular",
-      stretch = "Normal",
-      harfbuzz_features = { "ss06" },
-    },
+  font = wezterm.font({
+    family = "Berkeley Mono",
+    weight = "Regular",
+    stretch = "Normal",
+    harfbuzz_features = { "ss04", "ss06" },
   }),
   font_size = 14.5,
   underline_thickness = 1,
