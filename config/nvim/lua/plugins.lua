@@ -79,8 +79,7 @@ return {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort({ select = true }),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
         ["<C-]>"] = cmp.mapping(function()
           if snippy.can_expand() then
             snippy.expand()
@@ -108,7 +107,7 @@ return {
         ),
       }
       opts.formatting = {
-        format = lspkind.cmp_format({ mode = "symbol", show_labelDetails = true })
+        format = lspkind.cmp_format({ mode = "text", show_labelDetails = true }),
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
@@ -303,7 +302,7 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = "VimEnter",
+    event = "VeryLazy",
     opts = {},
   },
   {
@@ -431,7 +430,6 @@ return {
     },
     cmd = "PP",
   },
-  { "alaviss/nim.nvim", ft = "nim" },
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
