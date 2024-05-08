@@ -36,6 +36,7 @@ return {
         "lua",
         "markdown",
         "markdown_inline",
+        "nim",
         "nix",
         "nu",
         "org",
