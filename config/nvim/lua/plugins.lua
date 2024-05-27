@@ -312,6 +312,11 @@ return {
       current_only = true,
       winblend_gui = 40,
       signs_on_startup = { "diagnostics", "search", "spell", "marks", "conflicts" },
+      diagnostics_error_symbol = "×",
+      diagnostics_warn_symbol = "!",
+      diagnostics_info_symbol = "i",
+      diagnostics_hint_symbol = "H",
+
       excluded_filetypes = { "fugitiveblame" },
     },
   },

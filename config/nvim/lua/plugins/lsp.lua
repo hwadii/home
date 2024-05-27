@@ -43,39 +43,27 @@ return {
           if client.name == "omnisharp" then
             map("n", "grr", require("omnisharp_extended").lsp_references)
             map("n", "gd", require("omnisharp_extended").lsp_definition)
-            map("n", "<leader>i", require("omnisharp_extended").lsp_implementation)
+            map("n", "gI", require("omnisharp_extended").lsp_implementation)
             map("n", "<Leader>sr", require("omnisharp_extended").telescope_lsp_references)
           else
             map("n", "grr", vim.lsp.buf.references)
             map("n", "gd", vim.lsp.buf.definition)
-            map("n", "<leader>i", vim.lsp.buf.implementation)
+            map("n", "gI", vim.lsp.buf.implementation)
             map("n", "<Leader>sr", telescope.lsp_references)
           end
           map("n", "grn", vim.lsp.buf.rename)
           map("n", "gra", vim.lsp.buf.code_action)
           map("x", "<c-r><c-r>", vim.lsp.buf.code_action)
           map("x", "<c-r>r", vim.lsp.buf.code_action)
-          map("n", "K", vim.lsp.buf.hover)
           map("n", "gy", vim.lsp.buf.type_definition)
           map("i", "<c-s>", vim.lsp.buf.signature_help)
-          map("n", "]d", function()
-            vim.diagnostic.goto_next({ float = false })
-          end)
-          map("n", "[d", function()
-            vim.diagnostic.goto_prev({ float = false })
-          end)
           map("n", "<Leader>sd", function()
             telescope.diagnostics(themes.get_dropdown({ previewer = false }))
           end)
           map("n", "<Leader>so", telescope.lsp_document_symbols)
-          map("n", "<c-w>d", function()
-            vim.diagnostic.open_float({ max_width = 100 })
+          map("n", "<Leader>sl", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
           end)
-          map("n", "<C-W><C-D>", "<C-W>d", {
-            remap = true,
-            desc = "Open a floating window showing diagnostics under the cursor",
-          })
-
           vim.api.nvim_buf_create_user_command(event.buf, "FormatLsp", function()
             vim.lsp.buf.format({ async = true })
           end, { desc = "Format current buffer with LSP" })
@@ -88,7 +76,7 @@ return {
               buffer = event.buf,
               callback = function()
                 -- Ignore decompiled c# source files
-                if not event.file:match("metadata") and vim.lsp.buf.server_ready() then
+                if not event.file:match("metadata") then
                   vim.lsp.buf.document_highlight()
                 end
               end,
@@ -159,6 +147,20 @@ return {
             EnableAnalyzersSupport = nil,
             EnableImportCompletion = true,
             AnalyzeOpenDocumentsOnly = nil,
+            InlayHintsOptions = {
+              EnableForParameters = true,
+              ForLiteralParameters = true,
+              ForIndexerParameters = true,
+              ForObjectCreationParameters = true,
+              ForOtherParameters = true,
+              SuppressForParametersThatDifferOnlyBySuffix = false,
+              SuppressForParametersThatMatchMethodIntent = false,
+              SuppressForParametersThatMatchArgumentName = false,
+              EnableForTypes = true,
+              ForImplicitVariableTypes = true,
+              ForLambdaParameterTypes = true,
+              ForImplicitObjectCreation = true,
+            },
           },
           Sdk = {
             IncludePrereleases = true,
@@ -227,15 +229,9 @@ return {
         "gleam",
       }
       for _, server in pairs(servers) do
-        lspconfig[server].setup({
-          capabalities = capabalities,
-        })
+        lspconfig[server].setup({ capabalities = capabalities })
       end
-      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-      vim.fn.sign_define("DiagnosticSignError", { text = "×", texthl = "DiagnosticSignError" })
-      vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
-      vim.fn.sign_define("DiagnosticSignHint", { text = "i", texthl = "DiagnosticSignHint" })
-      vim.fn.sign_define("DiagnosticSignInfo", { text = "H", texthl = "DiagnosticInfo" })
+      vim.diagnostic.config(opts.diagnostics)
     end,
   },
 }
