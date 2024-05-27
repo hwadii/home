@@ -345,7 +345,7 @@ return {
   },
   { "tpope/vim-abolish", cmd = { "Abolish", "Subvert", "S" }, keys = "cr" },
   { "tpope/vim-unimpaired", keys = { "[", "]", "yo", "=", "<", ">" } },
-  { "tpope/vim-sleuth", event = "VimEnter" },
+  { "tpope/vim-sleuth", lazy = false },
   {
     "tpope/vim-fugitive",
     cmd = {

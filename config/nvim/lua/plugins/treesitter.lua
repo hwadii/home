@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VimEnter",
+    lazy = false,
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-refactor",
@@ -114,7 +114,7 @@ return {
       },
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = "ruby",
       },
       fold = {
         enable = true,
