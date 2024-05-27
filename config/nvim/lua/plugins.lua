@@ -38,14 +38,6 @@ return {
   },
   { "godlygeek/tabular", cmd = "Tabularize" },
   {
-    "numToStr/Comment.nvim",
-    opts = {},
-    keys = {
-      { "gc", mode = { "n", "x" } },
-      { "gb", mode = { "n", "x" } },
-    },
-  },
-  {
     "uga-rosa/ccc.nvim",
     opts = { empty_point_bg = false },
     cmd = { "CccHighlighterToggle", "CccPick" },
@@ -231,12 +223,6 @@ return {
         mode = { "n", "v" },
       },
     },
-  },
-  {
-    "stevearc/stickybuf.nvim",
-    opts = {},
-    ft = { "fugitive", "NeogitCommitMessage", "help" },
-    cmd = { "PinBuffer", "PinFiletype", "PinBuftype" },
   },
   {
     "echasnovski/mini.nvim",
@@ -425,7 +411,7 @@ return {
     dir = "~/code/ploy.nvim",
     dependencies = "rktjmp/lush.nvim",
     init = function()
-      vim.g.colors_name = "ploy"
+      vim.cmd "colorscheme ploy"
     end,
   },
   {
