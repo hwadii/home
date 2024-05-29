@@ -61,15 +61,3 @@ vim.opt.winminheight = 0
 vim.opt.foldtext = "v:lua.wadii.foldtext()"
 vim.o.grepprg = "rg --vimgrep"
 vim.o.grepformat = "%f:%l:%c:%m"
-vim.cmd([[
-  vnoremenu PopUp.Cut                     "+x
-  vnoremenu PopUp.Copy                    "+y
-  anoremenu PopUp.Paste                   "+gP
-  vnoremenu PopUp.Paste                   "+P
-  vnoremenu PopUp.Delete                  "_x
-  nnoremenu PopUp.Select\ All             ggVG
-  vnoremenu PopUp.Select\ All             gg0oG$
-  inoremenu PopUp.Select\ All             <C-Home><C-O>VG
-  anoremenu PopUp.Inspect                 <Cmd>Inspect<CR>
-  anoremenu PopUp.-1-                     <Nop>
-]])
