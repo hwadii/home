@@ -79,13 +79,9 @@ end
 
 statusline.define = function()
   vim.opt_local.statusline = ""
-    .. "%1*"
-    .. "» %<"
-    .. "%*"
+    .. "» "
     .. "%{v:lua.require'wadii.statusline'.fileprefix()}"
-    .. "%1*"
     .. "%t"
-    .. "%*"
     .. " "
     .. "%m"
     .. "%y"
