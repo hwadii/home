@@ -39,7 +39,7 @@ return {
   { "godlygeek/tabular", cmd = "Tabularize" },
   {
     "uga-rosa/ccc.nvim",
-    opts = { empty_point_bg = false },
+    opts = { empty_point_bg = false, highlight_mode = "virtual" },
     cmd = { "CccHighlighterToggle", "CccPick" },
     keys = {
       { "<leader>cc", "<cmd>CccHighlighterToggle<cr>", mode = "n" },
