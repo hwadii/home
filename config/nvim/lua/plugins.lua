@@ -302,9 +302,13 @@ return {
       diagnostics_warn_symbol = "!",
       diagnostics_info_symbol = "i",
       diagnostics_hint_symbol = "H",
-
       excluded_filetypes = { "fugitiveblame" },
     },
+  },
+  {
+    "tris203/precognition.nvim",
+    opts = {},
+    cmd = "Precognition"
   },
   {
     "zbirenbaum/copilot.lua",
