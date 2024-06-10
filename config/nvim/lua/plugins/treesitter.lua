@@ -22,6 +22,7 @@ return {
         "dockerfile",
         "dot",
         "fish",
+        "git_config",
         "git_rebase",
         "gitattributes",
         "gitcommit",
@@ -114,7 +115,6 @@ return {
       },
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = "ruby",
       },
       fold = {
         enable = true,
