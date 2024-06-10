@@ -5,7 +5,7 @@
 (ido-mode 0)
 
 ;; Complete pairs
-(electric-pair-mode 1)
+(electric-pair-mode 0)
 
 (pixel-scroll-precision-mode 1)
 
@@ -60,9 +60,9 @@
 
 (setq nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
 
-(setq shell-file-name "/bin/fish")
-(setq explicit-shell-file-name "/bin/fish")
-(setq vterm-shell "/bin/fish")
+(setq shell-file-name "/opt/homebrew/bin/fish")
+(setq explicit-shell-file-name "/opt/homebrew/bin/fish")
+(setq vterm-shell "/opt/homebrew/bin/fish")
 
 (setq scroll-conservatively 101)
 (setq scroll-margin 1)
@@ -267,6 +267,7 @@
          (ruby-mode . eglot-ensure)
          (zig-mode . eglot-ensure)
          (typescript-mode . eglot-ensure)
+         (csharp-mode . eglot-ensure)
          (rust-mode . eglot-ensure))
   :commands (eglot-ensure)
   :config
@@ -294,8 +295,6 @@
   :bind (
          :map isearch-mode-map
          ("M-s r" . rg-isearch-menu)))
-(use-package forge
-  :after magit)
 (use-package eshell
   :ensure nil
   :hook (eshell-mode . wadii/term-mode)
@@ -339,8 +338,8 @@
 (use-package ef-themes)
 (use-package standard-themes)
 
-(set-face-attribute 'default nil :font "BerkeleyMono Nerd Font-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
-(set-face-attribute 'variable-pitch nil :font "Source Sans Pro-11:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "Berkeley Mono-14:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'variable-pitch nil :font "Source Sans 3-12:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
 (require 'server)
