@@ -27,3 +27,6 @@ vim.keymap.set("n", "<Leader>wu", various.make_unix, { desc = "Make fileformat u
 vim.keymap.set("n", "<Leader>w-", "<cmd>Explore<cr>", { desc = "Open netrw" })
 
 vim.keymap.set("n", ",,", ",", { noremap = true, desc = "repeat last f/F t/T command" })
+
+vim.keymap.set("t", "<S-Space>", "<Space>", { desc = "Insert space when shift-space is pressed" })
+vim.keymap.set("t", "<A-Space>", "<Space>", { desc = "Insert space when alt-space is pressed" })
