@@ -3,16 +3,16 @@ function fish_prompt --description 'Write out the prompt'
 
     set -l normal (set_color normal)
 
-    set -l nix_shell_info (set_color cyan) (
+    set -l nix_shell_info (set_color brcyan) (
       string match -rq '/nix/store' $PATH
       if test $status -eq 0
         echo -n " <nix>"
       end
     ) $normal
 
-    set -l color_suffix (set_color -o yellow)
+    set -l color_suffix (set_color -o bryellow)
     if not test $last_status -eq 0
-        set color_suffix (set_color -o red)
+        set color_suffix (set_color -o brred)
     end
 
     # Color the prompt differently when we're root
@@ -31,12 +31,12 @@ function fish_prompt --description 'Write out the prompt'
         set background_jobs "!"
     end
 
-    set -l color_status (set_color -o yellow)
+    set -l color_status (set_color -o bryellow)
     set -l jobs_status $color_status $background_jobs $normal
 
     set -l private_mode_status (
       if test -n "$fish_private_mode"
-        echo -n (set_color -o red) "[P]"
+        echo -n (set_color -o brred) "[P]"
       else
         echo -n ""
       end
@@ -47,9 +47,9 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_git_prompt_showuntrackedfiles 1
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream informative
-    set -g __fish_git_prompt_color_upstream yellow -o
-    set -g __fish_git_prompt_color_flags yellow -o
-    set -g __fish_git_prompt_color blue
+    set -g __fish_git_prompt_color_upstream bryellow -o
+    set -g __fish_git_prompt_color_flags bryellow -o
+    set -g __fish_git_prompt_color brblue
     set -l vcs_status (fish_vcs_prompt)
 
     set -l pwd_status $color_cwd (prompt_pwd) $normal
