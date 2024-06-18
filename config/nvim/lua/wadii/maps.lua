@@ -30,3 +30,6 @@ vim.keymap.set("n", ",,", ",", { noremap = true, desc = "repeat last f/F t/T com
 
 vim.keymap.set("t", "<S-Space>", "<Space>", { desc = "Insert space when shift-space is pressed" })
 vim.keymap.set("t", "<A-Space>", "<Space>", { desc = "Insert space when alt-space is pressed" })
+vim.keymap.set("t", "<S-BS>", "<BS>", { desc = "Insert backspsace when shift-backspace is pressed" })
+vim.keymap.set("t", "<S-Enter>", "<Enter>", { desc = "Insert enter when shift-enter is pressed" })
+vim.keymap.set("t", "<C-/>", "<C-_>", { desc = "Undo" })

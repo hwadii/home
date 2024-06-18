@@ -2,7 +2,6 @@ vim.opt.termguicolors = true
 vim.opt.encoding = "utf-8"
 vim.opt.magic = true
 vim.opt.autoindent = true
-vim.opt.background = "dark"
 vim.opt.briopt = "shift:2"
 vim.opt.completeopt = "menu,menuone,noinsert"
 vim.opt.cursorline = true
