@@ -75,12 +75,11 @@ return {
       action = wezterm.action.DisableDefaultAssignment,
     },
   },
-
   colors = {
     -- The default text color
     foreground = "#d1d1d1",
     -- The default background color
-    background = "#1a1a19",
+    background = "#0d0d0d",
 
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
