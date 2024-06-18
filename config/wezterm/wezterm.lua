@@ -80,13 +80,13 @@ return {
     -- The default text color
     foreground = "#d1d1d1",
     -- The default background color
-    background = "#14161d",
+    background = "#1a1a19",
 
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
     cursor_bg = "#dbdbdb",
     -- Overrides the text color when the current cell is occupied by the cursor
-    cursor_fg = "#14161d",
+    cursor_fg = "#1a1a19",
 
     cursor_border = "#dbdbdb",
 
@@ -96,30 +96,30 @@ return {
     selection_bg = "#614444",
 
     -- The color of the scrollbar "thumb"; the portion that represents the current viewport
-    scrollbar_thumb = "#614444",
+    scrollbar_thumb = "#222222",
 
     -- The color of the split lines between panes
     split = "#444444",
 
     ansi = {
-      "#4c4c4b",
-      "#ffc0b9",
-      "#b3f6c0",
-      "#fce094",
-      "#a6dbff",
-      "#ffcaff",
-      "#5fbdd2",
-      "#eaeaea",
+      "#222222",
+      "#ff968c",
+      "#7bb099",
+      "#ffc591",
+      "#97B2C9",
+      "#de9bc8",
+      "#61957f",
+      "#d1d1d1",
     },
     brights = {
-      "#4a4b4b",
-      "#ffdcd8",
-      "#d5fadc",
-      "#fdeec4",
-      "#ceebff",
-      "#ffe2ff",
-      "#c0fbfb",
-      "#ededed",
+      "#4c4c4b",
+      "#ffafa5",
+      "#94c9b2",
+      "#ffdeaa",
+      "#a6cded",
+      "#f7b4e1",
+      "#7aae98",
+      "#eaeaea",
     },
 
     -- Since: 20220319-142410-0fcdea07
@@ -128,7 +128,16 @@ return {
     -- to this color to give a visual cue about the compose state.
     compose_cursor = "#ffc591",
 
-    copy_mode_active_highlight_bg = { Color = "#ffc591" },
+    -- Colors for copy_mode and quick_select
+    -- available since: 20220807-113146-c2fee766
+    -- In copy_mode, the color of the active text is:
+    -- 1. copy_mode_active_highlight_* if additional text was selected using the mouse
+    -- 2. selection_* otherwise
+    copy_mode_active_highlight_bg = { Color = "#000000" },
+    -- use `AnsiColor` to specify one of the ansi color palette values
+    -- (index 0-15) using one of the names "Black", "Maroon", "Green",
+    --  "Olive", "Navy", "Purple", "Teal", "Silver", "Grey", "Red", "Lime",
+    -- "Yellow", "Blue", "Fuchsia", "Aqua" or "White".
     copy_mode_active_highlight_fg = { Color = "#1a1a19" },
     copy_mode_inactive_highlight_bg = { Color = "#d1d1d1" },
     copy_mode_inactive_highlight_fg = { Color = "#1a1a19" },
