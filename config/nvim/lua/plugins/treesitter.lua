@@ -76,6 +76,9 @@ return {
             ["id"] = "@block.inner",
           },
         },
+        matchup = {
+          enable = true
+        },
         swap = {
           enable = true,
           swap_next = {

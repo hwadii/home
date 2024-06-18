@@ -279,7 +279,7 @@ return {
       vim.g.vim_markdown_override_foldtext = 1
       vim.g.vim_markdown_no_default_key_mappings = 1
       vim.g.vim_markdown_emphasis_multiline = 0
-      vim.g.vim_markdown_conceal = 0
+      vim.g.vim_markdown_conceal = 1
       vim.g.vim_markdown_conceal_code_blocks = 0
       vim.g.vim_markdown_frontmatter = 1
       vim.g.vim_markdown_borderless_table = 0
@@ -292,17 +292,27 @@ return {
     opts = {},
   },
   {
+    "andymass/vim-matchup",
+    event = "BufReadPost",
+    opts = {},
+    init = function()
+      vim.g.matchup_matchparen_offscreen = {}
+    end
+  },
+  {
     "dstein64/nvim-scrollview",
     event = "UIEnter",
     opts = {
       current_only = true,
       winblend_gui = 40,
-      signs_on_startup = { "diagnostics", "search", "spell", "marks", "conflicts" },
+      signs_on_startup = { "diagnostics", "search", "spell", "marks", "conflicts", "changelist" },
       diagnostics_error_symbol = "×",
       diagnostics_warn_symbol = "!",
       diagnostics_info_symbol = "i",
       diagnostics_hint_symbol = "H",
       excluded_filetypes = { "fugitiveblame" },
+      changelist_previous_symbol = "◀",
+      changelist_next_symbol = "▶",
     },
   },
   {
@@ -416,7 +426,8 @@ return {
     dependencies = "rktjmp/lush.nvim",
     init = function()
       vim.cmd "colorscheme ploy"
-    end,
+      vim.opt.background = "dark"
+    end
   },
   {
     "rktjmp/paperplanes.nvim",
