@@ -6,23 +6,84 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
+wezterm.on("update-right-status", function(window)
+  window:set_right_status(window:active_workspace())
+end)
+
+local default_key_tables = wezterm.gui.default_key_tables()
+local copy_mode = default_key_tables.copy_mode
+table.insert(copy_mode, {
+  key = "y",
+  mods = "NONE",
+  action = wezterm.action.Multiple({
+    wezterm.action.CopyTo("ClipboardAndPrimarySelection"),
+    wezterm.action.CopyMode("ClearSelectionMode"),
+  }),
+})
+table.insert(copy_mode, {
+  key = "/",
+  mods = "NONE",
+  action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
+})
+table.insert(copy_mode, {
+  key = "?",
+  mods = "SHIFT",
+  action = wezterm.action.Search("CurrentSelectionOrEmptyString"),
+})
+table.insert(copy_mode, {
+  key = "[",
+  mods = "CTRL",
+  action = wezterm.action.CopyMode("ClearSelectionMode"),
+})
+table.insert(copy_mode, {
+  key = "Escape",
+  mods = "NONE",
+  action = wezterm.action.CopyMode("ClearSelectionMode"),
+})
+table.insert(copy_mode, {
+  key = "n",
+  mods = "NONE",
+  action = wezterm.action.CopyMode("NextMatch"),
+})
+table.insert(copy_mode, {
+  key = "N",
+  mods = "NONE",
+  action = wezterm.action.CopyMode("PriorMatch"),
+})
+local search_mode = default_key_tables.search_mode
+table.insert(search_mode, {
+  key = "c",
+  mods = "CTRL",
+  action = wezterm.action.Multiple({
+    wezterm.action.ActivateCopyMode,
+    wezterm.action.CopyMode("ClearSelectionMode"),
+  }),
+})
+table.insert(search_mode, {
+  key = "Enter",
+  mods = "NONE",
+  action = wezterm.action.CopyMode("AcceptPattern"),
+})
+
 return {
-  default_prog = { "/opt/homebrew/bin/fish", "-c", "tmux new-session -ADs x" },
   term = "wezterm",
   font = wezterm.font({
     family = "Berkeley Mono",
     weight = "Regular",
     stretch = "Normal",
-    harfbuzz_features = { "ss04", "ss06" },
+    harfbuzz_features = { "ss03", "ss04" },
   }),
   font_size = 14.5,
   underline_thickness = 1,
-  enable_tab_bar = false,
+  default_cursor_style = "SteadyBlock",
+  enable_tab_bar = true,
   tab_bar_at_bottom = true,
-  window_close_confirmation = "NeverPrompt",
+  window_close_confirmation = "AlwaysPrompt",
   use_ime = false,
+  use_fancy_tab_bar = true,
   line_height = 1,
   enable_scroll_bar = false,
+  selection_word_boundary = "\t\n {}[]()\"'`.,;:",
   window_padding = {
     left = 0,
     right = 0,
@@ -31,7 +92,8 @@ return {
   },
   quick_select_alphabet = "jfkdls;ahgurieowpq",
   enable_kitty_keyboard = true,
-
+  scrollback_lines = 10000,
+  leader = { key = "q", mods = "CTRL", timeout_milliseconds = 5000 },
   keys = {
     {
       key = "O",
@@ -60,20 +122,120 @@ return {
       }),
     },
     {
-      key = "LeftArrow",
-      mods = "CTRL|SHIFT",
-      action = wezterm.action.DisableDefaultAssignment,
+      key = "w",
+      mods = "LEADER|SHIFT",
+      action = wezterm.action.PromptInputLine({
+        description = wezterm.format({
+          { Attribute = { Intensity = "Bold" } },
+          { Text = "Enter name for new workspace" },
+        }),
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:perform_action(
+              wezterm.action.SwitchToWorkspace({
+                name = line,
+              }),
+              pane
+            )
+          end
+        end),
+      }),
     },
     {
-      key = "RightArrow",
-      mods = "CTRL|SHIFT",
-      action = wezterm.action.DisableDefaultAssignment,
+      key = "s",
+      mods = "LEADER",
+      action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
     },
     {
-      key = "Enter",
-      mods = "ALT",
-      action = wezterm.action.DisableDefaultAssignment,
+      key = ".",
+      mods = "LEADER",
+      action = wezterm.action.PromptInputLine({
+        description = wezterm.format({
+          { Attribute = { Intensity = "Bold" } },
+          { Text = "Enter new name for workspace" },
+        }),
+        action = wezterm.action_callback(function(_, _, line)
+          wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+        end),
+      }),
     },
+    {
+      key = "q",
+      mods = "LEADER|CTRL",
+      action = wezterm.action({ SendKey = { key = "q", mods = "LEADER|CTRL" } }),
+    },
+    {
+      key = '"',
+      mods = "LEADER|SHIFT",
+      action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
+    },
+    {
+      key = "%",
+      mods = "LEADER|SHIFT",
+      action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+    },
+    { key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
+    { key = "a", mods = "LEADER", action = "ActivateLastTab" },
+    { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+    { key = "p", mods = "LEADER", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "p", mods = "LEADER|CTRL", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "n", mods = "LEADER", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "n", mods = "LEADER|CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+    {
+      key = "h",
+      mods = "LEADER|CTRL",
+      action = wezterm.action({ ActivatePaneDirection = "Left" }),
+    },
+    { key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+    {
+      key = "j",
+      mods = "LEADER|CTRL",
+      action = wezterm.action({ ActivatePaneDirection = "Down" }),
+    },
+    { key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+    { key = "k", mods = "LEADER|CTRL", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+    { key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+    {
+      key = "l",
+      mods = "LEADER|CTRL",
+      action = wezterm.action({ ActivatePaneDirection = "Right" }),
+    },
+    { key = "1", mods = "LEADER", action = wezterm.action({ ActivateTab = 0 }) },
+    { key = "2", mods = "LEADER", action = wezterm.action({ ActivateTab = 1 }) },
+    { key = "3", mods = "LEADER", action = wezterm.action({ ActivateTab = 2 }) },
+    { key = "4", mods = "LEADER", action = wezterm.action({ ActivateTab = 3 }) },
+    { key = "5", mods = "LEADER", action = wezterm.action({ ActivateTab = 4 }) },
+    { key = "6", mods = "LEADER", action = wezterm.action({ ActivateTab = 5 }) },
+    { key = "7", mods = "LEADER", action = wezterm.action({ ActivateTab = 6 }) },
+    { key = "8", mods = "LEADER", action = wezterm.action({ ActivateTab = 7 }) },
+    { key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
+    {
+      key = "&",
+      mods = "LEADER|SHIFT",
+      action = wezterm.action({ CloseCurrentTab = { confirm = true } }),
+    },
+    {
+      key = "d",
+      mods = "LEADER",
+      action = wezterm.action({ CloseCurrentPane = { confirm = true } }),
+    },
+    {
+      key = "x",
+      mods = "LEADER",
+      action = wezterm.action({ CloseCurrentPane = { confirm = true } }),
+    },
+    {
+      key = "[",
+      mods = "LEADER",
+      action = wezterm.action.ActivateCopyMode,
+    },
+    { key = "]", mods = "LEADER", action = wezterm.action.PasteFrom("Clipboard") },
+    { key = "w", mods = "LEADER", action = wezterm.action.ShowTabNavigator },
+  },
+  key_tables = {
+    copy_mode = copy_mode,
+    search_mode = search_mode,
   },
   colors = {
     -- The default text color
