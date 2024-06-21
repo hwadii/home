@@ -184,6 +184,7 @@ return {
           gitsigns.diffthis("~")
         end)
         map("n", "<leader>td", gitsigns.toggle_deleted)
+        map("n", "<leader>gb", gitsigns.blame)
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
@@ -297,7 +298,7 @@ return {
     opts = {},
     init = function()
       vim.g.matchup_matchparen_offscreen = {}
-    end
+    end,
   },
   {
     "dstein64/nvim-scrollview",
@@ -318,7 +319,7 @@ return {
   {
     "tris203/precognition.nvim",
     opts = {},
-    cmd = "Precognition"
+    cmd = "Precognition",
   },
   {
     "zbirenbaum/copilot.lua",
@@ -367,7 +368,6 @@ return {
     },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
-      { "<Leader>gb", "<cmd>Git blame<cr>", mode = "n" },
     },
     dependencies = "tpope/vim-rhubarb",
   },
@@ -425,9 +425,9 @@ return {
     dir = "~/code/ploy.nvim",
     dependencies = "rktjmp/lush.nvim",
     init = function()
-      vim.cmd "colorscheme ploy"
+      vim.cmd("colorscheme ploy")
       vim.opt.background = "dark"
-    end
+    end,
   },
   {
     "rktjmp/paperplanes.nvim",
