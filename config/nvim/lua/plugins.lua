@@ -242,7 +242,8 @@ return {
   },
   {
     "stevearc/oil.nvim",
-    cmd = "Oil",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     keys = {
       {
         "-",
@@ -252,11 +253,20 @@ return {
         mode = "n",
         desc = "Open parent directory in a buffer.",
       },
+      {
+        "<localleader>-",
+        function()
+          require("oil").toggle_float()
+        end,
+        mode = "n",
+        desc = "Open parent directory in a buffer.",
+      },
     },
     opts = {
       view_options = {
         show_hidden = true,
       },
+      columns = { "icon" },
       buf_options = {
         buflisted = false,
         bufhidden = "hide",
