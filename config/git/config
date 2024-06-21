@@ -48,7 +48,13 @@
   hyperlinks = true
   paging = always
 [merge]
+  tool = diffview
   conflictstyle = zdiff3
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "diffview"]
+  cmd = nvim -n -c "DiffviewOpen" "$MERGE"
 [init]
   defaultBranch = main
 [safe]
