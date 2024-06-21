@@ -239,20 +239,20 @@ return {
   },
   colors = {
     -- The default text color
-    foreground = "#d1d1d1",
+    foreground = "#e0e0e0",
     -- The default background color
     background = "#0d0d0d",
 
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
-    cursor_bg = "#dbdbdb",
+    cursor_bg = "#e0e0e0",
     -- Overrides the text color when the current cell is occupied by the cursor
     cursor_fg = "#1a1a19",
 
     cursor_border = "#dbdbdb",
 
     -- the foreground color of selected text
-    selection_fg = "#d1d1d1",
+    selection_fg = "#e0e0e0",
     -- the background color of selected text
     selection_bg = "#614444",
 
