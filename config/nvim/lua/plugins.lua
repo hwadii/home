@@ -228,6 +228,7 @@ return {
   {
     "echasnovski/mini.nvim",
     event = "BufReadPre",
+    cmd = "Git",
     config = function()
       require("mini.ai").setup({ search_method = "cover_or_next", n_lines = 200 })
       require("mini.move").setup()
@@ -238,6 +239,7 @@ return {
         replace = { prefix = "" },
         sort = { prefix = "gs" },
       })
+      require("mini.git").setup()
     end,
   },
   {
@@ -321,7 +323,7 @@ return {
       diagnostics_warn_symbol = "!",
       diagnostics_info_symbol = "i",
       diagnostics_hint_symbol = "H",
-      excluded_filetypes = { "fugitiveblame" },
+      excluded_filetypes = { "fugitiveblame", "gitsigns.blame" },
       changelist_previous_symbol = "◀",
       changelist_next_symbol = "▶",
     },
@@ -364,6 +366,7 @@ return {
   { "tpope/vim-sleuth", lazy = false },
   {
     "tpope/vim-fugitive",
+    enabled = false,
     cmd = {
       "Git",
       "GBrowse",
@@ -390,7 +393,7 @@ return {
     },
     cmd = "Neogit",
     keys = {
-      { "<Leader>gS", "<cmd>Neogit<cr>", mode = "n" },
+      { "<Leader>gs", "<cmd>Neogit<cr>", mode = "n" },
     },
     opts = {
       disable_hint = true,
