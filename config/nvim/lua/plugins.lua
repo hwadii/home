@@ -478,4 +478,11 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
   },
+  {
+    "folke/drop.nvim",
+    opts = {
+      screensaver = false,
+      theme = "summer",
+    }
+  },
 }
