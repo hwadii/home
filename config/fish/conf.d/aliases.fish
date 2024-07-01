@@ -10,8 +10,7 @@ alias ll "eza --git --group-directories-first --hyperlink -l"
 alias la "eza --git --group-directories-first --hyperlink -lah"
 
 # shortcuts to edit various files
-abbr vim nvim
-abbr vi nvim
+abbr vim "nvim --clean"
 
 # qol
 abbr wholistens "netstat -tulpn | rg LISTEN"
