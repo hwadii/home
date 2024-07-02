@@ -362,6 +362,7 @@ return {
     "zbirenbaum/copilot-cmp",
     opts = {},
   },
+  { "tpope/vim-dispatch", cmd = { "Start", "Make", "Dispatch", "Copen" } },
   { "tpope/vim-abolish", cmd = { "Abolish", "Subvert", "S" }, keys = "cr" },
   { "tpope/vim-unimpaired", keys = { "[", "]", "yo", "=", "<", ">" } },
   { "tpope/vim-sleuth", lazy = false },
