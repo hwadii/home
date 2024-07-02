@@ -314,6 +314,7 @@ return {
   },
   {
     "dstein64/nvim-scrollview",
+    enabled = false,
     event = "UIEnter",
     opts = {
       current_only = true,
@@ -432,7 +433,18 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
-  { "lewis6991/satellite.nvim", opts = {}, enabled = false },
+  {
+    "lewis6991/satellite.nvim",
+    opts = {
+      excluded_filetypes = { "fugitiveblame", "gitsigns.blame" },
+      handlers = {
+        gitsigns = { enable = false },
+      },
+      current_only = true,
+    },
+    event = "VeryLazy",
+    enabled = true,
+  },
   { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim", enabled = false },
   {
     dir = "~/code/ploy.nvim",
