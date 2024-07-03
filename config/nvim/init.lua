@@ -30,7 +30,6 @@ require("lazy").setup("plugins", {
         "tarPlugin",
         "zip",
         "zipPlugin",
-        "tohtml",
         "tutor",
         "getscript",
         "getscriptPlugin",
