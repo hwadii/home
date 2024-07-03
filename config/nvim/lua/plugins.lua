@@ -28,12 +28,21 @@ return {
   {
     "jpalardy/vim-slime",
     enabled = false,
+    keys = {
+      { "gz", "<Plug>SlimeMotionSend", mode = "n", remap = true, silent = false },
+      { "gzz", "<Plug>SlimeLineSend", mode = "n", remap = true, silent = false },
+      { "gz", "<Plug>SlimeRegionSend", mode = "x", remap = true, silent = false },
+      { "gzc", "<Plug>SlimeConfig", mode = "n", remap = true, silent = false },
+    },
     init = function()
-      vim.g.slime_target = "tmux"
-      vim.g.slime_paste_file = "/tmp/.slime_paste"
-      vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
-      vim.g.slime_dont_ask_default = 1
-      vim.g.slime_no_mappings = 1
+      vim.g.slime_target = "neovim"
+      vim.g.slime_no_mappings = true
+    end,
+    config = function()
+      vim.g.slime_input_pid = false
+      vim.g.slime_suggest_default = true
+      vim.g.slime_menu_config = false
+      vim.g.slime_neovim_ignore_unlisted = false
     end,
   },
   {
