@@ -71,7 +71,7 @@ return {
     family = "Berkeley Mono",
     weight = "Regular",
     stretch = "Normal",
-    harfbuzz_features = { "ss03", "ss04" },
+    harfbuzz_features = { "ss01", "ss04" },
   }),
   font_size = 14.5,
   underline_thickness = 1,
