@@ -6,8 +6,12 @@ vim.api.nvim_create_user_command("Gh", "!gh <f-args>", { nargs = 1 })
 vim.api.nvim_create_user_command("Gbr", "Gh browse", {})
 vim.api.nvim_create_user_command("Gpr", "Gh p", {})
 vim.api.nvim_create_user_command("Browse", function(opts)
-  vim.ui.open(opts.args)
-end, { nargs = 1 })
+  if opts.args == "" then
+    vim.ui.open(vim.api.nvim_buf_get_name(0))
+  else
+    vim.ui.open(opts.args)
+  end
+end, { nargs = "?" })
 vim.api.nvim_create_user_command("Drop", function(opts)
   if opts.args == "show" then
     require("drop").show()
