@@ -36,7 +36,6 @@ return {
       vim.g.slime_no_mappings = 1
     end,
   },
-  { "godlygeek/tabular", cmd = "Tabularize" },
   {
     "uga-rosa/ccc.nvim",
     opts = { empty_point_bg = false, highlight_mode = "virtual" },
@@ -237,6 +236,12 @@ return {
         multiply = { prefix = "" },
         replace = { prefix = "" },
         sort = { prefix = "gs" },
+      })
+      require("mini.align").setup({
+        mappings = {
+          start = "<leader>a",
+          start_with_preview = "<leader>A",
+        },
       })
     end,
   },
@@ -492,6 +497,6 @@ return {
     opts = {
       screensaver = false,
       theme = "summer",
-    }
+    },
   },
 }
