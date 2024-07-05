@@ -318,6 +318,7 @@ return {
   },
   {
     "andymass/vim-matchup",
+    enabled = false,
     event = "BufReadPost",
     opts = {},
     init = function()
