@@ -21,6 +21,7 @@ return {
         "diff",
         "dockerfile",
         "dot",
+        "editorconfig",
         "fish",
         "git_config",
         "git_rebase",
