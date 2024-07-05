@@ -192,7 +192,7 @@ return {
           gitsigns.diffthis("~")
         end)
         map("n", "<leader>td", gitsigns.toggle_deleted)
-        map("n", "<leader>gb", gitsigns.blame)
+        map("n", "<leader>gB", gitsigns.blame)
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
@@ -392,6 +392,7 @@ return {
     },
     keys = {
       { "<Leader>gs", "<cmd>Git<cr>", mode = "n" },
+      { "<Leader>gb", "<cmd>Git blame<cr>", mode = "n" },
     },
     dependencies = "tpope/vim-rhubarb",
   },
@@ -478,7 +479,6 @@ return {
     opts = {},
     ft = { "typescript", "javascript", "html", "typescriptreact" },
   },
-  "nvim-tree/nvim-web-devicons",
   { "j-hui/fidget.nvim", opts = {}, event = "BufReadPre" },
   {
     "sindrets/diffview.nvim",
