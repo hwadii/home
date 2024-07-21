@@ -64,6 +64,7 @@ return {
       "hrsh7th/cmp-emoji",
       "dcampos/cmp-snippy",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-nvim-lua",
       "onsails/lspkind.nvim",
     },
     opts = function(_, opts)
@@ -111,6 +112,7 @@ return {
       }
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "nvim_lua" },
         { name = "vim-dadbod-completion" },
         { name = "snippy" },
         { name = "buffer", max_item_count = 10 },
