@@ -24,3 +24,21 @@ end, {
     return { "show", "hide" }
   end,
 })
+vim.api.nvim_create_user_command("Calc", function()
+  local highlight_input = function(input)
+    local parser = vim.treesitter.get_string_parser(input, "lua")
+    local tree = parser:parse()[1]
+    local query = vim.treesitter.query.get("lua", "highlights")
+    local highlights = {}
+    for id, node in query:iter_captures(tree:root(), input) do
+      local _, cstart, _, cend = node:range()
+      table.insert(highlights, { cstart, cend, "@" .. query.captures[id] })
+    end
+    return highlights
+  end
+  vim.ui.input({ prompt = "Quick calc: ", highlight = highlight_input }, function(input)
+    local r = require("wadii.calc").quick(input)
+    vim.cmd.redraw()
+    vim.notify("Result: " .. input .. " => " .. r)
+  end)
+end, {})

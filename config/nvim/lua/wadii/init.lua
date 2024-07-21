@@ -5,6 +5,7 @@ _G.wadii = {
   foldtext = require("wadii.foldtext"),
   maps = require("wadii.maps"),
   options = require("wadii.options"),
+  calc = require("wadii.calc"),
 }
 
 return _G.wadii
