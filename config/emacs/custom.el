@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(adwaita-dark-theme-mode-line-padding 2)
- '(custom-enabled-themes '(standard-light))
+ '(custom-enabled-themes '(ef-light))
  '(custom-safe-themes t)
  '(elfeed-feeds
    '(("https://github.com/emacs-mirror/emacs/commits.atom")
@@ -29,8 +29,7 @@
      ("https://drewdevault.com/blog/index.xml")
      ("https://emersion.fr/blog/atom.xml")
      ("https://seirdy.one/posts/index.xml")
-     ("https://yaah.dev/feed.xml")
-     ("https://jae.moe/blog/index.xml")
+     ("https://yaah.dev/feed.xml") ("https://jae.moe/blog/index.xml")
      ("https://peppe.rs/index.xml")
      ("https://blog.sulami.xyz/atom.xml")
      ("https://phaazon.net/blog/feed")
@@ -46,8 +45,7 @@
      ("https://noteflakes.com/feeds/rss")
      ("https://blog.nindalf.com/index.xml")
      ("https://eclair.cafe/blog/index.xml")
-     ("https://ardentperf.com/feed/")
-     ("https://jcs.org/rss")
+     ("https://ardentperf.com/feed/") ("https://jcs.org/rss")
      ("https://www.benkuhn.net/index.xml")
      ("https://blog.nelhage.com/atom.xml")
      ("https://harelang.org/blog/index.xml")
@@ -58,11 +56,9 @@
      ("https://leahneukirchen.org/blog/index.atom")
      ("https://0pointer.net/blog/index.atom")
      ("https://benjamincongdon.me/blog/feed.xml")
-     ("https://tomcritchlow.com/feed")
-     ("https://vale.dev/rss.xml")
+     ("https://tomcritchlow.com/feed") ("https://vale.dev/rss.xml")
      ("https://brooker.co.za/blog/atom.xml")
-     ("https://autodidacts.io/rss/")
-     ("https://meribold.org/feed.xml")
+     ("https://autodidacts.io/rss/") ("https://meribold.org/feed.xml")
      ("https://www.arp242.net/feed.xml")
      ("https://notes.volution.ro/index.xml")
      ("https://theevilskeleton.gitlab.io/feed.xml")
@@ -94,10 +90,8 @@
      ("https://lwn.net/headlines/rss")
      ("https://protesilaos.com/news.xml")
      ("https://cprss.s3.amazonaws.com/rubyweekly.com.xml")
-     ("https://sizeof.cat/atom.xml")
-     ("https://sirupsen.com/atom.xml")
-     ("https://ghedam.at/feed")
-     ("https://ianthehenry.com/feed.xml")
+     ("https://sizeof.cat/atom.xml") ("https://sirupsen.com/atom.xml")
+     ("https://ghedam.at/feed") ("https://ianthehenry.com/feed.xml")
      ("https://github.com/BurntSushi/ripgrep/releases.atom")
      ("https://github.com/JetBrains/JetBrainsMono/releases.atom")
      ("https://github.com/alacritty/alacritty/releases.atom")
@@ -135,18 +129,24 @@
      ("https://blog.burntsushi.net/index.xml")
      ("https://michael.stapelberg.ch/feed.xml")
      ("https://alexandrabac.blogspot.com/feeds/posts/default")
-     ("https://based.cooking/atom.xml")
-     ("https://adnano.co/atom.xml")
+     ("https://based.cooking/atom.xml") ("https://adnano.co/atom.xml")
      ("https://zverok.github.io/feed.xml")
      ("https://www.getrevue.co/profile/theprincessxena.rss")
      ("http://dtrace.org/blogs/bmc/feed/")
-     ("https://armaanb.net/feed")
-     ("https://work.lisk.in/atom.xml")
+     ("https://armaanb.net/feed") ("https://work.lisk.in/atom.xml")
      ("https://tsdh.org/rss.xml")))
  '(isearch-allow-motion t)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(standard-themes ef-themes crux magit tide flycheck orderless vertico-directory adwaita-dark-theme tree-sitter-indent doom-themes inf-ruby vertico corfu marginalia fd-dired ligature eglot password-store zig-mode json-mode diff-hl sudo-utils graphviz-dot-mode auto-package-update edit-indirect typescript-mode rg yaml-mode vterm rust-mode tree-sitter-hl tree-sitter-langs tree-sitter expand-region elfeed rainbow-delimiters paredit markdown-mode))
+   '(auto-package-update avy cape corfu-terminal crux diff-hl doom-themes
+                         ef-themes elfeed embark-consult evil
+                         expand-region fd-dired inf-ruby json-mode
+                         kind-icon ligature magit marginalia
+                         markdown-mode mise orderless paredit
+                         password-store rainbow-delimiters rg
+                         rust-mode standard-themes sudo-utils tide
+                         tree-sitter-indent tree-sitter-langs
+                         typescript-mode vertico vterm zig-mode))
  '(warning-suppress-types '((lsp-mode) (lsp-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

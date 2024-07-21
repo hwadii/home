@@ -2,6 +2,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
+      "nvim-tree/nvim-web-devicons",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
@@ -88,12 +89,6 @@ return {
             path_display = { "truncate" },
             previewer = false,
           },
-          fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case",
-          },
           lsp_references = { theme = "dropdown" },
           lsp_definitions = { theme = "dropdown" },
           lsp_implementations = { theme = "dropdown" },
@@ -135,6 +130,12 @@ return {
           file_browser = {
             hijack_netrw = false,
             grouped = true,
+          },
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
           },
         },
       })

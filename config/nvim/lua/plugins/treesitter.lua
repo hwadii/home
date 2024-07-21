@@ -6,6 +6,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-context",
       "nushell/tree-sitter-nu",
     },
     opts = {
@@ -160,6 +161,7 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
+      require("treesitter-context").setup({ enable = true, max_lines = 1 })
       require("nvim-treesitter").define_modules({
         fold = {
           attach = function(_, _)

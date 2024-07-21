@@ -1,5 +1,3 @@
-;;; Emfy 0.3.0-dev <https://github.com/susam/emfy>
-
 ;; Interactively do things.
 (fido-vertical-mode 0)
 (ido-mode 0)
@@ -9,7 +7,7 @@
 
 (pixel-scroll-precision-mode 1)
 
-(setq frame-title-format '("%b"))
+(setopt frame-title-format '("%b"))
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
@@ -23,7 +21,7 @@
 (setq-default require-final-newline t)
 
 ;; Consider a period followed by a single space to be end of sentence.
-(setq sentence-end-double-space nil)
+(setopt sentence-end-double-space nil)
 
 ;; Use spaces, not tabs, for indentation.
 (setq-default indent-tabs-mode nil)
@@ -32,69 +30,69 @@
 (setq-default tab-width 4)
 
 ;; Indentation setting for various languages.
-(setq c-basic-offset 4)
-(setq js-indent-level 2)
-(setq typescript-indent-level 2)
-(setq css-indent-offset 2)
+(setopt c-basic-offset 4)
+(setopt js-indent-level 2)
+(setopt typescript-indent-level 2)
+(setopt css-indent-offset 2)
 
 ;; Highlight matching pairs of parentheses.
-(setq show-paren-delay 0)
+(setopt show-paren-delay 0)
 (show-paren-mode)
 
 ;; Write auto-saves and backups to separate directory.
 (make-directory "~/.tmp/emacs/auto-save/" t)
-(setq auto-save-file-name-transforms '((".*" "~/.tmp/emacs/auto-save/" t)))
-(setq backup-directory-alist '(("." . "~/.tmp/emacs/backup/")))
+(setopt auto-save-file-name-transforms '((".*" "~/.tmp/emacs/auto-save/" t)))
+(setopt backup-directory-alist '(("." . "~/.tmp/emacs/backup/")))
 
 ;; Do not move the current file while creating backup.
-(setq backup-by-copying t)
+(setopt backup-by-copying t)
 
 ;; Disable lockfiles.
-(setq create-lockfiles nil)
+(setopt create-lockfiles nil)
 
-(setq desktop-path '("~/.config/emacs/desktops/"))
+(setopt desktop-path '("~/.config/emacs/desktops/"))
 (desktop-save-mode 1)
 ;; Write customizations to a separate file instead of this file.
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setopt custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
-(setq nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
+(setopt nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
 
-(setq shell-file-name "/opt/homebrew/bin/fish")
-(setq explicit-shell-file-name "/opt/homebrew/bin/fish")
-(setq vterm-shell "/opt/homebrew/bin/fish")
+(setopt shell-file-name "/opt/homebrew/bin/fish")
+(setopt explicit-shell-file-name "/opt/homebrew/bin/fish")
+(setopt vterm-shell "/opt/homebrew/bin/fish")
 
-(setq scroll-conservatively 101)
-(setq scroll-margin 1)
+(setopt scroll-conservatively 101)
+(setopt scroll-margin 1)
 
 (tab-bar-mode 1)
 
 ;; Show directories first in dired.
-(setq insert-directory-program "ls")
-(setq dired-listing-switches "-vhal --group-directories-first")
+(setopt insert-directory-program "gls")
+(setopt dired-listing-switches "-vhal --group-directories-first")
 
-(setq xref-search-program 'ripgrep)
+(setopt xref-search-program 'ripgrep)
 
-(setq diff-hl-show-staged-changes nil)
+(setopt diff-hl-show-staged-changes nil)
 
-(setq switch-to-buffer-obey-display-actions t)
+(setopt switch-to-buffer-obey-display-actions t)
 
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
 (delete-selection-mode 1)
 
-(setq user-full-name       "Wadii Hajji"
-      user-real-login-name "Wadii Hajji"
-      user-login-name      "hwadii"
-      user-mail-address    "wadii@cardiologs.com")
+(setopt user-full-name       "Wadii Hajji"
+        user-real-login-name "Wadii Hajji"
+        user-login-name      "hwadii"
+        user-mail-address    "wadii@cardiologs.com")
 
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(setq tab-bar-new-button-show nil
-      tab-bar-close-button-show nil)
+(setopt tab-bar-new-button-show nil
+        tab-bar-close-button-show nil)
 
-(setq calendar-week-start-day 1)
+(setopt calendar-week-start-day 1)
 
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -104,48 +102,45 @@
   (package-refresh-contents))
 
 (eval-and-compile
-  (setq use-package-always-ensure t
-        use-package-expand-minimally t))
+  (setopt use-package-always-ensure t
+          use-package-expand-minimally t))
 
 (use-package org
   :ensure nil
   :config
-  (setq org-directory "~/code/notes"
-        org-default-notes-file (concat org-directory "/notes.org")
-        org-default-jounral-file (concat org-directory "/journal.org")
-        org-default-reading-file (concat org-directory "/reading.org")
-        org-todo-keywords (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")))
-        org-todo-keyword-faces (quote (("NEXT" :inherit warning
-                                        ("PROJECT" :inherit font-lock-string-face))))
-        org-goto-interface 'outline-path-completion
-        org-outline-path-complete-in-steps nil
-        org-goto-max-level 5))
+  (setopt org-directory "~/code/notes"
+          org-default-notes-file (concat org-directory "/notes.org")
+          org-default-jounral-file (concat org-directory "/journal.org")
+          org-default-reading-file (concat org-directory "/reading.org")
+          org-todo-keywords (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")))
+          org-todo-keyword-faces (quote (("NEXT" :inherit warning
+                                          ("PROJECT" :inherit font-lock-string-face))))
+          org-goto-interface 'outline-path-completion
+          org-outline-path-complete-in-steps nil
+          org-goto-max-level 5))
 (use-package org-capture
   :ensure nil
   :after org
   :config
-  (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-           "* TODO %?\n  %i\n  %a")
-          ("j" "Journal" entry (file+datetree org-default-jounral-file)
-           "* %?\n  %i\n  %a")
-          ))
+  (setopt org-capture-templates
+          '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("j" "Journal" entry (file+datetree org-default-jounral-file)
+             "* %?\n  %i\n  %a")
+            ))
   :bind ("C-c c" . org-capture))
 (use-package tab-bar
   :ensure nil
   :bind ("C-x t (" . tab-bar-mode))
 (use-package emacs
   :init
-  (setq modus-themes-italic-constructs t
-        modus-themes-bold-constructs t
-        completion-cycle-threshold 3
-        tab-always-indent 'complete)
+  (setopt modus-themes-italic-constructs t
+          modus-themes-bold-constructs t
+          completion-cycle-threshold 3
+          tab-always-indent 'complete)
   (global-display-fill-column-indicator-mode)
-  :config
-  (adwaita-dark-theme-arrow-fringe-bmp-enable)
   :hook ((after-init . windmove-default-keybindings)
-         (completion-list-mode . wadii/term-mode)
-         (prog-mode . display-line-numbers-mode))
+         (completion-list-mode . wadii/term-mode))
   :bind (
          ("<f5>" . modus-themes-toggle)
          ("C-c o" . find-file-at-point)
@@ -154,24 +149,26 @@
          ("C-c i d" . wadii/insert-date)
          ("C-c i t" . wadii/insert-time)
          ("C-c i u" . wadii/insert-uuid)))
+
 (use-package calculator
   :ensure nil
   :bind (("C-c =" . calculator)))
 (use-package savehist
   :ensure nil
   :init
-  (setq savehist-file "~/.config/emacs/savehist"
-        history-length 1000
-        history-delete-duplicates t
-        savehist-save-minibuffer-history t
-        savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+  (setopt savehist-file "~/.config/emacs/savehist"
+          history-length 1000
+          history-delete-duplicates t
+          savehist-save-minibuffer-history t
+          savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
   (savehist-mode 1))
 (use-package vertico
+  :ensure t
   :init
-  (setq read-file-name-completion-ignore-case t
-        read-buffer-completion-ignore-case t
-        completion-ignore-case t
-        completion-styles '(orderless basic))
+  (setopt read-file-name-completion-ignore-case t
+          read-buffer-completion-ignore-case t
+          completion-ignore-case t
+          completion-styles '(orderless basic))
   (vertico-mode))
 (use-package vertico-directory
   :ensure nil
@@ -218,7 +215,6 @@
   (add-hook 'after-init-hook #'global-diff-hl-mode)
   :config
   (diff-hl-flydiff-mode)
-  (adwaita-dark-theme-diff-hl-fringe-bmp-enable)
   :hook (magit-post-refresh . diff-hl-magit-post-refresh))
 (use-package elfeed
   :bind (
@@ -244,19 +240,32 @@
   :config
   (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140))))
 (use-package corfu
-  :custom
-  (corfu-auto nil)
+  :ensure t
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator)
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)))
+;; (use-package corfu-popupinfo
+;;   :after corfu
+;;   :hook (corfu-mode . corfu-popupinfo-mode)
+;;   :custom
+;;   (corfu-popupinfo-delay '(0.25 . 0.1))
+;;   (corfu-popupinfo-hide nil)
+;;   :config
+;;   (corfu-popupinfo-mode))
 (use-package vterm
   :bind ("C-c t" . vterm)
   :hook (vterm-mode . wadii/term-mode))
 (use-package which-key
-  :disabled)
+  :config
+  (which-key-mode))
 (use-package auto-package-update
   :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
+  (setopt auto-package-update-delete-old-versions t)
+  (setopt auto-package-update-hide-results t)
   (auto-package-update-maybe))
 (use-package sudo-utils
   :bind (
@@ -271,12 +280,12 @@
          (rust-mode . eglot-ensure))
   :commands (eglot-ensure)
   :config
-  (setq eldoc-echo-area-use-multiline-p nil
-        eglot-autoshutdown t
-        eglot-sync-connect 1
-        eglot-connect-timeout 10
-        eglot-stay-out-of '(flymake)
-        eglot-send-changes-idle-time 0.1))
+  (setopt eldoc-echo-area-use-multiline-p nil
+          eglot-autoshutdown t
+          eglot-sync-connect 1
+          eglot-connect-timeout 10
+          eglot-stay-out-of '(flymake)
+          eglot-send-changes-idle-time 0.1))
   (fset #'jsonrpc--log-event #'ignore)
 (use-package flycheck
   :hook
@@ -298,7 +307,7 @@
 (use-package eshell
   :ensure nil
   :hook (eshell-mode . wadii/term-mode)
-  :bind (("C-z" . eshell)))
+  :bind (("C-x C-z" . eshell)))
 (use-package fd-dired)
 (use-package ligature
   :config
@@ -329,16 +338,23 @@
   :bind (:map dired-mode-map
               ("z" . dired-start-process)
               ("r" . dired-xdg-open)))
-(use-package adwaita-dark-theme)
 (use-package orderless
-  :after vertico
-  :custom
-  (orderless-matching-styles '(orderless-flex))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  :after vertico)
+  ;; :custom
+  ;; (orderless-matching-styles '(orderless-flex))
+  ;; (completion-category-overrides '((file (styles basic partial-completion)))))
 (use-package ef-themes)
 (use-package standard-themes)
+(use-package mise
+  :hook
+  (prog-mode . mise-mode))
+(use-package evil
+  :init
+  (evil-esc-mode 1)
+  :commands evil-local-mode
+  :hook ((prog-mode text-mode fundamental-mode) . evil-local-mode))
 
-(set-face-attribute 'default nil :font "Berkeley Mono-14:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :font "Iosevka Comfy-15:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 (set-face-attribute 'variable-pitch nil :font "Source Sans 3-12:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
 
 ;; Start server.
