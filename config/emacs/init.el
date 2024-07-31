@@ -5,9 +5,10 @@
 ;; Complete pairs
 (electric-pair-mode 0)
 
-(pixel-scroll-precision-mode 1)
+(pixel-scroll-precision-mode -1)
 
-(setopt frame-title-format '("%b"))
+(global-visual-line-mode)
+
 ;; Show stray whitespace.
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
@@ -28,6 +29,10 @@
 
 ;; Display the distance between two tab stops as 4 characters wide.
 (setq-default tab-width 4)
+
+(setq-default enable-recursive-minibuffers t)
+
+(setq-default view-read-only t)
 
 ;; Indentation setting for various languages.
 (setopt c-basic-offset 4)
@@ -50,8 +55,9 @@
 ;; Disable lockfiles.
 (setopt create-lockfiles nil)
 
-(setopt desktop-path '("~/.config/emacs/desktops/"))
 (desktop-save-mode 1)
+(setopt user-emacs-directory "~/.cache/emacs")
+(setopt desktop-path '("~/.cache/emacs/desktops/"))
 ;; Write customizations to a separate file instead of this file.
 (setopt custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
@@ -69,13 +75,14 @@
 
 ;; Show directories first in dired.
 (setopt insert-directory-program "gls")
-(setopt dired-listing-switches "-vhal --group-directories-first")
 
 (setopt xref-search-program 'ripgrep)
 
 (setopt diff-hl-show-staged-changes nil)
 
 (setopt switch-to-buffer-obey-display-actions t)
+
+(setopt isearch-allow-motion t)
 
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
@@ -86,11 +93,8 @@
         user-login-name      "hwadii"
         user-mail-address    "wadii@cardiologs.com")
 
-(global-set-key [remap list-buffers] 'ibuffer)
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
-
-(setopt tab-bar-new-button-show nil
-        tab-bar-close-button-show nil)
+(setopt tab-bar-new-button-show t
+        tab-bar-close-button-show t)
 
 (setopt calendar-week-start-day 1)
 
@@ -105,33 +109,41 @@
   (setopt use-package-always-ensure t
           use-package-expand-minimally t))
 
-(use-package org
+(use-package goto-addr
+  :commands (goto-address-mode)
+  :hook (((prog-mode text-mode) . goto-address-mode)))
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer))
+(use-package hippie-expand
   :ensure nil
+  :bind ("M-/" . hippie-expand))
+(use-package diminish
+  :ensure t
   :config
-  (setopt org-directory "~/code/notes"
-          org-default-notes-file (concat org-directory "/notes.org")
-          org-default-jounral-file (concat org-directory "/journal.org")
-          org-default-reading-file (concat org-directory "/reading.org")
-          org-todo-keywords (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")))
-          org-todo-keyword-faces (quote (("NEXT" :inherit warning
-                                          ("PROJECT" :inherit font-lock-string-face))))
-          org-goto-interface 'outline-path-completion
-          org-outline-path-complete-in-steps nil
-          org-goto-max-level 5))
-(use-package org-capture
+  (diminish 'visual-line-mode))
+(use-package dired
   :ensure nil
-  :after org
-  :config
-  (setopt org-capture-templates
-          '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-             "* TODO %?\n  %i\n  %a")
-            ("j" "Journal" entry (file+datetree org-default-jounral-file)
-             "* %?\n  %i\n  %a")
-            ))
-  :bind ("C-c c" . org-capture))
+  :custom
+  (dired-vc-rename-file t)
+  (dired-listing-switches "-vhal --group-directories-first"))
+(use-package dired-x
+  :ensure nil
+  :after dired
+  :diminish dired-omit-mode
+  :hook
+  (dired-mode . dired-omit-mode)
+  :custom
+  (dired-omit-mode nil t)
+  (dired-omit-size-limit 60000))
 (use-package tab-bar
   :ensure nil
   :bind ("C-x t (" . tab-bar-mode))
+(use-package windsize
+  :commands windsize-default-keybindings
+  :hook (after-init . windsize-default-keybindings))
+(use-package windmove
+  :commands (windmove-default-keybindings windmove-display-default-keybindings)
+  :hook (after-init . '(windmove-default-keybindings windmove-display-default-keybindings)))
 (use-package emacs
   :init
   (setopt modus-themes-italic-constructs t
@@ -139,29 +151,27 @@
           completion-cycle-threshold 3
           tab-always-indent 'complete)
   (global-display-fill-column-indicator-mode)
-  :hook ((after-init . windmove-default-keybindings)
-         (completion-list-mode . wadii/term-mode))
+  :hook ((completion-list-mode . wadii/term-mode)
+         (text-mode . auto-fill-mode))
   :bind (
-         ("<f5>" . modus-themes-toggle)
-         ("C-c o" . find-file-at-point)
-         ("M-i" . imenu)
+         ("C-<" . scroll-left)
+         ("C->" . scroll-right)
          ("M-Z" . zap-up-to-char)
          ("C-c i d" . wadii/insert-date)
          ("C-c i t" . wadii/insert-time)
          ("C-c i u" . wadii/insert-uuid)))
-
-(use-package calculator
-  :ensure nil
-  :bind (("C-c =" . calculator)))
 (use-package savehist
   :ensure nil
   :init
-  (setopt savehist-file "~/.config/emacs/savehist"
+  (setopt savehist-file "~/.cache/emacs/savehist"
           history-length 1000
           history-delete-duplicates t
           savehist-save-minibuffer-history t
           savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
   (savehist-mode 1))
+(use-package undo-fu-session
+  :commands undo-fu-session-global-mode
+  :hook (after-init . undo-fu-session-global-mode))
 (use-package vertico
   :ensure t
   :init
@@ -180,24 +190,12 @@
               ("M-DEL" . vertico-directory-delete-word)))
 (use-package crux
   :ensure t
-  :commands crux-open-with
-  :bind
-  (("C-c d" . crux-duplicate-current-line-or-region)
-   ("C-S-<return>" . crux-smart-open-line-above)
-   ("S-<return>" . crux-smart-open-line)
-   ("C-c n" . crux-cleanup-buffer-or-region)))
+  :commands crux-open-with)
 (use-package markdown-mode
   :custom
-  (markdown-fontify-code-blocks-natively t))
-(use-package paredit
-  :config
-  ;; Enable Paredit.
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-  (add-hook 'ielm-mode-hook 'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'minibuffer-setup-hook 'disable-paredit-mode))
+  (markdown-fontify-code-blocks-natively t)
+  :hook
+  (text-mode . flyspell-mode))
 (use-package rainbow-delimiters
   :config
   ;; Enable Rainbow Delimiters.
@@ -207,8 +205,8 @@
   (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
 )
 (use-package magit
-  :commands magit-get-top-dir
-  :bind (("C-c g" . magit-status)))
+  :bind (("C-x g s" . magit-status)
+         ("C-x g l" . magit-log-all)))
 (use-package diff-hl
   :commands global-diff-hl-mode
   :init
@@ -216,29 +214,43 @@
   :config
   (diff-hl-flydiff-mode)
   :hook (magit-post-refresh . diff-hl-magit-post-refresh))
-(use-package elfeed
-  :bind (
-         ("C-c w" . elfeed)
-         :map elfeed-search-mode-map
-         ("f" . elfeed-update)))
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
-(use-package tree-sitter-langs)
-(use-package tree-sitter-indent)
+(use-package tree-sitter-langs :ensure t)
+(use-package tree-sitter-indent :ensure t)
 (use-package tree-sitter
+  :ensure nil
+  :init
+  (setq major-mode-remap-alist
+        '((yaml-mode . yaml-ts-mode)
+          (bash-mode . bash-ts-mode)
+          (js2-mode . js-ts-mode)
+          (typescript-mode . typescript-ts-mode)
+          (json-mode . json-ts-mode)
+          (css-mode . css-ts-mode)
+          (python-mode . python-ts-mode)
+          (csharp-mode . csharp-ts-mode)
+          (ruby-mode . ruby-ts-mode)
+          (rust-mode . rust-ts-mode)))
   :config
-  (require 'tree-sitter-langs)
+  :after tree-sitter-langs
   (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-(use-package rust-mode)
-(use-package typescript-mode
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
   :config
-  (add-hook 'typescript-mode-hook (lambda () (setq-local fill-column 120))))
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+(use-package rust-mode)
+(use-package typescript-ts-mode
+  :config
+  (add-hook 'typescript-ts-mode-hook (lambda () (setq-local fill-column 120))))
 (use-package json-mode)
 (use-package zig-mode)
-(use-package ruby-mode
+(use-package ruby-ts-mode
   :config
-  (add-hook 'ruby-mode-hook (lambda () (setq-local fill-column 140))))
+  (add-hook 'ruby-ts-mode-hook (lambda () (setq-local fill-column 140))))
 (use-package corfu
   :ensure t
   :init
@@ -248,18 +260,20 @@
         ("SPC" . corfu-insert-separator)
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous)))
-;; (use-package corfu-popupinfo
-;;   :after corfu
-;;   :hook (corfu-mode . corfu-popupinfo-mode)
-;;   :custom
-;;   (corfu-popupinfo-delay '(0.25 . 0.1))
-;;   (corfu-popupinfo-hide nil)
-;;   :config
-;;   (corfu-popupinfo-mode))
+(use-package corfu-popupinfo
+  :ensure nil
+  :after corfu
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :custom
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  (corfu-popupinfo-hide nil)
+  :config
+  (corfu-popupinfo-mode))
 (use-package vterm
   :bind ("C-c t" . vterm)
   :hook (vterm-mode . wadii/term-mode))
 (use-package which-key
+  :diminish which-key-mode
   :config
   (which-key-mode))
 (use-package auto-package-update
@@ -283,24 +297,35 @@
   (setopt eldoc-echo-area-use-multiline-p nil
           eglot-autoshutdown t
           eglot-sync-connect 1
-          eglot-connect-timeout 10
           eglot-stay-out-of '(flymake)
           eglot-send-changes-idle-time 0.1))
-  (fset #'jsonrpc--log-event #'ignore)
 (use-package flycheck
+  :diminish flycheck-mode
   :hook
   (prog-mode . flycheck-mode)
   :bind (:map flycheck-mode-map
-         ("M-n" . flycheck-next-error)
-         ("M-p" . flycheck-previous-error))
+              ("M-n" . flycheck-next-error)
+              ("M-p" . flycheck-previous-error))
   :custom
-  (flycheck-check-syntax-automatically '(save mode-enabled)))
+  (flycheck-check-syntax-automatically '(save)))
+(use-package flycheck-rust
+  :after flycheck
+  :hook (rust-mode . flycheck-rust-setup))
+(use-package eat
+  :hook (eshell-mode . eat-eshell-mode))
+(use-package flyspell
+  :defer t
+  :after ispell
+  :diminish flyspell-mode)
 (use-package tide
   :after (typescript-mode flycheck)
   :hook ((typescript-mode . tide-setup)))
 (use-package password-store)
 (use-package rg
-  :hook (after-init . rg-enable-default-bindings)
+  :hook (after-init . rg-enable-default-bindings))
+(use-package rg-isearch
+  :ensure nil
+  :after rg
   :bind (
          :map isearch-mode-map
          ("M-s r" . rg-isearch-menu)))
@@ -326,45 +351,77 @@
                                "\\\\" "://"))
   :hook (prog-mode text-mode))
 (use-package marginalia
-  :defer t
+  :commands marginalia-mode
+  :init (marginalia-mode 1)
   :bind (
          ("C-c )" . marginalia-mode)
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
 (use-package inf-ruby)
-(use-package doom-themes)
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
               ("z" . dired-start-process)
               ("r" . dired-xdg-open)))
 (use-package orderless
-  :after vertico)
-  ;; :custom
-  ;; (orderless-matching-styles '(orderless-flex))
-  ;; (completion-category-overrides '((file (styles basic partial-completion)))))
-(use-package ef-themes)
+  :after vertico
+  :custom
+  (orderless-matching-styles '(orderless-flex)))
+(use-package ef-themes
+  :config
+  (ef-themes-select 'ef-duo-light))
 (use-package standard-themes)
 (use-package mise
+  :diminish mise-mode
   :hook
   (prog-mode . mise-mode))
-(use-package evil
+(use-package no-littering)
+(use-package helpful)
+(use-package operate-on-number
+  :commands apply-operation-to-number-at-point
+  :bind (("C-c +" . apply-operation-to-number-at-point)
+         ("C-c -" . apply-operation-to-number-at-point)))
+(use-package kind-icon)
+(use-package embark
+  :bind (("C-." . embark-act)
+         ("M-." . embark-dwim)
+         ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
-  (evil-esc-mode 1)
-  :commands evil-local-mode
-  :hook ((prog-mode text-mode fundamental-mode) . evil-local-mode))
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
+  ;; strategy, if you want to see the documentation from multiple providers.
+  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+(use-package server
+  :ensure nil
+  :defer 1
+  :config
+  (setq server-client-instructions nil)
+  (unless (server-running-p)
+    ;; Start server.
+    (server-start)))
+(use-package so-long
+  :commands global-so-long-mode
+  :config
+  (global-so-long-mode))
 
-(set-face-attribute 'default nil :font "Iosevka Comfy-15:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
-(set-face-attribute 'variable-pitch nil :font "Source Sans 3-12:hintstyle=3:hinting=true:lcdfilter=3:antialias=true:weight=normal")
+(set-face-attribute 'default nil :family "Iosevka Comfy" :height 150)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy" :height 150)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
 
-;; Start server.
-(require 'server)
-(unless (server-running-p)
-  (server-start))
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
+(put 'set-goal-column 'disabled nil)
 
 (defun wadii/show-buffer-file-name ()
   "Show the full path to the current file in the minibuffer."
@@ -400,16 +457,27 @@
 (defun dired-xdg-open ()
   (interactive)
   (browse-url-xdg-open (car (dired-get-marked-files))))
-
 (defun wadii/term-mode ()
   (setq-local show-trailing-whitespace nil)
   (display-fill-column-indicator-mode -1))
 (defun wadii/insert-date ()
   (interactive)
   (insert (format-time-string "%F")))
+(defun wadii/insert-date-s ()
+  (interactive)
+  (insert (format-time-string "%Y%m%d")))
 (defun wadii/insert-time ()
   (interactive)
   (insert (format-time-string "%FT%T%z")))
 (defun wadii/insert-uuid ()
   (interactive)
   (insert (string-trim (shell-command-to-string "uuid"))))
+(defconst wadii/streams
+  '("39daph" "EnglishBen" "English_Ben" "TheGreatReview" "ThePrimeagen" "dmmulroy" "louispilfold" "lpil" "papesan" "teej_dv" "theprimeagen" "tigerbeetle" "tsoding" "untangledco" "lcolonq" "sphaerophoria" "etoiles"))
+(defun wadii/open-stream ()
+  "Open stream in external player."
+  (interactive)
+  (let ((stream (completing-read "Channel: " wadii/streams nil t)))
+    (shell-command (format "iina https://twitch.tv/%s" stream))))
+(defun wadii/browse-video ()
+  (call-process "iina" nil 0 nil (read-string "URL: ")))
