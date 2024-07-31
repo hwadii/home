@@ -213,7 +213,7 @@ return {
     cmd = { "ConformInfo" },
     opts = {
       formatters_by_ft = {
-        ["*"] = { "trim_whitespace" },
+        ["*"] = { "trim_whitespace", "trim_newlines" },
         sql = { "pg_format" },
         yaml = { "yamlfmt" },
         xml = { "xmllint" },
@@ -254,6 +254,7 @@ return {
           start_with_preview = "<leader>A",
         },
       })
+      require("mini.colors").setup()
     end,
   },
   {
@@ -458,7 +459,7 @@ return {
       current_only = true,
     },
     event = "VeryLazy",
-    enabled = true,
+    enabled = false,
   },
   { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim", enabled = false },
   {
