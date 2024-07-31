@@ -10,10 +10,13 @@
 (global-visual-line-mode)
 
 ;; Show stray whitespace.
-(setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
 (setq-default require-final-newline t)
+
+(setq load-prefer-newer t)
+
+(setq auth-sources '("~/.authinfo"))
 
 ;; Remove message in scratch buffer.
 (setq-default initial-scratch-message nil)
@@ -124,17 +127,22 @@
 (use-package dired
   :ensure nil
   :custom
-  (dired-vc-rename-file t)
-  (dired-listing-switches "-vhal --group-directories-first"))
+  (dired-listing-switches "-vhal --group-directories-first")
+  (dired-mouse-drag-files t))
 (use-package dired-x
   :ensure nil
   :after dired
   :diminish dired-omit-mode
-  :hook
-  (dired-mode . dired-omit-mode)
+  :hook ((dired-mode . dired-omit-mode)
+         (dired-mode . dired-hide-details-mode)
+         (dired-mode . hl-line-mode))
   :custom
   (dired-omit-mode nil t)
   (dired-omit-size-limit 60000))
+(use-package dired-aux
+  :ensure nil
+  :custom
+  (dired-vc-rename-file t))
 (use-package tab-bar
   :ensure nil
   :bind ("C-x t (" . tab-bar-mode))
@@ -142,17 +150,22 @@
   :commands windsize-default-keybindings
   :hook (after-init . windsize-default-keybindings))
 (use-package windmove
-  :commands (windmove-default-keybindings windmove-display-default-keybindings)
-  :hook (after-init . '(windmove-default-keybindings windmove-display-default-keybindings)))
+  :commands (windmove-default-keybindings
+             windmove-display-default-keybindings
+             windmove-swap-states-default-keybindings)
+  :init (progn (windmove-default-keybindings)
+               (windmove-display-default-keybindings)
+               (windmove-swap-states-default-keybindings)))
+(use-package repeat
+  :commands repeat-mode
+  :init (repeat-mode))
 (use-package emacs
   :init
-  (setopt modus-themes-italic-constructs t
-          modus-themes-bold-constructs t
-          completion-cycle-threshold 3
-          tab-always-indent 'complete)
+  (setopt tab-always-indent 'complete)
   (global-display-fill-column-indicator-mode)
   :hook ((completion-list-mode . wadii/term-mode)
-         (text-mode . auto-fill-mode))
+         (text-mode . auto-fill-mode)
+         ((text-mode prog-mode) . (lambda () (setq-local show-trailing-whitespace t))))
   :bind (
          ("C-<" . scroll-left)
          ("C->" . scroll-right)
@@ -172,14 +185,29 @@
 (use-package undo-fu-session
   :commands undo-fu-session-global-mode
   :hook (after-init . undo-fu-session-global-mode))
+(use-package minibuffer
+  :ensure nil
+  :custom
+  (completion-cycle-threshold 3)
+  (completion-ignore-case t)
+  (completion-styles '(orderless basic)))
 (use-package vertico
   :ensure t
   :init
   (setopt read-file-name-completion-ignore-case t
-          read-buffer-completion-ignore-case t
-          completion-ignore-case t
-          completion-styles '(orderless basic))
+          read-buffer-completion-ignore-case t)
   (vertico-mode))
+(use-package tmm
+  :ensure nil
+  :config
+  (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
+(use-package ffap
+  :config
+  (advice-add #'ffap-menu-ask :around
+              (lambda (&rest args)
+                (cl-letf (((symbol-function #'minibuffer-completion-help)
+                           #'ignore))
+                  (apply args)))))
 (use-package vertico-directory
   :ensure nil
   :after vertico
@@ -207,6 +235,11 @@
 (use-package magit
   :bind (("C-x g s" . magit-status)
          ("C-x g l" . magit-log-all)))
+(use-package forge
+  :after magit
+  :custom
+  (forge-database-file "~/.config/forge/database.sqlite")
+  (forge-owned-accounts '(("hwadii"))))
 (use-package diff-hl
   :commands global-diff-hl-mode
   :init
@@ -294,11 +327,11 @@
          (rust-mode . eglot-ensure))
   :commands (eglot-ensure)
   :config
-  (setopt eldoc-echo-area-use-multiline-p nil
-          eglot-autoshutdown t
-          eglot-sync-connect 1
-          eglot-stay-out-of '(flymake)
-          eglot-send-changes-idle-time 0.1))
+  (setq eldoc-echo-area-use-multiline-p nil
+        eglot-autoshutdown t
+        eglot-sync-connect 1
+        eglot-stay-out-of '(flymake)
+        eglot-send-changes-idle-time 0.1))
 (use-package flycheck
   :diminish flycheck-mode
   :hook
@@ -358,11 +391,6 @@
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
 (use-package inf-ruby)
-(use-package dired
-  :ensure nil
-  :bind (:map dired-mode-map
-              ("z" . dired-start-process)
-              ("r" . dired-xdg-open)))
 (use-package orderless
   :after vertico
   :custom
@@ -388,7 +416,12 @@
          ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
+  ;; (setq prefix-help-command #'embark-prefix-help-command)
+  :custom
+  (embark-indicators
+   '(embark-minimal-indicator  ; default is embark-mixed-indicator
+     embark-highlight-indicator
+     embark-isearch-highlight-indicator))
   ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
   ;; strategy, if you want to see the documentation from multiple providers.
   ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
@@ -411,6 +444,16 @@
   :commands global-so-long-mode
   :config
   (global-so-long-mode))
+(use-package auto-compile
+  :diminish (auto-compile-mode)
+  :hook (after-init . auto-compile-on-load-mode)
+  :custom
+  (auto-compile-display-buffer nil)
+  (auto-compile-mode-line-counter t))
+(use-package eshell
+  :ensure nil
+  :custom
+  (eshell-banner-message ""))
 
 (set-face-attribute 'default nil :family "Iosevka Comfy" :height 150)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy" :height 150)
@@ -423,40 +466,6 @@
 (put 'scroll-left 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-(defun wadii/show-buffer-file-name ()
-  "Show the full path to the current file in the minibuffer."
-  (interactive)
-  (let ((file-name (buffer-file-name)))
-    (if file-name
-        (progn
-          (message file-name)
-          (kill-new file-name))
-      (error "Buffer not visiting a file"))))
-
-(defun dired-start-process (cmd &optional file-list)
-  (interactive
-   (let ((files (dired-get-marked-files
-                 t current-prefix-arg)))
-     (list
-      (dired-read-shell-command "& on %s: "
-                                current-prefix-arg files)
-      files)))
-  (let (list-switch)
-    (start-process
-     cmd nil shell-file-name
-     shell-command-switch
-     (format
-      "nohup &>/dev/null %s \"%s\""
-      (if (and (> (length file-list) 1)
-               (setq list-switch
-                     (cadr (assoc cmd dired-filelist-cmd))))
-          (format "%s %s" cmd list-switch)
-        cmd)
-      (mapconcat #'expand-file-name file-list "\" \"")))))
-
-(defun dired-xdg-open ()
-  (interactive)
-  (browse-url-xdg-open (car (dired-get-marked-files))))
 (defun wadii/term-mode ()
   (setq-local show-trailing-whitespace nil)
   (display-fill-column-indicator-mode -1))
