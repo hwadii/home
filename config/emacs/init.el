@@ -85,8 +85,6 @@
 
 (setopt switch-to-buffer-obey-display-actions t)
 
-(setopt isearch-allow-motion t)
-
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
 (delete-selection-mode 1)
@@ -109,13 +107,23 @@
   (package-refresh-contents))
 
 (eval-and-compile
-  (setopt use-package-always-ensure t
-          use-package-expand-minimally t))
+  (setopt use-package-expand-minimally t))
 
 (use-package goto-addr
   :commands (goto-address-mode)
   :hook (((prog-mode text-mode) . goto-address-mode)))
+(use-package display-fill-column-indicator
+  :ensure nil
+  :hook ((text-mode prog-mode) . display-fill-column-indicator-mode))
+(use-package isearch
+  :ensure nil
+  :custom
+  (isearch-allow-motion t)
+  (isearch-repeat-on-direction-change t)
+  (isearch-wrap-pause 'no)
+  (isearch-lazy-count t))
 (use-package ibuffer
+  :ensure nil
   :bind ("C-x C-b" . ibuffer))
 (use-package hippie-expand
   :ensure nil
@@ -143,32 +151,42 @@
   :ensure nil
   :custom
   (dired-vc-rename-file t))
+(use-package nerd-icons
+  :ensure t
+  :custom
+  (nerd-icons-font-family "Symbols Nerd Font Mono"))
+(use-package nerd-icons-dired
+  :diminish
+  :ensure t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+(use-package nerd-icons-completion
+  :ensure t
+  :hook (marginalia-mode . nerd-icons-completion-marginalia-setup))
 (use-package tab-bar
   :ensure nil
   :bind ("C-x t (" . tab-bar-mode))
 (use-package windsize
-  :commands windsize-default-keybindings
+  :ensure t
   :hook (after-init . windsize-default-keybindings))
 (use-package windmove
-  :commands (windmove-default-keybindings
-             windmove-display-default-keybindings
-             windmove-swap-states-default-keybindings)
-  :init (progn (windmove-default-keybindings)
-               (windmove-display-default-keybindings)
-               (windmove-swap-states-default-keybindings)))
+  :ensure nil
+  :hook ((after-init . windmove-default-keybindings)
+         (after-init . windmove-swap-states-default-keybindings))
+  :bind (("M-S-<down>" . windmove-display-down)
+         ("M-S-<up>" . windmove-display-up)
+         ("M-S-<left>" . windmove-display-left)
+         ("M-S-<right>" . windmove-display-right)
+         ("M-T" . windmove-display-new-tab)))
 (use-package repeat
-  :commands repeat-mode
-  :init (repeat-mode))
+  :ensure nil
+  :hook (after-init . repeat-mode))
 (use-package emacs
   :init
   (setopt tab-always-indent 'complete)
-  (global-display-fill-column-indicator-mode)
-  :hook ((completion-list-mode . wadii/term-mode)
-         (text-mode . auto-fill-mode)
+  :hook ((text-mode . auto-fill-mode)
          ((text-mode prog-mode) . (lambda () (setq-local show-trailing-whitespace t))))
   :bind (
-         ("C-<" . scroll-left)
-         ("C->" . scroll-right)
          ("M-Z" . zap-up-to-char)
          ("C-c i d" . wadii/insert-date)
          ("C-c i t" . wadii/insert-time)
@@ -183,8 +201,8 @@
           savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
   (savehist-mode 1))
 (use-package undo-fu-session
-  :commands undo-fu-session-global-mode
-  :hook (after-init . undo-fu-session-global-mode))
+  :ensure t
+  :config (undo-fu-session-global-mode))
 (use-package minibuffer
   :ensure nil
   :custom
@@ -197,17 +215,6 @@
   (setopt read-file-name-completion-ignore-case t
           read-buffer-completion-ignore-case t)
   (vertico-mode))
-(use-package tmm
-  :ensure nil
-  :config
-  (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
-(use-package ffap
-  :config
-  (advice-add #'ffap-menu-ask :around
-              (lambda (&rest args)
-                (cl-letf (((symbol-function #'minibuffer-completion-help)
-                           #'ignore))
-                  (apply args)))))
 (use-package vertico-directory
   :ensure nil
   :after vertico
@@ -216,42 +223,53 @@
               ("RET"   . vertico-directory-enter)
               ("DEL"   . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word)))
-(use-package crux
-  :ensure t
-  :commands crux-open-with)
-(use-package markdown-mode
-  :custom
-  (markdown-fontify-code-blocks-natively t)
-  :hook
-  (text-mode . flyspell-mode))
-(use-package rainbow-delimiters
+(use-package tmm
+  :ensure nil
   :config
-  ;; Enable Rainbow Delimiters.
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'ielm-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-)
+  (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
+(use-package ffap
+  :ensure nil
+  :config
+  (advice-add #'ffap-menu-ask :around
+              (lambda (&rest args)
+                (cl-letf (((symbol-function #'minibuffer-completion-help)
+                           #'ignore))
+                  (apply args)))))
+(use-package markdown-mode
+  :ensure t
+  :custom
+  (markdown-fontify-code-blocks-natively t))
+(use-package rainbow-delimiters
+  :ensure t
+  :hook ((emacs-lisp-mode ielm-mode lisp-interaction-mode lisp-mode) . rainbow-delimiters-mode))
 (use-package magit
+  :ensure t
   :bind (("C-x g s" . magit-status)
          ("C-x g l" . magit-log-all)))
 (use-package forge
+  :ensure t
   :after magit
   :custom
   (forge-database-file "~/.config/forge/database.sqlite")
   (forge-owned-accounts '(("hwadii"))))
 (use-package diff-hl
-  :commands global-diff-hl-mode
-  :init
-  (add-hook 'after-init-hook #'global-diff-hl-mode)
-  :config
-  (diff-hl-flydiff-mode)
-  :hook (magit-post-refresh . diff-hl-magit-post-refresh))
+  :ensure t
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :custom (diff-hl-flydiff-mode t))
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
+(use-package multiple-cursors
+  :ensure t
+  :custom
+  (mc/always-run-for-all t)
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)
+         ("C-S-c C-S-c" . mc/edit-lines)))
 (use-package tree-sitter-langs :ensure t)
 (use-package tree-sitter-indent :ensure t)
 (use-package tree-sitter
+  :diminish
   :ensure nil
   :init
   (setq major-mode-remap-alist
@@ -265,25 +283,26 @@
           (csharp-mode . csharp-ts-mode)
           (ruby-mode . ruby-ts-mode)
           (rust-mode . rust-ts-mode)))
-  :config
   :after tree-sitter-langs
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+  :hook ((after-init . global-tree-sitter-mode)
+         (tree-sitter-after-on . tree-sitter-hl-mode)))
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
-(use-package rust-mode)
-(use-package typescript-ts-mode
+(use-package rust-mode :ensure t)
+(use-package typescript-mode
+  :ensure t
+  :hook (typescript-mode . (lambda () (setq-local fill-column 120))))
+(use-package json-mode :ensure t)
+(use-package zig-mode :ensure t)
+(use-package ruby-mode
+  :ensure t
   :config
-  (add-hook 'typescript-ts-mode-hook (lambda () (setq-local fill-column 120))))
-(use-package json-mode)
-(use-package zig-mode)
-(use-package ruby-ts-mode
-  :config
-  (add-hook 'ruby-ts-mode-hook (lambda () (setq-local fill-column 140))))
+  :hook (ruby-mode . (lambda () (setq-local fill-column 140))))
 (use-package corfu
   :ensure t
   :init
@@ -303,21 +322,25 @@
   :config
   (corfu-popupinfo-mode))
 (use-package vterm
-  :bind ("C-c t" . vterm)
-  :hook (vterm-mode . wadii/term-mode))
+  :ensure t
+  :bind ("C-c t" . vterm))
 (use-package which-key
-  :diminish which-key-mode
+  :ensure t
+  :diminish
   :config
   (which-key-mode))
 (use-package auto-package-update
+  :ensure t
+  :custom
+  (auto-package-update-delete-old-versions t)
+  (auto-package-update-hide-results t)
   :config
-  (setopt auto-package-update-delete-old-versions t)
-  (setopt auto-package-update-hide-results t)
   (auto-package-update-maybe))
 (use-package sudo-utils
-  :bind (
-         ("C-M-!" . sudo-utils-shell-command)))
+  :ensure t
+  :bind ("C-M-!" . sudo-utils-shell-command))
 (use-package eglot
+  :ensure nil
   :hook (
          (javascript-mode . eglot-ensure)
          (ruby-mode . eglot-ensure)
@@ -325,7 +348,6 @@
          (typescript-mode . eglot-ensure)
          (csharp-mode . eglot-ensure)
          (rust-mode . eglot-ensure))
-  :commands (eglot-ensure)
   :config
   (setq eldoc-echo-area-use-multiline-p nil
         eglot-autoshutdown t
@@ -333,29 +355,30 @@
         eglot-stay-out-of '(flymake)
         eglot-send-changes-idle-time 0.1))
 (use-package flycheck
+  :ensure t
   :diminish flycheck-mode
-  :hook
-  (prog-mode . flycheck-mode)
+  :hook (prog-mode . flycheck-mode)
   :bind (:map flycheck-mode-map
               ("M-n" . flycheck-next-error)
               ("M-p" . flycheck-previous-error))
   :custom
   (flycheck-check-syntax-automatically '(save)))
 (use-package flycheck-rust
+  :ensure t
   :after flycheck
   :hook (rust-mode . flycheck-rust-setup))
 (use-package eat
+  :ensure t
   :hook (eshell-mode . eat-eshell-mode))
 (use-package flyspell
-  :defer t
+  :ensure nil
   :after ispell
-  :diminish flyspell-mode)
-(use-package tide
-  :after (typescript-mode flycheck)
-  :hook ((typescript-mode . tide-setup)))
-(use-package password-store)
+  :diminish flyspell-mode
+  :hook (text-mode . flyspell-mode))
+(use-package password-store :ensure t)
 (use-package rg
-  :hook (after-init . rg-enable-default-bindings))
+  :ensure t
+  :config (rg-enable-default-bindings))
 (use-package rg-isearch
   :ensure nil
   :after rg
@@ -364,10 +387,10 @@
          ("M-s r" . rg-isearch-menu)))
 (use-package eshell
   :ensure nil
-  :hook (eshell-mode . wadii/term-mode)
   :bind (("C-x C-z" . eshell)))
-(use-package fd-dired)
+(use-package fd-dired :ensure t)
 (use-package ligature
+  :ensure t
   :config
   (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "||=" "||>"
                                ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
@@ -384,36 +407,39 @@
                                "\\\\" "://"))
   :hook (prog-mode text-mode))
 (use-package marginalia
-  :commands marginalia-mode
-  :init (marginalia-mode 1)
+  :ensure t
+  :custom (marginalia-mode 1)
   :bind (
          ("C-c )" . marginalia-mode)
          :map minibuffer-mode-map
          ("M-A" . marginalia-cycle)))
-(use-package inf-ruby)
+(use-package inf-ruby :ensure t)
 (use-package orderless
+  :ensure t
   :after vertico
   :custom
   (orderless-matching-styles '(orderless-flex)))
 (use-package ef-themes
+  :ensure t
   :config
   (ef-themes-select 'ef-duo-light))
-(use-package standard-themes)
 (use-package mise
+  :ensure t
   :diminish mise-mode
-  :hook
-  (prog-mode . mise-mode))
-(use-package no-littering)
-(use-package helpful)
+  :hook prog-mode)
+(use-package no-littering :ensure t)
+(use-package helpful :ensure t)
 (use-package operate-on-number
-  :commands apply-operation-to-number-at-point
+  :ensure t
   :bind (("C-c +" . apply-operation-to-number-at-point)
          ("C-c -" . apply-operation-to-number-at-point)))
-(use-package kind-icon)
 (use-package embark
+  :ensure t
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
-         ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+         ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
+         :map embark-become-file+buffer-map
+         ("t f" . find-file-other-tab))
   :init
   ;; Optionally replace the key help with a completing-read interface
   ;; (setq prefix-help-command #'embark-prefix-help-command)
@@ -441,12 +467,12 @@
     ;; Start server.
     (server-start)))
 (use-package so-long
-  :commands global-so-long-mode
-  :config
-  (global-so-long-mode))
+  :ensure nil
+  :config (global-so-long-mode))
 (use-package auto-compile
-  :diminish (auto-compile-mode)
-  :hook (after-init . auto-compile-on-load-mode)
+  :ensure t
+  :diminish
+  :config (auto-compile-on-load-mode)
   :custom
   (auto-compile-display-buffer nil)
   (auto-compile-mode-line-counter t))
@@ -466,9 +492,6 @@
 (put 'scroll-left 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-(defun wadii/term-mode ()
-  (setq-local show-trailing-whitespace nil)
-  (display-fill-column-indicator-mode -1))
 (defun wadii/insert-date ()
   (interactive)
   (insert (format-time-string "%F")))
