@@ -10,7 +10,7 @@
       frame-resize-pixelwise t  ; fine resize
       package-native-compile t) ; native compile packages
 
-(setq auto-revert-check-vc-info t)
+(setq auto-revert-check-vc-info nil)
 
 (setq inhibit-startup-echo-area-message (user-login-name))
 
