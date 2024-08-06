@@ -5,7 +5,7 @@
 ;; Complete pairs
 (electric-pair-mode 0)
 
-(pixel-scroll-precision-mode -1)
+(pixel-scroll-precision-mode)
 
 (global-visual-line-mode)
 
@@ -59,10 +59,10 @@
 (setopt create-lockfiles nil)
 
 (desktop-save-mode 1)
-(setopt user-emacs-directory "~/.cache/emacs")
-(setopt desktop-path '("~/.cache/emacs/desktops/"))
+(setopt user-emacs-directory "~/.config/emacs/")
+(setopt desktop-path '("~/.config/emacs/desktops/"))
 ;; Write customizations to a separate file instead of this file.
-(setopt custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
 (load custom-file t)
 
 (setopt nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
@@ -97,14 +97,13 @@
 (setopt tab-bar-new-button-show t
         tab-bar-close-button-show t)
 
-(setopt calendar-week-start-day 1)
-
 ;; Enable installation of packages from MELPA.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (eval-and-compile
   (setopt use-package-expand-minimally t))
@@ -119,6 +118,7 @@
   :ensure nil
   :custom
   (isearch-allow-motion t)
+  (isearch-allow-scroll t)
   (isearch-repeat-on-direction-change t)
   (isearch-wrap-pause 'no)
   (isearch-lazy-count t))
@@ -135,6 +135,7 @@
 (use-package dired
   :ensure nil
   :custom
+  (dired-dwim-target t)
   (dired-listing-switches "-vhal --group-directories-first")
   (dired-mouse-drag-files t))
 (use-package dired-x
@@ -163,6 +164,17 @@
 (use-package nerd-icons-completion
   :ensure t
   :hook (marginalia-mode . nerd-icons-completion-marginalia-setup))
+(use-package fish-completion
+  :ensure t
+  :hook (eshell-mode . fish-completion-mode))
+(use-package rainbow-mode
+  :diminish
+  :ensure t
+  :custom
+  (rainbow-ansi-colors nil)
+  (rainbow-x-colors nil)
+  :bind (:map ctl-x-x-map
+          ("c" . rainbow-mode)))
 (use-package tab-bar
   :ensure nil
   :bind ("C-x t (" . tab-bar-mode))
@@ -188,9 +200,11 @@
          ((text-mode prog-mode) . (lambda () (setq-local show-trailing-whitespace t))))
   :bind (
          ("M-Z" . zap-up-to-char)
-         ("C-c i d" . wadii/insert-date)
-         ("C-c i t" . wadii/insert-time)
-         ("C-c i u" . wadii/insert-uuid)))
+         ("C-M-j" . duplicate-dwim)))
+(use-package simple
+  :ensure nil
+  :custom
+  (visual-line-fringe-indicators '(nil right-curly-arrow)))
 (use-package savehist
   :ensure nil
   :init
@@ -243,9 +257,10 @@
   :ensure t
   :hook ((emacs-lisp-mode ielm-mode lisp-interaction-mode lisp-mode) . rainbow-delimiters-mode))
 (use-package magit
+  :demand
   :ensure t
-  :bind (("C-x g s" . magit-status)
-         ("C-x g l" . magit-log-all)))
+  :custom
+  (magit-define-global-key-bindings 'recommended))
 (use-package forge
   :ensure t
   :after magit
@@ -255,61 +270,36 @@
 (use-package diff-hl
   :ensure t
   :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :config (global-diff-hl-mode)
   :custom (diff-hl-flydiff-mode t))
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
-(use-package multiple-cursors
-  :ensure t
-  :custom
-  (mc/always-run-for-all t)
-  :bind (("C->" . mc/mark-next-like-this)
-         ("C-<" . mc/mark-previous-like-this)
-         ("C-c C-<" . mc/mark-all-like-this)
-         ("C-S-c C-S-c" . mc/edit-lines)))
-(use-package tree-sitter-langs :ensure t)
 (use-package tree-sitter-indent :ensure t)
 (use-package tree-sitter
-  :diminish
   :ensure nil
-  :init
-  (setq major-mode-remap-alist
-        '((yaml-mode . yaml-ts-mode)
-          (bash-mode . bash-ts-mode)
-          (js2-mode . js-ts-mode)
-          (typescript-mode . typescript-ts-mode)
-          (json-mode . json-ts-mode)
-          (css-mode . css-ts-mode)
-          (python-mode . python-ts-mode)
-          (csharp-mode . csharp-ts-mode)
-          (ruby-mode . ruby-ts-mode)
-          (rust-mode . rust-ts-mode)))
-  :after tree-sitter-langs
   :hook ((after-init . global-tree-sitter-mode)
          (tree-sitter-after-on . tree-sitter-hl-mode)))
 (use-package treesit-auto
   :ensure t
   :custom
   (treesit-auto-install 'prompt)
+  (treesit-auto-langs '(ruby rust python go))
   :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 (use-package rust-mode :ensure t)
 (use-package typescript-mode
   :ensure t
-  :hook (typescript-mode . (lambda () (setq-local fill-column 120))))
+  :hook (typescript-mode . (lambda () (setq fill-column 120))))
 (use-package json-mode :ensure t)
 (use-package zig-mode :ensure t)
 (use-package ruby-mode
   :ensure t
   :config
-  :hook (ruby-mode . (lambda () (setq-local fill-column 140))))
+  :hook (ruby-ts-mode . (lambda () (setq fill-column 140))))
 (use-package corfu
   :ensure t
   :init
   (global-corfu-mode)
   :bind
   (:map corfu-map
-        ("SPC" . corfu-insert-separator)
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous)))
 (use-package corfu-popupinfo
@@ -325,10 +315,13 @@
   :ensure t
   :bind ("C-c t" . vterm))
 (use-package which-key
-  :ensure t
+  :ensure nil
   :diminish
-  :config
-  (which-key-mode))
+  :custom
+  (which-key-show-early-on-C-h t)
+  (which-key-idle-delay 10000)
+  (which-key-idle-secondary-delay 0.05)
+  :init (which-key-mode))
 (use-package auto-package-update
   :ensure t
   :custom
@@ -341,13 +334,6 @@
   :bind ("C-M-!" . sudo-utils-shell-command))
 (use-package eglot
   :ensure nil
-  :hook (
-         (javascript-mode . eglot-ensure)
-         (ruby-mode . eglot-ensure)
-         (zig-mode . eglot-ensure)
-         (typescript-mode . eglot-ensure)
-         (csharp-mode . eglot-ensure)
-         (rust-mode . eglot-ensure))
   :config
   (setq eldoc-echo-area-use-multiline-p nil
         eglot-autoshutdown t
@@ -370,6 +356,10 @@
 (use-package eat
   :ensure t
   :hook (eshell-mode . eat-eshell-mode))
+(use-package ispell
+  :ensure nil
+  :custom
+  (ispell-program-name "/opt/homebrew/bin/hunspell"))
 (use-package flyspell
   :ensure nil
   :after ispell
@@ -384,11 +374,10 @@
   :after rg
   :bind (
          :map isearch-mode-map
-         ("M-s r" . rg-isearch-menu)))
+         ("M-s R" . rg-isearch-menu)))
 (use-package eshell
   :ensure nil
   :bind (("C-x C-z" . eshell)))
-(use-package fd-dired :ensure t)
 (use-package ligature
   :ensure t
   :config
@@ -431,8 +420,12 @@
 (use-package helpful :ensure t)
 (use-package operate-on-number
   :ensure t
-  :bind (("C-c +" . apply-operation-to-number-at-point)
-         ("C-c -" . apply-operation-to-number-at-point)))
+  :config
+  (defvar-keymap operate-on-number-repeat-map
+    :repeat t
+    "+" #'apply-operation-to-number-at-point
+    "-" #'apply-operation-to-number-at-point)
+  (define-key global-map (kbd "C-c n") operate-on-number-repeat-map))
 (use-package embark
   :ensure t
   :bind (("C-." . embark-act)
@@ -480,10 +473,129 @@
   :ensure nil
   :custom
   (eshell-banner-message ""))
+(use-package avy
+  :ensure t
+  :bind
+  (("C-:" . avy-goto-char-timer)))
+(use-package calendar
+  :ensure nil
+  :custom
+  (calendar-week-start-day 1))
+;; Example configuration for Consult
+(use-package consult
+  ;; Replace bindings. Lazily loaded by `use-package'.
+  :bind (;; C-c bindings in `mode-specific-map'
+         ("C-c M-x" . consult-mode-command)
+         ("C-c h" . consult-history)
+         ("C-c k" . consult-kmacro)
+         ("C-c m" . consult-man)
+         ("C-c i" . consult-info)
+         ([remap Info-search] . consult-info)
+         ;; C-x bindings in `ctl-x-map'
+         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+         ;; Custom M-# bindings for fast register access
+         ("M-#" . consult-register-load)
+         ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("C-M-#" . consult-register)
+         ;; Other custom bindings
+         ;; M-g bindings in `goto-map'
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flycheck)               ;; Alternative: consult-flycheck
+         ("M-g g" . consult-goto-line)             ;; orig. goto-line
+         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; M-s bindings in `search-map'
+         ("M-s d" . consult-fd)                  ;; Alternative: consult-fd
+         ("M-s c" . consult-locate)
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s k" . consult-keep-lines)
+         ("M-s u" . consult-focus-lines)
+         ;; Isearch integration
+         ("M-s e" . consult-isearch-history)
+         :map isearch-mode-map
+         ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+         ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+         ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+         ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+         ;; Minibuffer history
+         :map minibuffer-local-map
+         ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+         ("M-r" . consult-history))                ;; orig. previous-matching-history-element
 
-(set-face-attribute 'default nil :family "Iosevka Comfy" :height 150)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy" :height 150)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
+  ;; The :init configuration is always executed (Not lazy)
+  :init
+
+  ;; Optionally configure the register formatting. This improves the register
+  ;; preview for `consult-register', `consult-register-load',
+  ;; `consult-register-store' and the Emacs built-ins.
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+
+  ;; Optionally tweak the register preview window.
+  ;; This adds thin lines, sorting and hides the mode line of the window.
+  (advice-add #'register-preview :override #'consult-register-window)
+
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+
+  ;; Configure other variables and modes in the :config section,
+  ;; after lazily loading the package.
+  :config
+
+  ;; Optionally configure preview. The default value
+  ;; is 'any, such that any key triggers the preview.
+  ;; (setq consult-preview-key 'any)
+  ;; (setq consult-preview-key "M-.")
+  ;; (setq consult-preview-key '("S-<down>" "S-<up>"))
+  ;; For some commands and buffer sources it is useful to configure the
+  ;; :preview-key on a per-command basis using the `consult-customize' macro.
+  (consult-customize
+   consult-theme :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   ;; :preview-key "M-."
+   :preview-key '(:debounce 0.4 any))
+
+  ;; Optionally configure the narrowing key.
+  ;; Both < and C-+ work reasonably well.
+  :custom
+  (consult-narrow-key "<") ;; "C-+"
+
+  ;; Optionally make narrowing help available in the minibuffer.
+  ;; You may want to use `embark-prefix-help-command' or which-key instead.
+  ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
+  )
+(use-package consult-flycheck
+  :ensure t
+  :after consult)
+(use-package embark-consult
+  :ensure t
+  :after embark)
+(use-package mouse
+  :ensure nil
+  :config (context-menu-mode))
+(use-package combobulate
+  :disabled
+  :ensure t
+  :vc (:url "https://github.com/mickeynp/combobulate" :branch "main")
+  :preface
+  ;; You can customize Combobulate's key prefix here.
+  ;; Note that you may have to restart Emacs for this to take effect!
+  (setq combobulate-key-prefix "C-c o"))
+
+(set-face-attribute 'default nil :family "Iosevka Comfy" :height 145)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy" :height 145)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 145)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -492,24 +604,5 @@
 (put 'scroll-left 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 
-(defun wadii/insert-date ()
-  (interactive)
-  (insert (format-time-string "%F")))
-(defun wadii/insert-date-s ()
-  (interactive)
-  (insert (format-time-string "%Y%m%d")))
-(defun wadii/insert-time ()
-  (interactive)
-  (insert (format-time-string "%FT%T%z")))
-(defun wadii/insert-uuid ()
-  (interactive)
-  (insert (string-trim (shell-command-to-string "uuid"))))
-(defconst wadii/streams
-  '("39daph" "EnglishBen" "English_Ben" "TheGreatReview" "ThePrimeagen" "dmmulroy" "louispilfold" "lpil" "papesan" "teej_dv" "theprimeagen" "tigerbeetle" "tsoding" "untangledco" "lcolonq" "sphaerophoria" "etoiles"))
-(defun wadii/open-stream ()
-  "Open stream in external player."
-  (interactive)
-  (let ((stream (completing-read "Channel: " wadii/streams nil t)))
-    (shell-command (format "iina https://twitch.tv/%s" stream))))
-(defun wadii/browse-video ()
-  (call-process "iina" nil 0 nil (read-string "URL: ")))
+(require 'init-browse)
+(require 'init-insert)
