@@ -294,6 +294,18 @@
   :ensure t
   :config
   :hook (ruby-ts-mode . (lambda () (setq fill-column 140))))
+(use-package csharp-mode
+  :ensure nil
+  :after reformatter
+  :hook (csharp-mode . (lambda () (setq fill-column 120)))
+  :config
+  (reformatter-define csharp-format
+    :program "dotnet-csharpier"
+    :args '("--write-stdout")
+    :mode nil
+    :stdin t))
+(use-package reformatter
+  :ensure t)
 (use-package corfu
   :ensure t
   :init
