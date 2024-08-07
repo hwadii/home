@@ -466,8 +466,8 @@ return {
     dir = "~/code/ploy.nvim",
     dependencies = "rktjmp/lush.nvim",
     init = function()
-      vim.cmd("colorscheme ploy")
-      vim.opt.background = "dark"
+      vim.opt.background = "light"
+      vim.cmd("colorscheme ploy_light")
     end,
   },
   {
