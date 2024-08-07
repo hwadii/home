@@ -16,7 +16,7 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     # Color the prompt differently when we're root
-    set -l color_cwd (set_color -o grey)
+    set -l color_cwd (set_color -o blue)
     set -l suffix "»"
     if fish_is_root_user
         if set -q fish_color_cwd_root
