@@ -63,7 +63,7 @@ return {
           map("n", "<Leader>so", telescope.lsp_document_symbols)
           map("n", "<Leader>sl", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end)
+          end, { desc = "Toggle inlay hints" })
           vim.api.nvim_buf_create_user_command(event.buf, "FormatLsp", function()
             vim.lsp.buf.format({ async = true })
           end, { desc = "Format current buffer with LSP" })
