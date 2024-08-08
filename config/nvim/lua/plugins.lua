@@ -236,26 +236,35 @@ return {
     },
   },
   {
-    "echasnovski/mini.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("mini.ai").setup({ search_method = "cover_or_next", n_lines = 200 })
-      require("mini.move").setup()
-      require("mini.operators").setup({
-        evaluate = { prefix = "" },
-        exchange = { prefix = "" },
-        multiply = { prefix = "" },
-        replace = { prefix = "" },
-        sort = { prefix = "gs" },
-      })
-      require("mini.align").setup({
-        mappings = {
-          start = "<leader>a",
-          start_with_preview = "<leader>A",
-        },
-      })
-      require("mini.colors").setup()
-    end,
+    "echasnovski/mini.operators",
+    event = "VeryLazy",
+    opts = {
+      evaluate = { prefix = "" },
+      exchange = { prefix = "" },
+      multiply = { prefix = "" },
+      replace = { prefix = "" },
+      sort = { prefix = "gs" },
+    },
+  },
+  {
+    "echasnovski/mini.ai",
+    event = "InsertEnter",
+    opts = { search_method = "cover_or_next", n_lines = 200 },
+  },
+  {
+    "echasnovski/mini.move",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "echasnovski/mini.align",
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        start = "<leader>a",
+        start_with_preview = "<leader>A",
+      },
+    },
   },
   {
     "stevearc/oil.nvim",
@@ -461,7 +470,7 @@ return {
     event = "VeryLazy",
     enabled = false,
   },
-  { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim", enabled = false },
+  { "zenbones-theme/zenbones.nvim", dependencies = "rktjmp/lush.nvim", enabled = false },
   {
     dir = "~/code/ploy.nvim",
     dependencies = "rktjmp/lush.nvim",
