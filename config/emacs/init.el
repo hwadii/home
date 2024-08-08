@@ -334,13 +334,6 @@
   (which-key-idle-delay 10000)
   (which-key-idle-secondary-delay 0.05)
   :init (which-key-mode))
-(use-package auto-package-update
-  :ensure t
-  :custom
-  (auto-package-update-delete-old-versions t)
-  (auto-package-update-hide-results t)
-  :config
-  (auto-package-update-maybe))
 (use-package sudo-utils
   :ensure t
   :bind ("C-M-!" . sudo-utils-shell-command))
@@ -605,8 +598,8 @@
   ;; Note that you may have to restart Emacs for this to take effect!
   (setq combobulate-key-prefix "C-c o"))
 
-(set-face-attribute 'default nil :family "Iosevka Comfy" :height 145)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy" :height 145)
+(set-face-attribute 'default nil :family "Berkeley Mono" :height 145)
+(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 145)
 (set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 145)
 
 (put 'narrow-to-region 'disabled nil)
