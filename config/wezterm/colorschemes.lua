@@ -105,7 +105,7 @@ M.ploy_light = {
     "#375cd8",
     "#ba35af",
     "#1f6fbf",
-    "#c7c0ba",
+    "#cbbcaf",
   },
   brights = {
     "#222222",
@@ -115,7 +115,7 @@ M.ploy_light = {
     "#6060d0",
     "#af569f",
     "#406f90",
-    "#e7e0da",
+    "#c7c0ba",
   },
 
   -- Since: 20220319-142410-0fcdea07
