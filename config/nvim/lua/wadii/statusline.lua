@@ -13,8 +13,13 @@ statusline.branch = function()
   return vim.b.gitsigns_head
 end
 
-statusline.navic = function()
-  return require("nvim-navic").get_location()
+statusline.diagnostics = function()
+  local counts = vim.diagnostic.count(0, { severity = { min = vim.diagnostic.severity.HINT } })
+  local count = (counts[vim.diagnostic.severity.ERROR] or 0)
+    + (counts[vim.diagnostic.severity.WARN] or 0)
+    + (counts[vim.diagnostic.severity.INFO] or 0)
+    + (counts[vim.diagnostic.severity.HINT] or 0)
+  return string.format("𝑥 %s", count)
 end
 
 statusline.line_and_column = function()
@@ -64,6 +69,7 @@ end
 
 statusline.right_hand_side = function()
   local all_components = {
+    statusline.diagnostics(),
     statusline.gitstatus(),
     statusline.fileformat(),
     statusline.branch(),

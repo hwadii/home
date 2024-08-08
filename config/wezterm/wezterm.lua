@@ -74,13 +74,13 @@ table.insert(search_mode, {
 return {
   term = "wezterm",
   font = wezterm.font({
-    family = "Iosevka Comfy Motion Fixed",
+    family = "Berkeley Mono",
     weight = "Regular",
     stretch = "Normal",
-    -- harfbuzz_features = { "ss01", "ss04" },
+    harfbuzz_features = { "ss01", "ss04" },
   }),
   font_size = 15,
-  underline_thickness = 1,
+  underline_thickness = 3,
   default_cursor_style = "SteadyBlock",
   enable_tab_bar = true,
   tab_bar_at_bottom = true,
