@@ -197,24 +197,15 @@ return {
         },
       })
       lspconfig.ruby_lsp.setup({
-        enabled = false,
         capabalities = capabalities,
         settings = {
           init_options = {
-            enabledFeatures = {
-              "documentHighlights",
-              "documentSymbols",
-              "foldingRanges",
-              "selectionRanges",
-              "formatting",
-              "codeActions",
-            },
+            experimentalFeaturesEnabled = true,
           },
         },
       })
 
       local servers = {
-        "solargraph",
         "vuels",
         "jsonls",
         "bashls",
