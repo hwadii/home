@@ -84,7 +84,7 @@ M.ploy_light = {
   -- Overrides the text color when the current cell is occupied by the cursor
   cursor_fg = "#feffff",
 
-  cursor_border = "#dbdbdb",
+  cursor_border = "#085eff",
 
   -- the foreground color of selected text
   selection_fg = "#222222",
