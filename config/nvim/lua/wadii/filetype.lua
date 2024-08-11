@@ -3,4 +3,7 @@ vim.filetype.add({
     [".*Jenkinsfile.*"] = "groovy",
     [".*docker%-compose%..*"] = "yaml.docker-compose",
   },
+  extension = {
+    nbt = "numbat",
+  },
 })
