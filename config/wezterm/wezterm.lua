@@ -90,6 +90,7 @@ return {
   line_height = 1,
   enable_scroll_bar = false,
   selection_word_boundary = "\t\n {}[]()\"'`.,;:",
+  bold_brightens_ansi_colors = "No",
   window_padding = {
     left = 0,
     right = 0,
