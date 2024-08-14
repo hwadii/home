@@ -21,7 +21,9 @@
     "untangledco"
     "lcolonq"
     "sphaerophoria"
-    "etoiles"))
+    "etoiles"
+    "prodzpod"
+    "pushcx"))
 (defun browse-url-video-player (url)
   "Browse URL in appropriate video player."
   (let ((program (if (eq system-type 'darwin) "iina" "mpv")))
