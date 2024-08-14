@@ -25,4 +25,9 @@ M.make_unix = function()
   vim.notify("File format is now " .. vim.bo.fileformat)
 end
 
+M.zoom = function()
+  vim.cmd("wincmd |")
+  vim.cmd("wincmd _")
+end
+
 return M

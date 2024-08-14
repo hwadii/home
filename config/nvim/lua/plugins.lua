@@ -222,6 +222,7 @@ return {
         lua = { "stylua" },
         cs = { "csharpier" },
         markdown = { "prettierd" },
+        python = { "ruff_format" },
       },
     },
     keys = {

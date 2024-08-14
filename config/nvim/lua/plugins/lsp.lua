@@ -199,7 +199,7 @@ return {
       lspconfig.ruby_lsp.setup({
         capabalities = capabalities,
         init_options = {
-          experimentalFeaturesEnabled = true,
+          experirentalFeaturesEnabled = true
         },
       })
 

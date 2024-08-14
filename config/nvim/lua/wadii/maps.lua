@@ -27,6 +27,8 @@ vim.keymap.set("n", "<Leader>wu", various.make_unix, { desc = "Make fileformat u
 vim.keymap.set("n", "<Leader>w-", "<cmd>Explore<cr>", { desc = "Open netrw" })
 vim.keymap.set("n", "<leader>w=", "<cmd>Calc<cr>", { desc = "Quick calc" })
 
+vim.keymap.set("n", "<c-w>`", various.zoom, { desc = "Zoom in buffer" })
+
 vim.keymap.set("n", ",,", ",", { noremap = true, desc = "repeat last f/F t/T command" })
 
 vim.keymap.set("t", "<S-Space>", "<Space>", { desc = "Insert space when shift-space is pressed" })
