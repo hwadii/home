@@ -10,7 +10,7 @@ function fish_prompt --description 'Write out the prompt'
       end
     ) $normal
 
-    set -l color_suffix (set_color -o bryellow)
+    set -l color_suffix (set_color -o yellow)
     if not test $last_status -eq 0
         set color_suffix (set_color -o brred)
     end
@@ -31,7 +31,7 @@ function fish_prompt --description 'Write out the prompt'
         set background_jobs "!"
     end
 
-    set -l color_status (set_color -o bryellow)
+    set -l color_status (set_color -o yellow)
     set -l jobs_status $color_status $background_jobs $normal
 
     set -l private_mode_status (
@@ -47,8 +47,8 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_git_prompt_showuntrackedfiles 1
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream informative
-    set -g __fish_git_prompt_color_upstream bryellow -o
-    set -g __fish_git_prompt_color_flags bryellow -o
+    set -g __fish_git_prompt_color_upstream yellow -o
+    set -g __fish_git_prompt_color_flags yellow -o
     set -g __fish_git_prompt_color brblue
     set -l vcs_status (fish_vcs_prompt)
 
