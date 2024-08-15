@@ -27,7 +27,7 @@
 (defun browse-url-video-player (url)
   "Browse URL in appropriate video player."
   (let ((program (if (eq system-type 'darwin) "iina" "mpv")))
-    (start-process program nil program (shell-quote-wildcard-pattern url))))
+    (start-process program nil program (shell-quote-wildcard-pattern url) "--no-stdin")))
 (defun browse-stream ()
   "Open stream in external player."
   (interactive)

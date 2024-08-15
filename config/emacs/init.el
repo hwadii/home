@@ -140,8 +140,7 @@
   (dired-listing-switches "-vhal --group-directories-first")
   (dired-mouse-drag-files t)
   (dired-use-ls-dired t)
-  (dired-copy-file-recursive 'always)
-  (dired-guess-shell-alist-user '(("\\.mkv\\'" "iina --no-stdin"))))
+  (dired-copy-file-recursive 'always))
 (use-package dired-x
   :ensure nil
   :after dired
@@ -665,6 +664,7 @@
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (put 'set-goal-column 'disabled nil)
+(put 'list-timers 'disabled nil)
 
 (require 'init-browse)
 (require 'init-insert)
