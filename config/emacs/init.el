@@ -139,7 +139,9 @@
   (dired-dwim-target t)
   (dired-listing-switches "-vhal --group-directories-first")
   (dired-mouse-drag-files t)
-  (dired-use-ls-dired t))
+  (dired-use-ls-dired t)
+  (dired-copy-file-recursive 'always)
+  (dired-guess-shell-alist-user '(("\\.mkv\\'" "iina --no-stdin"))))
 (use-package dired-x
   :ensure nil
   :after dired
@@ -176,7 +178,7 @@
   (rainbow-ansi-colors nil)
   (rainbow-x-colors nil)
   :bind (:map ctl-x-x-map
-          ("c" . rainbow-mode)))
+              ("c" . rainbow-mode)))
 (use-package tab-bar
   :ensure nil
   :bind ("C-x t (" . tab-bar-mode))
@@ -204,7 +206,9 @@
          ("M-Z" . zap-up-to-char)
          ("C-M-j" . duplicate-dwim))
   :custom
-  (default-transient-input-method "latin-1-prefix"))
+  (default-transient-input-method "latin-1-prefix")
+  (text-mode-ispell-word-completion nil)
+  (read-extended-command-predicate #'command-completion-default-include-p))
 (use-package simple
   :ensure nil
   :custom
@@ -293,7 +297,7 @@
   :ensure t
   :custom
   (treesit-auto-install 'prompt)
-  (treesit-auto-langs '(ruby rust python go dockerfile org python))
+  (treesit-auto-langs '(ruby rust python go dockerfile org python c c++))
   :config
   (global-treesit-auto-mode))
 (use-package xml-mode
@@ -312,22 +316,27 @@
   :custom
   (ruby-method-call-indent nil)
   (ruby-method-params-indent nil))
+(use-package ruby-ts-mode
+  :mode "\\.rb\\'"
+  :mode "Rakefile\\'"
+  :mode "Gemfile\\'")
+(use-package apheleia
+  :ensure t
+  :config
+  (add-to-list 'apheleia-formatters '(csharpier "dotnet" "csharpier" "--write-stdout"))
+  :bind ("C-c l f a" . apheleia-format-buffer))
 (use-package csharp-mode
   :ensure nil
-  :after reformatter
   :hook (csharp-mode . (lambda () (setq fill-column 120)))
   :config
-  (reformatter-define csharp-format
-    :program "dotnet-csharpier"
-    :args '("--write-stdout")
-    :mode nil
-    :stdin t))
-(use-package reformatter
-  :ensure t)
+  (require 'init-csharp)
+  (reapply-csharp-ts-mode-font-lock-settings)) ; To remove when csharp-ts-mode gets updated
 (use-package corfu
   :ensure t
   :init
   (global-corfu-mode)
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
   :bind
   (:map corfu-map
         ("C-n" . corfu-next)
@@ -646,7 +655,7 @@
   (modus-themes-bold-constructs nil)
   (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
 
-(set-face-attribute 'default nil :family "JuliaMono" :height 150)
+(set-face-attribute 'default nil :family "Berkeley Mono" :height 150)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Aile" :height 150)
 (set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
 
