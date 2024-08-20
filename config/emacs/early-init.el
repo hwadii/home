@@ -1,4 +1,7 @@
-(setq gc-cons-threshold (* 1024 1024 1024))
+(setq gc-cons-threshold most-positive-fixnum)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 16 1024 1024))))
 (setq byte-compile-warnings '(not obsolete))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 (setq initial-major-mode 'fundamental-mode)
@@ -14,8 +17,16 @@
 
 (setq inhibit-startup-echo-area-message (user-login-name))
 
+(setq package-install-upgrade-built-in t)
+
 ;; Customize user interface.
-(menu-bar-mode 1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(column-number-mode)
+(push '(menu-bar-lines . 0)   default-frame-alist)
+(push '(tool-bar-lines . 0)   default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+(push '(horizontal-scroll-bars) default-frame-alist)
+
+(setq tool-bar-mode nil
+      scroll-bar-mode nil
+      column-number-mode 1
+      menu-bar-mode 1)
+

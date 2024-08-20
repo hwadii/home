@@ -19,7 +19,11 @@ statusline.diagnostics = function()
     + (counts[vim.diagnostic.severity.WARN] or 0)
     + (counts[vim.diagnostic.severity.INFO] or 0)
     + (counts[vim.diagnostic.severity.HINT] or 0)
-  return string.format("𝑥 %s", count)
+  if count == 0 then
+    return nil
+  else
+    return string.format("𝑥 %s", count)
+  end
 end
 
 statusline.line_and_column = function()

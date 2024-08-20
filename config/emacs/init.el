@@ -63,9 +63,6 @@
 (desktop-save-mode 1)
 (setopt user-emacs-directory "~/.config/emacs/")
 (setopt desktop-path '("~/.config/emacs/desktops/"))
-;; Write customizations to a separate file instead of this file.
-(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-(load custom-file t)
 
 (setopt nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
 
@@ -91,7 +88,7 @@
 (setopt user-full-name       "Wadii Hajji"
         user-real-login-name "Wadii Hajji"
         user-login-name      "hwadii"
-        user-mail-address    "wadii@cardiologs.com")
+        user-mail-address    "hajji.wadii@yahoo.com")
 
 (setopt tab-bar-new-button-show t
         tab-bar-close-button-show t)
@@ -111,7 +108,7 @@
 
 (use-package goto-addr
   :commands (goto-address-mode)
-  :hook (((prog-mode text-mode) . goto-address-mode)))
+  :hook (prog-mode . goto-address-prog-mode))
 (use-package display-fill-column-indicator
   :ensure nil
   :hook ((text-mode prog-mode) . display-fill-column-indicator-mode))
@@ -150,7 +147,8 @@
          (dired-mode . hl-line-mode))
   :custom
   (dired-omit-mode nil t)
-  (dired-omit-size-limit 60000))
+  (dired-omit-size-limit 60000)
+  (dired-omit-verbose nil))
 (use-package dired-aux
   :ensure nil
   :custom
@@ -267,7 +265,12 @@
   (markdown-fontify-code-blocks-natively t))
 (use-package markdown-ts-mode
   :ensure t
-  :mode ("\\.md\\'" . markdown-ts-mode))
+  :disabled
+  :config
+  (add-to-list 'treesit-language-source-alist
+               '(markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src"))
+  (add-to-list 'treesit-language-source-alist
+               '(markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown-inline/src")))
 (use-package rainbow-delimiters
   :ensure t
   :hook ((emacs-lisp-mode ielm-mode lisp-interaction-mode lisp-mode) . rainbow-delimiters-mode))
@@ -285,9 +288,21 @@
 (use-package diff-hl
   :ensure t
   :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
-         (magit-pre-refresh-hook . diff-hl-magit-pre-refresh))
+         (magit-pre-refresh . diff-hl-magit-pre-refresh))
   :config (global-diff-hl-mode)
   :custom (diff-hl-flydiff-mode t))
+(use-package ediff
+  :ensure nil
+  :init
+  (defvar ue-ediff-window-config nil "Window config before ediffing")
+  :hook
+  ((ediff-before-setup . (lambda ()
+                           (setq ue-ediff-window-config (current-window-configuration))))
+   ((ediff-suspend ediff-quit) . (lambda () (set-window-configuration ue-ediff-window-config)))
+   (ediff-cleanup . (lambda () (ediff-janitor t nil))))
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+  (ediff-split-window-function 'split-window-horizontally))
 (use-package tree-sitter-indent :ensure t)
 (use-package tree-sitter
   :ensure nil
@@ -316,6 +331,7 @@
   (ruby-method-call-indent nil)
   (ruby-method-params-indent nil))
 (use-package ruby-ts-mode
+  :ensure nil
   :mode "\\.rb\\'"
   :mode "Rakefile\\'"
   :mode "Gemfile\\'")
@@ -326,7 +342,7 @@
   :bind ("C-c l f a" . apheleia-format-buffer))
 (use-package csharp-mode
   :ensure nil
-  :hook (csharp-mode . (lambda () (setq fill-column 120)))
+  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120)))
   :config
   (require 'init-csharp)
   (reapply-csharp-ts-mode-font-lock-settings)) ; To remove when csharp-ts-mode gets updated
@@ -352,7 +368,7 @@
   :config
   (corfu-popupinfo-mode))
 (use-package cape
-  :ensure nil
+  :ensure t
   :bind ("C-c p" . cape-prefix-map))
 (use-package vterm
   :ensure t
@@ -386,9 +402,9 @@
          ("C-c l i" . eglot-inlay-hints-mode)
          ("C-c l a" . eglot-code-actions))
   :config
-  (setq eldoc-echo-area-use-multiline-p nil)
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")))
-  :hook (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1))))
+  :hook ((eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
+         (ruby-mode . eglot-ensure)))
 (use-package fish-mode
   :ensure t)
 (use-package eat
@@ -430,8 +446,8 @@
                                ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
                                "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
                                "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                               "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                               "\\\\" "://"))
+                               "?=" "?." "??" ";;" ";;;" "/*" "/=" "/>" "//" "__" "~~"
+                               "(*" "*)" "\\\\" "://"))
   :hook (prog-mode text-mode))
 (use-package marginalia
   :ensure t
@@ -454,8 +470,12 @@
 (use-package mise
   :ensure t
   :diminish mise-mode
-  :hook prog-mode)
-(use-package no-littering :ensure t)
+  :hook (prog-mode . mise-mode))
+(use-package no-littering
+  :ensure t
+  :config
+  ;; Write customizations to a separate file instead of this file.
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
 (use-package helpful :ensure t)
 (use-package operate-on-number
   :ensure t
@@ -525,7 +545,12 @@
 (use-package calendar
   :ensure nil
   :custom
-  (calendar-week-start-day 1))
+  (calendar-week-start-day 1)
+  (calendar-latitude [48 51 24 north])
+  (calendar-longitude [2 21 07 east])
+  (calendar-location-name "Paris, FR")
+  (calendar-mark-holidays t)
+  (calendar-mark-diary-flags t))
 ;; Example configuration for Consult
 (use-package consult
   ;; Replace bindings. Lazily loaded by `use-package'.
@@ -641,6 +666,9 @@
   (standard-themes-bold-constructs t)
   (standard-themes-italic-constructs t)
   (standard-themes-mixed-fonts t))
+(use-package yaml-ts-mode
+  :ensure nil
+  :mode "\\.ya?ml\\'")
 (use-package git-link
   :ensure t)
 (use-package modus-themes
@@ -653,7 +681,18 @@
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs nil)
   (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
-
+(use-package smtpmail
+  :ensure nil
+  :custom
+  (smtpmail-debug-info t)
+  (smtpmail-smtp-server "smtp.mail.yahoo.com")
+  (smtpmail-smtp-service 465))
+(use-package eldoc-box
+  :diminish
+  :bind (("C-h ." . eldoc-box-help-at-point))
+  :config
+  (setopt eldoc-echo-area-prefer-doc-buffer t)
+  (setopt eldoc-echo-area-use-multiline-p nil))
 (set-face-attribute 'default nil :family "Berkeley Mono" :height 150)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Aile" :height 150)
 (set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
@@ -666,5 +705,6 @@
 (put 'set-goal-column 'disabled nil)
 (put 'list-timers 'disabled nil)
 
+(load custom-file t)
 (require 'init-browse)
 (require 'init-insert)
