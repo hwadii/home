@@ -22,7 +22,6 @@ set -x LANGUAGE en_US.UTF-8
 set -x LC_ALL en_US.UTF-8
 set -x JQ_COLORS "2;37:0;37:0;37:0;37:0;32:1;37:1;37"
 
-set -x DOTNET_ROOT (mise where dotnet-core)
 set -x CARGO_TARGET_DIR ~/.local/cargo/target
 
 set -x PRE_COMMIT_COLOR never
