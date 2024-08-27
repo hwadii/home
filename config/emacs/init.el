@@ -70,7 +70,7 @@
 (setopt explicit-shell-file-name "/opt/homebrew/bin/fish")
 (setopt vterm-shell "/opt/homebrew/bin/fish")
 
-(setopt scroll-conservatively 101)
+(setopt scroll-conservatively 10)
 (setopt scroll-margin 1)
 
 (tab-bar-mode 1)
@@ -129,7 +129,7 @@
 (use-package diminish
   :ensure t
   :config
-  (diminish 'visual-line-mode))
+  (diminish '(visual-line-mode eldoc-mode auto-revert-mode)))
 (use-package dired
   :ensure nil
   :custom
@@ -137,7 +137,8 @@
   (dired-listing-switches "-vhal --group-directories-first")
   (dired-mouse-drag-files t)
   (dired-use-ls-dired t)
-  (dired-copy-file-recursive 'always))
+  (dired-copy-file-recursive 'always)
+  (dired-kill-when-opening-new-dired-buffer t))
 (use-package dired-x
   :ensure nil
   :after dired
@@ -199,21 +200,37 @@
   (setopt tab-always-indent 'complete)
   :hook ((text-mode . auto-fill-mode)
          ((text-mode prog-mode) . (lambda () (setq-local show-trailing-whitespace t))))
-  :bind (
-         ("M-Z" . zap-up-to-char)
-         ("C-M-j" . duplicate-dwim))
+  :bind
+  ("M-Z" . zap-up-to-char)
+  ("C-M-j" . duplicate-dwim)
+  ("C-x O" . (lambda ()
+               (interactive)
+               (setq repeat-map 'other-window-repeat-map)
+               (other-window -1)))
   :custom
   (default-transient-input-method "latin-1-prefix")
   (text-mode-ispell-word-completion nil)
-  (read-extended-command-predicate #'command-completion-default-include-p))
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  (comment-fill-column 80)
+  (x-underline-at-descent-line t)
+  (auto-revert-avoid-polling t))
 (use-package simple
   :ensure nil
   :custom
   (visual-line-fringe-indicators '(left-curly-arrow nil)))
+(use-package which-func
+  :ensure nil
+  :hook (prog-mode . which-function-mode)
+  :custom
+  (which-func-update-delay 1.0))
 (use-package project
   :ensure nil
+  :bind
+  (:map project-prefix-map
+        ("t" . eat-project))
   :config
-  (add-to-list 'project-switch-commands '(eat-project "Eat" ?t) t))
+  (add-to-list 'project-switch-commands '(eat-project "Eat" ?t) t)
+  (add-to-list 'project-switch-commands '(magit-status "Magit" ?m) t))
 (use-package savehist
   :ensure nil
   :init
@@ -275,7 +292,6 @@
   :ensure t
   :hook ((emacs-lisp-mode ielm-mode lisp-interaction-mode lisp-mode) . rainbow-delimiters-mode))
 (use-package magit
-  :demand
   :ensure t
   :custom
   (magit-define-global-key-bindings 'recommended))
@@ -326,10 +342,14 @@
 (use-package ruby-mode
   :ensure t
   :config
-  :hook (ruby-ts-mode . (lambda () (setq fill-column 140)))
+  :hook (ruby-ts-mode . (lambda ()
+                          (setq fill-column 140)
+                          (remove-hook 'flymake-diagnostic-functions #'ruby-flymake-auto t)
+                          (remove-hook 'flymake-diagnostic-functions #'t t)))
   :custom
   (ruby-method-call-indent nil)
-  (ruby-method-params-indent nil))
+  (ruby-method-params-indent nil)
+  (ruby-flymake-use-rubocop-if-available nil))
 (use-package ruby-ts-mode
   :ensure nil
   :mode "\\.rb\\'"
@@ -342,10 +362,11 @@
   :bind ("C-c l f a" . apheleia-format-buffer))
 (use-package csharp-mode
   :ensure nil
-  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120)))
+  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120
+                                                         comment-auto-fill-only-comments t)))
   :config
   (require 'init-csharp)
-  (reapply-csharp-ts-mode-font-lock-settings)) ; To remove when csharp-ts-mode gets updated
+  (reapply-csharp-ts-mode-font-lock-settings)) ; to remove when csharp-ts-mode gets updated
 (use-package corfu
   :ensure t
   :init
@@ -357,7 +378,8 @@
         ("C-n" . corfu-next)
         ("C-p" . corfu-previous))
   :custom
-  (corfu-auto t))
+  (corfu-auto nil)
+  (corfu-cycle t))
 (use-package corfu-popupinfo
   :ensure nil
   :after corfu
@@ -385,13 +407,14 @@
   :ensure t
   :bind ("C-M-!" . sudo-utils-shell-command))
 (use-package eglot
+  :disabled
   :ensure nil
   :custom
   (eglot-autoshutdown t)
   (eglot-sync-connect 3)
   (eglot-stay-out-of '(flymake))
   (eglot-send-changes-idle-time 0.5)
-  (eglot-events-buffer :size 0)
+  (eglot-events-buffer-config :size 0)
   :bind (("C-c l c" . eglot-reconnect)
          ("C-c l d" . flymake-show-buffer-diagnostics)
          ("C-c l f f" . eglot-format)
@@ -402,9 +425,19 @@
          ("C-c l i" . eglot-inlay-hints-mode)
          ("C-c l a" . eglot-code-actions))
   :config
-  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")))
-  :hook ((eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
-         (ruby-mode . eglot-ensure)))
+  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")) t)
+  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
+  :hook
+  (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
+  ((ruby-mode ruby-ts-mode) . eglot-ensure)
+  ((csharp-mode csharp-ts-mode) . eglot-ensure))
+(use-package flymake
+  :hook (prog-mode . flymake-mode)
+  :custom
+  (flymake-show-diagnostics-at-end-of-line 'short)
+  :bind (:map flymake-mode-map
+	      ("M-n" . flymake-goto-next-error)
+	      ("M-p" . flymake-goto-prev-error)))
 (use-package fish-mode
   :ensure t)
 (use-package eat
@@ -419,7 +452,8 @@
   :after ispell
   :diminish flyspell-mode
   :hook ((markdown-mode org-mode) . flyspell-mode))
-(use-package password-store :ensure t)
+(use-package password-store-menu
+  :ensure t)
 (use-package rg
   :ensure t
   :config (rg-enable-default-bindings))
@@ -446,9 +480,9 @@
                                ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
                                "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
                                "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                               "?=" "?." "??" ";;" ";;;" "/*" "/=" "/>" "//" "__" "~~"
+                               "?=" "?." "??" ";;" ";;;" "/*" "/**" "**/" "/=" "/>" "//" "__" "~~"
                                "(*" "*)" "\\\\" "://"))
-  :hook (prog-mode text-mode))
+  :hook ((prog-mode text-mode) . ligature-mode))
 (use-package marginalia
   :ensure t
   :custom (marginalia-mode 1)
@@ -490,6 +524,9 @@
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
          ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
+         :map minibuffer-mode-map
+         ("C-c C-e" . embark-export)
+         ("C-c C-c" . embark-collect)
          :map embark-general-map
          ("w" . dictionary-search)
          :map embark-become-file+buffer-map
@@ -562,6 +599,12 @@
          ("C-c i" . consult-info)
          ([remap Info-search] . consult-info)
          ;; C-x bindings in `ctl-x-map'
+         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+         ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+         ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+         ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
          ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
          ;; Custom M-# bindings for fast register access
@@ -645,6 +688,13 @@
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
   ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
   )
+(use-package consult-gh
+  :ensure t
+  :after consult
+  :config
+  (setq consult-gh-default-orgs-list
+        (append consult-gh-default-orgs-list
+                (remove "" (split-string (or (consult-gh--command-to-string "org" "list") "") "\n")))))
 (use-package embark-consult
   :ensure t
   :after embark)
@@ -680,7 +730,12 @@
   (modus-themes-variable-pitch-ui t)
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs nil)
-  (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
+  (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted))
+  :hook
+  (modus-themes-after-load-theme . (lambda ()
+                                     (modus-themes-with-colors
+                                       (custom-set-faces
+                                        `(eglot-highlight-symbol-face ((t :background ,bg-ochre :bold nil))))))))
 (use-package smtpmail
   :ensure nil
   :custom
@@ -688,11 +743,43 @@
   (smtpmail-smtp-server "smtp.mail.yahoo.com")
   (smtpmail-smtp-service 465))
 (use-package eldoc-box
+  :ensure t
   :diminish
   :bind (("C-h ." . eldoc-box-help-at-point))
   :config
   (setopt eldoc-echo-area-prefer-doc-buffer t)
   (setopt eldoc-echo-area-use-multiline-p nil))
+(use-package transpose-frame
+  :ensure t)
+(use-package editorconfig
+  :ensure nil
+  :defer t
+  :diminish editorconfig-mode
+  :init
+  (editorconfig-mode 1))
+(use-package eglot-booster
+  :disabled
+  :ensure t
+  :vc (:url "https://github.com/jdtsmith/eglot-booster" :rev :newest)
+  :after eglot
+  :config (eglot-booster-mode))
+(use-package lsp-mode
+  :ensure t
+  :diminish (lsp-lens-mode)
+  :custom
+  (lsp-headerline-breadcrumb-enable nil)
+  (lsp-modeline-code-actions-enable nil)
+  (lsp-modeline-diagnostics-enable nil)
+  (lsp-enable-snippet nil)
+  (lsp-ruby-lsp-use-bundler t)
+  (lsp-solargraph-use-bundler t)
+  (lsp-completion-provider :none)
+  (lsp-keymap-prefix "C-c l")
+  (lsp-enable-suggest-server-download nil)
+  (lsp-auto-guess-root t)
+  :hook
+  ((csharp-mode csharp-ts-mode) . lsp)
+  ((ruby-mode ruby-ts-mode) . lsp))
 (set-face-attribute 'default nil :family "Berkeley Mono" :height 150)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Aile" :height 150)
 (set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
