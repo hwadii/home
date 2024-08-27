@@ -31,7 +31,7 @@
 (defun browse-stream ()
   "Open stream in external player."
   (interactive)
-  (browse-url-video-player (format "https://twitch.tv/%s" (completing-read "Channel: " browse-streams))))
+  (browse-url-video-player (format "https://twitch.tv/%s" (completing-read "Channel: " browse-streams nil 'confirm))))
 (defun browse-video ()
   "Open video in external player."
   (interactive)
