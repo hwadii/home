@@ -11,6 +11,8 @@
 
 (global-visual-line-mode)
 
+(global-hl-line-mode)
+
 ;; Show stray whitespace.
 (setq-default indicate-empty-lines t)
 (setq-default indicate-buffer-boundaries 'left)
@@ -129,7 +131,11 @@
 (use-package diminish
   :ensure t
   :config
-  (diminish '(visual-line-mode eldoc-mode auto-revert-mode)))
+  (diminish 'visual-line-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'auto-revert-mode)
+  (diminish 'magit-auto-revert-mode)
+  (diminish 'eldoc))
 (use-package dired
   :ensure nil
   :custom
@@ -230,7 +236,7 @@
         ("t" . eat-project))
   :config
   (add-to-list 'project-switch-commands '(eat-project "Eat" ?t) t)
-  (add-to-list 'project-switch-commands '(magit-status "Magit" ?m) t))
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?m) t))
 (use-package savehist
   :ensure nil
   :init
@@ -394,7 +400,9 @@
   :bind ("C-c p" . cape-prefix-map))
 (use-package vterm
   :ensure t
-  :bind ("C-c t" . vterm))
+  :bind ("C-c t" . vterm)
+  :custom
+  (vterm-tramp-shells '(("docker" "/bin/sh") ("ssh" "/usr/bin/fish"))))
 (use-package which-key
   :ensure nil
   :diminish
@@ -735,7 +743,10 @@
   (modus-themes-after-load-theme . (lambda ()
                                      (modus-themes-with-colors
                                        (custom-set-faces
-                                        `(eglot-highlight-symbol-face ((t :background ,bg-ochre :bold nil))))))))
+                                        `(eglot-highlight-symbol-face ((t :background ,bg-ochre :extend nil)))
+                                        `(forge-pullreq-open ((t :foreground ,green-intense :extend nil)))))
+                                     (custom-set-faces
+                                      '(lsp-face-highlight-read ((t (:inherit highlight :extend nil))))))))
 (use-package smtpmail
   :ensure nil
   :custom
@@ -778,11 +789,26 @@
   (lsp-enable-suggest-server-download nil)
   (lsp-auto-guess-root t)
   :hook
+  (lsp-mode . lsp-enable-which-key-integration)
   ((csharp-mode csharp-ts-mode) . lsp)
   ((ruby-mode ruby-ts-mode) . lsp))
-(set-face-attribute 'default nil :family "Berkeley Mono" :height 150)
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+(use-package solarized-theme
+  :ensure t
+  :custom
+  (solarized-use-less-bold t)
+  (solarized-height-minus-1 1.0)
+  (solarized-height-plus-1 1.0)
+  (solarized-height-plus-2 1.0)
+  (solarized-height-plus-3 1.0)
+  (solarized-height-plus-4 1.0))
+(set-face-attribute 'default nil :family "Berkeley Mono" :height 155)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Aile" :height 150)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 155)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
