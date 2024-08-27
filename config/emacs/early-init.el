@@ -1,3 +1,5 @@
+(defvar enable-debug-p nil
+  "Non-nil to enable debug.")
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -9,14 +11,20 @@
 (setq ring-bell-function 'ignore)
 (setq use-short-answers t)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
-(setq inhibit-startup-message t
+(setq frame-inhibit-implied-resize t
       frame-resize-pixelwise t  ; fine resize
       package-native-compile t) ; native compile packages
+(setq idle-update-delay 1.0)
+(setq native-comp-async-report-warnings-errors 'silent)
+(setq native-comp-warning-on-missing-source enable-debug-p)
 
 (setq auto-revert-check-vc-info nil)
 
 (setq inhibit-startup-echo-area-message (user-login-name))
-
+(setq inhibit-startup-screen t
+      inhibit-startup-echo-area-message user-login-name)
+(setq initial-buffer-choice nil
+      inhibit-startup-buffer-menu t)
 (setq package-install-upgrade-built-in t)
 
 ;; Customize user interface.
