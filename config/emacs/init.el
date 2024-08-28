@@ -5,13 +5,11 @@
 ;; Complete pairs
 (electric-pair-mode 0)
 
-(blink-cursor-mode -1)
+(blink-cursor-mode 0)
 
 (pixel-scroll-precision-mode)
 
 (global-visual-line-mode)
-
-(global-hl-line-mode)
 
 ;; Show stray whitespace.
 (setq-default indicate-empty-lines t)
@@ -19,8 +17,6 @@
 (setq-default require-final-newline t)
 
 (setq load-prefer-newer t)
-
-(setq auth-sources '("~/.authinfo"))
 
 ;; Remove message in scratch buffer.
 (setq-default initial-scratch-message nil)
@@ -30,6 +26,8 @@
 
 ;; Consider a period followed by a single space to be end of sentence.
 (setopt sentence-end-double-space nil)
+
+(setq-default insert-directory-program "gls")
 
 ;; Use spaces, not tabs, for indentation.
 (setq-default indent-tabs-mode nil)
@@ -129,13 +127,12 @@
   :ensure nil
   :bind ([remap dabbrev-expand] . hippie-expand))
 (use-package diminish
+  :ensure t)
+(use-package minions
   :ensure t
-  :config
-  (diminish 'visual-line-mode)
-  (diminish 'eldoc-mode)
-  (diminish 'auto-revert-mode)
-  (diminish 'magit-auto-revert-mode)
-  (diminish 'eldoc))
+  :custom
+  (minions-mode-line-lighter "…")
+  (minions-prominent-modes '(flymake-mode lsp-mode)))
 (use-package dired
   :ensure nil
   :custom
@@ -148,7 +145,6 @@
 (use-package dired-x
   :ensure nil
   :after dired
-  :diminish dired-omit-mode
   :hook ((dired-mode . dired-omit-mode)
          (dired-mode . dired-hide-details-mode)
          (dired-mode . hl-line-mode))
@@ -156,6 +152,9 @@
   (dired-omit-mode nil t)
   (dired-omit-size-limit 60000)
   (dired-omit-verbose nil))
+(use-package hl-line
+  :ensure nil
+  :hook ((text-mode prog-mode) . hl-line-mode))
 (use-package dired-aux
   :ensure nil
   :custom
@@ -165,7 +164,6 @@
   :custom
   (nerd-icons-font-family "Symbols Nerd Font Mono"))
 (use-package nerd-icons-dired
-  :diminish
   :ensure t
   :hook
   (dired-mode . nerd-icons-dired-mode))
@@ -176,7 +174,6 @@
   :ensure t
   :hook (eshell-mode . fish-completion-mode))
 (use-package rainbow-mode
-  :diminish
   :ensure t
   :custom
   (rainbow-ansi-colors nil)
@@ -184,8 +181,10 @@
   :bind (:map ctl-x-x-map
               ("c" . rainbow-mode)))
 (use-package tab-bar
+  :ensure nil)
+(use-package winner
   :ensure nil
-  :bind ("C-x t (" . tab-bar-mode))
+  :init (winner-mode))
 (use-package windsize
   :ensure t
   :hook (after-init . windsize-default-keybindings))
@@ -196,8 +195,7 @@
   :bind (("M-<down>" . windmove-display-down)
          ("M-<up>" . windmove-display-up)
          ("M-<left>" . windmove-display-left)
-         ("M-<right>" . windmove-display-right)
-         ("M-T" . windmove-display-new-tab)))
+         ("M-<right>" . windmove-display-right)))
 (use-package repeat
   :ensure nil
   :hook (after-init . repeat-mode))
@@ -219,7 +217,8 @@
   (read-extended-command-predicate #'command-completion-default-include-p)
   (comment-fill-column 80)
   (x-underline-at-descent-line t)
-  (auto-revert-avoid-polling t))
+  (auto-revert-avoid-polling t)
+  (custom-safe-themes t))
 (use-package simple
   :ensure nil
   :custom
@@ -405,7 +404,6 @@
   (vterm-tramp-shells '(("docker" "/bin/sh") ("ssh" "/usr/bin/fish"))))
 (use-package which-key
   :ensure nil
-  :diminish
   :custom
   (which-key-show-early-on-C-h t)
   (which-key-idle-delay 10000)
@@ -458,7 +456,6 @@
 (use-package flyspell
   :ensure nil
   :after ispell
-  :diminish flyspell-mode
   :hook ((markdown-mode org-mode) . flyspell-mode))
 (use-package password-store-menu
   :ensure t)
@@ -511,7 +508,6 @@
   (ef-themes-mixed-fonts t))
 (use-package mise
   :ensure t
-  :diminish mise-mode
   :hook (prog-mode . mise-mode))
 (use-package no-littering
   :ensure t
@@ -574,7 +570,6 @@
   :config (global-so-long-mode))
 (use-package auto-compile
   :ensure t
-  :diminish
   :config (auto-compile-on-load-mode)
   :custom
   (auto-compile-display-buffer nil)
@@ -755,7 +750,6 @@
   (smtpmail-smtp-service 465))
 (use-package eldoc-box
   :ensure t
-  :diminish
   :bind (("C-h ." . eldoc-box-help-at-point))
   :config
   (setopt eldoc-echo-area-prefer-doc-buffer t)
@@ -765,7 +759,6 @@
 (use-package editorconfig
   :ensure nil
   :defer t
-  :diminish editorconfig-mode
   :init
   (editorconfig-mode 1))
 (use-package eglot-booster
@@ -776,7 +769,7 @@
   :config (eglot-booster-mode))
 (use-package lsp-mode
   :ensure t
-  :diminish (lsp-lens-mode)
+  :diminish (lsp-mode . "LSP")
   :custom
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-modeline-code-actions-enable nil)
@@ -801,11 +794,18 @@
   :ensure t
   :custom
   (solarized-use-less-bold t)
+  (solarized-use-more-italic t)
+  (solarized-distinct-doc-face t)
   (solarized-height-minus-1 1.0)
   (solarized-height-plus-1 1.0)
   (solarized-height-plus-2 1.0)
   (solarized-height-plus-3 1.0)
   (solarized-height-plus-4 1.0))
+(use-package jq-mode
+  :ensure t
+  :commands jq-interactively
+  :bind (:map json-mode-map
+              ("C-c C-j" . jq-interactively)))
 (set-face-attribute 'default nil :family "Berkeley Mono" :height 155)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka Aile" :height 150)
 (set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 155)
