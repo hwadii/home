@@ -42,7 +42,6 @@
   maxStack = 20
 [delta]
   navigate = true
-  light = false
   side-by-side = false
   syntax-theme = ansi
   hyperlinks = true
