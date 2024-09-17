@@ -90,8 +90,6 @@
         user-login-name      "hwadii"
         user-mail-address    "hajji.wadii@yahoo.com")
 
-(setopt tab-bar-new-button-show t
-        tab-bar-close-button-show t)
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
@@ -130,11 +128,15 @@
   :ensure t)
 (use-package minions
   :ensure t
+  :config
+  (minions-mode)
   :custom
   (minions-mode-line-lighter "…")
-  (minions-prominent-modes '(flymake-mode lsp-mode)))
+  (minions-prominent-modes '(flymake-mode lsp-mode vterm-copy-mode)))
 (use-package dired
   :ensure nil
+  :bind (:map dired-mode-map
+              ("_" . dired-create-empty-file))
   :custom
   (dired-dwim-target t)
   (dired-listing-switches "-vhal --group-directories-first")
@@ -181,7 +183,11 @@
   :bind (:map ctl-x-x-map
               ("c" . rainbow-mode)))
 (use-package tab-bar
-  :ensure nil)
+  :ensure nil
+  :custom
+  (tab-bar-auto-width nil)
+  (tab-bar-new-button-show t)
+  (tab-bar-close-button-show t))
 (use-package winner
   :ensure nil
   :init (winner-mode))
@@ -196,17 +202,41 @@
          ("M-<up>" . windmove-display-up)
          ("M-<left>" . windmove-display-left)
          ("M-<right>" . windmove-display-right)))
+(use-package window
+  :ensure nil
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\*Help"
+                 (display-buffer-same-window)))
+  (add-to-list 'display-buffer-alist
+               '("\\*info"
+                 (display-buffer-same-window)))
+  (add-to-list 'display-buffer-alist
+               '("\\*helpful"
+                 (display-buffer-same-window)))
+  :custom
+  (same-window-buffer-names nil)
+  (same-window-regexps nil))
+(use-package man
+  :ensure nil
+  :custom
+  (Man-notify-method 'pushy))
 (use-package repeat
   :ensure nil
   :hook (after-init . repeat-mode))
 (use-package emacs
   :init
   (setopt tab-always-indent 'complete)
-  :hook ((text-mode . auto-fill-mode)
-         ((text-mode prog-mode) . (lambda () (setq-local show-trailing-whitespace t))))
+  :hook
+  (text-mode . auto-fill-mode)
   :bind
-  ("M-Z" . zap-up-to-char)
+  ("M-z" . zap-up-to-char)
+  ("M-Z" . zap-to-char)
   ("C-M-j" . duplicate-dwim)
+  ("C-s" . isearch-forward-regexp)
+  ("C-r" . isearch-backward-regexp)
+  ("C-M-s" . isearch-forward)
+  ("C-M-r" . isearch-backward)
   ("C-x O" . (lambda ()
                (interactive)
                (setq repeat-map 'other-window-repeat-map)
@@ -218,7 +248,16 @@
   (comment-fill-column 80)
   (x-underline-at-descent-line t)
   (auto-revert-avoid-polling t)
-  (custom-safe-themes t))
+  (custom-safe-themes t)
+  (set-mark-command-repeat-pop t)
+  (save-interprogram-paste-before-kill t)
+  (mouse-yank-at-point t))
+(use-package whitespace
+  :ensure nil
+  :hook
+  ((prog-mode text-mode) . whitespace-mode)
+  :custom
+  (whitespace-style '(face trailing)))
 (use-package simple
   :ensure nil
   :custom
@@ -269,6 +308,13 @@
               ("RET"   . vertico-directory-enter)
               ("DEL"   . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word)))
+(use-package vertico-repeat
+  :after vertico
+  :ensure nil
+  :bind
+  ("M-R" . vertico-repeat)
+  :hook
+  (minibuffer-setup . vertico-repeat-save))
 (use-package tmm
   :ensure nil
   :config
@@ -299,13 +345,25 @@
 (use-package magit
   :ensure t
   :custom
-  (magit-define-global-key-bindings 'recommended))
+  (magit-define-global-key-bindings 'recommended)
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 (use-package forge
   :ensure t
   :after magit
   :custom
   (forge-database-file "~/.config/forge/database.sqlite")
-  (forge-owned-accounts '(("hwadii"))))
+  (forge-owned-accounts '(("hwadii")))
+  (magit-save-repository-buffers nil))
+(use-package doc-view
+  :custom
+  doc-view-resolution 200)
+(use-package org
+  :ensure nil
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t)
+     (emacs-lisp . t))))
 (use-package diff-hl
   :ensure t
   :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
@@ -472,29 +530,14 @@
   :ensure nil
   :bind (("C-x C-z" . eshell)))
 (use-package ligature
+  :disabled
   :ensure t
+  :hook (prog-mode . ligature-mode)
   :config
-  (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "||=" "||>"
-                               ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                               "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                               "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                               "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                               "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                               "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                               "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                               ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                               "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                               "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                               "?=" "?." "??" ";;" ";;;" "/*" "/**" "**/" "/=" "/>" "//" "__" "~~"
-                               "(*" "*)" "\\\\" "://"))
-  :hook ((prog-mode text-mode) . ligature-mode))
+  (ligature-set-ligatures 'prog-mode '("==" "!=")))
 (use-package marginalia
   :ensure t
-  :custom (marginalia-mode 1)
-  :bind (
-         ("C-c )" . marginalia-mode)
-         :map minibuffer-mode-map
-         ("M-A" . marginalia-cycle)))
+  :custom (marginalia-mode 1))
 (use-package inf-ruby :ensure t)
 (use-package orderless
   :ensure t
@@ -503,6 +546,8 @@
   (orderless-matching-styles '(orderless-flex)))
 (use-package ef-themes
   :ensure t
+  :config
+  (ef-themes-select 'ef-owl)
   :custom
   (ef-themes-variable-pitch-ui t)
   (ef-themes-mixed-fonts t))
@@ -686,6 +731,7 @@
   ;; Both < and C-+ work reasonably well.
   :custom
   (consult-narrow-key "<") ;; "C-+"
+  (consult-man-args "man -k")
 
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
@@ -713,6 +759,7 @@
   ;; Note that you may have to restart Emacs for this to take effect!
   (setq combobulate-key-prefix "C-c o"))
 (use-package standard-themes
+  :disabled
   :ensure t
   :custom
   (standard-themes-variable-pitch-ui t)
@@ -722,12 +769,17 @@
 (use-package yaml-ts-mode
   :ensure nil
   :mode "\\.ya?ml\\'")
+(use-package go-ts-mode
+  :ensure nil
+  :mode "\\.go\\'"
+  :custom
+  (go-ts-mode-indent-offset 4))
 (use-package git-link
   :ensure t)
 (use-package modus-themes
+  :disabled
   :ensure t
   :config
-  (modus-themes-select 'modus-operandi-tinted)
   :custom
   (modus-themes-mixed-fonts t)
   (modus-themes-variable-pitch-ui t)
@@ -791,6 +843,7 @@
   :config
   (exec-path-from-shell-initialize))
 (use-package solarized-theme
+  :disabled
   :ensure t
   :custom
   (solarized-use-less-bold t)
@@ -806,9 +859,22 @@
   :commands jq-interactively
   :bind (:map json-mode-map
               ("C-c C-j" . jq-interactively)))
-(set-face-attribute 'default nil :family "Berkeley Mono" :height 155)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka Aile" :height 150)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 155)
+(use-package surround
+  :ensure t
+  :bind-keymap ("M-+" . surround-keymap))
+(use-package doom-themes
+  :disabled
+  :ensure t
+  :custom
+  (doom-themes-enable-bold t)    ; if nil, bold is universally disabled
+  (doom-themes-enable-italic t)) ; if nil, italics is universally disabled
+(use-package terraform-mode
+  :ensure t)
+(use-package csv-mode
+  :ensure t)
+(set-face-attribute 'default nil :family "Rec Mono Linear" :height 160)
+(set-face-attribute 'fixed-pitch nil :family "Rec Mono Linear" :height 160)
+(set-face-attribute 'variable-pitch nil :family "Atkinson Hyperlegible" :height 170)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
