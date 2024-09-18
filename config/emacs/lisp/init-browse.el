@@ -4,26 +4,13 @@
 
 ;;; Code:
 
-(defconst browse-streams
-  '("39daph"
-    "EnglishBen"
-    "English_Ben"
-    "TheGreatReview"
-    "ThePrimeagen"
-    "dmmulroy"
-    "louispilfold"
-    "lpil"
-    "papesan"
-    "teej_dv"
-    "theprimeagen"
-    "tigerbeetle"
-    "tsoding"
-    "untangledco"
-    "lcolonq"
-    "sphaerophoria"
-    "etoiles"
-    "prodzpod"
-    "pushcx"))
+(defgroup browse-streams nil
+  "Browse videos and things."
+  :group 'emacs)
+(defcustom browse-streams-streams nil
+  "Favorite streams."
+  :group 'browse-streams
+  :type '(repeat string))
 (defun browse-url-video-player (url)
   "Browse URL in appropriate video player."
   (let ((program (if (eq system-type 'darwin) "iina" "mpv")))
@@ -31,7 +18,7 @@
 (defun browse-stream ()
   "Open stream in external player."
   (interactive)
-  (browse-url-video-player (format "https://twitch.tv/%s" (completing-read "Channel: " browse-streams nil 'confirm))))
+  (browse-url-video-player (format "https://twitch.tv/%s" (completing-read "Channel: " browse-streams-streams nil 'confirm))))
 (defun browse-video ()
   "Open video in external player."
   (interactive)

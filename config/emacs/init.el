@@ -142,7 +142,9 @@
   (dired-listing-switches "-vhal --group-directories-first")
   (dired-mouse-drag-files t)
   (dired-use-ls-dired t)
-  (dired-copy-file-recursive 'always)
+  (dired-recursive-copies 'always)
+  (dired-recursive-deletes 'top)
+  (dired-create-destination-dirs 'ask)
   (dired-kill-when-opening-new-dired-buffer t))
 (use-package dired-x
   :ensure nil
