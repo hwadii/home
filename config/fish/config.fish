@@ -17,6 +17,7 @@ set -x MANWIDTH 80
 set -x XDG_CONFIG_HOME ~/.config
 set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/ripgreprc
 set -x PASSWORD_STORE_DIR ~/.local/share/pass/
+set -x GOPATH ~/.local/go
 set -x LANG en_US.UTF-8
 set -x LANGUAGE en_US.UTF-8
 set -x LC_ALL en_US.UTF-8
