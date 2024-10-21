@@ -75,8 +75,6 @@
 
 (tab-bar-mode 1)
 
-(setopt xref-search-program 'ripgrep)
-
 (setopt diff-hl-show-staged-changes nil)
 
 (setopt switch-to-buffer-obey-display-actions t)
@@ -107,6 +105,13 @@
 (use-package goto-addr
   :commands (goto-address-mode)
   :hook (prog-mode . goto-address-prog-mode))
+(use-package xref
+  :ensure nil
+  :custom
+  (xref-search-program 'ripgrep)
+  ;; Use Consult to select xref locations with preview
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref))
 (use-package display-fill-column-indicator
   :ensure nil
   :hook ((text-mode prog-mode) . display-fill-column-indicator-mode))
@@ -264,9 +269,10 @@
   :ensure nil
   :custom
   (visual-line-fringe-indicators '(left-curly-arrow nil)))
+(use-package async
+  :ensure t)
 (use-package which-func
   :ensure nil
-  :hook (prog-mode . which-function-mode)
   :custom
   (which-func-update-delay 1.0))
 (use-package project
@@ -348,7 +354,7 @@
   :ensure t
   :custom
   (magit-define-global-key-bindings 'recommended)
-  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1))
 (use-package forge
   :ensure t
   :after magit
@@ -392,7 +398,7 @@
   :ensure t
   :custom
   (treesit-auto-install 'prompt)
-  (treesit-auto-langs '(ruby rust python go dockerfile org python c c++))
+  (treesit-auto-langs '(ruby rust python go dockerfile org python c c++ zig))
   :config
   (global-treesit-auto-mode))
 (use-package xml-mode
@@ -404,6 +410,9 @@
   :hook (typescript-mode . (lambda () (setq fill-column 120))))
 (use-package json-mode :ensure t)
 (use-package zig-mode :ensure t)
+(use-package zig-ts-mode
+  :ensure t
+  :mode "\\.zig\\'")
 (use-package ruby-mode
   :ensure t
   :config
@@ -414,12 +423,16 @@
   :custom
   (ruby-method-call-indent nil)
   (ruby-method-params-indent nil)
+  (ruby-bracketed-args-indent nil)
   (ruby-flymake-use-rubocop-if-available nil))
 (use-package ruby-ts-mode
   :ensure nil
   :mode "\\.rb\\'"
   :mode "Rakefile\\'"
   :mode "Gemfile\\'")
+(use-package csharp-ts-mode
+  :ensure nil
+  :mode "\\.cs\\'")
 (use-package apheleia
   :ensure t
   :config
@@ -427,8 +440,7 @@
   :bind ("C-c l f a" . apheleia-format-buffer))
 (use-package csharp-mode
   :ensure nil
-  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120
-                                                         comment-auto-fill-only-comments t)))
+  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120)))
   :config
   (require 'init-csharp)
   (reapply-csharp-ts-mode-font-lock-settings)) ; to remove when csharp-ts-mode gets updated
@@ -459,7 +471,9 @@
   :bind ("C-c p" . cape-prefix-map))
 (use-package vterm
   :ensure t
-  :bind ("C-c t" . vterm)
+  :bind (("C-c t" . vterm)
+         :map vterm-mode-map
+         ("C-q" . vterm-send-next-key))
   :custom
   (vterm-tramp-shells '(("docker" "/bin/sh") ("ssh" "/usr/bin/fish"))))
 (use-package which-key
@@ -521,7 +535,9 @@
   :ensure t)
 (use-package rg
   :ensure t
-  :config (rg-enable-default-bindings))
+  :config (rg-enable-default-bindings)
+  :custom
+  (rg-executable "rg"))
 (use-package rg-isearch
   :ensure nil
   :after rg
@@ -545,7 +561,9 @@
   :ensure t
   :after vertico
   :custom
-  (orderless-matching-styles '(orderless-flex)))
+  (orderless-matching-styles '(orderless-literal orderless-regexp)))
+(use-package casual-editkit
+  :ensure t)
 (use-package ef-themes
   :ensure t
   :config
@@ -555,7 +573,7 @@
   (ef-themes-mixed-fonts t))
 (use-package mise
   :ensure t
-  :hook (prog-mode . mise-mode))
+  :hook ((prog-mode magit-mode) . mise-mode))
 (use-package no-littering
   :ensure t
   :config
@@ -705,10 +723,6 @@
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
 
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
   :config
@@ -746,6 +760,12 @@
   (setq consult-gh-default-orgs-list
         (append consult-gh-default-orgs-list
                 (remove "" (split-string (or (consult-gh--command-to-string "org" "list") "") "\n")))))
+(use-package consult-gh-embark
+  :ensure t
+  :config
+  (consult-gh-embark-mode))
+(use-package consult-gh-forge
+  :disabled)
 (use-package embark-consult
   :ensure t
   :after embark)
@@ -779,7 +799,6 @@
 (use-package git-link
   :ensure t)
 (use-package modus-themes
-  :disabled
   :ensure t
   :config
   :custom
@@ -830,11 +849,14 @@
   (lsp-modeline-diagnostics-enable nil)
   (lsp-enable-snippet nil)
   (lsp-ruby-lsp-use-bundler t)
-  (lsp-solargraph-use-bundler t)
+  (lsp-solargraph-use-bundler nil)
   (lsp-completion-provider :none)
   (lsp-keymap-prefix "C-c l")
   (lsp-enable-suggest-server-download nil)
   (lsp-auto-guess-root t)
+  (lsp-csharp-server-install-dir "/Users/wadii/.config/emacs/var/lsp/server/omnisharp-roslyn/")
+  (lsp-csharp-omnisharp-enable-decompilation-support t)
+  (lsp-progress-prefix nil)
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
   ((csharp-mode csharp-ts-mode) . lsp)
@@ -874,8 +896,17 @@
   :ensure t)
 (use-package csv-mode
   :ensure t)
-(set-face-attribute 'default nil :family "Rec Mono Linear" :height 160)
-(set-face-attribute 'fixed-pitch nil :family "Rec Mono Linear" :height 160)
+(use-package d2-mode
+  :ensure t
+  :mode "\\.d2\\'"
+  :custom (d2-flags '("-t" "0"))
+  :init
+  (unbind-key "C-x C-o" d2-mode-map)
+  :hook (d2-mode . (lambda () (setq-local indent-line-function #'indent-relative))))
+(use-package just-ts-mode
+  :ensure t)
+(set-face-attribute 'default nil :family "Berkeley Mono" :height 170)
+(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 170)
 (set-face-attribute 'variable-pitch nil :family "Atkinson Hyperlegible" :height 170)
 
 (put 'narrow-to-region 'disabled nil)

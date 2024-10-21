@@ -28,5 +28,7 @@ set -x PRE_COMMIT_COLOR never
 
 set -x COMPOSE_REMOVE_ORPHANS 1
 
+set -x LSP_USE_PLISTS true
+
 zoxide init fish | source
 fzf --fish | source

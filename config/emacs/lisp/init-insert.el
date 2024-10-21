@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(require 'org-macs)
+
 (defun insert-date ()
   "Insert a date."
   (interactive)
@@ -19,7 +21,7 @@
 (defun insert-uuid ()
   "Insert a uuidv4."
   (interactive)
-  (insert (string-trim (shell-command-to-string "uuid"))))
+  (insert (org-id-uuid)))
 
 (provide 'init-insert)
 
