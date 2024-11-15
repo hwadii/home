@@ -75,8 +75,6 @@
 
 (tab-bar-mode 1)
 
-(setopt diff-hl-show-staged-changes nil)
-
 (setopt switch-to-buffer-obey-display-actions t)
 
 ;; Typed text replaces the selection if typed text replaces the
@@ -248,6 +246,7 @@
                (interactive)
                (setq repeat-map 'other-window-repeat-map)
                (other-window -1)))
+  ("M-g M-c" . switch-to-minibuffer)
   :custom
   (default-transient-input-method "latin-1-prefix")
   (text-mode-ispell-word-completion nil)
@@ -364,20 +363,34 @@
   (magit-save-repository-buffers nil))
 (use-package doc-view
   :custom
-  doc-view-resolution 200)
+  (doc-view-resolution 300))
 (use-package org
   :ensure nil
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)
-     (emacs-lisp . t))))
+     (emacs-lisp . t)))
+  :bind
+  ("C-h ." . display-local-help)
+  :hook
+  (org-mode . variable-pitch-mode)
+  :custom
+  (org-hide-emphasis-markers t))
+(use-package org-modern
+  :ensure t
+  :hook
+  (org-mode . org-modern-mode)
+  (org-agenda-finalize-hook . org-modern-agenda))
 (use-package diff-hl
   :ensure t
   :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
          (magit-pre-refresh . diff-hl-magit-pre-refresh))
   :config (global-diff-hl-mode)
-  :custom (diff-hl-flydiff-mode t))
+  :custom
+  (diff-hl-flydiff-mode t)
+  (diff-hl-draw-borders nil)
+  (diff-hl-show-staged-changes nil))
 (use-package ediff
   :ensure nil
   :init
@@ -515,6 +528,7 @@
   :hook (prog-mode . flymake-mode)
   :custom
   (flymake-show-diagnostics-at-end-of-line 'short)
+  (flymake-no-changes-timeout nil)
   :bind (:map flymake-mode-map
 	      ("M-n" . flymake-goto-next-error)
 	      ("M-p" . flymake-goto-prev-error)))
@@ -562,12 +576,10 @@
   :after vertico
   :custom
   (orderless-matching-styles '(orderless-literal orderless-regexp)))
-(use-package casual-editkit
+(use-package casual
   :ensure t)
 (use-package ef-themes
   :ensure t
-  :config
-  (ef-themes-select 'ef-owl)
   :custom
   (ef-themes-variable-pitch-ui t)
   (ef-themes-mixed-fonts t))
@@ -701,7 +713,7 @@
          ;; Isearch integration
          ("M-s e" . consult-isearch-history)
          :map isearch-mode-map
-         ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+         ("M-e" . isearch-edit-string)         ;; orig. isearch-edit-string
          ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
          ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
          ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
@@ -836,7 +848,7 @@
   (editorconfig-mode 1))
 (use-package eglot-booster
   :disabled
-  :ensure t
+  :ensure nil
   :vc (:url "https://github.com/jdtsmith/eglot-booster" :rev :newest)
   :after eglot
   :config (eglot-booster-mode))
@@ -848,7 +860,7 @@
   (lsp-modeline-code-actions-enable nil)
   (lsp-modeline-diagnostics-enable nil)
   (lsp-enable-snippet nil)
-  (lsp-ruby-lsp-use-bundler t)
+  (lsp-ruby-lsp-use-bundler nil)
   (lsp-solargraph-use-bundler nil)
   (lsp-completion-provider :none)
   (lsp-keymap-prefix "C-c l")
@@ -857,27 +869,17 @@
   (lsp-csharp-server-install-dir "/Users/wadii/.config/emacs/var/lsp/server/omnisharp-roslyn/")
   (lsp-csharp-omnisharp-enable-decompilation-support t)
   (lsp-progress-prefix nil)
+  (lsp-disabled-clients '(ruby-ls rubocop-ls))
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
-  ((csharp-mode csharp-ts-mode) . lsp)
-  ((ruby-mode ruby-ts-mode) . lsp))
+  ((csharp-mode csharp-ts-mode) . lsp-deferred)
+  ((ruby-mode ruby-ts-mode) . lsp-deferred)
+  ((typescript-mode typescript-ts-mode) . lsp-deferred))
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :ensure t
   :config
   (exec-path-from-shell-initialize))
-(use-package solarized-theme
-  :disabled
-  :ensure t
-  :custom
-  (solarized-use-less-bold t)
-  (solarized-use-more-italic t)
-  (solarized-distinct-doc-face t)
-  (solarized-height-minus-1 1.0)
-  (solarized-height-plus-1 1.0)
-  (solarized-height-plus-2 1.0)
-  (solarized-height-plus-3 1.0)
-  (solarized-height-plus-4 1.0))
 (use-package jq-mode
   :ensure t
   :commands jq-interactively
@@ -886,28 +888,22 @@
 (use-package surround
   :ensure t
   :bind-keymap ("M-+" . surround-keymap))
-(use-package doom-themes
-  :disabled
-  :ensure t
-  :custom
-  (doom-themes-enable-bold t)    ; if nil, bold is universally disabled
-  (doom-themes-enable-italic t)) ; if nil, italics is universally disabled
 (use-package terraform-mode
   :ensure t)
 (use-package csv-mode
   :ensure t)
-(use-package d2-mode
-  :ensure t
-  :mode "\\.d2\\'"
-  :custom (d2-flags '("-t" "0"))
-  :init
-  (unbind-key "C-x C-o" d2-mode-map)
-  :hook (d2-mode . (lambda () (setq-local indent-line-function #'indent-relative))))
 (use-package just-ts-mode
   :ensure t)
-(set-face-attribute 'default nil :family "Berkeley Mono" :height 170)
-(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 170)
-(set-face-attribute 'variable-pitch nil :family "Atkinson Hyperlegible" :height 170)
+(use-package visual-replace
+  :ensure t
+  :custom
+  (visual-replace-default-to-full-scope t))
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+(set-face-attribute 'default nil :family "Iosevka Comfy Wide Motion" :width 'expanded :height 160)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy Wide Motion" :width 'expanded :height 160)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 160)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
