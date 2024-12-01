@@ -18,6 +18,8 @@
 
 (setq load-prefer-newer t)
 
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
 ;; Remove message in scratch buffer.
 (setq-default initial-scratch-message nil)
 
@@ -100,7 +102,6 @@
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 (eval-and-compile
   (setopt use-package-expand-minimally t))
@@ -469,6 +470,9 @@
 (use-package csharp-ts-mode
   :ensure nil
   :mode "\\.cs\\'")
+(use-package scala-ts-mode
+  :ensure t
+  :mode "\\.scala'")
 (use-package apheleia
   :ensure t
   :config
@@ -522,6 +526,8 @@
 (use-package sudo-utils
   :ensure t
   :bind ("C-M-!" . sudo-utils-shell-command))
+(use-package ansi-color
+  :hook (compilation-filter . ansi-color-compilation-filter))
 (use-package eglot
   :ensure nil
   :custom
@@ -542,6 +548,7 @@
   :config
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")) t)
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
+  (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals-emacs")) t)
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1))))
 (use-package flymake
