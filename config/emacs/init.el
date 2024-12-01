@@ -70,8 +70,11 @@
 (setopt explicit-shell-file-name "/opt/homebrew/bin/fish")
 (setopt vterm-shell "/opt/homebrew/bin/fish")
 
-(setopt scroll-conservatively 10)
-(setopt scroll-margin 1)
+(setq-default auto-window-vscroll nil)
+(customize-set-variable 'fast-but-imprecise-scrolling t)
+(customize-set-variable 'scroll-conservatively 101)
+(customize-set-variable 'scroll-margin 1)
+(customize-set-variable 'scroll-preserve-screen-position t)
 
 (tab-bar-mode 1)
 
@@ -88,6 +91,8 @@
 
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+(defvar-keymap wadii-map)
 
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -146,9 +151,11 @@
   (dired-mouse-drag-files t)
   (dired-use-ls-dired t)
   (dired-recursive-copies 'always)
-  (dired-recursive-deletes 'top)
+  (dired-recursive-deletes 'always)
   (dired-create-destination-dirs 'ask)
-  (dired-kill-when-opening-new-dired-buffer t))
+  (dired-kill-when-opening-new-dired-buffer t)
+  (dired-auto-revert-buffer t)
+  (delete-by-moving-to-trash nil))
 (use-package dired-x
   :ensure nil
   :after dired
@@ -231,7 +238,6 @@
   :hook (after-init . repeat-mode))
 (use-package emacs
   :init
-  (setopt tab-always-indent 'complete)
   :hook
   (text-mode . auto-fill-mode)
   :bind
@@ -247,7 +253,9 @@
                (setq repeat-map 'other-window-repeat-map)
                (other-window -1)))
   ("M-g M-c" . switch-to-minibuffer)
+  :bind-keymap ("C-c w" . wadii-map)
   :custom
+  (tab-always-indent 'complete)
   (default-transient-input-method "latin-1-prefix")
   (text-mode-ispell-word-completion nil)
   (read-extended-command-predicate #'command-completion-default-include-p)
@@ -258,6 +266,10 @@
   (set-mark-command-repeat-pop t)
   (save-interprogram-paste-before-kill t)
   (mouse-yank-at-point t))
+(use-package autorevert
+  :ensure nil
+  :custom
+  (global-auto-revert-non-file-buffers t))
 (use-package whitespace
   :ensure nil
   :hook
@@ -275,13 +287,22 @@
   :custom
   (which-func-update-delay 1.0))
 (use-package project
-  :ensure nil
-  :bind
-  (:map project-prefix-map
-        ("t" . eat-project))
-  :config
-  (add-to-list 'project-switch-commands '(eat-project "Eat" ?t) t)
-  (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?m) t))
+  :ensure nil)
+(use-package consult-project-extra
+  :ensure t
+  :after consult
+  :bind (:map project-prefix-map
+              ("f" . project-find-file)
+              ("F" . consult-project-extra-find))
+  :custom
+  project-switch-commands '((project-find-file "Find" ?f)
+                            (consult-project-extra-find "Find extra" ?F)
+                            (project-find-dir "Directory" ?d)
+                            (consult-ripgrep "Ripgrep" ?r)
+                            (magit-project-status "Magit" ?m)
+                            (project-eshell "Eshell" ?e)
+                            (vterm "Terminal" ?t)
+                            (vterm-other-window "Terminal (Other Window)" ?T)))
 (use-package savehist
   :ensure nil
   :init
@@ -303,6 +324,8 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 (use-package vertico
   :ensure t
+  :custom
+  (vertico-cycle t)
   :init
   (setopt read-file-name-completion-ignore-case t
           read-buffer-completion-ignore-case t)
@@ -473,12 +496,12 @@
 (use-package corfu-popupinfo
   :ensure nil
   :after corfu
-  :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
-  (corfu-popupinfo-delay '(0.25 . 0.1))
-  (corfu-popupinfo-hide nil)
+  (corfu-popupinfo-delay '(1.25 . 0.5))
+  (corfu-popupinfo-hide t)
+  (corfu-preview-current nil)
   :config
-  (corfu-popupinfo-mode))
+  (corfu-popupinfo-mode 1))
 (use-package cape
   :ensure t
   :bind ("C-c p" . cape-prefix-map))
@@ -500,7 +523,6 @@
   :ensure t
   :bind ("C-M-!" . sudo-utils-shell-command))
 (use-package eglot
-  :disabled
   :ensure nil
   :custom
   (eglot-autoshutdown t)
@@ -521,14 +543,12 @@
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")) t)
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
   :hook
-  (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
-  ((ruby-mode ruby-ts-mode) . eglot-ensure)
-  ((csharp-mode csharp-ts-mode) . eglot-ensure))
+  (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1))))
 (use-package flymake
   :hook (prog-mode . flymake-mode)
   :custom
-  (flymake-show-diagnostics-at-end-of-line 'short)
-  (flymake-no-changes-timeout nil)
+  (flymake-show-diagnostics-at-end-of-line nil)
+  (flymake-no-changes-timeout 0.5)
   :bind (:map flymake-mode-map
 	      ("M-n" . flymake-goto-next-error)
 	      ("M-p" . flymake-goto-prev-error)))
@@ -546,7 +566,10 @@
   :after ispell
   :hook ((markdown-mode org-mode) . flyspell-mode))
 (use-package password-store-menu
-  :ensure t)
+  :ensure t
+  :bind (:map wadii-map ("p" . password-store-menu))
+  :custom
+  (password-store-menu-key nil))
 (use-package rg
   :ensure t
   :config (rg-enable-default-bindings)
@@ -576,13 +599,20 @@
   :after vertico
   :custom
   (orderless-matching-styles '(orderless-literal orderless-regexp)))
-(use-package casual
-  :ensure t)
+(use-package casual-suite
+  :ensure t
+  :bind
+  (:map calc-mode-map ("?" . casual-calc-tmenu))
+  (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
+  (:map dired-mode-map ("?" . casual-dired-tmenu)))
 (use-package ef-themes
   :ensure t
+  :bind
+  ("<f6>" . ef-themes-toggle)
   :custom
   (ef-themes-variable-pitch-ui t)
-  (ef-themes-mixed-fonts t))
+  (ef-themes-mixed-fonts t)
+  (ef-themes-to-toggle '(ef-elea-light ef-elea-dark)))
 (use-package mise
   :ensure t
   :hook ((prog-mode magit-mode) . mise-mode))
@@ -591,7 +621,17 @@
   :config
   ;; Write customizations to a separate file instead of this file.
   (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
-(use-package helpful :ensure t)
+(use-package helpful
+  :ensure t
+  :bind (([remap describe-command] . helpful-command)
+         ([remap describe-function] . helpful-callable)
+         ([remap describe-key] . helpful-key)
+         ([remap describe-symbol] . helpful-symbol)
+         ([remap describe-variable] . helpful-variable)
+         ("C-h F" . helpful-function)
+         ("C-h K" . describe-keymap)
+         :map helpful-mode-map
+         ([remap revert-buffer] . helpful-update)))
 (use-package operate-on-number
   :ensure t
   :config
@@ -720,7 +760,9 @@
          ;; Minibuffer history
          :map minibuffer-local-map
          ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-         ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+         ("M-r" . consult-history)
+         :map project-prefix-map
+         ("r" . consult-ripgrep))
 
   ;; The :init configuration is always executed (Not lazy)
   :init
@@ -818,15 +860,7 @@
   (modus-themes-variable-pitch-ui t)
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs nil)
-  (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted))
-  :hook
-  (modus-themes-after-load-theme . (lambda ()
-                                     (modus-themes-with-colors
-                                       (custom-set-faces
-                                        `(eglot-highlight-symbol-face ((t :background ,bg-ochre :extend nil)))
-                                        `(forge-pullreq-open ((t :foreground ,green-intense :extend nil)))))
-                                     (custom-set-faces
-                                      '(lsp-face-highlight-read ((t (:inherit highlight :extend nil))))))))
+  (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
 (use-package smtpmail
   :ensure nil
   :custom
@@ -847,7 +881,6 @@
   :init
   (editorconfig-mode 1))
 (use-package eglot-booster
-  :disabled
   :ensure nil
   :vc (:url "https://github.com/jdtsmith/eglot-booster" :rev :newest)
   :after eglot
@@ -869,17 +902,16 @@
   (lsp-csharp-server-install-dir "/Users/wadii/.config/emacs/var/lsp/server/omnisharp-roslyn/")
   (lsp-csharp-omnisharp-enable-decompilation-support t)
   (lsp-progress-prefix nil)
-  (lsp-disabled-clients '(ruby-ls rubocop-ls))
+  (lsp-disabled-clients '(ruby-ls rubocop-ls angular-ls))
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
-  ((csharp-mode csharp-ts-mode) . lsp-deferred)
-  ((ruby-mode ruby-ts-mode) . lsp-deferred)
-  ((typescript-mode typescript-ts-mode) . lsp-deferred))
+  ((csharp-mode csharp-ts-mode) . lsp-deferred))
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :ensure t
   :config
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR")))
 (use-package jq-mode
   :ensure t
   :commands jq-interactively
@@ -900,10 +932,12 @@
   (visual-replace-default-to-full-scope t))
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
-(set-face-attribute 'default nil :family "Iosevka Comfy Wide Motion" :width 'expanded :height 160)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka Comfy Wide Motion" :width 'expanded :height 160)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 160)
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-minor-modes t))
+(set-face-attribute 'default nil :family "Berkeley Mono" :height 140)
+(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 140)
+(set-face-attribute 'variable-pitch nil :family "Berkeley Mono Variable" :height 140)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
