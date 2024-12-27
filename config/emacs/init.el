@@ -10,6 +10,7 @@
 (pixel-scroll-precision-mode)
 
 (global-visual-line-mode)
+(global-visual-wrap-prefix-mode)
 
 ;; Show stray whitespace.
 (setq-default indicate-empty-lines t)
@@ -239,8 +240,6 @@
   :hook (after-init . repeat-mode))
 (use-package emacs
   :init
-  :hook
-  (text-mode . auto-fill-mode)
   :bind
   ("M-z" . zap-up-to-char)
   ("M-Z" . zap-to-char)
@@ -266,7 +265,8 @@
   (custom-safe-themes t)
   (set-mark-command-repeat-pop t)
   (save-interprogram-paste-before-kill t)
-  (mouse-yank-at-point t))
+  (mouse-yank-at-point t)
+  (compilation-max-output-line-length nil))
 (use-package autorevert
   :ensure nil
   :custom
@@ -280,7 +280,8 @@
 (use-package simple
   :ensure nil
   :custom
-  (visual-line-fringe-indicators '(left-curly-arrow nil)))
+  (visual-line-fringe-indicators '(left-curly-arrow nil))
+  (visual-wrap-extra-indent 2))
 (use-package async
   :ensure t)
 (use-package which-func
@@ -406,6 +407,10 @@
   :hook
   (org-mode . org-modern-mode)
   (org-agenda-finalize-hook . org-modern-agenda))
+(use-package verb
+  :ensure t
+  :after org
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 (use-package diff-hl
   :ensure t
   :hook ((magit-post-refresh . diff-hl-magit-post-refresh)
@@ -435,7 +440,7 @@
   :ensure t
   :custom
   (treesit-auto-install 'prompt)
-  (treesit-auto-langs '(ruby rust python go dockerfile org python c c++ zig))
+  (treesit-auto-add-to-auto-mode-alist 'all)
   :config
   (global-treesit-auto-mode))
 (use-package xml-mode
@@ -533,7 +538,7 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-sync-connect 3)
-  (eglot-stay-out-of '(flymake))
+  (eglot-stay-out-of nil)
   (eglot-send-changes-idle-time 0.5)
   (eglot-events-buffer-config :size 0)
   :bind (("C-c l c" . eglot-reconnect)
@@ -549,6 +554,7 @@
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")) t)
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
   (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals-emacs")) t)
+  (add-to-list 'eglot-server-programs '(zig-ts-mode . ("zls")) t)
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1))))
 (use-package flymake
@@ -608,6 +614,7 @@
   (orderless-matching-styles '(orderless-literal orderless-regexp)))
 (use-package casual-suite
   :ensure t
+  :after (calc dired ibuffer)
   :bind
   (:map calc-mode-map ("?" . casual-calc-tmenu))
   (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
@@ -623,6 +630,10 @@
 (use-package mise
   :ensure t
   :hook ((prog-mode magit-mode) . mise-mode))
+(use-package envrc
+  :ensure t
+  :hook (after-init . envrc-global-mode)
+  :config (define-key envrc-mode-map (kbd "C-c e") 'envrc-command-map))
 (use-package no-littering
   :ensure t
   :config
@@ -817,10 +828,8 @@
 (use-package consult-gh
   :ensure t
   :after consult
-  :config
-  (setq consult-gh-default-orgs-list
-        (append consult-gh-default-orgs-list
-                (remove "" (split-string (or (consult-gh--command-to-string "org" "list") "") "\n")))))
+  :custom
+  (consult-gh-favorite-orgs-list '("CardioLogs")))
 (use-package consult-gh-embark
   :ensure t
   :config
@@ -829,7 +838,7 @@
   :disabled)
 (use-package embark-consult
   :ensure t
-  :after embark)
+  :after (embark consult))
 (use-package mouse
   :ensure nil
   :config (context-menu-mode))
@@ -933,6 +942,9 @@
   :ensure t)
 (use-package just-ts-mode
   :ensure t)
+(use-package nix-ts-mode
+  :mode "\\.nix\\'"
+  :ensure t)
 (use-package visual-replace
   :ensure t
   :custom
@@ -941,10 +953,12 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom
-  (doom-modeline-minor-modes t))
-(set-face-attribute 'default nil :family "Berkeley Mono" :height 140)
-(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :height 140)
-(set-face-attribute 'variable-pitch nil :family "Berkeley Mono Variable" :height 140)
+  (doom-modeline-minor-modes t)
+  (doom-modeline-workspace-name nil)
+  (doom-modeline-column-zero-based nil))
+(set-face-attribute 'default nil :family "TX-02" :width 'regular :height 150 :weight 'light)
+(set-face-attribute 'fixed-pitch nil :family "TX-02" :width 'regular :height 150 :weight 'light)
+(set-face-attribute 'variable-pitch nil  :family "Atkinson Hyperlegible" :height 140 :weight 'regular)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)

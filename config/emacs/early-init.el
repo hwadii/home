@@ -36,5 +36,5 @@
 (setq tool-bar-mode nil
       scroll-bar-mode nil
       column-number-mode 1
+      line-number-mode 1
       menu-bar-mode 1)
-
