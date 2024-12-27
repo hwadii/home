@@ -74,10 +74,10 @@ table.insert(search_mode, {
 return {
   term = "wezterm",
   font = wezterm.font({
-    family = "Berkeley Mono",
+    family = "TX-02",
     weight = "Regular",
     stretch = "Normal",
-    harfbuzz_features = { "ss01", "ss04" },
+    harfbuzz_features = {},
   }),
   font_size = 14.5,
   underline_thickness = 2,
