@@ -553,7 +553,7 @@
   :config
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")) t)
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
-  (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals-emacs")) t)
+  (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals")) t)
   (add-to-list 'eglot-server-programs '(zig-ts-mode . ("zls")) t)
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1))))
@@ -596,7 +596,22 @@
          ("M-s R" . rg-isearch-menu)))
 (use-package eshell
   :ensure nil
-  :bind (("C-x C-z" . eshell)))
+  :bind (("C-x C-z" . eshell))
+  :custom
+  (eshell-prompt-function (lambda ()
+                            (let* ((cwd (doom-modeline--buffer-file-name-truncate (eshell/pwd) (eshell/pwd) t))
+                                   (ref (magit-get-shortname "HEAD"))
+                                   (stat (magit-file-status))
+                                   (suffix (if (= (file-user-uid) 0) "#" ">")))
+                              (ef-themes-with-colors
+                                (format "%s %s%s%s%s "
+                                        (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
+                                        (propertize (format "(%s" ref) 'face `(:foreground ,blue))
+                                        (propertize (if (length> stat 0) " *" "") 'face `(:weight bold :foreground ,yellow-cooler))
+                                        (propertize (format ")" ref) 'face `(:foreground ,blue))
+                                        (if (eshell-exit-success-p)
+                                            (propertize suffix 'face `(:weight bold :foreground ,yellow-cooler))
+                                          (propertize suffix 'face `(:weight bold :foreground ,red-cooler)))))))))
 (use-package ligature
   :disabled
   :ensure t
@@ -955,6 +970,7 @@
   :custom
   (doom-modeline-minor-modes t)
   (doom-modeline-workspace-name nil)
+  (doom-modeline-height 20)
   (doom-modeline-column-zero-based nil))
 (set-face-attribute 'default nil :family "TX-02" :width 'regular :height 150 :weight 'light)
 (set-face-attribute 'fixed-pitch nil :family "TX-02" :width 'regular :height 150 :weight 'light)
