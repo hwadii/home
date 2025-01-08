@@ -23,6 +23,8 @@
   (interactive)
   (insert (org-id-uuid)))
 
+(define-key wadii-map (kbd "d") 'insert-date-s)
+
 (provide 'init-insert)
 
 ;;; init-insert.el ends here

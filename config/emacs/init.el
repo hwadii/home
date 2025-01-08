@@ -6,7 +6,6 @@
 (electric-pair-mode 0)
 
 (blink-cursor-mode 0)
-
 (pixel-scroll-precision-mode)
 
 (global-visual-line-mode)
@@ -47,10 +46,6 @@
 (setopt js-indent-level 2)
 (setopt typescript-indent-level 2)
 (setopt css-indent-offset 2)
-
-;; Highlight matching pairs of parentheses.
-(setopt show-paren-delay 0)
-(show-paren-mode)
 
 ;; Write auto-saves and backups to separate directory.
 (make-directory "~/.tmp/emacs/auto-save/" t)
@@ -205,6 +200,12 @@
 (use-package winner
   :ensure nil
   :init (winner-mode))
+(use-package paren
+  :ensure nil
+  :custom
+  (show-paren-delay 0.125)
+  :config
+  (show-paren-mode))
 (use-package windsize
   :ensure t
   :hook (after-init . windsize-default-keybindings))
@@ -240,6 +241,17 @@
   :hook (after-init . repeat-mode))
 (use-package emacs
   :init
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
   :bind
   ("M-z" . zap-up-to-char)
   ("M-Z" . zap-to-char)
@@ -378,14 +390,15 @@
   :ensure t
   :custom
   (magit-define-global-key-bindings 'recommended)
-  (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1))
+  (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
+  (magit-save-repository-buffers nil)
+  (magit-repository-directories '(("~/code/cardiologs". 1))))
 (use-package forge
   :ensure t
   :after magit
   :custom
   (forge-database-file "~/.config/forge/database.sqlite")
-  (forge-owned-accounts '(("hwadii")))
-  (magit-save-repository-buffers nil))
+  (forge-owned-accounts '(("hwadii"))))
 (use-package doc-view
   :custom
   (doc-view-resolution 300))
@@ -555,6 +568,7 @@
   (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
   (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals")) t)
   (add-to-list 'eglot-server-programs '(zig-ts-mode . ("zls")) t)
+  (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nil")) t)
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1))))
 (use-package flymake
@@ -569,7 +583,9 @@
   :ensure t)
 (use-package eat
   :ensure t
-  :hook (eshell-mode . eat-eshell-mode))
+  :hook
+  (eshell-mode . eat-eshell-mode)
+  (eshell-mode . eat-eshell-visual-command-mode))
 (use-package ispell
   :ensure nil
   :custom
@@ -597,21 +613,34 @@
 (use-package eshell
   :ensure nil
   :bind (("C-x C-z" . eshell))
+  :hook
+  (eshell-mode . abbrev-mode)
   :custom
+  (eshell-banner-message "")
+  (eshell-history-size 4096)
+  (eshell-history-append t)
   (eshell-prompt-function (lambda ()
                             (let* ((cwd (doom-modeline--buffer-file-name-truncate (eshell/pwd) (eshell/pwd) t))
-                                   (ref (magit-get-shortname "HEAD"))
+                                   (branch (magit-get-current-branch))
                                    (stat (magit-file-status))
-                                   (suffix (if (= (file-user-uid) 0) "#" ">")))
+                                   (suffix (if (= (file-user-uid) 0) "#" ">"))
+                                   (nix-shell? (getenv "IN_NIX_SHELL")))
                               (ef-themes-with-colors
-                                (format "%s %s%s%s%s "
+                                (format "%s %s%s%s "
                                         (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
-                                        (propertize (format "(%s" ref) 'face `(:foreground ,blue))
-                                        (propertize (if (length> stat 0) " *" "") 'face `(:weight bold :foreground ,yellow-cooler))
-                                        (propertize (format ")" ref) 'face `(:foreground ,blue))
+                                        (if nix-shell?
+                                            (propertize "<nix> " 'face `(:foreground ,cyan))
+                                          "")
+                                        (if branch
+                                            (format "%s%s%s"
+                                                    (propertize (format "(%s" branch) 'face `(:foreground ,blue))
+                                                    (propertize (if (length> stat 0) " *" "") 'face `(:weight bold :foreground ,yellow))
+                                                    (propertize ")" 'face `(:foreground ,blue)))
+                                          "")
                                         (if (eshell-exit-success-p)
-                                            (propertize suffix 'face `(:weight bold :foreground ,yellow-cooler))
-                                          (propertize suffix 'face `(:weight bold :foreground ,red-cooler)))))))))
+                                            (propertize suffix 'face `(:weight bold :foreground ,yellow))
+                                          (propertize suffix 'face `(:weight bold :foreground ,red-cooler))))))))
+  (eshell-visual-subcommands '(("docker" "compose"))))
 (use-package ligature
   :disabled
   :ensure t
@@ -633,7 +662,8 @@
   :bind
   (:map calc-mode-map ("?" . casual-calc-tmenu))
   (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
-  (:map dired-mode-map ("?" . casual-dired-tmenu)))
+  (:map dired-mode-map ("?" . casual-dired-tmenu))
+  (:map calendar-mode-map ("?" . casual-calendar-tmenu)))
 (use-package ef-themes
   :ensure t
   :bind
@@ -642,13 +672,11 @@
   (ef-themes-variable-pitch-ui t)
   (ef-themes-mixed-fonts t)
   (ef-themes-to-toggle '(ef-elea-light ef-elea-dark)))
-(use-package mise
-  :ensure t
-  :hook ((prog-mode magit-mode) . mise-mode))
 (use-package envrc
   :ensure t
-  :hook (after-init . envrc-global-mode)
-  :config (define-key envrc-mode-map (kbd "C-c e") 'envrc-command-map))
+  :config
+  (define-key envrc-mode-map (kbd "C-c e") 'envrc-command-map)
+  (envrc-global-mode))
 (use-package no-littering
   :ensure t
   :config
@@ -724,10 +752,6 @@
   :custom
   (auto-compile-display-buffer nil)
   (auto-compile-mode-line-counter t))
-(use-package eshell
-  :ensure nil
-  :custom
-  (eshell-banner-message ""))
 (use-package avy
   :ensure t
   :bind
@@ -912,7 +936,7 @@
   :init
   (editorconfig-mode 1))
 (use-package eglot-booster
-  :ensure nil
+  :ensure t
   :vc (:url "https://github.com/jdtsmith/eglot-booster" :rev :newest)
   :after eglot
   :config (eglot-booster-mode))
@@ -935,8 +959,7 @@
   (lsp-progress-prefix nil)
   (lsp-disabled-clients '(ruby-ls rubocop-ls angular-ls))
   :hook
-  (lsp-mode . lsp-enable-which-key-integration)
-  ((csharp-mode csharp-ts-mode) . lsp-deferred))
+  (lsp-mode . lsp-enable-which-key-integration))
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :ensure t
@@ -970,10 +993,11 @@
   :custom
   (doom-modeline-minor-modes t)
   (doom-modeline-workspace-name nil)
-  (doom-modeline-height 20)
-  (doom-modeline-column-zero-based nil))
-(set-face-attribute 'default nil :family "TX-02" :width 'regular :height 150 :weight 'light)
-(set-face-attribute 'fixed-pitch nil :family "TX-02" :width 'regular :height 150 :weight 'light)
+  (doom-modeline-height 16)
+  (doom-modeline-column-zero-based nil)
+  (doom-modeline-env-enable-ruby nil))
+(set-face-attribute 'default nil :family "Berkeley Mono" :width 'regular :height 150 :weight 'semi-light)
+(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :width 'regular :height 150 :weight 'semi-light)
 (set-face-attribute 'variable-pitch nil  :family "Atkinson Hyperlegible" :height 140 :weight 'regular)
 
 (put 'narrow-to-region 'disabled nil)
