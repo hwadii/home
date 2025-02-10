@@ -1,0 +1,1 @@
+set -g MISE_FISH_AUTO_ACTIVATE 0
