@@ -130,7 +130,8 @@
   :ensure nil
   :bind ([remap dabbrev-expand] . hippie-expand))
 (use-package diminish
-  :ensure t)
+  :ensure t
+  :pin gnu)
 (use-package minions
   :ensure t
   :config
@@ -265,6 +266,7 @@
                (setq repeat-map 'other-window-repeat-map)
                (other-window -1)))
   ("M-g M-c" . switch-to-minibuffer)
+  ("C-x C-#" . server-edit-abort)
   :bind-keymap ("C-c w" . wadii-map)
   :custom
   (tab-always-indent 'complete)
@@ -316,7 +318,7 @@
                             (magit-project-status "Magit" ?m)
                             (project-eshell "Eshell" ?e)
                             (vterm "Terminal" ?t)
-                            (vterm-other-window "Terminal (Other Window)" ?T)))
+                            (project-any-command "Other" ?o)))
 (use-package savehist
   :ensure nil
   :init
@@ -356,7 +358,7 @@
   :after vertico
   :ensure nil
   :bind
-  ("M-R" . vertico-repeat)
+  ("M-R" . vertico-repeat-select)
   :hook
   (minibuffer-setup . vertico-repeat-save))
 (use-package tmm
@@ -453,8 +455,8 @@
   :ensure t
   :custom
   (treesit-auto-install 'prompt)
-  (treesit-auto-add-to-auto-mode-alist 'all)
   :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 (use-package xml-mode
   :ensure nil
@@ -498,12 +500,10 @@
   :bind ("C-c l f a" . apheleia-format-buffer))
 (use-package csharp-mode
   :ensure nil
-  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120)))
-  :config
-  (require 'init-csharp)
-  (reapply-csharp-ts-mode-font-lock-settings)) ; to remove when csharp-ts-mode gets updated
+  :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120))))
 (use-package corfu
   :ensure t
+  :after orderless
   :init
   (global-corfu-mode)
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
@@ -514,7 +514,12 @@
         ("C-p" . corfu-previous))
   :custom
   (corfu-auto nil)
-  (corfu-cycle t))
+  (corfu-cycle t)
+  :hook
+  (corfu-mode . (lambda ()
+                  (setq-local completion-styles '(orderless-literal-only basic)
+                              completion-category-overrides nil
+                              completion-category-defaults nil))))
 (use-package corfu-popupinfo
   :ensure nil
   :after corfu
@@ -536,11 +541,12 @@
   (vterm-tramp-shells '(("docker" "/bin/sh") ("ssh" "/usr/bin/fish"))))
 (use-package which-key
   :ensure nil
+  :pin gnu
   :custom
   (which-key-show-early-on-C-h t)
-  (which-key-idle-delay 10000)
+  (which-key-idle-delay 10000.1)
   (which-key-idle-secondary-delay 0.05)
-  :init (which-key-mode))
+  :config (which-key-mode))
 (use-package sudo-utils
   :ensure t
   :bind ("C-M-!" . sudo-utils-shell-command))
@@ -548,6 +554,7 @@
   :hook (compilation-filter . ansi-color-compilation-filter))
 (use-package eglot
   :ensure nil
+  :pin gnu
   :custom
   (eglot-autoshutdown t)
   (eglot-sync-connect 3)
@@ -583,6 +590,8 @@
   :ensure t)
 (use-package eat
   :ensure t
+  :bind
+  (:map eat-mode-map ("s-v" . eat-yank))
   :hook
   (eshell-mode . eat-eshell-mode)
   (eshell-mode . eat-eshell-visual-command-mode))
@@ -607,20 +616,46 @@
 (use-package rg-isearch
   :ensure nil
   :after rg
-  :bind (
-         :map isearch-mode-map
-         ("M-s R" . rg-isearch-menu)))
+  :bind (:map isearch-mode-map ("M-s R" . rg-isearch-menu)))
 (use-package eshell
   :ensure nil
   :bind (("C-x C-z" . eshell))
   :hook
   (eshell-mode . abbrev-mode)
+  :config
+  (defun pwd-replace-home (pwd)
+    "Replace home in PWD with tilde (~) character."
+    (interactive)
+    (let* ((home (expand-file-name (getenv "HOME")))
+           (home-len (length home)))
+      (if (and
+           (>= (length pwd) home-len)
+           (equal home (substring pwd 0 home-len)))
+          (concat "~" (substring pwd home-len))
+        pwd)))
+  (defun pwd-shorten-dirs (pwd)
+    "Shorten all directory names in PWD except the last two."
+    (let ((p-lst (split-string pwd "/")))
+      (if (> (length p-lst) 2)
+          (concat
+           (mapconcat (lambda (elm) (if (zerop (length elm)) ""
+                                      (substring elm 0 1)))
+                      (butlast p-lst 2)
+                      "/")
+           "/"
+           (mapconcat (lambda (elm) elm)
+                      (last p-lst 2)
+                      "/"))
+        pwd)))  ;; Otherwise, we just return the PWD
   :custom
+  (eshell-prefer-lisp-functions t)
+  (eshell-scroll-show-maximum-output nil)
   (eshell-banner-message "")
-  (eshell-history-size 4096)
+  (eshell-history-size (* 1024 256))
   (eshell-history-append t)
+  (eshell-hist-ignoredups t)
   (eshell-prompt-function (lambda ()
-                            (let* ((cwd (doom-modeline--buffer-file-name-truncate (eshell/pwd) (eshell/pwd) t))
+                            (let* ((cwd (pwd-shorten-dirs (pwd-replace-home (eshell/pwd))))
                                    (branch (magit-get-current-branch))
                                    (stat (magit-file-status))
                                    (suffix (if (= (file-user-uid) 0) "#" ">"))
@@ -640,7 +675,9 @@
                                         (if (eshell-exit-success-p)
                                             (propertize suffix 'face `(:weight bold :foreground ,yellow))
                                           (propertize suffix 'face `(:weight bold :foreground ,red-cooler))))))))
-  (eshell-visual-subcommands '(("docker" "compose"))))
+  (eshell-visual-subcommands '(("docker" "compose" "exec") ("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
+  (eshell-visual-commands '("vi" "vim" "nvim" "screen" "tmux" "top" "htop" "less" "more" "lynx"
+                            "links" "ncftp" "ncmpcpp" "mutt" "pine" "tin" "trn" "elm" "watch" "fish")))
 (use-package ligature
   :disabled
   :ensure t
@@ -654,15 +691,21 @@
 (use-package orderless
   :ensure t
   :after vertico
+  :config
+  (orderless-define-completion-style orderless-literal-only
+    (orderless-style-dispatchers nil)
+    (orderless-matching-styles '(orderless-literal)))
   :custom
   (orderless-matching-styles '(orderless-literal orderless-regexp)))
-(use-package casual-suite
+(use-package casual
   :ensure t
-  :after (calc dired ibuffer)
+  :init (require 'casual-image)
+  :after (calc dired ibuffer image)
   :bind
   (:map calc-mode-map ("?" . casual-calc-tmenu))
   (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
   (:map dired-mode-map ("?" . casual-dired-tmenu))
+  (:map image-mode-map ("?" . casual-image-tmenu))
   (:map calendar-mode-map ("?" . casual-calendar-tmenu)))
 (use-package ef-themes
   :ensure t
@@ -672,11 +715,14 @@
   (ef-themes-variable-pitch-ui t)
   (ef-themes-mixed-fonts t)
   (ef-themes-to-toggle '(ef-elea-light ef-elea-dark)))
+(use-package mise
+  :ensure t
+  :hook (after-init . global-mise-mode)
+  :custom
+  mise-debug t)
 (use-package envrc
   :ensure t
-  :config
-  (define-key envrc-mode-map (kbd "C-c e") 'envrc-command-map)
-  (envrc-global-mode))
+  :bind (:map envrc-mode-map ("C-c e" . envrc-command-map)))
 (use-package no-littering
   :ensure t
   :config
@@ -710,7 +756,7 @@
          ("C-c C-e" . embark-export)
          ("C-c C-c" . embark-collect)
          :map embark-general-map
-         ("w" . dictionary-search)
+         ("W" . dictionary-search)
          :map embark-become-file+buffer-map
          ("t f" . find-file-other-tab))
   :init
@@ -771,7 +817,7 @@
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c h" . consult-history)
-         ("C-c k" . consult-kmacro)
+         ("C-c K" . consult-kmacro)
          ("C-c m" . consult-man)
          ("C-c i" . consult-info)
          ([remap Info-search] . consult-info)
@@ -858,7 +904,7 @@
   ;; Both < and C-+ work reasonably well.
   :custom
   (consult-narrow-key "<") ;; "C-+"
-  (consult-man-args "man -k")
+  (consult-man-args "gman -k")
 
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
@@ -878,6 +924,16 @@
 (use-package embark-consult
   :ensure t
   :after (embark consult))
+(use-package affe
+  :ensure t
+  :after consult
+  :config
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+    (setq input (cdr (orderless-compile input)))
+    (cons input (apply-partially #'orderless--highlight input t)))
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
+  ;; Manual preview key for `affe-grep'
+  (consult-customize affe-grep :preview-key '(:debounce 0.4 any)))
 (use-package mouse
   :ensure nil
   :config (context-menu-mode))
@@ -906,7 +962,8 @@
   :custom
   (go-ts-mode-indent-offset 4))
 (use-package git-link
-  :ensure t)
+  :ensure t
+  :bind (:map wadii-map ("g" . git-link-dispatch)))
 (use-package modus-themes
   :ensure t
   :config
@@ -932,7 +989,7 @@
   :ensure t)
 (use-package editorconfig
   :ensure nil
-  :defer t
+  :pin gnu
   :init
   (editorconfig-mode 1))
 (use-package eglot-booster
@@ -971,6 +1028,9 @@
   :commands jq-interactively
   :bind (:map json-mode-map
               ("C-c C-j" . jq-interactively)))
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
 (use-package surround
   :ensure t
   :bind-keymap ("M-+" . surround-keymap))
@@ -996,9 +1056,22 @@
   (doom-modeline-height 16)
   (doom-modeline-column-zero-based nil)
   (doom-modeline-env-enable-ruby nil))
-(set-face-attribute 'default nil :family "Berkeley Mono" :width 'regular :height 150 :weight 'semi-light)
-(set-face-attribute 'fixed-pitch nil :family "Berkeley Mono" :width 'regular :height 150 :weight 'semi-light)
-(set-face-attribute 'variable-pitch nil  :family "Atkinson Hyperlegible" :height 140 :weight 'regular)
+(use-package kubed
+  :if (memq window-system '(mac ns))
+  :ensure t
+  :bind-keymap ("C-c k" . kubed-prefix-map)
+  :bind (:map kubed-prefix-map ("k" . kubed-transient)))
+(use-package man
+  :ensure nil
+  :custom
+  manual-program "gman")
+(use-package stillness-mode
+  :ensure t)
+(use-package request
+  :ensure t)
+(set-face-attribute 'default nil :family "Aporetic Sans Mono" :height 190 :weight 'regular)
+(set-face-attribute 'fixed-pitch nil :family "Aporetic Sans Mono" :height 190 :weight 'regular)
+(set-face-attribute 'variable-pitch nil  :family "Atkinson Hyperlegible" :height 180 :weight 'regular)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
