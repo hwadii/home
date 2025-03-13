@@ -9,12 +9,14 @@
   signingkey = DE79453757EEE689
 [fetch]
   prune = true
+  pruneTags = true
   all = true
 [pull]
   rebase = false
 [push]
   autoSetupRemote = true
 [rebase]
+  autoSquash = true
   autoStash = true
   updateRefs = true
 [pager]
@@ -66,14 +68,19 @@
   gpgsign = true
   verbose = true
 [diff]
-  colorMoved = default
-  algorithm = patience
+  colorMoved = plain
+  algorithm = histogram
+  mnemonicPrefix = true
+  renames = true
 [jump]
   grepCmd = rg --vimgrep
 [rerere]
   enabled = true
+  autoupdate = true
 [column]
   ui = auto
+[tag]
+  sort = version:refname
 [includeIf "gitdir:~/code/cardiologs/"]
   path = ~/.config/git/work
 # vim: ft=gitconfig
