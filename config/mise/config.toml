@@ -1,5 +1,6 @@
 [tools]
 usage = "latest"
+uv = "latest"
 
 [settings]
 experimental = true
