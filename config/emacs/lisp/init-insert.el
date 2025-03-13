@@ -6,24 +6,27 @@
 
 (require 'org-macs)
 
-(defun insert-date ()
+(defun wh-insert-date ()
   "Insert a date."
   (interactive)
   (insert (format-time-string "%F")))
-(defun insert-date-s ()
+(defun wh-insert-date-s ()
   "Insert a date without dashes."
   (interactive)
   (insert (format-time-string "%Y%m%d")))
-(defun insert-time ()
+(defun wh-insert-time ()
   "Insert a timestamp."
   (interactive)
   (insert (format-time-string "%FT%T%z")))
-(defun insert-uuid ()
+(defun wh-insert-uuid ()
   "Insert a uuidv4."
   (interactive)
   (insert (org-id-uuid)))
 
-(define-key wadii-map (kbd "d") 'insert-date-s)
+(use-package emacs
+  :ensure nil
+  :bind
+  (:map wh-prefix-map ("d" . wh-insert-date-s)))
 
 (provide 'init-insert)
 

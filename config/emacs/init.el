@@ -5,8 +5,11 @@
 ;; Complete pairs
 (electric-pair-mode 0)
 
-(blink-cursor-mode 0)
-(pixel-scroll-precision-mode)
+(column-number-mode 1)
+(line-number-mode 1)
+
+(blink-cursor-mode 1)
+(pixel-scroll-precision-mode 1)
 
 (global-visual-line-mode)
 (global-visual-wrap-prefix-mode)
@@ -28,8 +31,6 @@
 
 ;; Consider a period followed by a single space to be end of sentence.
 (setopt sentence-end-double-space nil)
-
-(setq-default insert-directory-program "gls")
 
 ;; Use spaces, not tabs, for indentation.
 (setq-default indent-tabs-mode nil)
@@ -60,23 +61,17 @@
 
 (desktop-save-mode 1)
 (setopt user-emacs-directory "~/.config/emacs/")
-(setopt desktop-path '("~/.config/emacs/desktops/"))
 
 (setopt nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
 
 (setopt shell-file-name "/opt/homebrew/bin/fish")
-(setopt explicit-shell-file-name "/opt/homebrew/bin/fish")
-(setopt vterm-shell "/opt/homebrew/bin/fish")
+(setopt explicit-shell-file-name "/opt/homebrew/bin/bash")
 
-(setq-default auto-window-vscroll nil)
-(customize-set-variable 'fast-but-imprecise-scrolling t)
-(customize-set-variable 'scroll-conservatively 101)
-(customize-set-variable 'scroll-margin 1)
+(customize-set-variable 'scroll-conservatively 0)
+(customize-set-variable 'scroll-margin 0)
 (customize-set-variable 'scroll-preserve-screen-position t)
 
 (tab-bar-mode 1)
-
-(setopt switch-to-buffer-obey-display-actions t)
 
 ;; Typed text replaces the selection if typed text replaces the
 ;; selection if the selection is active
@@ -90,7 +85,9 @@
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(defvar-keymap wadii-map)
+(defvar-keymap wh-prefix-map
+  :doc "Keymap for my commands."
+  :prefix 'wh-prefix-map)
 
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -98,7 +95,8 @@
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
-
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 (eval-and-compile
   (setopt use-package-expand-minimally t))
 
@@ -117,9 +115,14 @@
   :hook ((text-mode prog-mode) . display-fill-column-indicator-mode))
 (use-package isearch
   :ensure nil
+  :bind
+  ("C-s" . isearch-forward-regexp)
+  ("C-r" . isearch-backward-regexp)
+  ("C-M-s" . isearch-forward)
+  ("C-M-r" . isearch-backward)
   :custom
   (isearch-allow-motion t)
-  (isearch-allow-scroll t)
+  (isearch-allow-scroll 'unlimited)
   (isearch-repeat-on-direction-change t)
   (isearch-wrap-pause 'no)
   (isearch-lazy-count t))
@@ -164,6 +167,10 @@
   (dired-omit-mode nil t)
   (dired-omit-size-limit 60000)
   (dired-omit-verbose nil))
+(use-package dired-filter
+  :after dired
+  :ensure t
+  :bind (:map dired-mode-map ("/" . dired-filter-map)))
 (use-package hl-line
   :ensure nil
   :hook ((text-mode prog-mode) . hl-line-mode))
@@ -232,7 +239,8 @@
                  (display-buffer-same-window)))
   :custom
   (same-window-buffer-names nil)
-  (same-window-regexps nil))
+  (same-window-regexps nil)
+  (switch-to-buffer-obey-display-actions t))
 (use-package man
   :ensure nil
   :custom
@@ -257,17 +265,13 @@
   ("M-z" . zap-up-to-char)
   ("M-Z" . zap-to-char)
   ("C-M-j" . duplicate-dwim)
-  ("C-s" . isearch-forward-regexp)
-  ("C-r" . isearch-backward-regexp)
-  ("C-M-s" . isearch-forward)
-  ("C-M-r" . isearch-backward)
   ("C-x O" . (lambda ()
                (interactive)
                (setq repeat-map 'other-window-repeat-map)
                (other-window -1)))
   ("M-g M-c" . switch-to-minibuffer)
   ("C-x C-#" . server-edit-abort)
-  :bind-keymap ("C-c w" . wadii-map)
+  :bind-keymap ("C-c w" . wh-prefix-map)
   :custom
   (tab-always-indent 'complete)
   (default-transient-input-method "latin-1-prefix")
@@ -280,7 +284,9 @@
   (set-mark-command-repeat-pop t)
   (save-interprogram-paste-before-kill t)
   (mouse-yank-at-point t)
-  (compilation-max-output-line-length nil))
+  (compilation-max-output-line-length nil)
+  (yank-excluded-properties t)
+  (insert-directory-program "gls"))
 (use-package autorevert
   :ensure nil
   :custom
@@ -311,22 +317,23 @@
               ("f" . project-find-file)
               ("F" . consult-project-extra-find))
   :custom
-  project-switch-commands '((project-find-file "Find" ?f)
+  (project-switch-commands '((project-find-file "Find" ?f)
                             (consult-project-extra-find "Find extra" ?F)
                             (project-find-dir "Directory" ?d)
                             (consult-ripgrep "Ripgrep" ?r)
                             (magit-project-status "Magit" ?m)
                             (project-eshell "Eshell" ?e)
+                            (consult-project-buffer "Buffers" ?b)
                             (vterm "Terminal" ?t)
-                            (project-any-command "Other" ?o)))
+                            (project-any-command "Other" ?o))))
 (use-package savehist
   :ensure nil
+  :custom
+  (history-length 1000)
+  (history-delete-duplicates t)
+  (savehist-save-minibuffer-history t)
+  (savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
   :init
-  (setopt savehist-file "~/.cache/emacs/savehist"
-          history-length 1000
-          history-delete-duplicates t
-          savehist-save-minibuffer-history t
-          savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
   (savehist-mode 1))
 (use-package undo-fu-session
   :ensure t
@@ -393,6 +400,7 @@
   :custom
   (magit-define-global-key-bindings 'recommended)
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
+  (magit-format-file-function 'magit-format-file-nerd-icons)
   (magit-save-repository-buffers nil)
   (magit-repository-directories '(("~/code/cardiologs". 1))))
 (use-package forge
@@ -404,6 +412,11 @@
 (use-package doc-view
   :custom
   (doc-view-resolution 300))
+(use-package pdf-tools
+  :ensure t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :custom
+  (pdf-view-display-size 'fit-page))
 (use-package org
   :ensure nil
   :config
@@ -413,8 +426,6 @@
      (emacs-lisp . t)))
   :bind
   ("C-h ." . display-local-help)
-  :hook
-  (org-mode . variable-pitch-mode)
   :custom
   (org-hide-emphasis-markers t))
 (use-package org-modern
@@ -447,6 +458,10 @@
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally))
+(use-package diff-mode
+  :ensure nil
+  :custom
+  (diff-font-lock-prettify t))
 (use-package tree-sitter-indent :ensure t)
 (use-package tree-sitter
   :ensure nil
@@ -501,6 +516,21 @@
 (use-package csharp-mode
   :ensure nil
   :hook ((csharp-mode csharp-ts-mode) . (lambda () (setq fill-column 120))))
+(use-package remember
+  :ensure nil
+  :config
+  (defun wh-find-notes-file ()
+    "Find notes file from notes directory."
+    (interactive)
+    (find-file "~/code/notes/notes"))
+  :bind (:map wh-prefix-map
+              ("r r" . remember)
+              ("r o" . remember-notes)
+              ("r n" . wh-find-notes-file))
+  :custom
+  (remember-notes-initial-major-mode 'org-mode)
+  (remember-in-new-frame t)
+  (remember-data-file "~/code/notes/remember"))
 (use-package corfu
   :ensure t
   :after orderless
@@ -508,10 +538,6 @@
   (global-corfu-mode)
   (add-hook 'completion-at-point-functions #'cape-dabbrev)
   (add-hook 'completion-at-point-functions #'cape-file)
-  :bind
-  (:map corfu-map
-        ("C-n" . corfu-next)
-        ("C-p" . corfu-previous))
   :custom
   (corfu-auto nil)
   (corfu-cycle t)
@@ -538,7 +564,8 @@
          :map vterm-mode-map
          ("C-q" . vterm-send-next-key))
   :custom
-  (vterm-tramp-shells '(("docker" "/bin/sh") ("ssh" "/usr/bin/fish"))))
+  (vterm-tramp-shells '(("docker" "/bin/sh") ("ssh" "/usr/bin/fish")))
+  (vterm-shell "/opt/homebrew/bin/fish"))
 (use-package which-key
   :ensure nil
   :pin gnu
@@ -571,8 +598,7 @@
          ("C-c l i" . eglot-inlay-hints-mode)
          ("C-c l a" . eglot-code-actions))
   :config
-  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")) t)
-  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("bundle" "exec" "rubocop" "--lsp")) t)
+  (add-to-list 'eglot-server-programs '((ruby-mode ruby-ts-mode) . ("ruby-lsp")))
   (add-to-list 'eglot-server-programs '(scala-ts-mode . ("metals")) t)
   (add-to-list 'eglot-server-programs '(zig-ts-mode . ("zls")) t)
   (add-to-list 'eglot-server-programs '(nix-ts-mode . ("nil")) t)
@@ -584,8 +610,8 @@
   (flymake-show-diagnostics-at-end-of-line nil)
   (flymake-no-changes-timeout 0.5)
   :bind (:map flymake-mode-map
-	      ("M-n" . flymake-goto-next-error)
-	      ("M-p" . flymake-goto-prev-error)))
+	          ("M-n" . flymake-goto-next-error)
+	          ("M-p" . flymake-goto-prev-error)))
 (use-package fish-mode
   :ensure t)
 (use-package eat
@@ -594,7 +620,9 @@
   (:map eat-mode-map ("s-v" . eat-yank))
   :hook
   (eshell-mode . eat-eshell-mode)
-  (eshell-mode . eat-eshell-visual-command-mode))
+  (eshell-mode . eat-eshell-visual-command-mode)
+  :custom
+  (eat-term-scrollback-size 262144))
 (use-package ispell
   :ensure nil
   :custom
@@ -605,7 +633,7 @@
   :hook ((markdown-mode org-mode) . flyspell-mode))
 (use-package password-store-menu
   :ensure t
-  :bind (:map wadii-map ("p" . password-store-menu))
+  :bind (:map wh-prefix-map ("p" . password-store-menu))
   :custom
   (password-store-menu-key nil))
 (use-package rg
@@ -622,10 +650,10 @@
   :bind (("C-x C-z" . eshell))
   :hook
   (eshell-mode . abbrev-mode)
+  (eshell-mode . goto-address-mode)
   :config
-  (defun pwd-replace-home (pwd)
+  (defun wh-pwd-replace-home (pwd)
     "Replace home in PWD with tilde (~) character."
-    (interactive)
     (let* ((home (expand-file-name (getenv "HOME")))
            (home-len (length home)))
       (if (and
@@ -633,34 +661,35 @@
            (equal home (substring pwd 0 home-len)))
           (concat "~" (substring pwd home-len))
         pwd)))
-  (defun pwd-shorten-dirs (pwd)
-    "Shorten all directory names in PWD except the last two."
+  (defun wh-pwd-shorten-dirs (pwd n)
+    "Shorten all directory names in PWD except the last N."
     (let ((p-lst (split-string pwd "/")))
-      (if (> (length p-lst) 2)
+      (if (> (length p-lst) n)
           (concat
            (mapconcat (lambda (elm) (if (zerop (length elm)) ""
                                       (substring elm 0 1)))
-                      (butlast p-lst 2)
+                      (butlast p-lst n)
                       "/")
            "/"
            (mapconcat (lambda (elm) elm)
-                      (last p-lst 2)
+                      (last p-lst n)
                       "/"))
         pwd)))  ;; Otherwise, we just return the PWD
   :custom
   (eshell-prefer-lisp-functions t)
-  (eshell-scroll-show-maximum-output nil)
+  (eshell-scroll-show-maximum-output t)
   (eshell-banner-message "")
   (eshell-history-size (* 1024 256))
   (eshell-history-append t)
   (eshell-hist-ignoredups t)
+  (eshell-buffer-maximum-lines 4096)
   (eshell-prompt-function (lambda ()
-                            (let* ((cwd (pwd-shorten-dirs (pwd-replace-home (eshell/pwd))))
+                            (let* ((cwd (wh-pwd-shorten-dirs (wh-pwd-replace-home (eshell/pwd)) 1))
                                    (branch (magit-get-current-branch))
                                    (stat (magit-file-status))
                                    (suffix (if (= (file-user-uid) 0) "#" ">"))
                                    (nix-shell? (getenv "IN_NIX_SHELL")))
-                              (ef-themes-with-colors
+                              (modus-themes-with-colors
                                 (format "%s %s%s%s "
                                         (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
                                         (if nix-shell?
@@ -677,13 +706,13 @@
                                           (propertize suffix 'face `(:weight bold :foreground ,red-cooler))))))))
   (eshell-visual-subcommands '(("docker" "compose" "exec") ("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
   (eshell-visual-commands '("vi" "vim" "nvim" "screen" "tmux" "top" "htop" "less" "more" "lynx"
-                            "links" "ncftp" "ncmpcpp" "mutt" "pine" "tin" "trn" "elm" "watch" "fish")))
+                            "links" "ncftp" "ncmpcpp" "mutt" "pine" "tin" "trn" "elm" "watch" "fish" "newsboat")))
 (use-package ligature
-  :disabled
   :ensure t
-  :hook (prog-mode . ligature-mode)
+  :init
+  (global-ligature-mode)
   :config
-  (ligature-set-ligatures 'prog-mode '("==" "!=")))
+  (ligature-set-ligatures 't '("=>" "->" "<-" "<->" "<=>" "==>" "<==>" "<==" "==" "!=" ">=" "<=" "::" ">>" "<<")))
 (use-package marginalia
   :ensure t
   :custom (marginalia-mode 1))
@@ -714,12 +743,12 @@
   :custom
   (ef-themes-variable-pitch-ui t)
   (ef-themes-mixed-fonts t)
-  (ef-themes-to-toggle '(ef-elea-light ef-elea-dark)))
+  (ef-themes-to-toggle '(ef-reverie ef-dream)))
 (use-package mise
   :ensure t
   :hook (after-init . global-mise-mode)
   :custom
-  mise-debug t)
+  (mise-debug t))
 (use-package envrc
   :ensure t
   :bind (:map envrc-mode-map ("C-c e" . envrc-command-map)))
@@ -784,8 +813,9 @@
 (use-package server
   :ensure nil
   :defer 1
+  :custom
+  (server-client-instructions nil)
   :config
-  (setq server-client-instructions nil)
   (unless (server-running-p)
     ;; Start server.
     (server-start)))
@@ -897,7 +927,7 @@
    consult-bookmark consult-recent-file consult-xref
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
-   ;; :preview-key "M-."
+   ;; :preview-key "M-.")
    :preview-key '(:debounce 0.4 any))
 
   ;; Optionally configure the narrowing key.
@@ -905,6 +935,7 @@
   :custom
   (consult-narrow-key "<") ;; "C-+"
   (consult-man-args "gman -k")
+  (consult-preview-key 'any)
 
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
@@ -963,7 +994,7 @@
   (go-ts-mode-indent-offset 4))
 (use-package git-link
   :ensure t
-  :bind (:map wadii-map ("g" . git-link-dispatch)))
+  :bind (:map wh-prefix-map ("g" . git-link-dispatch)))
 (use-package modus-themes
   :ensure t
   :config
@@ -1015,13 +1046,12 @@
   (lsp-csharp-omnisharp-enable-decompilation-support t)
   (lsp-progress-prefix nil)
   (lsp-disabled-clients '(ruby-ls rubocop-ls angular-ls))
+  (lsp-enable-indentation nil)
   :hook
   (lsp-mode . lsp-enable-which-key-integration))
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
   :ensure t
-  :config
-  (exec-path-from-shell-initialize)
+  :init
   (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR")))
 (use-package jq-mode
   :ensure t
@@ -1052,10 +1082,13 @@
   :init (doom-modeline-mode 1)
   :custom
   (doom-modeline-minor-modes t)
+  (doom-modeline-vcs-max-length 15)
   (doom-modeline-workspace-name nil)
-  (doom-modeline-height 16)
+  (doom-modeline-height 24)
   (doom-modeline-column-zero-based nil)
-  (doom-modeline-env-enable-ruby nil))
+  (doom-modeline-total-line-number t)
+  (doom-modeline-env-enable-ruby nil)
+  (doom-modeline-icon t))
 (use-package kubed
   :if (memq window-system '(mac ns))
   :ensure t
@@ -1066,12 +1099,18 @@
   :custom
   manual-program "gman")
 (use-package stillness-mode
-  :ensure t)
+  :ensure t
+  :init (stillness-mode))
 (use-package request
   :ensure t)
-(set-face-attribute 'default nil :family "Aporetic Sans Mono" :height 190 :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :family "Aporetic Sans Mono" :height 190 :weight 'regular)
-(set-face-attribute 'variable-pitch nil  :family "Atkinson Hyperlegible" :height 180 :weight 'regular)
+(use-package nov
+  :commands nov-mode
+  :ensure t)
+
+(defvar wh-font-family "Iosevka SS10" "The font to use.")
+(set-face-attribute 'default nil :font wh-font-family :height 150 :weight 'regular)
+(set-face-attribute 'fixed-pitch nil :font wh-font-family :height 150 :weight 'regular)
+(set-face-attribute 'variable-pitch nil :font "Merriweather Sans" :height 140 :width 'regular :weight 'regular)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
