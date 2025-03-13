@@ -122,5 +122,5 @@ return {
     inactive_titlebar_bg = '#333333',
   },
   color_schemes = colors,
-  color_scheme = "ploy_light",
+  color_scheme = "ploy_dark",
 }
