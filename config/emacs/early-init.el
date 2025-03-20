@@ -14,7 +14,6 @@
 (setq frame-inhibit-implied-resize t
       frame-resize-pixelwise t  ; fine resize
       package-native-compile t) ; native compile packages
-(setq idle-update-delay 1.0)
 (setq native-comp-async-report-warnings-errors 'silent)
 (setq native-comp-warning-on-missing-source enable-debug-p)
 
@@ -27,14 +26,12 @@
       inhibit-startup-buffer-menu t)
 (setq package-install-upgrade-built-in t)
 
-;; Customize user interface.
-(push '(menu-bar-lines . 0)   default-frame-alist)
-(push '(tool-bar-lines . 0)   default-frame-alist)
-(push '(vertical-scroll-bars) default-frame-alist)
-(push '(horizontal-scroll-bars) default-frame-alist)
-
 (setq tool-bar-mode nil
       scroll-bar-mode nil
       column-number-mode 1
       line-number-mode 1
       menu-bar-mode 1)
+(setq default-frame-alist '((fullscreen . maximized)
+                            (ns-appearance . dark)
+                            (ns-transparent-titlebar . t)))
+(setq ns-use-thin-smoothing t)

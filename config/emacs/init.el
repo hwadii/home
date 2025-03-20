@@ -19,7 +19,7 @@
 (setq-default indicate-buffer-boundaries 'left)
 (setq-default require-final-newline t)
 
-(setq load-prefer-newer t)
+(setopt load-prefer-newer t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -38,9 +38,9 @@
 ;; Display the distance between two tab stops as 4 characters wide.
 (setq-default tab-width 4)
 
-(setq-default enable-recursive-minibuffers t)
+(setopt enable-recursive-minibuffers t)
 
-(setq-default view-read-only t)
+(setopt view-read-only t)
 
 ;; Indentation setting for various languages.
 (setopt c-basic-offset 4)
@@ -84,6 +84,9 @@
 
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+(add-to-list 'trusted-content (concat user-emacs-directory "lisp/"))
+(add-to-list 'trusted-content (concat user-emacs-directory "early-init.el"))
 
 (defvar-keymap wh-prefix-map
   :doc "Keymap for my commands."
@@ -286,7 +289,8 @@
   (mouse-yank-at-point t)
   (compilation-max-output-line-length nil)
   (yank-excluded-properties t)
-  (insert-directory-program "gls"))
+  (insert-directory-program "gls")
+  (trusted-content nil))
 (use-package autorevert
   :ensure nil
   :custom
@@ -496,7 +500,7 @@
   (ruby-method-call-indent nil)
   (ruby-method-params-indent nil)
   (ruby-bracketed-args-indent nil)
-  (ruby-flymake-use-rubocop-if-available nil))
+  (ruby-flymake-use-rubocop-if-available t))
 (use-package ruby-ts-mode
   :ensure nil
   :mode "\\.rb\\'"
@@ -622,7 +626,9 @@
   (eshell-mode . eat-eshell-mode)
   (eshell-mode . eat-eshell-visual-command-mode)
   :custom
-  (eat-term-scrollback-size 262144))
+  (eat-term-scrollback-size 262144)
+  :config
+  (defalias 'eshell/v #'eat--eshell-exec-visual))
 (use-package ispell
   :ensure nil
   :custom
@@ -689,7 +695,7 @@
                                    (stat (magit-file-status))
                                    (suffix (if (= (file-user-uid) 0) "#" ">"))
                                    (nix-shell? (getenv "IN_NIX_SHELL")))
-                              (modus-themes-with-colors
+                              (ef-themes-with-colors
                                 (format "%s %s%s%s "
                                         (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
                                         (if nix-shell?
@@ -704,15 +710,14 @@
                                         (if (eshell-exit-success-p)
                                             (propertize suffix 'face `(:weight bold :foreground ,yellow))
                                           (propertize suffix 'face `(:weight bold :foreground ,red-cooler))))))))
-  (eshell-visual-subcommands '(("docker" "compose" "exec") ("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
-  (eshell-visual-commands '("vi" "vim" "nvim" "screen" "tmux" "top" "htop" "less" "more" "lynx"
-                            "links" "ncftp" "ncmpcpp" "mutt" "pine" "tin" "trn" "elm" "watch" "fish" "newsboat")))
+  (eshell-visual-subcommands '(("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
+  (eshell-visual-commands '("nvim" "tmux" "top" "htop" "less" "fish" "newsboat" "nu")))
 (use-package ligature
   :ensure t
   :init
   (global-ligature-mode)
   :config
-  (ligature-set-ligatures 't '("=>" "->" "<-" "<->" "<=>" "==>" "<==>" "<==" "==" "!=" ">=" "<=" "::" ">>" "<<")))
+  (ligature-set-ligatures 't '("=>" "->" "<-" "<->" "<=>" "==>" "<==>" "<==" "==" "!=" "===" "!==" ">=" "<=" "::" "?." "??")))
 (use-package marginalia
   :ensure t
   :custom (marginalia-mode 1))
@@ -725,7 +730,7 @@
     (orderless-style-dispatchers nil)
     (orderless-matching-styles '(orderless-literal)))
   :custom
-  (orderless-matching-styles '(orderless-literal orderless-regexp)))
+  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex)))
 (use-package casual
   :ensure t
   :init (require 'casual-image)
@@ -735,7 +740,8 @@
   (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
   (:map dired-mode-map ("?" . casual-dired-tmenu))
   (:map image-mode-map ("?" . casual-image-tmenu))
-  (:map calendar-mode-map ("?" . casual-calendar-tmenu)))
+  (:map calendar-mode-map ("?" . casual-calendar-tmenu))
+  (:map reb-lisp-mode-map ("C-c C-/" . casual-re-builder-tmenu)))
 (use-package ef-themes
   :ensure t
   :bind
@@ -756,7 +762,7 @@
   :ensure t
   :config
   ;; Write customizations to a separate file instead of this file.
-  (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
+  (setopt custom-file (no-littering-expand-etc-file-name "custom.el")))
 (use-package helpful
   :ensure t
   :bind (([remap describe-command] . helpful-command)
@@ -992,6 +998,8 @@
   :mode "\\.go\\'"
   :custom
   (go-ts-mode-indent-offset 4))
+(use-package nushell-ts-mode
+  :ensure t)
 (use-package git-link
   :ensure t
   :bind (:map wh-prefix-map ("g" . git-link-dispatch)))
@@ -1097,7 +1105,7 @@
 (use-package man
   :ensure nil
   :custom
-  manual-program "gman")
+  (manual-program "gman"))
 (use-package stillness-mode
   :ensure t
   :init (stillness-mode))
@@ -1107,9 +1115,10 @@
   :commands nov-mode
   :ensure t)
 
-(defvar wh-font-family "Iosevka SS10" "The font to use.")
-(set-face-attribute 'default nil :font wh-font-family :height 150 :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :font wh-font-family :height 150 :weight 'regular)
+(setopt wh-font-family "Adwaita Mono"
+        wh-font-size 140)
+(set-face-attribute 'default nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
+(set-face-attribute 'fixed-pitch nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
 (set-face-attribute 'variable-pitch nil :font "Merriweather Sans" :height 140 :width 'regular :weight 'regular)
 
 (put 'narrow-to-region 'disabled nil)
