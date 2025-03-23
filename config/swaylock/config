@@ -1,7 +1,7 @@
 daemonize
 ignore-empty-password
-indicator-radius=192
-indicator-thickness=75
+indicator-radius=80
+indicator-thickness=20
 inside-color=ffffff00
 ring-color=1d99f388
 line-uses-ring
