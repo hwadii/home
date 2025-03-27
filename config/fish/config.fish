@@ -26,8 +26,8 @@ set -x CARGO_TARGET_DIR ~/.local/cargo/target
 
 set -x PRE_COMMIT_COLOR never
 
-set -x COMPOSE_REMOVE_ORPHANS 1
-set -x COMPOSE_BAKE 1
+set -x COMPOSE_REMOVE_ORPHANS true
+set -x COMPOSE_BAKE true
 
 set -x LSP_USE_PLISTS true
 

@@ -1,4 +1,4 @@
-;;; init-insert.el --- -*- lexical-binding: t -*-
+;;; wh-insert.el --- -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -28,6 +28,6 @@
   :bind
   (:map wh-prefix-map ("d" . wh-insert-date-s)))
 
-(provide 'init-insert)
+(provide 'wh-insert)
 
-;;; init-insert.el ends here
+;;; wh-insert.el ends here

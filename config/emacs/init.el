@@ -67,9 +67,9 @@
 (setopt shell-file-name "/opt/homebrew/bin/fish")
 (setopt explicit-shell-file-name "/opt/homebrew/bin/bash")
 
-(customize-set-variable 'scroll-conservatively 0)
-(customize-set-variable 'scroll-margin 0)
-(customize-set-variable 'scroll-preserve-screen-position t)
+(setopt scroll-conservatively 10)
+(setopt scroll-margin 5)
+(setopt scroll-preserve-screen-position t)
 
 (tab-bar-mode 1)
 
@@ -85,7 +85,9 @@
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(add-to-list 'trusted-content (concat user-emacs-directory "lisp/"))
+(add-to-list 'trusted-content (concat user-emacs-directory "lisp/wh-browse.el"))
+(add-to-list 'trusted-content (concat user-emacs-directory "lisp/wh-insert.el"))
+(add-to-list 'trusted-content (concat user-emacs-directory "lisp/wh-eshell-prompt.el"))
 (add-to-list 'trusted-content (concat user-emacs-directory "early-init.el"))
 
 (defvar-keymap wh-prefix-map
@@ -220,14 +222,6 @@
 (use-package windsize
   :ensure t
   :hook (after-init . windsize-default-keybindings))
-(use-package windmove
-  :ensure nil
-  :config
-  (windmove-swap-states-default-keybindings '(shift meta))
-  :bind (("M-<down>" . windmove-display-down)
-         ("M-<up>" . windmove-display-up)
-         ("M-<left>" . windmove-display-left)
-         ("M-<right>" . windmove-display-right)))
 (use-package window
   :ensure nil
   :config
@@ -240,6 +234,11 @@
   (add-to-list 'display-buffer-alist
                '("\\*helpful"
                  (display-buffer-same-window)))
+  :bind
+  (:map window-prefix-map
+        ("R" . unbury-buffer)
+        ("t" . transpose-frame)
+        ("r" . rotate-frame))
   :custom
   (same-window-buffer-names nil)
   (same-window-regexps nil)
@@ -289,8 +288,7 @@
   (mouse-yank-at-point t)
   (compilation-max-output-line-length nil)
   (yank-excluded-properties t)
-  (insert-directory-program "gls")
-  (trusted-content nil))
+  (insert-directory-program "gls"))
 (use-package autorevert
   :ensure nil
   :custom
@@ -317,9 +315,11 @@
 (use-package consult-project-extra
   :ensure t
   :after consult
-  :bind (:map project-prefix-map
-              ("f" . project-find-file)
-              ("F" . consult-project-extra-find))
+  :bind
+  (("s-p" . project-find-file)
+   (:map project-prefix-map
+         ("f" . project-find-file)
+         ("F" . consult-project-extra-find)))
   :custom
   (project-switch-commands '((project-find-file "Find" ?f)
                             (consult-project-extra-find "Find extra" ?F)
@@ -406,6 +406,7 @@
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
   (magit-format-file-function 'magit-format-file-nerd-icons)
   (magit-save-repository-buffers nil)
+  (magit-process-finish-apply-ansi-colors t)
   (magit-repository-directories '(("~/code/cardiologs". 1))))
 (use-package forge
   :ensure t
@@ -689,27 +690,7 @@
   (eshell-history-append t)
   (eshell-hist-ignoredups t)
   (eshell-buffer-maximum-lines 4096)
-  (eshell-prompt-function (lambda ()
-                            (let* ((cwd (wh-pwd-shorten-dirs (wh-pwd-replace-home (eshell/pwd)) 1))
-                                   (branch (magit-get-current-branch))
-                                   (stat (magit-file-status))
-                                   (suffix (if (= (file-user-uid) 0) "#" ">"))
-                                   (nix-shell? (getenv "IN_NIX_SHELL")))
-                              (ef-themes-with-colors
-                                (format "%s %s%s%s "
-                                        (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
-                                        (if nix-shell?
-                                            (propertize "<nix> " 'face `(:foreground ,cyan))
-                                          "")
-                                        (if branch
-                                            (format "%s%s%s"
-                                                    (propertize (format "(%s" branch) 'face `(:foreground ,blue))
-                                                    (propertize (if (length> stat 0) " *" "") 'face `(:weight bold :foreground ,yellow))
-                                                    (propertize ")" 'face `(:foreground ,blue)))
-                                          "")
-                                        (if (eshell-exit-success-p)
-                                            (propertize suffix 'face `(:weight bold :foreground ,yellow))
-                                          (propertize suffix 'face `(:weight bold :foreground ,red-cooler))))))))
+  (eshell-prompt-function #'wh-eshell-prompt-fn)
   (eshell-visual-subcommands '(("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
   (eshell-visual-commands '("nvim" "tmux" "top" "htop" "less" "fish" "newsboat" "nu")))
 (use-package ligature
@@ -730,7 +711,7 @@
     (orderless-style-dispatchers nil)
     (orderless-matching-styles '(orderless-literal)))
   :custom
-  (orderless-matching-styles '(orderless-literal orderless-regexp orderless-flex)))
+  (orderless-matching-styles '(orderless-literal orderless-regexp)))
 (use-package casual
   :ensure t
   :init (require 'casual-image)
@@ -741,7 +722,7 @@
   (:map dired-mode-map ("?" . casual-dired-tmenu))
   (:map image-mode-map ("?" . casual-image-tmenu))
   (:map calendar-mode-map ("?" . casual-calendar-tmenu))
-  (:map reb-lisp-mode-map ("C-c C-/" . casual-re-builder-tmenu)))
+  (:map reb-mode-map ("C-c C-/" . casual-re-builder-tmenu)))
 (use-package ef-themes
   :ensure t
   :bind
@@ -836,8 +817,31 @@
   (auto-compile-mode-line-counter t))
 (use-package avy
   :ensure t
+  :config
+  (defun avy-action-embark (pt)
+    (unwind-protect
+        (save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+    t)
+  (setf (alist-get ?. avy-dispatch-alist) 'avy-action-embark)
   :bind
-  (("C-:" . avy-goto-char-timer)))
+  (("C-:" . avy-goto-char-timer)
+   ("M-g w" . avy-goto-word-1)
+   :map isearch-mode-map
+   ("C-'" . avy-isearch)))
+(use-package ace-window
+  :ensure t
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :bind
+  (("M-o" . ace-window)
+   :map eat-mode-map
+   ("M-o" . ace-window)
+   :map eat-semi-char-mode-map
+   ("M-o" . ace-window)))
 (use-package calendar
   :ensure nil
   :custom
@@ -947,17 +951,6 @@
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
   ;; (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help)
   )
-(use-package consult-gh
-  :ensure t
-  :after consult
-  :custom
-  (consult-gh-favorite-orgs-list '("CardioLogs")))
-(use-package consult-gh-embark
-  :ensure t
-  :config
-  (consult-gh-embark-mode))
-(use-package consult-gh-forge
-  :disabled)
 (use-package embark-consult
   :ensure t
   :after (embark consult))
@@ -1060,7 +1053,8 @@
 (use-package exec-path-from-shell
   :ensure t
   :init
-  (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR")))
+  (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR" "BROWSER" "COMPOSE_BAKE" "XDG_CONFIG_HOME" "RIPGREP_CONFIG_PATH"
+                                    "EDITOR" "VISUAL" "PRE_COMMIT_COLOR" "LSP_USE_PLISTS" "LESS" "LS_COLORS")))
 (use-package jq-mode
   :ensure t
   :commands jq-interactively
@@ -1092,7 +1086,7 @@
   (doom-modeline-minor-modes t)
   (doom-modeline-vcs-max-length 15)
   (doom-modeline-workspace-name nil)
-  (doom-modeline-height 24)
+  (doom-modeline-height 22)
   (doom-modeline-column-zero-based nil)
   (doom-modeline-total-line-number t)
   (doom-modeline-env-enable-ruby nil)
@@ -1114,12 +1108,14 @@
 (use-package nov
   :commands nov-mode
   :ensure t)
+(use-package eshell-vterm
+  :ensure t)
 
 (setopt wh-font-family "Adwaita Mono"
         wh-font-size 140)
 (set-face-attribute 'default nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
 (set-face-attribute 'fixed-pitch nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
-(set-face-attribute 'variable-pitch nil :font "Merriweather Sans" :height 140 :width 'regular :weight 'regular)
+(set-face-attribute 'variable-pitch nil :font "Adwaita Sans" :height 140 :width 'regular :weight 'regular)
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -1130,5 +1126,6 @@
 (put 'list-timers 'disabled nil)
 
 (load custom-file t)
-(require 'init-browse)
-(require 'init-insert)
+(require 'wh-browse)
+(require 'wh-insert)
+(require 'wh-eshell-prompt)

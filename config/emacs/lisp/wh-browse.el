@@ -1,4 +1,4 @@
-;;; init-browse.el --- -*- lexical-binding: t -*-
+;;; wh-browse.el --- -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -25,6 +25,6 @@
   (interactive)
   (browse-url-video-player (read-string "URL: ")))
 
-(provide 'init-browse)
+(provide 'wh-browse)
 
-;;; init-browse.el ends here
+;;; wh-browse.el ends here
