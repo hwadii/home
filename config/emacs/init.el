@@ -692,7 +692,7 @@
   (eshell-buffer-maximum-lines 4096)
   (eshell-prompt-function #'wh-eshell-prompt-fn)
   (eshell-visual-subcommands '(("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
-  (eshell-visual-commands '("nvim" "tmux" "top" "htop" "less" "fish" "newsboat" "nu")))
+  (eshell-visual-commands '("nvim" "tmux" "top" "htop" "less" "newsboat" "nu")))
 (use-package ligature
   :ensure t
   :init
@@ -1054,7 +1054,8 @@
   :ensure t
   :init
   (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR" "BROWSER" "COMPOSE_BAKE" "XDG_CONFIG_HOME" "RIPGREP_CONFIG_PATH"
-                                    "EDITOR" "VISUAL" "PRE_COMMIT_COLOR" "LSP_USE_PLISTS" "LESS" "LS_COLORS")))
+                                    "EDITOR" "VISUAL" "PRE_COMMIT_COLOR" "LSP_USE_PLISTS" "LESS" "LS_COLORS" "LANG" "LC_ALL"
+                                    "LANGUAGE")))
 (use-package jq-mode
   :ensure t
   :commands jq-interactively
