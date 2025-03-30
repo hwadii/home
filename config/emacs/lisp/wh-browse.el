@@ -14,16 +14,15 @@
 (defun browse-url-video-player (url)
   "Browse URL in appropriate video player."
   (let ((program (if (eq system-type 'darwin) "iina" "mpv")))
-    (start-process program nil program (shell-quote-wildcard-pattern url) "--no-stdin")))
-(defun browse-stream ()
-  "Open stream in external player."
-  (interactive)
-  (browse-url-video-player (format "https://twitch.tv/%s"
-                                   (completing-read "Channel: " browse-streams-streams nil 'confirm))))
-(defun browse-video ()
-  "Open video in external player."
-  (interactive)
-  (browse-url-video-player (read-string "URL: ")))
+    (start-process program nil program (shell-quote-wildcard-pattern url))))
+(defun browse-stream (stream)
+  "Open STREAM in external player."
+  (interactive "sChannel:")
+  (browse-url-video-player (format "https://twitch.tv/%s" stream)))
+(defun browse-video (video)
+  "Open VIDEO in external player."
+  (interactive "sURL: ")
+  (browse-url-video-player video))
 
 (provide 'wh-browse)
 
