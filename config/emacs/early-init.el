@@ -26,12 +26,10 @@
       inhibit-startup-buffer-menu t)
 (setq package-install-upgrade-built-in t)
 
-(setq tool-bar-mode -1
-      scroll-bar-mode -1
-      column-number-mode 1
-      line-number-mode 1
-      menu-bar-mode 1)
-(setq default-frame-alist '((fullscreen . maximized)
-                            (ns-appearance . dark)
-                            (ns-transparent-titlebar . t)))
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(column-number-mode 1)
+(line-number-mode 1)
+(menu-bar-mode 1)
+(setq default-frame-alist '((fullscreen . maximized)))
 (setq ns-use-thin-smoothing t)
