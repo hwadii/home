@@ -31,5 +31,7 @@ set -x COMPOSE_BAKE true
 
 set -x LSP_USE_PLISTS true
 
+set -x HOMEBREW_NO_EMOJI true
+
 zoxide init fish | source
 fzf --fish | source

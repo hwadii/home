@@ -1055,7 +1055,7 @@
   :init
   (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR" "BROWSER" "COMPOSE_BAKE" "XDG_CONFIG_HOME" "RIPGREP_CONFIG_PATH"
                                     "EDITOR" "VISUAL" "PRE_COMMIT_COLOR" "LSP_USE_PLISTS" "LESS" "LS_COLORS" "LANG" "LC_ALL"
-                                    "LANGUAGE")))
+                                    "LANGUAGE" "HOMEBREW_NO_EMOJI")))
 (use-package jq-mode
   :ensure t
   :commands jq-interactively

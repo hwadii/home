@@ -12,16 +12,16 @@
          (suffix (if (= (file-user-uid) 0) "#" ">"))
          (nix-shell? (getenv "IN_NIX_SHELL")))
     (modus-themes-with-colors
-      (format "%s %s%s%s "
-              (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
+      (format "%s%s%s%s "
               (if nix-shell?
                   (propertize "<nix> " 'face `(:foreground ,cyan))
                 "")
+              (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
               (if branch
                   (format "%s%s%s"
-                          (propertize (format "(%s" branch) 'face `(:foreground ,blue))
-                          (propertize (if (length> stat 0) " *" "") 'face `(:weight bold :foreground ,yellow))
-                          (propertize ")" 'face `(:foreground ,blue)))
+                          (propertize "❙" 'face `(:foreground ,blue))
+                          (propertize (format "%s" branch) 'face `(:foreground ,blue))
+                          (propertize (if (length> stat 0) "*" "") 'face `(:weight bold :foreground ,yellow)))
                 "")
               (if (eshell-exit-success-p)
                   (propertize suffix 'face `(:weight bold :foreground ,yellow))
@@ -36,16 +36,16 @@
          (suffix (if (= (file-user-uid) 0) "#" ">"))
          (nix-shell? (getenv "IN_NIX_SHELL")))
     (ef-themes-with-colors
-      (format "%s %s%s%s "
-              (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
+      (format "%s%s%s%s "
               (if nix-shell?
                   (propertize "<nix> " 'face `(:foreground ,cyan))
                 "")
+              (propertize cwd 'face `(:weight bold :foreground ,blue-warmer))
               (if branch
                   (format "%s%s%s"
-                          (propertize (format "(%s" branch) 'face `(:foreground ,blue))
-                          (propertize (if (length> stat 0) " *" "") 'face `(:weight bold :foreground ,yellow))
-                          (propertize ")" 'face `(:foreground ,blue)))
+                          (propertize "❙" 'face `(:foreground ,blue))
+                          (propertize (format "%s" branch) 'face `(:foreground ,blue))
+                          (propertize (if (length> stat 0) "*" "") 'face `(:weight bold :foreground ,yellow)))
                 "")
               (if (eshell-exit-success-p)
                   (propertize suffix 'face `(:weight bold :foreground ,yellow))
