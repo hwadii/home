@@ -585,8 +585,7 @@
 (use-package ansi-color
   :hook (compilation-filter . ansi-color-compilation-filter))
 (use-package eglot
-  :ensure nil
-  :pin gnu
+  :ensure t
   :custom
   (eglot-autoshutdown t)
   (eglot-sync-connect 3)
