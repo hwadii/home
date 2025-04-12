@@ -1113,6 +1113,19 @@
 
 (setopt wh-font-family "Adwaita Mono"
         wh-font-size 140)
+(use-package elfeed
+  :ensure t)
+(use-package elfeed-protocol
+  :ensure t
+  :after elfeed
+  :config
+  (elfeed-protocol-enable)
+  :custom
+  (elfeed-protocol-fever-update-unread-only nil)
+  (elfeed-protocol-fever-fetch-category-as-tag t)
+  (elfeed-protocol-feeds '(("fever+https://wadii@feed.exondation.com"
+                            :api-url "https://feed.exondation.com/fever/"
+                            :use-authinfo t))))
 (set-face-attribute 'default nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
 (set-face-attribute 'fixed-pitch nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
 (set-face-attribute 'variable-pitch nil :font "Adwaita Sans" :height 140 :width 'regular :weight 'regular)
