@@ -619,7 +619,11 @@
 (use-package eat
   :ensure t
   :bind
-  (:map eat-mode-map ("s-v" . eat-yank))
+  (:map eat-mode-map
+        ("s-v" . eat-yank)
+        ("M-o" . ace-window)
+   :map eat-semi-char-mode-map
+   ("M-o" . ace-window))
   :hook
   (eshell-mode . eat-eshell-mode)
   (eshell-mode . eat-eshell-visual-command-mode)
@@ -834,6 +838,7 @@
   (setf (alist-get ?. avy-dispatch-alist) 'avy-action-embark)
   :bind
   (("C-:" . avy-goto-char-timer)
+   ("s-:" . casual-avy-tmenu)
    ("M-g w" . avy-goto-word-1)
    :map isearch-mode-map
    ("C-'" . avy-isearch)))
@@ -842,11 +847,7 @@
   :custom
   (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind
-  (("M-o" . ace-window)
-   :map eat-mode-map
-   ("M-o" . ace-window)
-   :map eat-semi-char-mode-map
-   ("M-o" . ace-window)))
+  ("M-o" . ace-window))
 (use-package calendar
   :ensure nil
   :custom
