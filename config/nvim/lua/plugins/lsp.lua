@@ -43,16 +43,12 @@ return {
           if client.name == "omnisharp" then
             map("n", "grr", require("omnisharp_extended").lsp_references)
             map("n", "gd", require("omnisharp_extended").lsp_definition)
-            map("n", "gI", require("omnisharp_extended").lsp_implementation)
+            map("n", "gri", require("omnisharp_extended").lsp_implementation)
             map("n", "<Leader>sr", require("omnisharp_extended").telescope_lsp_references)
           else
-            map("n", "grr", vim.lsp.buf.references)
             map("n", "gd", vim.lsp.buf.definition)
-            map("n", "gI", vim.lsp.buf.implementation)
             map("n", "<Leader>sr", telescope.lsp_references)
           end
-          map("n", "grn", vim.lsp.buf.rename)
-          map("n", "gra", vim.lsp.buf.code_action)
           map("x", "<c-r><c-r>", vim.lsp.buf.code_action)
           map("x", "<c-r>r", vim.lsp.buf.code_action)
           map("n", "gy", vim.lsp.buf.type_definition)

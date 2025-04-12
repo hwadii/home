@@ -477,7 +477,7 @@ return {
     dependencies = "rktjmp/lush.nvim",
     init = function()
       vim.opt.background = "light"
-      vim.cmd("colorscheme ploy_light")
+      vim.cmd("colorscheme ploy_dark")
     end,
   },
   {
