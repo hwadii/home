@@ -17,7 +17,7 @@
     (start-process program nil program (shell-quote-wildcard-pattern url))))
 (defun browse-stream (stream)
   "Open STREAM in external player."
-  (interactive "sChannel:")
+  (interactive "sChannel: ")
   (browse-url-video-player (format "https://twitch.tv/%s" stream)))
 (defun browse-video (video)
   "Open VIDEO in external player."

@@ -15,28 +15,25 @@
 (global-visual-wrap-prefix-mode)
 
 ;; Show stray whitespace.
-(setq-default indicate-empty-lines t)
-(setq-default indicate-buffer-boundaries 'left)
-(setq-default require-final-newline t)
+(setopt indicate-empty-lines t)
+(setopt indicate-buffer-boundaries 'left)
+(setopt require-final-newline t)
 
 (setopt load-prefer-newer t)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Remove message in scratch buffer.
-(setq-default initial-scratch-message nil)
-
-;; Add a newline automatically at the end of a file while saving.
-(setq-default require-final-newline t)
+(setopt initial-scratch-message nil)
 
 ;; Consider a period followed by a single space to be end of sentence.
 (setopt sentence-end-double-space nil)
 
 ;; Use spaces, not tabs, for indentation.
-(setq-default indent-tabs-mode nil)
+(setopt indent-tabs-mode nil)
 
 ;; Display the distance between two tab stops as 4 characters wide.
-(setq-default tab-width 4)
+(setopt tab-width 4)
 
 (setopt enable-recursive-minibuffers t)
 
@@ -206,6 +203,7 @@
               ("c" . rainbow-mode)))
 (use-package tab-bar
   :ensure nil
+  :bind ("s-t" . tab-new)
   :custom
   (tab-bar-auto-width nil)
   (tab-bar-new-button-show t)
@@ -319,7 +317,8 @@
   (("s-p" . project-find-file)
    (:map project-prefix-map
          ("f" . project-find-file)
-         ("F" . consult-project-extra-find)))
+         ("F" . consult-project-extra-find)
+         ("r" . consult-ripgrep)))
   :custom
   (project-switch-commands '((project-find-file "Find" ?f)
                             (consult-project-extra-find "Find extra" ?F)
@@ -419,7 +418,6 @@
   (doc-view-resolution 300))
 (use-package pdf-tools
   :ensure t
-  :mode ("\\.pdf\\'" . pdf-view-mode)
   :custom
   (pdf-view-display-size 'fit-page))
 (use-package org
@@ -653,7 +651,8 @@
   :bind (:map isearch-mode-map ("M-s R" . rg-isearch-menu)))
 (use-package eshell
   :ensure nil
-  :bind (("C-x C-z" . eshell))
+  :bind
+  ("C-x C-z" . eshell)
   :hook
   (eshell-mode . abbrev-mode)
   (eshell-mode . goto-address-mode)
@@ -692,12 +691,19 @@
   (eshell-prompt-function #'wh-eshell-prompt-fn)
   (eshell-visual-subcommands '(("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
   (eshell-visual-commands '("nvim" "tmux" "top" "htop" "less" "newsboat" "nu")))
+(use-package em-hist
+  :ensure nil
+  :after (eshell consult)
+  :bind
+  (:map eshell-hist-mode-map (("M-s" . consult-history)
+                              ("M-r" . consult-history))))
 (use-package ligature
   :ensure t
   :init
   (global-ligature-mode)
   :config
-  (ligature-set-ligatures 't '("=>" "->" "<-" "<->" "<=>" "==>" "<==>" "<==" "==" "!=" "===" "!==" ">=" "<=" "::" "?." "??")))
+  (ligature-set-ligatures 't '("=>" "->" "<-" "<->" "<=>" "==>" "<==>" "<==" "==" "!=" "===" "!==" ">=" "<=" "::" "?." "??"
+                               "-->" "<--" "<!--")))
 (use-package marginalia
   :ensure t
   :custom (marginalia-mode 1))
@@ -902,9 +908,7 @@
          ;; Minibuffer history
          :map minibuffer-local-map
          ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-         ("M-r" . consult-history)
-         :map project-prefix-map
-         ("r" . consult-ripgrep))
+         ("M-r" . consult-history))
 
   ;; The :init configuration is always executed (Not lazy)
   :init
@@ -966,6 +970,11 @@
 (use-package mouse
   :ensure nil
   :config (context-menu-mode))
+(use-package mwheel
+  :ensure nil
+  :custom
+  (mouse-wheel-tilt-scroll t)
+  (mouse-wheel-flip-direction t))
 (use-package combobulate
   :disabled
   :ensure t
@@ -1012,10 +1021,12 @@
   (smtpmail-smtp-service 465))
 (use-package eldoc-box
   :ensure t
-  :bind (("C-h ." . eldoc-box-help-at-point))
-  :config
-  (setopt eldoc-echo-area-prefer-doc-buffer t)
-  (setopt eldoc-echo-area-use-multiline-p nil))
+  :bind (("C-h ." . eldoc-box-help-at-point)))
+(use-package eldoc
+  :ensure nil
+  :custom
+  (eldoc-echo-area-prefer-doc-buffer t)
+  (eldoc-echo-area-use-multiline-p nil))
 (use-package transpose-frame
   :ensure t)
 (use-package editorconfig
@@ -1027,6 +1038,8 @@
   :ensure t
   :vc (:url "https://github.com/jdtsmith/eglot-booster" :rev :newest)
   :after eglot
+  :custom
+  (eglot-booster-io-only t)
   :config (eglot-booster-mode))
 (use-package lsp-mode
   :ensure t
@@ -1054,7 +1067,7 @@
   :init
   (exec-path-from-shell-copy-envs '("PASSWORD_STORE_DIR" "BROWSER" "COMPOSE_BAKE" "XDG_CONFIG_HOME" "RIPGREP_CONFIG_PATH"
                                     "EDITOR" "VISUAL" "PRE_COMMIT_COLOR" "LSP_USE_PLISTS" "LESS" "LS_COLORS" "LANG" "LC_ALL"
-                                    "LANGUAGE" "HOMEBREW_NO_EMOJI")))
+                                    "LANGUAGE" "HOMEBREW_NO_EMOJI" "DOTNET_WATCH_SUPPRESS_EMOJIS")))
 (use-package jq-mode
   :ensure t
   :commands jq-interactively
@@ -1110,9 +1123,6 @@
   :ensure t)
 (use-package eshell-vterm
   :ensure t)
-
-(setopt wh-font-family "Adwaita Mono"
-        wh-font-size 140)
 (use-package elfeed
   :ensure t)
 (use-package elfeed-protocol
@@ -1126,9 +1136,16 @@
   (elfeed-protocol-feeds '(("fever+https://wadii@feed.exondation.com"
                             :api-url "https://feed.exondation.com/fever/"
                             :use-authinfo t))))
-(set-face-attribute 'default nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
-(set-face-attribute 'variable-pitch nil :font "Adwaita Sans" :height 140 :width 'regular :weight 'regular)
+(use-package ns-auto-titlebar
+  :ensure t
+  :if (eq system-type 'darwin)
+  :config (ns-auto-titlebar-mode))
+(setopt wh-font-family "Iosevka"
+        wh-font-size 170)
+(progn
+  (set-face-attribute 'default nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
+  (set-face-attribute 'fixed-pitch nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font "Adwaita Sans" :height 150 :width 'regular :weight 'regular))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
