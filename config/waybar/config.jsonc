@@ -3,7 +3,7 @@
     "height": 24,
     "modules-left": ["niri/workspaces", "niri/window"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "custom/separator", "idle_inhibitor", "custom/separator", "network", "custom/separator", "memory", "custom/separator", "battery", "tray"],
+    "modules-right": ["mpris", "custom/separator", "pulseaudio", "custom/separator", "idle_inhibitor", "custom/separator", "network", "custom/separator", "memory", "custom/separator", "battery", "tray"],
     "tray": {
         "spacing": 10
     },
@@ -38,11 +38,14 @@
         "on-click": "pavucontrol"
     },
     "idle_inhibitor": {
-	"format": "{icon}",
-	"format-icons": {
-	    "activated": "",
-	    "deactivated": ""
-	}
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "mpris": {
+        "dynamic-order": ["title", "artist", "album"]
     },
     "custom/separator": {
       "format": "•",

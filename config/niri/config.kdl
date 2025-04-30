@@ -61,6 +61,10 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
+environment {
+  DISPLAY ":0"
+}
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
@@ -567,7 +571,9 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Mod+Shift+S { spawn "systemctl" "suspend"; }
+    Mod+Shift+O { spawn "shmoji" "wmenu"; }
     Ctrl+Alt+Delete { quit; }
+    Mod+SemiColon { spawn "sh" "-c" "cliphist list | wmenu -i | cliphist decode | wl-copy"; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
