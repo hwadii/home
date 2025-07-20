@@ -8,3 +8,7 @@ lazy-lock.json
 /config/emacs/transient/
 /config/emacs/savehist
 /config/emacs/projects
+/config/emacs/var/
+/config/emacs/eln-cache/
+/config/emacs/etc/
+/config/emacs/undo-fu-session/
