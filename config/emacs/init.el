@@ -55,6 +55,8 @@
 
 ;; Disable lockfiles.
 (setopt create-lockfiles nil)
+(setopt remote-file-name-inhibit-locks t)
+(setopt remote-file-name-inhibit-auto-save-visited t)
 
 (desktop-save-mode 1)
 (setopt user-emacs-directory "~/.config/emacs/")
@@ -115,6 +117,19 @@
 (use-package display-fill-column-indicator
   :ensure nil
   :hook ((text-mode prog-mode) . display-fill-column-indicator-mode))
+(use-package tramp
+  :ensure nil
+  :config
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+  :custom
+  (tramp-use-scp-direct-remote-copying t)
+  (tramp-copy-size-limit (* 1024 1024) ;; 1MB
+  (tramp-verbose 2)))
 (use-package isearch
   :ensure nil
   :bind
@@ -135,15 +150,15 @@
   :ensure nil
   :bind ([remap dabbrev-expand] . hippie-expand))
 (use-package diminish
-  :ensure t
-  :pin gnu)
+  :ensure t)
 (use-package minions
   :ensure t
   :config
   (minions-mode)
   :custom
   (minions-mode-line-lighter "…")
-  (minions-prominent-modes '(flymake-mode lsp-mode vterm-copy-mode)))
+  (minions-prominent-modes '(flymake-mode lsp-mode vterm-copy-mode))
+  (force-mode-line-update t))
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
@@ -175,7 +190,7 @@
   :bind (:map dired-mode-map ("/" . dired-filter-map)))
 (use-package hl-line
   :ensure nil
-  :hook ((text-mode prog-mode) . hl-line-mode))
+  :hook ((text-mode prog-mode tabulated-list-mode) . hl-line-mode))
 (use-package dired-aux
   :ensure nil
   :custom
@@ -264,6 +279,7 @@
   :bind
   ("M-z" . zap-up-to-char)
   ("M-Z" . zap-to-char)
+  ("C-M-z" . delete-pair)
   ("C-M-j" . duplicate-dwim)
   ("C-x O" . (lambda ()
                (interactive)
@@ -309,7 +325,17 @@
   :custom
   (which-func-update-delay 1.0))
 (use-package project
-  :ensure nil)
+  :ensure nil
+  :custom
+  (project-switch-commands '((project-find-file "Find" ?f)
+                             (consult-project-extra-find "Find extra" ?F)
+                             (project-find-dir "Directory" ?d)
+                             (consult-ripgrep "Ripgrep" ?r)
+                             (magit-project-status "Magit" ?m)
+                             (project-eshell "Eshell" ?e)
+                             (consult-project-buffer "Buffers" ?b)
+                             (vterm "Terminal" ?t)
+                             (project-any-command "Other" ?o))))
 (use-package consult-project-extra
   :ensure t
   :after consult
@@ -318,17 +344,7 @@
    (:map project-prefix-map
          ("f" . project-find-file)
          ("F" . consult-project-extra-find)
-         ("r" . consult-ripgrep)))
-  :custom
-  (project-switch-commands '((project-find-file "Find" ?f)
-                            (consult-project-extra-find "Find extra" ?F)
-                            (project-find-dir "Directory" ?d)
-                            (consult-ripgrep "Ripgrep" ?r)
-                            (magit-project-status "Magit" ?m)
-                            (project-eshell "Eshell" ?e)
-                            (consult-project-buffer "Buffers" ?b)
-                            (vterm "Terminal" ?t)
-                            (project-any-command "Other" ?o))))
+         ("r" . consult-ripgrep))))
 (use-package savehist
   :ensure nil
   :custom
@@ -385,6 +401,8 @@
                   (apply args)))))
 (use-package markdown-mode
   :ensure t
+  :bind (:map markdown-mode-map
+              ("C-." . embark-act))
   :custom
   (markdown-fontify-code-blocks-natively t))
 (use-package markdown-ts-mode
@@ -400,19 +418,25 @@
   :hook ((emacs-lisp-mode ielm-mode lisp-interaction-mode lisp-mode) . rainbow-delimiters-mode))
 (use-package magit
   :ensure t
+  :after transient
+  :pin nongnu
   :custom
   (magit-define-global-key-bindings 'recommended)
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
   (magit-format-file-function 'magit-format-file-nerd-icons)
   (magit-save-repository-buffers nil)
   (magit-process-finish-apply-ansi-colors t)
-  (magit-repository-directories '(("~/code/cardiologs". 1))))
+  (magit-repository-directories '(("~/code/cardiologs". 1)))
+  (magit-tramp-pipe-stty-settings 'pty))
 (use-package forge
   :ensure t
   :after magit
   :custom
   (forge-database-file "~/.config/forge/database.sqlite")
   (forge-owned-accounts '(("hwadii"))))
+(use-package transient
+  :pin melpa
+  :ensure t)
 (use-package doc-view
   :custom
   (doc-view-resolution 300))
@@ -426,11 +450,14 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)
-     (emacs-lisp . t)))
+     (emacs-lisp . t)
+     (sql . t)))
   :bind
   ("C-h ." . display-local-help)
   :custom
-  (org-hide-emphasis-markers t))
+  (org-hide-emphasis-markers t)
+  :hook
+  (org-mode . auto-fill-mode))
 (use-package org-modern
   :ensure t
   :hook
@@ -590,6 +617,7 @@
   (eglot-stay-out-of nil)
   (eglot-send-changes-idle-time 0.5)
   (eglot-events-buffer-config :size 0)
+  (eglot-code-action-indications '(eldoc-hint))
   :bind (("C-c l c" . eglot-reconnect)
          ("C-c l d" . flymake-show-buffer-diagnostics)
          ("C-c l f f" . eglot-format)
@@ -638,7 +666,16 @@
 (use-package flyspell
   :ensure nil
   :after ispell
-  :hook ((markdown-mode org-mode) . flyspell-mode))
+  :bind (:map flyspell-mode-map
+              ("C-." . nil)
+              ("C-M-;" . flyspell-auto-correct-word))
+  :custom
+  (flyspell-auto-correct-binding (kbd "C-;")))
+(use-package jinx
+  :ensure t
+  :hook ((markdown-mode org-mode tex-mode) . jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
 (use-package password-store-menu
   :ensure t
   :bind (:map wh-prefix-map ("p" . password-store-menu))
@@ -703,8 +740,6 @@
                               ("M-r" . consult-history))))
 (use-package ligature
   :ensure t
-  :init
-  (global-ligature-mode)
   :config
   (ligature-set-ligatures 't '("=>" "->" "<-" "<->" "<=>" "==>" "<==>" "<==" "==" "!=" "===" "!==" ">=" "<=" "::" "?." "??"
                                "-->" "<--" "<!--")))
@@ -724,22 +759,25 @@
 (use-package casual
   :ensure t
   :init (require 'casual-image)
-  :after (calc dired ibuffer image)
+  :after (calc dired ibuffer image )
   :bind
   (:map calc-mode-map ("?" . casual-calc-tmenu))
   (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
   (:map dired-mode-map ("?" . casual-dired-tmenu))
   (:map image-mode-map ("?" . casual-image-tmenu))
   (:map calendar-mode-map ("?" . casual-calendar-tmenu))
-  (:map reb-mode-map ("C-c C-/" . casual-re-builder-tmenu)))
-(use-package ef-themes
-  :ensure t
-  :bind
-  ("<f6>" . ef-themes-toggle)
+  (:map compilation-mode-map ("?" . casual-compile-tmenu))
+  (:map reb-mode-map ("C-c C-/" . casual-re-builder-tmenu))
+  (:map eshell-mode-map ("C-c C-/" . casual-eshell-tmenu))
+  (:map wh-prefix-map ("t" . casual-timezone-tmenu))
   :custom
-  (ef-themes-variable-pitch-ui t)
-  (ef-themes-mixed-fonts t)
-  (ef-themes-to-toggle '(ef-reverie ef-dream)))
+  (casual-lib-use-unicode nil))
+(use-package casual-avy
+  :ensure t
+  :after casual)
+(use-package ef-themes
+  :after modus-themes
+  :ensure t)
 (use-package mise
   :ensure t
   :hook (after-init . global-mise-mode)
@@ -792,6 +830,7 @@
    '(embark-minimal-indicator  ; default is embark-mixed-indicator
      embark-highlight-indicator
      embark-isearch-highlight-indicator))
+  (embark-quit-after-action t)
   ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
   ;; strategy, if you want to see the documentation from multiple providers.
   ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
@@ -1007,13 +1046,14 @@
   :bind (:map wh-prefix-map ("g" . git-link-dispatch)))
 (use-package modus-themes
   :ensure t
-  :config
+  :init
+  (modus-themes-include-derivatives-mode)
   :custom
   (modus-themes-mixed-fonts t)
   (modus-themes-variable-pitch-ui t)
   (modus-themes-italic-constructs t)
-  (modus-themes-bold-constructs nil)
-  (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
+  (modus-themes-bold-constructs t)
+  (modus-themes-to-toggle '(ef-day ef-rosa)))
 (use-package smtpmail
   :ensure nil
   :custom
@@ -1113,7 +1153,8 @@
 (use-package man
   :ensure nil
   :custom
-  (manual-program "gman"))
+  (manual-program "gman")
+  (Man-switches "-a"))
 (use-package stillness-mode
   :ensure t
   :init (stillness-mode))
@@ -1123,9 +1164,12 @@
   :commands nov-mode
   :ensure t)
 (use-package eshell-vterm
-  :ensure t)
+  :ensure t
+  :config
+  (defalias 'eshell/vt #'eshell-vterm-exec-visual))
 (use-package elfeed
-  :ensure t)
+  :ensure t
+  :commands elfeed)
 (use-package elfeed-protocol
   :ensure t
   :after elfeed
@@ -1141,12 +1185,16 @@
   :ensure t
   :if (eq system-type 'darwin)
   :config (ns-auto-titlebar-mode))
-(setopt wh-font-family "Iosevka"
-        wh-font-size 170)
+(use-package doric-themes
+  :ensure t)
+
+(setopt wh-mono-font-family "Berkeley Mono"
+        wh-mono-font-size 150
+        wh-sans-font-family "Atkinson Hyperlegible Next")
 (progn
-  (set-face-attribute 'default nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
-  (set-face-attribute 'fixed-pitch nil :font wh-font-family :height wh-font-size :width 'normal :weight 'regular)
-  (set-face-attribute 'variable-pitch nil :font "Adwaita Sans" :height 150 :width 'regular :weight 'regular))
+  (set-face-attribute 'default nil :family wh-mono-font-family :height wh-mono-font-size :weight 'regular)
+  (set-face-attribute 'fixed-pitch nil :family wh-mono-font-family :height 1.0 :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :family wh-sans-font-family :height 1.0 :width 'regular :weight 'regular))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
