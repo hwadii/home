@@ -64,7 +64,7 @@
 (setopt nnrss-directory (expand-file-name "news/rss" user-emacs-directory))
 
 (setopt shell-file-name "/opt/homebrew/bin/fish")
-(setopt explicit-shell-file-name "/opt/homebrew/bin/bash")
+(setopt explicit-shell-file-name "/opt/homebrew/bin/fish")
 
 (setopt scroll-conservatively 10)
 (setopt scroll-margin 5)
@@ -229,7 +229,8 @@
 (use-package paren
   :ensure nil
   :custom
-  (show-paren-delay 0.125)
+  (show-paren-delay 0.1)
+  (show-paren-when-point-inside-paren t)
   :config
   (show-paren-mode))
 (use-package windsize
@@ -318,6 +319,13 @@
   :custom
   (visual-line-fringe-indicators '(left-curly-arrow nil))
   (visual-wrap-extra-indent 2))
+(use-package time
+  :ensure nil
+  :custom
+  (world-clock-list '(("America/Chicago" "Chicago")
+                      ("America/Montreal" "Montreal")
+                      ("Europe/Paris" "Paris")
+                      ("Africa/Casablanca" "Rabat"))))
 (use-package async
   :ensure t)
 (use-package which-func
@@ -404,7 +412,7 @@
   :bind (:map markdown-mode-map
               ("C-." . embark-act))
   :custom
-  (markdown-fontify-code-blocks-natively t))
+  (markdown-fontify-code-blocks-natively nil))
 (use-package markdown-ts-mode
   :ensure t
   :disabled
@@ -420,6 +428,8 @@
   :ensure t
   :after transient
   :pin nongnu
+  :config
+  (add-hook 'magit-status-sections-hook #'magit-insert-worktrees t)
   :custom
   (magit-define-global-key-bindings 'recommended)
   (magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1)
@@ -427,7 +437,25 @@
   (magit-save-repository-buffers nil)
   (magit-process-finish-apply-ansi-colors t)
   (magit-repository-directories '(("~/code/cardiologs". 1)))
-  (magit-tramp-pipe-stty-settings 'pty))
+  (magit-tramp-pipe-stty-settings 'pty)
+  (magit-status-sections-hook
+   '(magit-insert-status-headers
+     magit-insert-merge-log
+     magit-insert-rebase-sequence
+     magit-insert-am-sequence
+     magit-insert-sequencer-sequence
+     magit-insert-bisect-output
+     magit-insert-bisect-rest
+     magit-insert-bisect-log
+     magit-insert-untracked-files
+     magit-insert-unstaged-changes
+     magit-insert-staged-changes
+     magit-insert-stashes
+     magit-insert-unpushed-to-pushremote
+     magit-insert-unpushed-to-upstream-or-recent
+     magit-insert-unpulled-from-pushremote
+     magit-insert-unpulled-from-upstream
+     forge-insert-pullreqs)))
 (use-package forge
   :ensure t
   :after magit
@@ -446,6 +474,8 @@
   (pdf-view-display-size 'fit-page))
 (use-package org
   :ensure nil
+  :init
+  (require 'ox-md)
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -460,6 +490,8 @@
   (org-mode . auto-fill-mode))
 (use-package org-modern
   :ensure t
+  :custom
+  (org-modern-checkbox '((88 . "☑") (45 . #("□–" 0 2 (composition ((2))))) (32 . "□")))
   :hook
   (org-mode . org-modern-mode)
   (org-agenda-finalize-hook . org-modern-agenda))
@@ -698,6 +730,28 @@
   (eshell-mode . abbrev-mode)
   (eshell-mode . goto-address-mode)
   :config
+  (defun adviced:eshell/cat (orig-fun &rest args)
+    "Like `eshell/cat' but with image support."
+    (if (seq-every-p (lambda (arg)
+                       (and (stringp arg)
+                            (file-exists-p arg)
+                            (image-supported-file-p arg)))
+                     args)
+        (with-temp-buffer
+          (insert "\n")
+          (dolist (path args)
+            (let ((spec (create-image
+                         (expand-file-name path)
+                         (image-type-from-file-name path)
+                         nil :max-width 350
+                         :conversion (lambda (data) data))))
+              (image-flush spec)
+              (insert-image spec))
+            (insert "\n"))
+          (insert "\n")
+          (buffer-string))
+      (apply orig-fun args)))
+  (advice-add #'eshell/cat :around #'adviced:eshell/cat)
   (defun wh-pwd-replace-home (pwd)
     "Replace home in PWD with tilde (~) character."
     (let* ((home (expand-file-name (getenv "HOME")))
@@ -723,14 +777,15 @@
         pwd)))  ;; Otherwise, we just return the PWD
   :custom
   (eshell-prefer-lisp-functions t)
-  (eshell-scroll-show-maximum-output t)
+  (eshell-scroll-to-bottom-on-output nil)
+  (eshell-scroll-show-maximum-output nil)
   (eshell-banner-message "")
   (eshell-history-size (* 1024 256))
   (eshell-history-append t)
   (eshell-hist-ignoredups t)
   (eshell-buffer-maximum-lines 4096)
   (eshell-prompt-function #'wh-eshell-prompt-fn)
-  (eshell-visual-subcommands '(("nix" "shell") ("kubectl" "exec") ("tsh" "ssh")))
+  (eshell-visual-subcommands '(("kubectl" "exec") ("tsh" "ssh")))
   (eshell-visual-commands '("nvim" "tmux" "top" "htop" "less" "newsboat" "nu")))
 (use-package em-hist
   :ensure nil
@@ -759,7 +814,6 @@
 (use-package casual
   :ensure t
   :init (require 'casual-image)
-  :after (calc dired ibuffer image )
   :bind
   (:map calc-mode-map ("?" . casual-calc-tmenu))
   (:map ibuffer-mode-map ("?" . casual-ibuffer-tmenu))
@@ -767,6 +821,9 @@
   (:map image-mode-map ("?" . casual-image-tmenu))
   (:map calendar-mode-map ("?" . casual-calendar-tmenu))
   (:map compilation-mode-map ("?" . casual-compile-tmenu))
+  (:map help-mode-map ("?" . casual-help-tmenu))
+  (:map Man-mode-map ("?" . casual-man-tmenu))
+  (:map Info-mode-map ("?" . casual-info-tmenu))
   (:map reb-mode-map ("C-c C-/" . casual-re-builder-tmenu))
   (:map eshell-mode-map ("C-c C-/" . casual-eshell-tmenu))
   (:map wh-prefix-map ("t" . casual-timezone-tmenu))
@@ -780,12 +837,10 @@
   :ensure t)
 (use-package mise
   :ensure t
-  :hook (after-init . global-mise-mode)
-  :custom
-  (mise-debug t))
+  :hook (after-init . global-mise-mode))
 (use-package envrc
   :ensure t
-  :bind (:map envrc-mode-map ("C-c e" . envrc-command-map)))
+  :bind-keymap ("C-c e" . envrc-command-map))
 (use-package no-littering
   :ensure t
   :config
@@ -975,12 +1030,10 @@
   ;; For some commands and buffer sources it is useful to configure the
   ;; :preview-key on a per-command basis using the `consult-customize' macro.
   (consult-customize
-   consult-theme :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
+   consult-ripgrep consult-git-grep consult-grep consult-man
    consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
-   ;; :preview-key "M-.")
+   consult-source-bookmark consult-source-file-register
+   consult-source-recent-file consult-source-project-recent-file
    :preview-key '(:debounce 0.4 any))
 
   ;; Optionally configure the narrowing key.
@@ -1048,12 +1101,14 @@
   :ensure t
   :init
   (modus-themes-include-derivatives-mode)
+  (modus-themes-load-theme 'ef-rosa)
   :custom
   (modus-themes-mixed-fonts t)
   (modus-themes-variable-pitch-ui t)
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t)
-  (modus-themes-to-toggle '(ef-day ef-rosa)))
+  (modus-themes-to-toggle '(ef-day ef-rosa))
+  (modus-themes-to-rotate '(ef-day ef-rosa ef-duo-light ef-autumn)))
 (use-package smtpmail
   :ensure nil
   :custom
@@ -1163,10 +1218,6 @@
 (use-package nov
   :commands nov-mode
   :ensure t)
-(use-package eshell-vterm
-  :ensure t
-  :config
-  (defalias 'eshell/vt #'eshell-vterm-exec-visual))
 (use-package elfeed
   :ensure t
   :commands elfeed)
@@ -1187,14 +1238,41 @@
   :config (ns-auto-titlebar-mode))
 (use-package doric-themes
   :ensure t)
+(use-package posframe
+  :ensure t
+  :pin gnu)
+(use-package gptel
+  :ensure t)
+(use-package detached
+  :ensure t
+  :pin gnu
+  :bind-keymap
+  ("C-c d" . detached-session-map)
+  :custom
+  (detached-show-output-command t)
+  (detached-terminal-data-command system-type)
+  (detached-notification-function #'detached-state-transitionion-echo-message)
+  (detached-shell-program "/bin/bash"))
+(use-package htmlize
+  :ensure t)
+(use-package disproject
+  :ensure t
+  :bind (:map ctl-x-map
+              ("P" . disproject-dispatch))
+  :custom
+  (disproject-find-regexp-command #'consult-ripgrep)
+  (disproject-find-dir-command #'project-find-dir))
+(use-package typst-ts-mode
+  :ensure t)
 
-(setopt wh-mono-font-family "Berkeley Mono"
-        wh-mono-font-size 150
-        wh-sans-font-family "Atkinson Hyperlegible Next")
+(setopt wh-mono-font-family "Berkeley Mono Variable"
+        wh-mono-font-size 160
+        wh-sans-font-size 150
+        wh-sans-font-family "Merriweather Sans")
 (progn
-  (set-face-attribute 'default nil :family wh-mono-font-family :height wh-mono-font-size :weight 'regular)
-  (set-face-attribute 'fixed-pitch nil :family wh-mono-font-family :height 1.0 :weight 'regular)
-  (set-face-attribute 'variable-pitch nil :family wh-sans-font-family :height 1.0 :width 'regular :weight 'regular))
+  (set-face-attribute 'default nil :family wh-mono-font-family :height wh-mono-font-size :weight 'semi-light)
+  (set-face-attribute 'fixed-pitch nil :family wh-mono-font-family :height wh-mono-font-size :weight 'semi-light)
+  (set-face-attribute 'variable-pitch nil :family wh-sans-font-family :height wh-sans-font-size :weight 'regular))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
