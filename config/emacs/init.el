@@ -336,23 +336,12 @@
   :ensure nil
   :custom
   (project-switch-commands '((project-find-file "Find" ?f)
-                             (consult-project-extra-find "Find extra" ?F)
                              (project-find-dir "Directory" ?d)
                              (consult-ripgrep "Ripgrep" ?r)
                              (magit-project-status "Magit" ?m)
                              (project-eshell "Eshell" ?e)
                              (consult-project-buffer "Buffers" ?b)
-                             (vterm "Terminal" ?t)
                              (project-any-command "Other" ?o))))
-(use-package consult-project-extra
-  :ensure t
-  :after consult
-  :bind
-  (("s-p" . project-find-file)
-   (:map project-prefix-map
-         ("f" . project-find-file)
-         ("F" . consult-project-extra-find)
-         ("r" . consult-ripgrep))))
 (use-package savehist
   :ensure nil
   :custom
@@ -472,16 +461,22 @@
   :ensure t
   :custom
   (pdf-view-display-size 'fit-page))
+(use-package ob-deno
+  :after org
+  :ensure t)
 (use-package org
   :ensure nil
   :init
   (require 'ox-md)
+  (require 'ob-deno)
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t)
      (emacs-lisp . t)
-     (sql . t)))
+     (sql . t)
+     (deno . t)))
+  (add-to-list 'org-src-lang-modes '("deno" . typescript-ts))
   :bind
   ("C-h ." . display-local-help)
   :custom
@@ -650,6 +645,13 @@
   (eglot-send-changes-idle-time 0.5)
   (eglot-events-buffer-config :size 0)
   (eglot-code-action-indications '(eldoc-hint))
+  (eglot-workspace-configuration
+   '((:javascript
+      (:preferences
+       (:importModuleSpecifierEnding "shortest")))
+     (:typescript
+      (:preferences
+       (:importModuleSpecifierEnding "shortest")))))
   :bind (("C-c l c" . eglot-reconnect)
          ("C-c l d" . flymake-show-buffer-diagnostics)
          ("C-c l f f" . eglot-format)
@@ -1268,7 +1270,7 @@
 (setopt wh-mono-font-family "Berkeley Mono Variable"
         wh-mono-font-size 160
         wh-sans-font-size 150
-        wh-sans-font-family "Merriweather Sans")
+        wh-sans-font-family "Miriam Libre")
 (progn
   (set-face-attribute 'default nil :family wh-mono-font-family :height wh-mono-font-size :weight 'semi-light)
   (set-face-attribute 'fixed-pitch nil :family wh-mono-font-family :height wh-mono-font-size :weight 'semi-light)
@@ -1286,3 +1288,4 @@
 (require 'wh-browse)
 (require 'wh-insert)
 (require 'wh-eshell-prompt)
+(require 'wh-eglot)
