@@ -1052,16 +1052,6 @@
 (use-package embark-consult
   :ensure t
   :after (embark consult))
-(use-package affe
-  :ensure t
-  :after consult
-  :config
-  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
-    (setq input (cdr (orderless-compile input)))
-    (cons input (apply-partially #'orderless--highlight input t)))
-  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
-  ;; Manual preview key for `affe-grep'
-  (consult-customize affe-grep :preview-key '(:debounce 0.4 any)))
 (use-package mouse
   :ensure nil
   :config (context-menu-mode))
@@ -1070,14 +1060,6 @@
   :custom
   (mouse-wheel-tilt-scroll t)
   (mouse-wheel-flip-direction t))
-(use-package combobulate
-  :disabled
-  :ensure t
-  :vc (:url "https://github.com/mickeynp/combobulate" :branch "main")
-  :preface
-  ;; You can customize Combobulate's key prefix here.
-  ;; Note that you may have to restart Emacs for this to take effect!
-  (setq combobulate-key-prefix "C-c o"))
 (use-package standard-themes
   :disabled
   :ensure t
@@ -1257,24 +1239,27 @@
   (detached-shell-program "/bin/bash"))
 (use-package htmlize
   :ensure t)
-(use-package disproject
-  :ensure t
-  :bind (:map ctl-x-map
-              ("P" . disproject-dispatch))
-  :custom
-  (disproject-find-regexp-command #'consult-ripgrep)
-  (disproject-find-dir-command #'project-find-dir))
 (use-package typst-ts-mode
   :ensure t)
-
-(setopt wh-mono-font-family "Berkeley Mono Variable"
-        wh-mono-font-size 160
-        wh-sans-font-size 150
-        wh-sans-font-family "Miriam Libre")
-(progn
-  (set-face-attribute 'default nil :family wh-mono-font-family :height wh-mono-font-size :weight 'semi-light)
-  (set-face-attribute 'fixed-pitch nil :family wh-mono-font-family :height wh-mono-font-size :weight 'semi-light)
-  (set-face-attribute 'variable-pitch nil :family wh-sans-font-family :height wh-sans-font-size :weight 'regular))
+(use-package ddgr
+  :ensure t)
+(use-package fontaine
+  :ensure t
+  :init (fontaine-mode 1)
+  :hook (enabled-theme-functions . fontaine-apply-current-preset)
+  :config (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
+  :custom
+  (fontaine-presets
+   '((regular
+      :default-family "Maple Mono Normal NL"
+      :default-height 150
+      :default-weight light
+      :fixed-pitch-family "Maple Mono Normal NL"
+      :fixed-pitch-weight light
+      :variable-pitch-family "Miriam Libre"
+      :variable-pitch-height 140
+      :variable-pitch-weight regular
+      :bold-weight medium))))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
