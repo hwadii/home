@@ -5,3 +5,4 @@ uv = "latest"
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = []
+ruby.compile = false
