@@ -290,7 +290,7 @@
   ("C-x C-#" . server-edit-abort)
   :bind-keymap ("C-c w" . wh-prefix-map)
   :custom
-  (tab-always-indent 'complete)
+  (tab-always-indent t)
   (default-transient-input-method "latin-1-prefix")
   (text-mode-ispell-word-completion nil)
   (read-extended-command-predicate #'command-completion-default-include-p)
@@ -519,17 +519,19 @@
   :ensure nil
   :custom
   (diff-font-lock-prettify t))
-(use-package tree-sitter-indent :ensure t)
-(use-package tree-sitter
-  :ensure nil
-  :hook (((tree-sitter-after-on . tree-sitter-hl-mode))))
-(use-package treesit-auto
+(use-package tree-sitter-langs ;; grammar bundle
   :ensure t
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+  :after tree-sitter
+  :custom (global-tree-sitter-mode t))
+(use-package treesit-auto ;; auto-install missing grammars
+  :ensure t
+  :after tree-sitter
+  :config (global-treesit-auto-mode))
+(use-package treesit-fold ;; enable code folding based on tree-sitter
+  :ensure t
+  :config (treesit-fold-mode)
+  :bind
+  ("C-`" . treesit-fold-toggle))
 (use-package xml-mode
   :ensure nil
   :mode "\\.csproj\\'")
@@ -828,6 +830,7 @@
   (:map Info-mode-map ("?" . casual-info-tmenu))
   (:map reb-mode-map ("C-c C-/" . casual-re-builder-tmenu))
   (:map eshell-mode-map ("C-c C-/" . casual-eshell-tmenu))
+  (:map org-mode-map ("C-c C-/" . casual-org-tmenu))
   (:map wh-prefix-map ("t" . casual-timezone-tmenu))
   :custom
   (casual-lib-use-unicode nil))
@@ -1141,7 +1144,8 @@
   (lsp-disabled-clients '(ruby-ls rubocop-ls angular-ls))
   (lsp-enable-indentation nil)
   :hook
-  (lsp-mode . lsp-enable-which-key-integration))
+  (lsp-mode . lsp-enable-which-key-integration)
+  ((csharp-mode csharp-ts-mode) . lsp))
 (use-package exec-path-from-shell
   :ensure t
   :init
@@ -1246,20 +1250,31 @@
 (use-package fontaine
   :ensure t
   :init (fontaine-mode 1)
-  :hook (enabled-theme-functions . fontaine-apply-current-preset)
-  :config (fontaine-set-preset (or (fontaine-restore-latest-preset) 'regular))
+  :config (fontaine-set-preset 'regular)
   :custom
   (fontaine-presets
    '((regular
-      :default-family "Maple Mono Normal NL"
-      :default-height 150
-      :default-weight light
-      :fixed-pitch-family "Maple Mono Normal NL"
-      :fixed-pitch-weight light
+      :default-family "Fantasque Sans Mono"
+      :default-height 190
+      :default-weight regular
+      :fixed-pitch-family "Fantasque Sans Mono"
+      :fixed-pitch-weight regular
       :variable-pitch-family "Miriam Libre"
-      :variable-pitch-height 140
+      :variable-pitch-height 170
       :variable-pitch-weight regular
-      :bold-weight medium))))
+      :bold-weight semibold
+      :line-spacing 1)
+     (legible
+      :default-family "Atkinson Hyperlegible Mono"
+      :default-height 190
+      :default-weight regular
+      :fixed-pitch-family "Atkinson Hyperlegible Mono"
+      :fixed-pitch-weight regular
+      :variable-pitch-family "Atkinson Hyperlegible Next"
+      :variable-pitch-height 190
+      :variable-pitch-weight regular
+      :bold-weight semibold
+      :line-spacing 0.01))))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
