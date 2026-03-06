@@ -548,9 +548,7 @@
   :ensure t
   :config
   :hook (ruby-ts-mode . (lambda ()
-                          (setq fill-column 140)
-                          (remove-hook 'flymake-diagnostic-functions #'ruby-flymake-auto t)
-                          (remove-hook 'flymake-diagnostic-functions #'t t)))
+                          (setq fill-column 140)))
   :custom
   (ruby-method-call-indent nil)
   (ruby-method-params-indent nil)
@@ -1250,6 +1248,11 @@
 (use-package htmlize
   :ensure t)
 (use-package typst-ts-mode
+  :ensure t)
+(use-package d2-ts-mode
+  :mode "\\.d2\\'"
+  :custom
+  (d2-ts-mode-output-format "png")
   :ensure t)
 (use-package ddgr
   :ensure t)
