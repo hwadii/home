@@ -1230,7 +1230,13 @@
   :ensure t
   :pin gnu)
 (use-package gptel
-  :ensure t)
+  :ensure t
+  :config
+  (setopt gptel-model 'claude-haiku-4-5-20251001)
+  (setopt gptel-backend (gptel-make-anthropic "Claude" :key #'gptel-api-key :stream t))
+  (setopt gptel-gemini-backend (gptel-make-gemini "Gemini" :key (gptel-api-key-from-auth-source "generativelanguage.googleapis.com" nil) :stream t))
+  :bind (:map wh-prefix-map
+              ("l" . gptel-menu)))
 (use-package detached
   :ensure t
   :pin gnu
