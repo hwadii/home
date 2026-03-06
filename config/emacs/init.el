@@ -1247,34 +1247,6 @@
   :ensure t)
 (use-package ddgr
   :ensure t)
-(use-package fontaine
-  :ensure t
-  :init (fontaine-mode 1)
-  :config (fontaine-set-preset 'regular)
-  :custom
-  (fontaine-presets
-   '((regular
-      :default-family "Fantasque Sans Mono"
-      :default-height 190
-      :default-weight regular
-      :fixed-pitch-family "Fantasque Sans Mono"
-      :fixed-pitch-weight regular
-      :variable-pitch-family "Miriam Libre"
-      :variable-pitch-height 170
-      :variable-pitch-weight regular
-      :bold-weight semibold
-      :line-spacing 1)
-     (legible
-      :default-family "Atkinson Hyperlegible Mono"
-      :default-height 190
-      :default-weight regular
-      :fixed-pitch-family "Atkinson Hyperlegible Mono"
-      :fixed-pitch-weight regular
-      :variable-pitch-family "Atkinson Hyperlegible Next"
-      :variable-pitch-height 190
-      :variable-pitch-weight regular
-      :bold-weight semibold
-      :line-spacing 0.01))))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -1289,3 +1261,4 @@
 (require 'wh-insert)
 (require 'wh-eshell-prompt)
 (require 'wh-eglot)
+(require 'wh-fonts)
