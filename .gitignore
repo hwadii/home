@@ -12,3 +12,5 @@ lazy-lock.json
 /config/emacs/eln-cache/
 /config/emacs/etc/
 /config/emacs/undo-fu-session/
+**/tramp
+**/history
