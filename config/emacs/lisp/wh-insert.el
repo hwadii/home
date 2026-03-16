@@ -23,10 +23,7 @@
   (interactive)
   (insert (org-id-uuid)))
 
-(use-package emacs
-  :ensure nil
-  :bind
-  (:map wh-prefix-map ("d" . wh-insert-date-s)))
+(bind-key "d" 'wh-insert-date wh-map)
 
 (provide 'wh-insert)
 
