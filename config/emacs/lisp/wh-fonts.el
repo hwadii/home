@@ -45,16 +45,18 @@
       :bold-weight semibold
       :line-spacing 0.001)
      (classic
-      :default-family "Lilex"
+      :default-family "JetBrains Mono NL"
       :default-height 160
       :default-weight regular
-      :fixed-pitch-family "Lilex"
+      :fixed-pitch-family "JetBrains Mono NL"
       :fixed-pitch-weight regular
       :variable-pitch-family "Input Sans Condensed"
       :variable-pitch-height 150
       :variable-pitch-weight regular
-      :bold-weight medium
+      :bold-weight bold
       :line-spacing 0.0001))))
+
+(set-fontset-font t nil "Font Awesome 7 Free" nil 'append)
 
 (provide 'wh-fonts)
 ;;; wh-fonts.el ends here
