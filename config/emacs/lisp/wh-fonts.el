@@ -6,7 +6,6 @@
 
 (use-package fontaine
   :ensure t
-  :init (fontaine-mode 1)
   :config (fontaine-set-preset 'regular)
   :custom
   (fontaine-presets
@@ -14,49 +13,51 @@
       :default-family "Berkeley Mono Variable"
       :default-height 160
       :default-weight regular
-      :fixed-pitch-family "Berkeley Mono Variable"
-      :fixed-pitch-weight regular
+      :default-width regular
+      :fixed-pitch-family nil
+      :fixed-pitch-weight nil
+      :fixed-pitch-height 1.0
       :variable-pitch-family "Input Sans Condensed"
-      :variable-pitch-height 160
+      :variable-pitch-height 150
       :variable-pitch-weight regular
       :bold-weight bold)
      (narrow
-      :default-family "Iosevka SS05"
+      :default-family "Aporetic Sans Mono"
       :default-height 160
       :default-weight regular
-      :default-width expanded
-      :fixed-pitch-family "Iosevka SS05"
-      :fixed-pitch-weight regular
-      :fixed-pitch-width expanded
-      :variable-pitch-family "Input Sans Condensed"
+      :fixed-pitch-family nil
+      :fixed-pitch-weight nil
+      :variable-pitch-family "Aporetic Sans"
       :variable-pitch-height 160
       :variable-pitch-weight regular
       :bold-weight bold
       :line-spacing 1)
      (legible
-      :default-family "Geist Mono"
-      :default-height 160
+      :default-family "CommitMono"
+      :default-height 170
       :default-weight regular
-      :fixed-pitch-family "Geist Mono"
-      :fixed-pitch-weight regular
-      :variable-pitch-family "Geist"
-      :variable-pitch-height 160
+      :fixed-pitch-family nil
+      :fixed-pitch-weight nil
+      :variable-pitch-family "Atkinson Hyperlegible Next"
+      :variable-pitch-height 170
       :variable-pitch-weight regular
-      :bold-weight semibold
+      :bold-weight bold
       :line-spacing 0.001)
      (classic
       :default-family "JetBrains Mono NL"
       :default-height 160
-      :default-weight regular
-      :fixed-pitch-family "JetBrains Mono NL"
-      :fixed-pitch-weight regular
+      :default-weight semilight
+      :fixed-pitch-family nil
+      :fixed-pitch-weight nil
+      :fixed-pitch-height 1.0
       :variable-pitch-family "Input Sans Condensed"
       :variable-pitch-height 150
       :variable-pitch-weight regular
       :bold-weight bold
-      :line-spacing 0.0001))))
+      :line-spacing 0.001))))
 
 (set-fontset-font t nil "Font Awesome 7 Free" nil 'append)
+(set-fontset-font t nil "Symbols Nerd Font" nil 'append)
 
 (provide 'wh-fonts)
 ;;; wh-fonts.el ends here

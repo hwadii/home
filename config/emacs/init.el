@@ -36,6 +36,11 @@
 
 (setopt enable-recursive-minibuffers t)
 
+;; Keep the cursor out of the read-only portions of the.minibuffer
+(setq minibuffer-prompt-properties
+      '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
 (setopt view-read-only t)
 
 ;; Indentation setting for various languages.
@@ -79,12 +84,14 @@
 
 (setopt suggest-key-bindings 0)
 
-(setopt minibuffer-message-properties '(face minibuffer-prompt))
-
 (setopt user-full-name       "Wadii Hajji"
         user-real-login-name "Wadii Hajji"
         user-login-name      "hwadii"
         user-mail-address    "hajji.wadii@yahoo.fr")
+
+(setopt truncate-string-ellipsis "…")
+
+(setopt uniquify-buffer-name-style 'forward)
 
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
@@ -240,7 +247,9 @@
   :ensure nil
   :custom
   (show-paren-delay 0.1)
+  (show-paren-highlight-openparen t)
   (show-paren-when-point-inside-paren t)
+  (show-paren-when-point-in-periphery t)
   :config
   (show-paren-mode))
 (use-package windsize
@@ -650,7 +659,11 @@
   :ensure t
   :bind ("C-M-!" . sudo-utils-shell-command))
 (use-package ansi-color
-  :hook (compilation-filter . ansi-color-compilation-filter))
+  :hook (compilation-filter . ansi-color-compilation-filter)
+  :config
+  (defun wh-ansi-apply-color-on-buffer ()
+    (interactive)
+    (ansi-color-apply-on-region (point-min) (point-max) 'replace)))
 (use-package eglot
   :ensure t
   :custom
@@ -1204,7 +1217,7 @@
   (doom-modeline-minor-modes t)
   (doom-modeline-vcs-max-length 15)
   (doom-modeline-workspace-name nil)
-  (doom-modeline-height 22)
+  (doom-modeline-height 21)
   (doom-modeline-column-zero-based nil)
   (doom-modeline-total-line-number t)
   (doom-modeline-env-enable-ruby nil)
